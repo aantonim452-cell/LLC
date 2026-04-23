@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>LLC Store | TopUp Higgs & Domino Sultan | Berfist - Full Animasi</title>
-    <!-- Google Fonts & Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>LLC STORE | Pusat MOD, TopUp, & Jasa Digital Premium</title>
+    <meta name="description" content="LLC Store - Jual MOD Game 55+ game, TopUp Diamond/Koin, Jasa Buat APK, Script, Website, dan Layanan Digital Lainnya">
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    
     <style>
         * {
             margin: 0;
@@ -16,783 +22,427 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b2e 100%);
+            background: linear-gradient(135deg, #0f0c1f 0%, #1a1a2e 100%);
             color: #f1f5f9;
-            padding: 2rem 1.5rem;
+            padding: 0;
             min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
         }
 
-        /* === ANIMASI BACKGROUND === */
-        .stars, .twinkling {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-            pointer-events: none;
-            z-index: -2;
-        }
-        .stars {
-            background: #000 url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIxLjUiIGZpbGw9IndoaXRlIi8+PC9zdmc+') repeat;
-            background-size: 200px 200px;
-            animation: starMove 60s linear infinite;
-            opacity: 0.6;
-        }
-        @keyframes starMove {
-            from { transform: translateY(0); }
-            to { transform: translateY(-200px); }
-        }
-        .twinkling {
-            background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+PGNpcmNsZSBjeD0iMjAiIGN5PSIzMCIgcj0iMSIgZmlsbD0iI2ZmZGI1YyIvPjwvc3ZnPg==') repeat;
-            background-size: 150px 150px;
-            animation: twinkle 3s infinite alternate;
-        }
-        @keyframes twinkle {
-            0% { opacity: 0.2; }
-            100% { opacity: 0.9; }
-        }
-
-        .particle-canvas {
+        .stars-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background-image: radial-gradient(2px 2px at 20px 30px, #fff, rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 60px 80px, #fbbf24, rgba(0,0,0,0));
+            background-size: 200px 200px, 150px 150px;
+            background-repeat: repeat;
+            opacity: 0.1;
             pointer-events: none;
             z-index: -1;
-        }
-
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1e293b;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #f59e0b, #fbbf24);
-            border-radius: 10px;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            padding: 1.5rem;
             position: relative;
             z-index: 2;
         }
 
-        /* Hero Animations */
-        .hero {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(139, 92, 246, 0.1));
             backdrop-filter: blur(10px);
-            border-radius: 2rem;
-            padding: 2.5rem 2rem;
-            margin-bottom: 3rem;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-            text-align: center;
-            animation: fadeInUp 0.8s ease-out, borderGlow 3s infinite alternate;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(245,158,11,0.08), transparent 70%);
-            animation: rotateSlow 20s linear infinite;
-        }
-        @keyframes rotateSlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        @keyframes borderGlow {
-            0% { border-color: rgba(245, 158, 11, 0.3); box-shadow: 0 0 5px rgba(245,158,11,0.2);}
-            100% { border-color: rgba(245, 158, 11, 0.9); box-shadow: 0 0 30px rgba(245,158,11,0.5);}
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.02em;
-            animation: textShine 2s infinite;
-        }
-        @keyframes textShine {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .hero p {
-            margin-top: 1rem;
-            font-size: 1.1rem;
-            opacity: 0.9;
-            animation: fadeIn 1s ease 0.2s both;
-        }
-        
-        .badge-group {
-            margin-top: 1.5rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.8rem;
-        }
-        
-        .badge {
-            background: rgba(51, 65, 85, 0.8);
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.8rem;
-            border-left: 3px solid #f59e0b;
-            color: #fef3c7;
-            transition: all 0.3s;
-            animation: badgeWave 0.6s ease-out backwards;
-            cursor: default;
-        }
-        .badge:hover {
-            transform: scale(1.07) translateY(-3px);
-            background: #f59e0b;
-            color: #0f172a;
-            border-left-color: white;
-            box-shadow: 0 5px 15px rgba(245,158,11,0.4);
-        }
-        @keyframes badgeWave {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 1.8rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .card {
-            background: rgba(30, 41, 59, 0.85);
-            backdrop-filter: blur(8px);
-            border-radius: 1.5rem;
-            border: 1px solid rgba(245, 158, 11, 0.25);
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
-            animation: cardFloat 0.6s ease-out backwards;
-        }
-        @keyframes cardFloat {
-            from { opacity: 0; transform: translateY(50px) scale(0.96); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        
-        .card:hover {
-            transform: translateY(-12px) scale(1.01);
-            border-color: #f59e0b;
-            box-shadow: 0 30px 40px -12px rgba(245,158,11,0.4);
-        }
-
-        .card-header {
-            padding: 1.2rem 1.5rem;
-            background: linear-gradient(115deg, #1e293b, #0f172a);
-            border-bottom: 2px solid #f59e0b;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            position: relative;
-            overflow: hidden;
-        }
-        .card-header::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(245,158,11,0.15) 0%, transparent 70%);
-            animation: rotateShine 12s infinite linear;
-            pointer-events: none;
-        }
-        @keyframes rotateShine {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .game-logo {
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #f59e0b;
-            animation: pulseBorder 2s infinite;
-            box-shadow: 0 0 10px rgba(245,158,11,0.3);
-            overflow: hidden;
-        }
-        @keyframes pulseBorder {
-            0% { border-color: #f59e0b; box-shadow: 0 0 0 0 rgba(245,158,11,0.4);}
-            70% { border-color: #fbbf24; box-shadow: 0 0 0 8px rgba(245,158,11,0);}
-            100% { border-color: #f59e0b; box-shadow: 0 0 0 0 rgba(245,158,11,0);}
-        }
-        
-        .game-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.3s;
-        }
-        .card:hover .game-logo img {
-            transform: scale(1.1);
-        }
-        
-        /* Fallback icon styling */
-        .game-logo .fallback-icon {
-            font-size: 2.2rem;
-            transition: all 0.3s;
-        }
-        .card:hover .game-logo .fallback-icon {
-            transform: scale(1.15) rotate(5deg);
-            filter: drop-shadow(0 0 5px #fbbf24);
-        }
-        
-        .info-header h2 {
-            font-weight: 800;
-            font-size: 1.5rem;
-            background: linear-gradient(45deg, #ffd966, #f59e0b);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: titleGlow 1.5s infinite alternate;
-        }
-        @keyframes titleGlow {
-            from { filter: drop-shadow(0 0 1px #fbbf24); }
-            to { filter: drop-shadow(0 0 5px #f59e0b); }
-        }
-        
-        .sub {
-            font-size: 0.7rem;
-            opacity: 0.75;
-            margin-top: 4px;
-            color: #94a3b8;
-        }
-
-        .table-wrapper {
-            padding: 0 1rem 1.2rem 1rem;
-            overflow-x: auto;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.8rem;
-        }
-        
-        th {
-            text-align: left;
-            padding: 0.8rem 0.5rem 0.5rem 0.5rem;
-            color: #fbbf24;
-            font-weight: 700;
-            border-bottom: 1px dashed #334155;
-        }
-        
-        td {
-            padding: 0.7rem 0.5rem;
-            border-bottom: 1px solid #334155;
-            font-weight: 500;
-            color: #e2e8f0;
-            transition: all 0.2s;
-        }
-        tr:hover td {
-            background: rgba(245,158,11,0.08);
-            transform: scale(1.01);
-        }
-        
-        .price-beli {
-            color: #fde68a;
-            font-weight: 800;
-            animation: gentlePulse 1.8s infinite;
-        }
-        .price-jual {
-            color: #7dd3fc;
-            font-weight: 800;
-            animation: gentlePulseBlue 2s infinite;
-        }
-        @keyframes gentlePulse {
-            0%, 100% { text-shadow: 0 0 0px #fde68a; }
-            50% { text-shadow: 0 0 3px #fbbf24; }
-        }
-        @keyframes gentlePulseBlue {
-            0%, 100% { text-shadow: 0 0 0px #7dd3fc; }
-            50% { text-shadow: 0 0 3px #38bdf8; }
-        }
-        
-        .note {
-            font-size: 0.7rem;
-            background: #1e293b;
-            padding: 0.3rem 0.9rem;
-            border-radius: 20px;
-            display: inline-block;
-            margin-top: 10px;
-            color: #cbd5e1;
-            animation: slideInLeft 0.5s;
-        }
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-15px);}
-            to { opacity: 1; transform: translateX(0);}
-        }
-        
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .btn-topup, .btn-download {
-            flex: 1;
-            background: linear-gradient(95deg, #f59e0b, #ea580c);
-            border: none;
-            color: #0f172a;
-            font-weight: 800;
-            padding: 10px 12px;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: 'Inter', sans-serif;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-topup::before, .btn-download::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-        .btn-topup:hover::before, .btn-download:hover::before {
-            left: 100%;
-        }
-        
-        .btn-download {
-            background: linear-gradient(95deg, #0284c7, #0369a1);
-            color: white;
-        }
-        
-        .btn-topup:hover, .btn-download:hover {
-            transform: translateY(-3px) scale(1.02);
-            filter: brightness(1.1);
-            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.3);
-        }
-        
-        .promo-box {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
             border-radius: 1.5rem;
             padding: 1.5rem;
             margin-bottom: 2rem;
-            border: 1px solid #f59e0b;
-            animation: fadeInScale 0.7s ease-out;
+            text-align: center;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ef4444);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo small {
+            font-size: 0.8rem;
+            display: block;
+            color: #94a3b8;
+            background: none;
+            -webkit-background-clip: unset;
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+        .menu-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 1.2rem;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(139, 92, 246, 0.3);
             position: relative;
-            overflow: hidden;
         }
-        .promo-box::after {
-            content: "✨";
-            font-size: 80px;
+        .menu-card:hover {
+            transform: translateY(-5px);
+            border-color: #f59e0b;
+            box-shadow: 0 10px 25px -8px rgba(245,158,11,0.3);
+        }
+        .menu-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .menu-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .menu-card p {
+            font-size: 0.7rem;
+            color: #94a3b8;
+        }
+        .badge-new {
             position: absolute;
-            bottom: -20px;
-            right: -20px;
-            opacity: 0.1;
-            animation: spinSlow 20s linear infinite;
+            top: 8px;
+            right: 8px;
+            background: #ef4444;
+            font-size: 0.6rem;
+            padding: 2px 8px;
+            border-radius: 20px;
         }
-        @keyframes spinSlow {
-            from { transform: rotate(0deg);}
-            to { transform: rotate(360deg);}
+
+        /* Content Panel */
+        .content-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 1.5rem;
+            padding: 1.8rem;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            min-height: 500px;
         }
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.96);}
-            to { opacity: 1; transform: scale(1);}
+        .panel-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #f59e0b;
+            padding-left: 1rem;
         }
-        
-        .promo-box h3 {
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+        .product-card {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 1rem;
+            padding: 1rem;
+            border: 1px solid #334155;
+            transition: 0.3s;
+        }
+        .product-card:hover {
+            border-color: #f59e0b;
+            transform: translateY(-3px);
+        }
+        .product-name {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .product-price {
             color: #fbbf24;
-            margin-bottom: 1rem;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+        .btn-order {
+            background: #25D366;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 8px;
+            color: #0f172a;
         }
-        
-        .promo-grid {
+        .btn-order:hover {
+            background: #20b359;
+        }
+
+        /* Form */
+        .service-form {
             display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 600px;
         }
-        
-        .promo-item {
-            flex: 1;
-            min-width: 180px;
-            transition: all 0.3s;
-            animation: listPop 0.4s backwards;
+        .service-form input, .service-form textarea, .service-form select {
+            background: #1e293b;
+            border: 1px solid #334155;
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: white;
+            font-family: inherit;
         }
-        .promo-item:hover {
-            transform: translateY(-5px);
+        .service-form textarea {
+            min-height: 100px;
         }
-        @keyframes listPop {
-            from { opacity: 0; transform: translateY(20px);}
-            to { opacity: 1; transform: translateY(0);}
+        .service-form button {
+            background: linear-gradient(115deg, #4f46e5, #7c3aed);
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
         }
-        
-        .promo-item h4 {
-            color: #f59e0b;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-            position: relative;
-            display: inline-block;
+
+        .wa-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.4);
         }
-        .promo-item h4::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: #fbbf24;
-            transition: width 0.4s;
-        }
-        .promo-item:hover h4::after {
-            width: 100%;
-        }
-        
-        .footer-note {
+
+        .footer {
             text-align: center;
-            margin-top: 2.5rem;
-            padding-top: 1.5rem;
+            padding: 2rem 1rem 1rem;
+            margin-top: 2rem;
             border-top: 1px solid #334155;
-            color: #94a3b8;
-            font-size: 0.8rem;
-            animation: fadeInUp 0.6s;
+            font-size: 0.7rem;
+            color: #64748b;
         }
-        
-        @media (max-width: 768px) {
-            body { padding: 1rem; }
-            .hero h1 { font-size: 2rem; }
-            .card-header h2 { font-size: 1.2rem; }
-            th, td { font-size: 0.65rem; padding: 0.5rem 0.3rem; }
-            .game-logo { width: 50px; height: 50px; }
-        }
-        .text-gold {
-            color: #fbbf24;
-        }
-        
-        @keyframes blinkGold {
-            50% { opacity: 0.7; text-shadow: 0 0 5px #ffb347; }
+
+        @media (max-width: 600px) {
+            .container { padding: 1rem; }
+            .menu-grid { grid-template-columns: repeat(2, 1fr); }
+            .menu-icon { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-<canvas id="particleCanvas" class="particle-canvas"></canvas>
-<div class="stars"></div>
-<div class="twinkling"></div>
+<div class="stars-bg"></div>
 
 <div class="container">
-    <div class="hero">
-        <h1><i class="fas fa-crown"></i> LLC STORE ORI<i class="fas fa-bolt"></i></h1>
-        <p>TopUp Higgs Games Island • Bos Domino • Royal Domino • Berfist | Harga Beli & Jual Terbaik</p>
-        <div class="badge-group">
-            <span class="badge" style="animation-delay: 0.05s;"><i class="fab fa-fort-awesome"></i> Higgs Games</span>
-            <span class="badge" style="animation-delay: 0.1s;"><i class="fas fa-crown"></i> Bos Domino</span>
-            <span class="badge" style="animation-delay: 0.15s;"><i class="fas fa-chess-queen"></i> Royal Domino</span>
-            <span class="badge" style="animation-delay: 0.2s;"><i class="fas fa-fist-raised"></i> Berfist</span>
-            <span class="badge" style="animation-delay: 0.25s;"><i class="fas fa-clock"></i> 24/7 Nonstop</span>
-            <span class="badge" style="animation-delay: 0.3s;"><i class="fas fa-exchange-alt"></i> Beli & Jual</span>
+    <div class="header">
+        <div class="logo">
+            LLC STORE <i class="fas fa-crown"></i>
+            <small>Premium MOD • TopUp • Jasa APK • Script</small>
+        </div>
+        <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <span style="background:#4f46e5; padding:4px 12px; border-radius:20px; font-size:0.7rem;"><i class="fab fa-whatsapp"></i> 24/7 Support</span>
+            <span style="background:#f59e0b; padding:4px 12px; border-radius:20px; font-size:0.7rem; color:#0f172a;"><i class="fas fa-gem"></i> Garansi 100%</span>
+            <span style="background:#10b981; padding:4px 12px; border-radius:20px; font-size:0.7rem;"><i class="fas fa-clock"></i> Cepat & Aman</span>
         </div>
     </div>
 
-    <script>
-        const DOWNLOAD_LINKS = {
-            higgs: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
-            bosDomino: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
-            royalDomino: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
-            berfist: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip"
-        };
-        
-        function downloadGame(gameKey) {
-            let link = DOWNLOAD_LINKS[gameKey] || "#";
-            if(link && link !== "#") {
-                window.open(link, '_blank');
-            } else {
-                alert("Link download akan segera diperbarui. Hubungi admin via WhatsApp.");
-            }
-        }
-        
-        function orderNow(gameName) {
-            const adminPhone = "6285823710815";
-            let message = `Halo LLC Store Admin, saya ingin melakukan TRANSAKSI (BELI/JUAL) untuk: ${gameName}.%0A%0A`;
-            message += `Saya tertarik dengan daftar harga di website LLC Store.%0A`;
-            message += `Mohon info ketersediaan dan proses untuk ${gameName}. Terima kasih!`;
-            window.open(`https://wa.me/${adminPhone}?text=${message}`, '_blank');
-        }
-        
-        // PARTIKEL CANVAS
-        const canvas = document.getElementById('particleCanvas');
-        let ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
-        
-        function resizeCanvas() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-        }
-        
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.3 + 0.2;
-                this.color = `rgba(245, 158, 11, ${Math.random() * 0.5 + 0.2})`;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if(this.x > width) this.x = 0;
-                if(this.x < 0) this.x = width;
-                if(this.y > height) this.y = 0;
-                if(this.y < 0) this.y = height;
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
-        }
-        
-        function initParticles() {
-            particles = [];
-            let num = Math.min(120, Math.floor(width * height / 8000));
-            for(let i=0; i<num; i++) {
-                particles.push(new Particle());
-            }
-        }
-        
-        function animateParticles() {
-            if(!ctx) return;
-            ctx.clearRect(0, 0, width, height);
-            for(let p of particles) {
-                p.update();
-                p.draw();
-            }
-            requestAnimationFrame(animateParticles);
-        }
-        
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-            initParticles();
-        });
-        resizeCanvas();
-        initParticles();
-        animateParticles();
-        
-        // Animasi card delay
-        document.querySelectorAll('.card').forEach((card, idx) => {
-            card.style.animationDelay = `${idx * 0.1}s`;
-        });
-        
-        // Fungsi untuk handle error image logo
-        function handleImageError(imgElement, iconClass) {
-            imgElement.style.display = 'none';
-            let parent = imgElement.parentElement;
-            let fallbackIcon = document.createElement('i');
-            fallbackIcon.className = iconClass + ' fallback-icon';
-            fallbackIcon.style.fontSize = '2.2rem';
-            fallbackIcon.style.color = '#fbbf24';
-            parent.appendChild(fallbackIcon);
-        }
-    </script>
-
-    <div class="grid">
-        <!-- CARD 1: HIGGS GAMES ISLAND -->
-        <div class="card">
-            <div class="card-header">
-                <div class="game-logo logo-higgs">
-                    <img src="https://play-lh.googleusercontent.com/0AfLM4u9VMWMwZK6jeC1ax4mWdM4eQAl3N5jWl2AParMUK65WOEXF_owy6fbtnJS5XY" 
-                         alt="Higgs Games" 
-                         onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-gamepad\' style=\'font-size:2.2rem;color:#f97316;\'></i>'">
-                </div>
-                <div class="info-header">
-                    <h2>HIGGS GAMES ISLAND</h2>
-                    <div class="sub">TOPUP & JUAL KOIN</div>
-                </div>
-            </div>
-            <div class="table-wrapper">
-                <table>
-                    <thead><tr><th>Jumlah Koin</th><th>Harga Beli (IDR)</th><th>Harga Jual (IDR)</th></tr></thead>
-                    <tbody>
-                        <tr><td>🔥 100M</td><td class="price-beli">Rp 65.000</td><td class="price-jual">Rp 55.000</td></tr>
-                        <tr><td>⭐ 500M</td><td class="price-beli">Rp 310.000</td><td class="price-jual">Rp 280.000</td></tr>
-                        <tr><td>💎 1B</td><td class="price-beli">Rp 600.000</td><td class="price-jual">Rp 550.000</td></tr>
-                        <tr><td>👑 5B</td><td class="price-beli">Rp 1.450.000</td><td class="price-jual">Rp 1.350.000</td></tr>
-                        <tr><td>🚀 10B</td><td class="price-beli">Rp 2.850.000</td><td class="price-jual">Rp 2.650.000</td></tr>
-                        <tr><td>🏆 50B</td><td class="price-beli">Rp 5.500.000</td><td class="price-jual">Rp 5.100.000</td></tr>
-                        <tr><td><strong>💥 100B</strong></td><td class="price-beli"><strong>Rp 65.000</strong></td><td class="price-jual"><strong>Rp 55.000</strong></td></tr>
-                    </tbody>
-                </table>
-                <div class="note"><i class="fas fa-tag"></i> Harga update Maret 2026 | Beli = Anda beli dari kami | Jual = Kami beli dari Anda</div>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="orderNow('Higgs Games Island')"><i class="fab fa-whatsapp"></i> BELI / JUAL</button>
-                    <button class="btn-download" onclick="downloadGame('higgs')"><i class="fas fa-download"></i> DOWNLOAD GAME</button>
-                </div>
-            </div>
+    <!-- MENU UTAMA -->
+    <div class="menu-grid">
+        <div class="menu-card" data-menu="mod">
+            <div class="menu-icon"><i class="fas fa-gamepad"></i></div>
+            <h3>🎮 Jual MOD Game</h3>
+            <p>55+ Game MOD Aktif 60 Hari</p>
+            <div class="badge-new">POPULER</div>
         </div>
-
-        <!-- CARD 2: BOS DOMINO -->
-        <div class="card">
-            <div class="card-header">
-                <div class="game-logo logo-bos">
-                    <img src="https://dl.memuplay.com/new_market/img/com.vivid.domino.icon.2023-11-24-13-29-36.png" 
-                         alt="Bos Domino" 
-                         onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-crown\' style=\'font-size:2.2rem;color:#fbbf24;\'></i>'">
-                </div>
-                <div class="info-header">
-                    <h2>BOS DOMINO</h2>
-                    <div class="sub">BELI & JUAL CHIP</div>
-                </div>
-            </div>
-            <div class="table-wrapper">
-                <table>
-                    <thead><tr><th>Jumlah Chip</th><th>Harga Beli (IDR)</th><th>Harga Jual (IDR)</th></tr></thead>
-                    <tbody>
-                        <tr><td>📦 1B</td><td class="price-beli">Rp 70.000</td><td class="price-jual">Rp 60.000</td></tr>
-                        <tr><td>💎 10B</td><td class="price-beli">Rp 330.000</td><td class="price-jual">Rp 295.000</td></tr>
-                        <tr><td>🏆 50B</td><td class="price-beli">Rp 640.000</td><td class="price-jual">Rp 580.000</td></tr>
-                        <tr><td>👑 100B</td><td class="price-beli">Rp 1.550.000</td><td class="price-jual">Rp 1.420.000</td></tr>
-                        <tr><td>🚀 50.000.000 Chip</td><td class="price-beli">Rp 3.000.000</td><td class="price-jual">Rp 2.750.000</td></tr>
-                        <tr><td>✨ 200B</td><td class="price-beli">Rp 5.800.000</td><td class="price-jual">Rp 5.350.000</td></tr>
-                        <tr><td><strong>🌟 500B</strong></td><td class="price-beli"><strong>Rp 550.000</strong></td><td class="price-jual"><strong>Rp 500.000</strong></td></tr>
-                    </tbody>
-                </table>
-                <div class="note"><i class="fas fa-chart-line"></i> Harga paling kompetitif se-Indonesia</div>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="orderNow('Bos Domino')"><i class="fab fa-whatsapp"></i> BELI / JUAL</button>
-                    <button class="btn-download" onclick="downloadGame('bosDomino')"><i class="fas fa-download"></i> DOWNLOAD GAME</button>
-                </div>
-            </div>
+        <div class="menu-card" data-menu="topup">
+            <div class="menu-icon"><i class="fas fa-gem"></i></div>
+            <h3>💎 TopUp Diamond/Koin</h3>
+            <p>ML • FF • Higgs • Domino • DLL</p>
         </div>
-
-        <!-- CARD 3: ROYAL DOMINO -->
-        <div class="card">
-            <div class="card-header">
-                <div class="game-logo logo-royal">
-                    <img src="https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO%20DOWNLOAD%20installworks.ca" 
-                         alt="Royal Domino" 
-                         onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-chess-queen\' style=\'font-size:2.2rem;color:#c084fc;\'></i>'">
-                </div>
-                <div class="info-header">
-                    <h2>ROYAL DOMINO</h2>
-                    <div class="sub">BELI & JUAL CHIP</div>
-                </div>
-            </div>
-            <div class="table-wrapper">
-                <table>
-                    <thead><tr><th>Jumlah Chip</th><th>Harga Beli (IDR)</th><th>Harga Jual (IDR)</th></tr></thead>
-                    <tbody>
-                        <tr><td>500M</td><td class="price-beli">Rp 40.000</td><td class="price-jual">Rp 32.000</td></tr>
-                        <tr><td>1B</td><td class="price-beli">Rp 75.000</td><td class="price-jual">Rp 62.000</td></tr>
-                        <tr><td>2B</td><td class="price-beli">Rp 180.000</td><td class="price-jual">Rp 148.000</td></tr>
-                        <tr><td>5B</td><td class="price-beli">Rp 345.000</td><td class="price-jual">Rp 285.000</td></tr>
-                        <tr><td>10B</td><td class="price-beli">Rp 665.000</td><td class="price-jual">Rp 550.000</td></tr>
-                        <tr><td>15B</td><td class="price-beli">Rp 1.600.000</td><td class="price-jual">Rp 1.320.000</td></tr>
-                        <tr><td>30B</td><td class="price-beli">Rp 3.100.000</td><td class="price-jual">Rp 2.550.000</td></tr>
-                        <tr><td>50B</td><td class="price-beli">Rp 6.000.000</td><td class="price-jual">Rp 4.950.000</td></tr>
-                        <tr><td><strong>100B</strong></td><td class="price-beli"><strong>Rp 58.000.000</strong></td><td class="price-jual"><strong>Rp 48.000.000</strong></td></tr>
-                    </tbody>
-                </table>
-                <div class="note"><i class="fas fa-exchange-alt"></i> Harga bersaing, proses cepat 24 jam</div>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="orderNow('Royal Domino')"><i class="fab fa-whatsapp"></i> BELI / JUAL</button>
-                    <button class="btn-download" onclick="downloadGame('royalDomino')"><i class="fas fa-download"></i> DOWNLOAD GAME</button>
-                </div>
-            </div>
+        <div class="menu-card" data-menu="apk">
+            <div class="menu-icon"><i class="fas fa-code"></i></div>
+            <h3>📱 Jasa Buat APK</h3>
+            <p>Aplikasi Android Custom</p>
+            <div class="badge-new">HOT</div>
         </div>
-
-        <!-- CARD 4: BERFIST -->
-        <div class="card">
-            <div class="card-header">
-                <div class="game-logo logo-berfist">
-                    <img src="https://play-lh.googleusercontent.com/mvFrMMdovquq71B-ta-JVKBdw4Zbs2RmPxe8EVFyGiXAtHAm_p0x3940NqDmFGk6vg" 
-                         alt="Berfist" 
-                         onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-fist-raised\' style=\'font-size:2.2rem;color:#ef4444;\'></i>'">
-                </div>
-                <div class="info-header">
-                    <h2>BERFIST</h2>
-                    <div class="sub">BELI & JUAL KOIN</div>
-                </div>
-            </div>
-            <div class="table-wrapper">
-                <table>
-                    <thead><tr><th>Jumlah Koin</th><th>Harga Beli (IDR)</th><th>Harga Jual (IDR)</th></tr></thead>
-                    <tbody>
-                        <tr><td>🔥 500M</td><td class="price-beli">Rp 35.000</td><td class="price-jual">Rp 28.000</td></tr>
-                        <tr><td>⭐ 1B</td><td class="price-beli">Rp 65.000</td><td class="price-jual">Rp 55.000</td></tr>
-                        <tr><td>💎 5B</td><td class="price-beli">Rp 315.000</td><td class="price-jual">Rp 275.000</td></tr>
-                        <tr><td>👑 10B</td><td class="price-beli">Rp 610.000</td><td class="price-jual">Rp 540.000</td></tr>
-                        <tr><td>🚀 20B</td><td class="price-beli">Rp 1.480.000</td><td class="price-jual">Rp 1.320.000</td></tr>
-                        <tr><td><strong>💢 50B</strong></td><td class="price-beli"><strong>Rp 68.000</strong></td><td class="price-jual"><strong>Rp 58.000</strong></td></tr>
-                    </tbody>
-                </table>
-                <div class="note"><i class="fas fa-fist-raised"></i> Spesial member LLC Store</div>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="orderNow('Berfist')"><i class="fab fa-whatsapp"></i> BELI / JUAL</button>
-                    <button class="btn-download" onclick="downloadGame('berfist')"><i class="fas fa-download"></i> DOWNLOAD GAME</button>
-                </div>
-            </div>
+        <div class="menu-card" data-menu="script">
+            <div class="menu-icon"><i class="fas fa-terminal"></i></div>
+            <h3>⚙️ Jasa Script/Aplikasi</h3>
+            <p>Bot, Tools, Automation</p>
+        </div>
+        <div class="menu-card" data-menu="website">
+            <div class="menu-icon"><i class="fas fa-globe"></i></div>
+            <h3>🌐 Jasa Website</h3>
+            <p>Landing Page, Store, Dashboard</p>
+        </div>
+        <div class="menu-card" data-menu="other">
+            <div class="menu-icon"><i class="fas fa-tools"></i></div>
+            <h3>🛠️ Lainnya</h3>
+            <p>Joki, Edit, Desain, DLL</p>
         </div>
     </div>
 
-    <div class="promo-box">
-        <h3><i class="fas fa-list-ul text-gold"></i> RINGKASAN HARGA BELI & JUAL SEMUA GAME</h3>
-        <div class="promo-grid">
-            <div class="promo-item"><h4>🎮 HIGGS GAMES</h4><ul><li>🔹 1B Koin → Beli Rp65K / Jual Rp55K</li><li>🔹 5B Koin → Beli Rp299K / Jual Rp270K</li></ul></div>
-            <div class="promo-item"><h4>👑 BOS DOMINO</h4><ul><li>🔸 1B Chip → Beli Rp550K / Jual Rp500K</li><li>🔸 100M Chip → Beli Rp5,8JT / Jual Rp5,35JT</li></ul></div>
-            <div class="promo-item"><h4>♟️ ROYAL DOMINO</h4><ul><li>💎 1B Chip → Beli Rp58JT / Jual Rp48JT</li><li>💎 100M Chip → Beli Rp6JT / Jual Rp4,95JT</li></ul></div>
-            <div class="promo-item"><h4>🥊 BERFIST</h4><ul><li>🥊 1B Koin → Beli Rp68K / Jual Rp58K</li><li>🥊 500M Koin → Beli Rp35K / Jual Rp28K</li></ul></div>
+    <!-- KONTEN DINAMIS -->
+    <div class="content-panel" id="contentPanel">
+        <div class="panel-title">
+            <i class="fas fa-gamepad" style="color:#f59e0b;"></i> 
+            <span id="panelTitle">Selamat Datang di LLC Store</span>
+        </div>
+        <div id="panelContent">
+            <p style="text-align:center; padding:2rem;">Silakan pilih menu di atas untuk melihat layanan kami.<br><br>
+            <i class="fas fa-arrow-up"></i> Klik salah satu menu!</p>
         </div>
     </div>
 
-    <div class="footer-note">
-        <i class="fab fa-whatsapp"></i> <strong>LLC</strong> • Proses 1-3 Menit • Garansi Penuh • Aman & Terpercaya<br>
-        <strong style="color: #fbbf24; animation: blinkGold 1.5s infinite;">© LLC STORE 2026 | TopUp Sultan Se-Indonesia</strong>
+    <div class="footer">
+        <i class="fas fa-shield-alt"></i> LLC STORE • Terpercaya Sejak 2024 • Melayani Seluruh Indonesia<br>
+        © 2026 LLC STORE - Pusat MOD, TopUp, dan Jasa Digital Premium
     </div>
 </div>
+
+<div class="wa-float" id="waFloat">
+    <i class="fab fa-whatsapp"></i>
+</div>
+
+<script>
+    const adminPhone = "6285823710815";
+    const PRICE_MOD = 100000;
+
+    function sendWA(message) {
+        window.open(`https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    // DATA GAME MOD
+    const modGames = [
+        "Mobile Legends", "Free Fire", "Genshin Impact", "PUBG Mobile", "Call of Duty Mobile",
+        "Arena of Valor", "Honkai Impact 3rd", "Ragnarok Origin", "Black Clover M", "Lost Light",
+        "Whiteout Survival", "State of Survival", "Clash of Clans", "Clash Royale", "Brawl Stars",
+        "Farlight 84", "Blood Strike", "Stumble Guys", "Among Us", "Roblox", "Minecraft",
+        "Sausage Man", "CookieRun Kingdom", "Watcher of Realms", "AFK Journey", "Diablo Immortal",
+        "Honkai Star Rail", "Wuthering Waves", "Tower of Fantasy", "Asphalt 9", "eFootball 2025"
+    ];
+
+    // DATA TOPUP
+    const topupItems = [
+        { name: "Mobile Legends • 1000 Diamond", price: "Rp 25.000" },
+        { name: "Free Fire • 1000 Diamond", price: "Rp 22.000" },
+        { name: "Higgs Games Island • 100M Koin", price: "Rp 65.000" },
+        { name: "Higgs Games Island • 1B Koin", price: "Rp 600.000" },
+        { name: "Bos Domino • 1B Chip", price: "Rp 70.000" },
+        { name: "Royal Domino • 1B Chip", price: "Rp 75.000" },
+        { name: "PUBG Mobile • 600 UC", price: "Rp 18.000" },
+        { name: "Genshin Impact • Welkin Moon", price: "Rp 55.000" }
+    ];
+
+    function renderMenu(menu) {
+        const panelTitle = document.getElementById('panelTitle');
+        const panelContent = document.getElementById('panelContent');
+        
+        if (menu === 'mod') {
+            panelTitle.innerHTML = '<i class="fas fa-gamepad"></i> Jual MOD Game Premium (Aktif 60 Hari)';
+            let html = '<div class="products-grid">';
+            modGames.forEach(game => {
+                html += `
+                    <div class="product-card">
+                        <div class="product-name">🎮 ${game}</div>
+                        <div class="product-price">Rp ${PRICE_MOD.toLocaleString('id-ID')}</div>
+                        <div style="font-size:0.7rem; color:#94a3b8; margin:5px 0;">✅ Aktif 60 Hari | Garansi</div>
+                        <button class="btn-order" onclick="sendWA('Halo LLC Store, saya mau order MOD untuk game ${game} dengan harga Rp${PRICE_MOD.toLocaleString('id-ID')}. Mohon petunjuk pembayaran.')"><i class="fab fa-whatsapp"></i> ORDER SEKARANG</button>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            panelContent.innerHTML = html;
+        } 
+        else if (menu === 'topup') {
+            panelTitle.innerHTML = '<i class="fas fa-gem"></i> TopUp Diamond & Koin Games';
+            let html = '<div class="products-grid">';
+            topupItems.forEach(item => {
+                html += `
+                    <div class="product-card">
+                        <div class="product-name">💎 ${item.name}</div>
+                        <div class="product-price">${item.price}</div>
+                        <button class="btn-order" onclick="sendWA('Halo LLC Store, saya mau TopUp ${item.name} dengan harga ${item.price}. Mohon info metode pembayaran.')"><i class="fab fa-whatsapp"></i> BELI SEKARANG</button>
+                    </div>
+                `;
+            });
+            html += '</div><p style="margin-top:1rem; font-size:0.8rem;"><i class="fas fa-info-circle"></i> Untuk game lain, chat admin via WhatsApp.</p>';
+            panelContent.innerHTML = html;
+        }
+        else if (menu === 'apk') {
+            panelTitle.innerHTML = '<i class="fas fa-code"></i> Jasa Pembuatan APK Custom';
+            panelContent.innerHTML = `
+                <div class="service-form">
+                    <p>📱 LLC Store menerima jasa pembuatan aplikasi Android.</p>
+                    <div class="products-grid" style="grid-template-columns:1fr 1fr; margin-bottom:1.5rem;">
+                        <div class="product-card"><h4>📱 APK WebView</h4><p>Mulai Rp 300k</p></div>
+                        <div class="product-card"><h4>📱 APK + Database</h4><p>Mulai Rp 800k</p></div>
+                        <div class="product-card"><h4>📱 APK + Admin Panel</h4><p>Mulai Rp 1.2jt</p></div>
+                    </div>
+                    <input type="text" id="apkName" placeholder="Nama Aplikasi">
+                    <textarea id="apkDesc" placeholder="Jelaskan fitur yang diinginkan..."></textarea>
+                    <button onclick="sendWA('*ORDER JASA BUAT APK*%0A%0ANama: ' + document.getElementById('apkName').value + '%0A%0ADeskripsi: ' + document.getElementById('apkDesc').value)"><i class="fab fa-whatsapp"></i> KONSULTASI VIA WA</button>
+                </div>
+            `;
+        }
+        else if (menu === 'script') {
+            panelTitle.innerHTML = '<i class="fas fa-terminal"></i> Jasa Script & Aplikasi Custom';
+            panelContent.innerHTML = `
+                <div class="service-form">
+                    <textarea id="scriptDesc" placeholder="Jelaskan script/aplikasi yang kamu butuhkan..."></textarea>
+                    <button onclick="sendWA('*ORDER JASA SCRIPT*%0A%0ADeskripsi: ' + document.getElementById('scriptDesc').value)"><i class="fab fa-whatsapp"></i> KONSULTASI VIA WA</button>
+                </div>
+            `;
+        }
+        else if (menu === 'website') {
+            panelTitle.innerHTML = '<i class="fas fa-globe"></i> Jasa Pembuatan Website';
+            panelContent.innerHTML = `
+                <div class="service-form">
+                    <textarea id="webDesc" placeholder="Jelaskan jenis website dan fitur..."></textarea>
+                    <button onclick="sendWA('*ORDER JASA WEBSITE*%0A%0ADeskripsi: ' + document.getElementById('webDesc').value)"><i class="fab fa-whatsapp"></i> KONSULTASI VIA WA</button>
+                </div>
+            `;
+        }
+        else if (menu === 'other') {
+            panelTitle.innerHTML = '<i class="fas fa-tools"></i> Layanan Lainnya';
+            panelContent.innerHTML = `
+                <div class="products-grid">
+                    <div class="product-card"><h4>🎮 Joki Game</h4><button class="btn-order" onclick="sendWA('Halo LLC, saya mau tanya layanan JOKI GAME.')"><i class="fab fa-whatsapp"></i> TANYA</button></div>
+                    <div class="product-card"><h4>🎨 Desain Grafis</h4><button class="btn-order" onclick="sendWA('Halo LLC, saya mau order DESAIN GRAFIS.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
+                    <div class="product-card"><h4>✏️ Edit Video</h4><button class="btn-order" onclick="sendWA('Halo LLC, saya mau order EDIT VIDEO.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
+                </div>
+            `;
+        }
+    }
+
+    document.querySelectorAll('.menu-card').forEach(card => {
+        card.addEventListener('click', () => {
+            renderMenu(card.getAttribute('data-menu'));
+        });
+    });
+
+    document.getElementById('waFloat').addEventListener('click', () => {
+        sendWA('Halo LLC Store! Saya mau nanya tentang layanan yang tersedia.');
+    });
+
+    renderMenu('mod');
+</script>
 </body>
 </html>

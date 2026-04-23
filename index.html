@@ -3,175 +3,360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>LLC STORE | Pusat MOD, TopUp,  Jasa Digital Premium</title>
-    <meta name="description" content="LLC Store - Jual MOD Game 55+ game, TopUp Diamond/Koin, Jasa Buat APK, Script, Website, dan Layanan Digital Lainnya">
+    <title>LLC STORE ULTIMATE | Pusat Jual Beli Akun, MOD Game Cheat, TopUp, Jasa Digital Premium No.1 Indonesia</title>
+    <meta name="description" content="LLC Store Ultimate - Pusat Jual Beli Akun Free Fire, PUBG, Mobile Legends, Honor of Kings, COD Mobile. 100+ Game MOD Cheat dengan fitur AIMBOT, ESP, Wallhack, Damage Multiplier. TopUp Diamond termurah. Jasa APK, Script, Website, Joki Rank, Desain Grafis, Edit Video, Install MOD, SEO, dan 50+ Layanan Digital Lainnya. Garansi 100% uang kembali!">
+    <meta name="keywords" content="jual beli akun ff, jual beli akun pubg, jual beli akun ml, mod game cheat, topup diamond murah, jasa buat apk, jasa script, jasa website, joki rank free fire, push rank ml, llc store">
+    <meta name="author" content="LLC Store">
     <meta name="theme-color" content="#4f46e5">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-TileColor" content="#4f46e5">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="LLC STORE ULTIMATE - Pusat Digital Terlengkap">
+    <meta property="og:description" content="Jual Beli Akun, MOD Game Cheat, TopUp, Jasa APK, Script, Website, Joki Rank & 50+ Layanan Digital">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aantonim452-cell.github.io/LLC/">
+    <meta property="og:image" content="https://aantonim452-cell.github.io/LLC/assets/og-image.jpg">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="manifest" href="manifest.json">
     
     <style>
+        /* ========== RESET & VARIABLES ========== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f0c1f 0%, #1a1a2e 100%);
-            color: #f1f5f9;
-            padding: 0;
-            min-height: 100vh;
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary: #ec4899;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --dark: #0a0a1a;
+            --darker: #050510;
+            --light: #f1f5f9;
+            --gray: #64748b;
+            --gray-dark: #334155;
         }
 
-        .stars-bg {
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, #0f0c2a 50%, #1a1a3e 100%);
+            color: var(--light);
+            padding: 0;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+
+        /* ========== ANIMATED BACKGROUND ========== */
+        .bg-gradient {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(2px 2px at 20px 30px, #fff, rgba(0,0,0,0)),
-                              radial-gradient(1px 1px at 60px 80px, #fbbf24, rgba(0,0,0,0));
-            background-size: 200px 200px, 150px 150px;
+            top: 0;
+            left: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.2), transparent 60%),
+                radial-gradient(circle at 90% 50%, rgba(236, 72, 153, 0.15), transparent 55%),
+                radial-gradient(circle at 40% 80%, rgba(245, 158, 11, 0.1), transparent 50%),
+                radial-gradient(circle at 70% 20%, rgba(16, 185, 129, 0.08), transparent 45%);
+            pointer-events: none;
+            z-index: -2;
+            animation: gradientShift 15s ease infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        .stars-layer {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200"><circle cx="50" cy="50" r="2" fill="white" opacity="0.7"/><circle cx="150" cy="120" r="1.5" fill="white" opacity="0.5"/><circle cx="250" cy="80" r="1" fill="white" opacity="0.4"/><circle cx="350" cy="200" r="2.5" fill="white" opacity="0.6"/><circle cx="450" cy="60" r="1.5" fill="white" opacity="0.5"/><circle cx="550" cy="180" r="2" fill="white" opacity="0.7"/><circle cx="650" cy="90" r="1" fill="white" opacity="0.4"/><circle cx="750" cy="150" r="2.5" fill="white" opacity="0.6"/><circle cx="850" cy="50" r="1.5" fill="white" opacity="0.5"/><circle cx="950" cy="120" r="2" fill="white" opacity="0.7"/><circle cx="1050" cy="80" r="1" fill="white" opacity="0.4"/><circle cx="1150" cy="200" r="2.5" fill="white" opacity="0.6"/><circle cx="80" cy="350" r="1.5" fill="white" opacity="0.5"/><circle cx="200" cy="450" r="2" fill="white" opacity="0.6"/><circle cx="350" cy="380" r="1" fill="white" opacity="0.4"/><circle cx="500" cy="500" r="2.5" fill="white" opacity="0.7"/><circle cx="650" cy="420" r="1.5" fill="white" opacity="0.5"/><circle cx="800" cy="550" r="2" fill="white" opacity="0.6"/><circle cx="950" cy="480" r="1" fill="white" opacity="0.4"/><circle cx="1100" cy="600" r="2.5" fill="white" opacity="0.7"/><circle cx="120" cy="700" r="2" fill="white" opacity="0.6"/><circle cx="300" cy="800" r="1.5" fill="white" opacity="0.5"/><circle cx="500" cy="750" r="2.5" fill="white" opacity="0.7"/><circle cx="700" cy="900" r="1" fill="white" opacity="0.4"/><circle cx="900" cy="850" r="2" fill="white" opacity="0.6"/><circle cx="1100" cy="950" r="1.5" fill="white" opacity="0.5"/></svg>');
             background-repeat: repeat;
-            opacity: 0.1;
+            opacity: 0.12;
             pointer-events: none;
             z-index: -1;
+            animation: starFloat 60s linear infinite;
+        }
+
+        @keyframes starFloat {
+            from { background-position: 0 0; }
+            to { background-position: 200px 200px; }
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 1.5rem;
+            padding: 1rem;
             position: relative;
             z-index: 2;
         }
 
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(139, 92, 246, 0.1));
-            backdrop-filter: blur(10px);
-            border-radius: 1.5rem;
-            padding: 1.5rem;
+        /* ========== HERO SECTION (ULTRA PREMIUM) ========== */
+        .hero {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.25), rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.08));
+            backdrop-filter: blur(20px);
+            border-radius: 2.5rem;
+            padding: 2.2rem 2rem;
             margin-bottom: 2rem;
             text-align: center;
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            box-shadow: 0 25px 50px -15px rgba(0,0,0,0.5), 0 0 40px rgba(79, 70, 229, 0.2);
+            position: relative;
+            overflow: hidden;
         }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+            animation: heroShine 10s linear infinite;
+        }
+
+        @keyframes heroShine {
+            from { left: -100%; }
+            to { left: 100%; }
+        }
+
         .logo {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ef4444);
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ef4444, #ec4899, #4f46e5);
+            background-size: 400% auto;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            animation: gradientFlow 6s ease infinite;
+            letter-spacing: -0.02em;
         }
+
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
         .logo small {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             display: block;
             color: #94a3b8;
             background: none;
             -webkit-background-clip: unset;
+            letter-spacing: 2px;
+            margin-top: 0.3rem;
         }
 
-        /* Menu Grid */
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-left: 2px solid var(--accent);
+        }
+
+        .trust-badge {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge span {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* ========== MENU GRID (10 LAYANAN) ========== */
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.2rem;
-            margin-bottom: 2.5rem;
-        }
-        .menu-card {
-            background: rgba(30, 41, 59, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 1.2rem;
-            padding: 1.5rem 1rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            position: relative;
-        }
-        .menu-card:hover {
-            transform: translateY(-5px);
-            border-color: #f59e0b;
-            box-shadow: 0 10px 25px -8px rgba(245,158,11,0.3);
-        }
-        .menu-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.8rem;
-        }
-        .menu-card h3 {
-            font-size: 1rem;
-            font-weight: 700;
-        }
-        .menu-card p {
-            font-size: 0.7rem;
-            color: #94a3b8;
-        }
-        .badge-new {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: #ef4444;
-            font-size: 0.6rem;
-            padding: 2px 8px;
-            border-radius: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
-        /* Content Panel */
-        .content-panel {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(8px);
-            border-radius: 1.5rem;
-            padding: 1.8rem;
+        .menu-card {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 1.2rem;
+            padding: 1.1rem 0.6rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             border: 1px solid rgba(139, 92, 246, 0.3);
-            min-height: 500px;
+            position: relative;
+            overflow: hidden;
         }
-        .panel-title {
-            font-size: 1.5rem;
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .menu-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 30px -12px rgba(245,158,11,0.3);
+        }
+
+        .menu-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-card h3 {
+            font-size: 0.85rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid #f59e0b;
+            margin-bottom: 0.2rem;
+        }
+
+        .menu-card p {
+            font-size: 0.6rem;
+            color: #94a3b8;
+        }
+
+        .badge-hot, .badge-new, .badge-best {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            font-size: 0.55rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .badge-hot { background: linear-gradient(135deg, #ef4444, #ec4899); }
+        .badge-new { background: linear-gradient(135deg, #10b981, #059669); }
+        .badge-best { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+        /* ========== CONTENT PANEL ========== */
+        .content-panel {
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(12px);
+            border-radius: 1.8rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            min-height: 600px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid var(--accent);
             padding-left: 1rem;
         }
 
-        /* Products Grid */
+        /* ========== PRODUCTS GRID ========== */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.2rem;
         }
+
         .product-card {
             background: rgba(30, 41, 59, 0.6);
             border-radius: 1rem;
             padding: 1rem;
             border: 1px solid #334155;
-            transition: 0.3s;
+            transition: all 0.3s;
+            position: relative;
         }
+
         .product-card:hover {
-            border-color: #f59e0b;
-            transform: translateY(-3px);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px -8px rgba(0,0,0,0.4);
+            background: rgba(30, 41, 59, 0.8);
         }
+
         .product-name {
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
+
         .product-price {
-            color: #fbbf24;
+            color: var(--accent);
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
+
+        .product-desc {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin: 0.5rem 0;
+        }
+
+        .feature-list {
+            font-size: 0.7rem;
+            color: #a78bfa;
+            margin: 0.4rem 0;
+            padding-left: 1rem;
+        }
+
+        .feature-list li {
+            margin: 0.2rem 0;
+        }
+
         .btn-order {
-            background: #25D366;
+            background: linear-gradient(95deg, #25D366, #128C7E);
             border: none;
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.75rem;
+            padding: 8px 12px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.7rem;
             cursor: pointer;
             margin-top: 10px;
             width: 100%;
@@ -179,19 +364,27 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            color: #0f172a;
-        }
-        .btn-order:hover {
-            background: #20b359;
+            color: white;
+            transition: all 0.2s;
         }
 
-        /* Form */
+        .btn-order:hover {
+            transform: scale(1.02);
+            filter: brightness(1.05);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(95deg, var(--primary), var(--primary-dark));
+        }
+
+        /* ========== FORM ========== */
         .service-form {
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            max-width: 600px;
+            max-width: 700px;
         }
+
         .service-form input, .service-form textarea, .service-form select {
             background: #1e293b;
             border: 1px solid #334155;
@@ -199,20 +392,64 @@
             border-radius: 12px;
             color: white;
             font-family: inherit;
+            transition: 0.2s;
         }
+
+        .service-form input:focus, .service-form textarea:focus, .service-form select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(245,158,11,0.2);
+        }
+
         .service-form textarea {
             min-height: 100px;
         }
+
         .service-form button {
-            background: linear-gradient(115deg, #4f46e5, #7c3aed);
+            background: linear-gradient(115deg, var(--primary), #7c3aed);
             border: none;
             padding: 12px;
             border-radius: 12px;
             font-weight: bold;
             color: white;
             cursor: pointer;
+            transition: 0.2s;
         }
 
+        .service-form button:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+        }
+
+        /* ========== SEARCH & FILTER ========== */
+        .search-bar {
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 2;
+            background: #1e293b;
+            border: 1px solid #334155;
+            padding: 10px 16px;
+            border-radius: 40px;
+            color: white;
+            font-family: inherit;
+        }
+
+        .filter-select {
+            background: #1e293b;
+            border: 1px solid #334155;
+            padding: 10px 16px;
+            border-radius: 40px;
+            color: white;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* ========== FLOATING ELEMENTS ========== */
         .wa-float {
             position: fixed;
             bottom: 20px;
@@ -228,9 +465,40 @@
             color: white;
             cursor: pointer;
             z-index: 999;
-            box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+            box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+            transition: 0.3s;
+            animation: waPulse 1.5s infinite;
         }
 
+        @keyframes waPulse {
+            0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+            100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+        }
+
+        .wa-float:hover { transform: scale(1.1); }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: var(--primary);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            transition: 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .scroll-top.show { opacity: 1; }
+
+        /* ========== FOOTER ========== */
         .footer {
             text-align: center;
             padding: 2rem 1rem 1rem;
@@ -240,85 +508,136 @@
             color: #64748b;
         }
 
-        @media (max-width: 600px) {
-            .container { padding: 1rem; }
-            .menu-grid { grid-template-columns: repeat(2, 1fr); }
-            .menu-icon { font-size: 2rem; }
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 640px) {
+            .container { padding: 0.8rem; }
+            .logo { font-size: 1.8rem; }
+            .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .menu-icon { font-size: 1.5rem; }
+            .menu-card h3 { font-size: 0.7rem; }
+            .products-grid { grid-template-columns: 1fr; }
+            .panel-title { font-size: 1rem; }
         }
+
+        @media (min-width: 641px) and (max-width: 900px) {
+            .menu-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* ========== UTILITY ========== */
+        .text-center { text-align: center; }
+        .mt-2 { margin-top: 1rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .text-glow { text-shadow: 0 0 10px rgba(245,158,11,0.5); }
     </style>
 </head>
 <body>
-<div class="stars-bg"></div>
+<div class="bg-gradient"></div>
+<div class="stars-layer"></div>
 
 <div class="container">
-    <div class="header">
+    <div class="hero">
         <div class="logo">
-            LLC STORE <i class="fas fa-crown"></i>
-            <small>Premium MOD • TopUp • Jasa APK • Script</small>
+            🏪 LLC STORE ULTIMATE <i class="fas fa-crown"></i>
+            <small>#1 Pusat Jual Beli Akun • 100+ MOD Game Cheat • TopUp • Jasa Digital Premium • 50+ Layanan</small>
         </div>
-        <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-            <span style="background:#4f46e5; padding:4px 12px; border-radius:20px; font-size:0.7rem;"><i class="fab fa-whatsapp"></i> 24/7 Support</span>
-            <span style="background:#f59e0b; padding:4px 12px; border-radius:20px; font-size:0.7rem; color:#0f172a;"><i class="fas fa-gem"></i> Garansi 100%</span>
-            <span style="background:#10b981; padding:4px 12px; border-radius:20px; font-size:0.7rem;"><i class="fas fa-clock"></i> Cepat & Aman</span>
+        <div class="stats-row">
+            <span class="stat-item"><i class="fas fa-users"></i> 10.000+ Customer</span>
+            <span class="stat-item"><i class="fas fa-check-circle"></i> 99% Puas</span>
+            <span class="stat-item"><i class="fas fa-clock"></i> 24/7 Support</span>
+            <span class="stat-item"><i class="fas fa-shield-alt"></i> Garansi 100%</span>
+            <span class="stat-item"><i class="fas fa-tachometer-alt"></i> Proses 1-3 Menit</span>
+        </div>
+        <div class="trust-badge">
+            <span><i class="fab fa-whatsapp"></i> Resmi</span>
+            <span><i class="fas fa-store"></i> Berizin</span>
+            <span><i class="fas fa-lock"></i> Aman</span>
+            <span><i class="fas fa-trophy"></i> Berpengalaman</span>
         </div>
     </div>
 
-    <!-- MENU UTAMA -->
+    <!-- MENU UTAMA (10 LAYANAN) -->
     <div class="menu-grid">
+        <div class="menu-card" data-menu="akun">
+            <div class="menu-icon"><i class="fas fa-users"></i></div>
+            <h3>🔄 Jual Beli Akun</h3>
+            <p>FF • PUBG • ML • COD • HOK</p>
+            <div class="badge-hot">HOT</div>
+        </div>
         <div class="menu-card" data-menu="mod">
             <div class="menu-icon"><i class="fas fa-gamepad"></i></div>
-            <h3>🎮 Jual MOD Game</h3>
-            <p>55+ Game MOD Aktif 60 Hari</p>
-            <div class="badge-new">POPULER</div>
+            <h3>🎮 MOD Game Cheat</h3>
+            <p>100+ Game + Fitur Lengkap</p>
+            <div class="badge-best">BEST</div>
         </div>
         <div class="menu-card" data-menu="topup">
             <div class="menu-icon"><i class="fas fa-gem"></i></div>
-            <h3>💎 TopUp Diamond/Koin</h3>
-            <p>ML • FF • Higgs • Domino • DLL</p>
+            <h3>💎 TopUp Diamond</h3>
+            <p>ML • FF • Higgs • PUBG</p>
+        </div>
+        <div class="menu-card" data-menu="jasaakun">
+            <div class="menu-icon"><i class="fas fa-star"></i></div>
+            <h3>⭐ Jasa Rank/Joki</h3>
+            <p>Push Rank • MMR • Event</p>
+            <div class="badge-new">NEW</div>
         </div>
         <div class="menu-card" data-menu="apk">
             <div class="menu-icon"><i class="fas fa-code"></i></div>
             <h3>📱 Jasa Buat APK</h3>
             <p>Aplikasi Android Custom</p>
-            <div class="badge-new">HOT</div>
         </div>
         <div class="menu-card" data-menu="script">
             <div class="menu-icon"><i class="fas fa-terminal"></i></div>
-            <h3>⚙️ Jasa Script/Aplikasi</h3>
-            <p>Bot, Tools, Automation</p>
+            <h3>⚙️ Jasa Script</h3>
+            <p>Bot • Tools • Automation</p>
         </div>
         <div class="menu-card" data-menu="website">
             <div class="menu-icon"><i class="fas fa-globe"></i></div>
             <h3>🌐 Jasa Website</h3>
-            <p>Landing Page, Store, Dashboard</p>
+            <p>Landing Page • Store • CMS</p>
+        </div>
+        <div class="menu-card" data-menu="desain">
+            <div class="menu-icon"><i class="fas fa-palette"></i></div>
+            <h3>🎨 Desain & Edit</h3>
+            <p>Logo • Banner • Video</p>
+        </div>
+        <div class="menu-card" data-menu="modinstall">
+            <div class="menu-icon"><i class="fas fa-download"></i></div>
+            <h3>🔧 Install MOD</h3>
+            <p>Bypass • Root • Custom ROM</p>
         </div>
         <div class="menu-card" data-menu="other">
             <div class="menu-icon"><i class="fas fa-tools"></i></div>
             <h3>🛠️ Lainnya</h3>
-            <p>Joki, Edit, Desain, DLL</p>
+            <p>SEO • IMEI • DLL</p>
         </div>
     </div>
 
     <!-- KONTEN DINAMIS -->
     <div class="content-panel" id="contentPanel">
         <div class="panel-title">
-            <i class="fas fa-gamepad" style="color:#f59e0b;"></i> 
-            <span id="panelTitle">Selamat Datang di LLC Store</span>
+            <i class="fas fa-fire" style="color:var(--accent);"></i> 
+            <span id="panelTitle">Selamat Datang di LLC Store Ultimate</span>
         </div>
         <div id="panelContent">
-            <p style="text-align:center; padding:2rem;">Silakan pilih menu di atas untuk melihat layanan kami.<br><br>
-            <i class="fas fa-arrow-up"></i> Klik salah satu menu!</p>
+            <div style="text-align:center; padding:2.5rem;">
+                <i class="fas fa-crown" style="font-size:3rem; color:var(--accent); margin-bottom:1rem; display:block;"></i>
+                <h3 style="margin-bottom:0.5rem;">Pusat Jual Beli Akun, MOD Game Cheat, TopUp & Jasa Digital Terlengkap Se-Indonesia</h3>
+                <p style="color:#94a3b8;">Pilih menu di atas untuk mulai berbelanja atau menggunakan layanan kami</p>
+            </div>
         </div>
     </div>
 
     <div class="footer">
-        <i class="fas fa-shield-alt"></i> LLC STORE • Terpercaya Sejak 2024 • Melayani Seluruh Indonesia<br>
-        © 2026 LLC STORE - Pusat MOD, TopUp, dan Jasa Digital Premium
+        <i class="fas fa-shield-alt"></i> LLC STORE ULTIMATE • Terpercaya Sejak 2024 • Melayani Seluruh Indonesia<br>
+        © 2026 LLC STORE - All Rights Reserved | Support 24/7 | Garansi Uang Kembali
     </div>
 </div>
 
 <div class="wa-float" id="waFloat">
     <i class="fab fa-whatsapp"></i>
+</div>
+<div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
 </div>
 
 <script>
@@ -329,120 +648,304 @@
         window.open(`https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`, '_blank');
     }
 
-    // DATA GAME MOD
+    // ============================================================
+    // DATA JUAL BELI AKUN (LENGKAP)
+    // ============================================================
+    const akunItems = [
+        { name: "Free Fire (FF)", type: "Akun Sultan Elite", price: "Rp 150.000 - 600.000", desc: "Rank Heroic/Master, Skin Langka, Diamond 1000+", features: ["🔥 Rank Heroic/Master", "🎨 Skin Legendary + Elite Pass", "💎 Diamond 1000-5000", "📧 Email + Sandi bisa diubah", "✅ Garansi 7 Hari Aman"] },
+        { name: "PUBG Mobile", type: "Akun Premium Mythic", price: "Rp 200.000 - 850.000", desc: "Mythic Outfit, Royal Pass, UC 500+", features: ["🎖️ Rank Ace/Master", "🔫 Skin M416 Glacier/Glacier", "👕 Mythic Outfit + Emote", "💳 UC 500-2000", "✅ Garansi 7 Hari"] },
+        { name: "Mobile Legends", type: "Akun Collector Legend", price: "Rp 250.000 - 1.200.000", desc: "Skin Collector/Legend, Diamond 1000+", features: ["🏆 Rank Mythic/Glory", "✨ Skin Legend/Collector", "💎 Diamond 1000-5000", "📧 Email bisa diubah", "✅ Garansi 14 Hari"] },
+        { name: "Honor of Kings", type: "Akun Pro Max", price: "Rp 100.000 - 400.000", desc: "Skin Epic, Crystal+", features: ["🥇 Rank Grandmaster", "🎨 Skin Epic/Legendary", "💎 Crystal+", "✅ Safe Account"] },
+        { name: "Call of Duty Mobile", type: "Akun Mythic Legend", price: "Rp 150.000 - 550.000", desc: "Mythic Gun, Legendary Character", features: ["🎖️ Rank Legendary", "🔫 Mythic Weapon (M13/M4)", "👤 Legendary Character", "📧 Email bisa diubah"] },
+        { name: "Genshin Impact", type: "Akun Whale", price: "Rp 300.000 - 1.500.000", desc: "5 Star Character + Weapon", features: ["⭐ 5-10 Limited Character", "⚔️ 5 Star Weapon", "💎 10k-50k Primogem", "🔓 AR 55-60"] },
+        { name: "Valorant (PC)", type: "Akun Elite", price: "Rp 200.000 - 700.000", desc: "Skin Bundle, Valorant Points", features: ["🔫 Skin Bundle (Prime/RGX)", "💎 VP 500-2000", "🎖️ Rank Platinum-Diamond", "📧 Full Akses"] }
+    ];
+
+    // ============================================================
+    // DATA MOD GAME DENGAN FITUR CHEAT LENGKAP (100+ GAME)
+    // ============================================================
     const modGames = [
-        "Mobile Legends", "Free Fire", "Genshin Impact", "PUBG Mobile", "Call of Duty Mobile",
-        "Arena of Valor", "Honkai Impact 3rd", "Ragnarok Origin", "Black Clover M", "Lost Light",
-        "Whiteout Survival", "State of Survival", "Clash of Clans", "Clash Royale", "Brawl Stars",
-        "Farlight 84", "Blood Strike", "Stumble Guys", "Among Us", "Roblox", "Minecraft",
-        "Sausage Man", "CookieRun Kingdom", "Watcher of Realms", "AFK Journey", "Diablo Immortal",
-        "Honkai Star Rail", "Wuthering Waves", "Tower of Fantasy", "Asphalt 9", "eFootball 2025"
+        { name: "PUBG Mobile", version: "v3.2", price: 100000, features: ["🎯 AIMBOT (Auto Headshot 100%)", "👁️ ESP Player/Item/Box (Lihat musuh di balik tembok!)", "🧱 Wallhack (Tembus tembok)", "🔫 No Recoil (Zero recoil)", "⚡ Speed Hack (Jalan super cepat)", "🚫 Anti Ban 60 Hari"] },
+        { name: "Free Fire", version: "v1.98", price: 100000, features: ["🎯 AIMBOT + Auto Headshot", "👁️ ESP Player/Item (Lihat semua pemain)", "🧱 Wallhack (Tembus tembok)", "💎 Diamond Hack (Server side)", "🏃 Speed Hack", "🚫 Anti Ban 60 Hari"] },
+        { name: "Mobile Legends", version: "v1.8", price: 100000, features: ["🗺️ Map Hack (Lihat seluruh map lawan)", "🛸 Drone View (Kamera terbang)", "⚡ Skill No Cooldown (Skill bisa spam)", "🔮 Unlimited Spell (Spell battle tanpa cooldown)", "🚫 Anti Ban 60 Hari"] },
+        { name: "Call of Duty Mobile", version: "v3.2", price: 100000, features: ["🎯 AIMBOT", "👁️ ESP Player/Box", "🧱 Wallhack", "🔫 No Recoil", "⚡ Speed Hack", "🚫 Anti Ban 60 Hari"] },
+        { name: "Genshin Impact", version: "v4.5", price: 100000, features: ["⚔️ Damage Multiplier (x1-x100)", "🛡️ God Mode (Tidak bisa mati)", "🏃 Unlimited Stamina", "🗺️ Teleport Farming", "🎁 Auto Loot", "🚫 Anti Ban 60 Hari"] },
+        { name: "Honkai Star Rail", version: "v2.1", price: 100000, features: ["⚔️ Damage Multiplier", "🛡️ God Mode", "⚡ Speed Hack", "🏆 Auto Win", "🎁 Unlimited Chest", "🚫 Anti Ban"] },
+        { name: "Wuthering Waves", version: "v1.2", price: 100000, features: ["⚔️ Damage Multiplier", "🛡️ God Mode", "⚡ No CD Skill", "🗺️ Teleport", "🚫 Anti Ban"] },
+        { name: "Stumble Guys", version: "v0.71", price: 100000, features: ["🏃 Speed Hack", "🦘 Jump High", "🛡️ No Stumble", "🎨 Unlock All Skins", "🚫 Anti Ban"] },
+        { name: "Among Us", version: "v2024", price: 100000, features: ["👑 Always Imposter", "👻 See Ghosts", "🔪 No Kill Cooldown", "🎩 Unlock All Hats", "🚫 Anti Ban"] },
+        { name: "Roblox (All Game)", version: "v2.6", price: 100000, features: ["🦅 Fly Hack", "🏃 Speed Hack", "👁️ ESP Player", "🤖 Auto Farm", "🚫 Anti Ban"] },
+        { name: "Arena of Valor", version: "v1.5", price: 100000, features: ["🗺️ Map Hack", "⚡ No Cooldown", "🎯 AIMBOT Skill", "🚫 Anti Ban"] },
+        { name: "Wild Rift", version: "v4.0", price: 100000, features: ["🗺️ Map Hack", "⚡ Cooldown Hack", "🎯 Auto Aim", "🚫 Anti Ban"] },
+        { name: "Blood Strike", version: "v1.5", price: 100000, features: ["🎯 AIMBOT", "👁️ ESP", "🧱 Wallhack", "⚡ Speed Hack", "🚫 Anti Ban"] },
+        { name: "Farlight 84", version: "v2.1", price: 100000, features: ["🎯 AIMBOT", "👁️ ESP", "🔫 No Recoil", "🚫 Anti Ban"] },
+        { name: "eFootball 2025", version: "v8.0", price: 100000, features: ["⚽ Auto Win", "💎 Unlimited Coins", "🏆 Unlock All Players", "🚫 Anti Ban"] },
+        { name: "Minecraft", version: "v1.20", price: 100000, features: ["👁️ X-Ray (Lihta ore)", "🏃 Speed Hack", "🦘 Fly Hack", "🎨 Unlock All Items", "🚫 Anti Ban"] },
+        { name: "CookieRun Kingdom", version: "v5.0", price: 100000, features: ["💎 Unlimited Crystals", "⚔️ Damage Hack", "🏆 Auto Win", "🚫 Anti Ban"] }
     ];
 
-    // DATA TOPUP
+    // ============================================================
+    // DATA TOPUP (LENGKAP)
+    // ============================================================
     const topupItems = [
-        { name: "Mobile Legends • 1000 Diamond", price: "Rp 25.000" },
+        { name: "Free Fire • 100 Diamond", price: "Rp 3.000" },
+        { name: "Free Fire • 500 Diamond", price: "Rp 12.000" },
         { name: "Free Fire • 1000 Diamond", price: "Rp 22.000" },
-        { name: "Higgs Games Island • 100M Koin", price: "Rp 65.000" },
-        { name: "Higgs Games Island • 1B Koin", price: "Rp 600.000" },
-        { name: "Bos Domino • 1B Chip", price: "Rp 70.000" },
-        { name: "Royal Domino • 1B Chip", price: "Rp 75.000" },
+        { name: "Free Fire • 5000 Diamond", price: "Rp 105.000" },
+        { name: "Mobile Legends • 86 Diamond", price: "Rp 3.000" },
+        { name: "Mobile Legends • 500 Diamond", price: "Rp 13.000" },
+        { name: "Mobile Legends • 1000 Diamond", price: "Rp 25.000" },
+        { name: "Mobile Legends • 5000 Diamond", price: "Rp 120.000" },
+        { name: "PUBG Mobile • 60 UC", price: "Rp 3.000" },
         { name: "PUBG Mobile • 600 UC", price: "Rp 18.000" },
-        { name: "Genshin Impact • Welkin Moon", price: "Rp 55.000" }
+        { name: "PUBG Mobile • 3000 UC", price: "Rp 85.000" },
+        { name: "Higgs Games • 100M Koin", price: "Rp 65.000" },
+        { name: "Higgs Games • 500M Koin", price: "Rp 310.000" },
+        { name: "Higgs Games • 1B Koin", price: "Rp 600.000" },
+        { name: "Genshin Impact • Welkin Moon", price: "Rp 55.000" },
+        { name: "Genshin Impact • 6480 Genesis", price: "Rp 350.000" },
+        { name: "Honkai Star Rail • Express Pass", price: "Rp 55.000" },
+        { name: "Call of Duty • 80 CP", price: "Rp 5.000" },
+        { name: "Call of Duty • 400 CP", price: "Rp 20.000" }
     ];
 
+    // ============================================================
+    // DATA JASA RANK/JOKI
+    // ============================================================
+    const jasaAkunItems = [
+        { name: "Free Fire", service: "Push Rank Heroic", price: "Rp 150.000", duration: "3-5 Hari" },
+        { name: "Free Fire", service: "Push Rank Grand Master", price: "Rp 350.000", duration: "5-7 Hari" },
+        { name: "Free Fire", service: "Boost Event / Emote", price: "Rp 50.000", duration: "1 Hari" },
+        { name: "Mobile Legends", service: "Push Rank Mythic", price: "Rp 200.000", duration: "3-5 Hari" },
+        { name: "Mobile Legends", service: "Push Rank Glory", price: "Rp 450.000", duration: "5-7 Hari" },
+        { name: "Mobile Legends", service: "MMR Hero", price: "Rp 100.000", duration: "2-3 Hari" },
+        { name: "PUBG Mobile", service: "Push Rank Ace", price: "Rp 180.000", duration: "3-5 Hari" },
+        { name: "PUBG Mobile", service: "Push Rank Conqueror", price: "Rp 500.000", duration: "7-10 Hari" },
+        { name: "PUBG Mobile", service: "Boost RP / Royal Pass", price: "Rp 75.000", duration: "2 Hari" },
+        { name: "Honor of Kings", service: "Push Rank Grandmaster", price: "Rp 150.000", duration: "3-5 Hari" }
+    ];
+
+    // ============================================================
+    // RENDER FUNCTIONS
+    // ============================================================
     function renderMenu(menu) {
         const panelTitle = document.getElementById('panelTitle');
         const panelContent = document.getElementById('panelContent');
         
-        if (menu === 'mod') {
-            panelTitle.innerHTML = '<i class="fas fa-gamepad"></i> Jual MOD Game Premium (Aktif 60 Hari)';
+        if (menu === 'akun') {
+            panelTitle.innerHTML = '<i class="fas fa-users"></i> Jual Beli Akun Game Premium (Garansi 100%)';
             let html = '<div class="products-grid">';
-            modGames.forEach(game => {
+            akunItems.forEach(item => {
                 html += `
                     <div class="product-card">
-                        <div class="product-name">🎮 ${game}</div>
-                        <div class="product-price">Rp ${PRICE_MOD.toLocaleString('id-ID')}</div>
-                        <div style="font-size:0.7rem; color:#94a3b8; margin:5px 0;">✅ Aktif 60 Hari | Garansi</div>
-                        <button class="btn-order" onclick="sendWA('Halo LLC Store, saya mau order MOD untuk game ${game} dengan harga Rp${PRICE_MOD.toLocaleString('id-ID')}. Mohon petunjuk pembayaran.')"><i class="fab fa-whatsapp"></i> ORDER SEKARANG</button>
+                        <div class="product-name">🎮 ${item.name} <span class="product-price">${item.price}</span></div>
+                        <div class="product-desc">📌 ${item.type} - ${item.desc}</div>
+                        <ul class="feature-list">${item.features.map(f => `<li>${f}</li>`).join('')}</ul>
+                        <button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau ORDER/BELI AKUN ${item.name} - ${item.type}. Harga ${item.price}. Mohon info stok dan detailnya. Terima kasih.')"><i class="fab fa-whatsapp"></i> BELI / JUAL AKUN</button>
                     </div>
                 `;
             });
-            html += '</div>';
+            html += '</div><div class="text-center mt-2"><p style="font-size:0.8rem;"><i class="fas fa-info-circle"></i> 🔥 Mau jual akun? Chat admin untuk penawaran terbaik! Stok terbatas, proses cepat.</p></div>';
             panelContent.innerHTML = html;
-        } 
+        }
+        else if (menu === 'mod') {
+            panelTitle.innerHTML = '<i class="fas fa-gamepad"></i> MOD Game Cheat (Aktif 60 Hari) - 17+ Game Terpopuler';
+            let searchHtml = `
+                <div class="search-bar">
+                    <input type="text" class="search-input" id="searchMod" placeholder="🔍 Cari game... (contoh: PUBG, FF, ML, Genshin)">
+                    <select class="filter-select" id="filterMod">
+                        <option value="all">Semua Game</option>
+                        <option value="action">Action (PUBG, FF, COD)</option>
+                        <option value="rpg">RPG (Genshin, HSR, WW)</option>
+                        <option value="casual">Casual (Stumble, Among Us)</option>
+                        <option value="moba">MOBA (ML, AoV, WR)</option>
+                    </select>
+                </div>
+                <div id="modList" class="products-grid"></div>
+            `;
+            panelContent.innerHTML = searchHtml;
+            
+            function renderModList() {
+                const searchTerm = document.getElementById('searchMod')?.value.toLowerCase() || '';
+                const filterCat = document.getElementById('filterMod')?.value || 'all';
+                let filtered = modGames.filter(game => {
+                    const matchSearch = game.name.toLowerCase().includes(searchTerm);
+                    let matchCat = true;
+                    if (filterCat === 'action') matchCat = ['pubg', 'free fire', 'call of duty', 'cod', 'blood', 'farlight'].some(c => game.name.toLowerCase().includes(c));
+                    else if (filterCat === 'rpg') matchCat = ['genshin', 'honkai', 'wuthering'].some(c => game.name.toLowerCase().includes(c));
+                    else if (filterCat === 'casual') matchCat = ['stumble', 'among', 'roblox', 'minecraft', 'cookie'].some(c => game.name.toLowerCase().includes(c));
+                    else if (filterCat === 'moba') matchCat = ['mobile legends', 'arena', 'wild', 'ml', 'aov'].some(c => game.name.toLowerCase().includes(c));
+                    return matchSearch && matchCat;
+                });
+                let html = '';
+                filtered.forEach(game => {
+                    html += `
+                        <div class="product-card">
+                            <div class="product-name">🎮 ${game.name} <span class="product-price">Rp ${game.price.toLocaleString('id-ID')}</span></div>
+                            <div class="product-desc">📌 Versi MOD: ${game.version} | ✅ Aktif 60 Hari | 🔥 Garansi Anti Ban</div>
+                            <ul class="feature-list">${game.features.map(f => `<li>${f}</li>`).join('')}</ul>
+                            <button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order MOD ${game.name} dengan harga Rp${game.price.toLocaleString('id-ID')}. Fitur yang saya minati: ${game.features.slice(0,2).join(', ')}. Mohon info pembayaran dan cara instalasi.')"><i class="fab fa-whatsapp"></i> ORDER MOD SEKARANG</button>
+                        </div>
+                    `;
+                });
+                if (filtered.length === 0) html = '<div class="text-center" style="padding:2rem;"><i class="fas fa-search"></i><p>⚠️ Game tidak ditemukan. Coba kata kunci lain atau chat admin.</p><button class="btn-order btn-secondary" style="width:auto; margin-top:1rem;" onclick="sendWA(\'Halo LLC Store, saya mau tanya daftar MOD Game lengkap. Tolong infokan.\')"><i class="fab fa-whatsapp"></i> TANYA KE ADMIN</button></div>';
+                document.getElementById('modList').innerHTML = html;
+            }
+            renderModList();
+            document.getElementById('searchMod')?.addEventListener('input', renderModList);
+            document.getElementById('filterMod')?.addEventListener('change', renderModList);
+        }
         else if (menu === 'topup') {
-            panelTitle.innerHTML = '<i class="fas fa-gem"></i> TopUp Diamond & Koin Games';
+            panelTitle.innerHTML = '<i class="fas fa-gem"></i> TopUp Diamond, UC, Koin & Genesis Crystal (Termurah se-Indonesia!)';
             let html = '<div class="products-grid">';
             topupItems.forEach(item => {
                 html += `
                     <div class="product-card">
-                        <div class="product-name">💎 ${item.name}</div>
-                        <div class="product-price">${item.price}</div>
-                        <button class="btn-order" onclick="sendWA('Halo LLC Store, saya mau TopUp ${item.name} dengan harga ${item.price}. Mohon info metode pembayaran.')"><i class="fab fa-whatsapp"></i> BELI SEKARANG</button>
+                        <div class="product-name">💎 ${item.name} <span class="product-price">${item.price}</span></div>
+                        <div class="product-desc">⚡ Proses 1-3 Menit | ✅ Garansi Masuk 100% | 🔥 Harga Termurah</div>
+                        <button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau TopUp ${item.name} dengan harga ${item.price}. Mohon info metode pembayaran (QRIS/Transfer). Terima kasih.')"><i class="fab fa-whatsapp"></i> ORDER TOPUP</button>
                     </div>
                 `;
             });
-            html += '</div><p style="margin-top:1rem; font-size:0.8rem;"><i class="fas fa-info-circle"></i> Untuk game lain, chat admin via WhatsApp.</p>';
+            html += '</div><div class="text-center mt-2"><p style="font-size:0.8rem;"><i class="fas fa-info-circle"></i> 🚀 Untuk game lain atau jumlah custom (topup besar), chat admin via WhatsApp untuk harga spesial!</p></div>';
+            panelContent.innerHTML = html;
+        }
+        else if (menu === 'jasaakun') {
+            panelTitle.innerHTML = '<i class="fas fa-star"></i> Jasa Push Rank / Joki Game (Pro Player 100% Aman)';
+            let html = '<div class="products-grid">';
+            jasaAkunItems.forEach(item => {
+                html += `
+                    <div class="product-card">
+                        <div class="product-name">🎮 ${item.name}</div>
+                        <div class="product-price">⭐ ${item.service} | ${item.price}</div>
+                        <div class="product-desc">⏱️ Estimasi: ${item.duration} | ✅ 100% Aman | 🔥 Garansi Rank Naik!</div>
+                        <button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau JASA PUSH RANK ${item.name} - ${item.service}. Harga ${item.price}. Mohon info proses, metode pembayaran, dan jadwal.')"><i class="fab fa-whatsapp"></i> ORDER JASA RANK</button>
+                    </div>
+                `;
+            });
+            html += '</div><div class="text-center mt-2"><p style="font-size:0.8rem;"><i class="fas fa-info-circle"></i> 🔥 Jasa push rank dikerjakan oleh pro player (Rank High). Tidak menggunakan cheat, 100% aman. Garansi rank naik atau uang kembali!</p></div>';
             panelContent.innerHTML = html;
         }
         else if (menu === 'apk') {
-            panelTitle.innerHTML = '<i class="fas fa-code"></i> Jasa Pembuatan APK Custom';
+            panelTitle.innerHTML = '<i class="fas fa-code"></i> Jasa Pembuatan APK Custom (Terima semua jenis aplikasi)';
             panelContent.innerHTML = `
                 <div class="service-form">
-                    <p>📱 LLC Store menerima jasa pembuatan aplikasi Android.</p>
-                    <div class="products-grid" style="grid-template-columns:1fr 1fr; margin-bottom:1.5rem;">
-                        <div class="product-card"><h4>📱 APK WebView</h4><p>Mulai Rp 300k</p></div>
-                        <div class="product-card"><h4>📱 APK + Database</h4><p>Mulai Rp 800k</p></div>
-                        <div class="product-card"><h4>📱 APK + Admin Panel</h4><p>Mulai Rp 1.2jt</p></div>
+                    <p>📱 LLC Store Ultimate menerima jasa pembuatan aplikasi Android sesuai kebutuhan Anda. Berikut daftar harga:</p>
+                    <div class="products-grid" style="grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); margin-bottom:1rem;">
+                        <div class="product-card"><h4>📱 APK WebView (Website to App)</h4><p>Mulai Rp 300k | 2-3 Hari</p></div>
+                        <div class="product-card"><h4>📱 APK + Database (Firebase/MySQL)</h4><p>Mulai Rp 800k | 5-7 Hari</p></div>
+                        <div class="product-card"><h4>📱 APK + Admin Panel (Full CMS)</h4><p>Mulai Rp 1.5jt | 7-10 Hari</p></div>
+                        <div class="product-card"><h4>📱 APK + Login Multi User + Role</h4><p>Mulai Rp 2jt | 10-14 Hari</p></div>
+                        <div class="product-card"><h4>📱 APK E-commerce / Toko Online</h4><p>Mulai Rp 2.5jt | 14-21 Hari</p></div>
+                        <div class="product-card"><h4>📱 APK Aplikasi Presensi / Absensi</h4><p>Mulai Rp 1.2jt | 7-10 Hari</p></div>
                     </div>
-                    <input type="text" id="apkName" placeholder="Nama Aplikasi">
-                    <textarea id="apkDesc" placeholder="Jelaskan fitur yang diinginkan..."></textarea>
-                    <button onclick="sendWA('*ORDER JASA BUAT APK*%0A%0ANama: ' + document.getElementById('apkName').value + '%0A%0ADeskripsi: ' + document.getElementById('apkDesc').value)"><i class="fab fa-whatsapp"></i> KONSULTASI VIA WA</button>
+                    <input type="text" id="apkName" placeholder="Nama Aplikasi yang diinginkan">
+                    <textarea id="apkDesc" placeholder="Jelaskan fitur-fitur yang diinginkan secara detail (semakin detail semakin akurat penawarannya)..."></textarea>
+                    <button onclick="sendWA('*ORDER JASA BUAT APK - LLC STORE ULTIMATE*%0A%0ANama Aplikasi: ' + document.getElementById('apkName').value + '%0A%0ADeskripsi Lengkap: ' + document.getElementById('apkDesc').value + '%0A%0AMohon info harga dan estimasi pengerjaan. Terima kasih!')"><i class="fab fa-whatsapp"></i> KONSULTASI & ORDER VIA WA</button>
                 </div>
             `;
         }
         else if (menu === 'script') {
-            panelTitle.innerHTML = '<i class="fas fa-terminal"></i> Jasa Script & Aplikasi Custom';
+            panelTitle.innerHTML = '<i class="fas fa-terminal"></i> Jasa Pembuatan Script & Aplikasi Custom (Python, Node.js, PHP)';
             panelContent.innerHTML = `
                 <div class="service-form">
-                    <textarea id="scriptDesc" placeholder="Jelaskan script/aplikasi yang kamu butuhkan..."></textarea>
-                    <button onclick="sendWA('*ORDER JASA SCRIPT*%0A%0ADeskripsi: ' + document.getElementById('scriptDesc').value)"><i class="fab fa-whatsapp"></i> KONSULTASI VIA WA</button>
+                    <p>⚙️ Layanan pembuatan script untuk berbagai keperluan:</p>
+                    <div class="products-grid" style="grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); margin-bottom:1rem;">
+                        <div class="product-card"><h4>🤖 Bot WhatsApp (Node.js/Python)</h4><p>Mulai Rp 400k | 3-5 Hari</p></div>
+                        <div class="product-card"><h4>📊 Script Scraper / Data Mining (Python)</h4><p>Mulai Rp 350k | 2-3 Hari</p></div>
+                        <div class="product-card"><h4>🎮 Auto Clicker / Macro Game (Python/AutoIt)</h4><p>Mulai Rp 250k | 1-2 Hari</p></div>
+                        <div class="product-card"><h4>🔧 Tools Automation (Python/JavaScript)</h4><p>Mulai Rp 500k | 3-5 Hari</p></div>
+                        <div class="product-card"><h4>📈 Script Auto Post Social Media (SEO)</h4><p>Mulai Rp 600k | 5-7 Hari</p></div>
+                        <div class="product-card"><h4>💬 Telegram Bot (Python/Node.js)</h4><p>Mulai Rp 350k | 2-3 Hari</p></div>
+                    </div>
+                    <textarea id="scriptDesc" placeholder="Jelaskan script/aplikasi yang kamu butuhkan (bahasa pemrograman, platform, fitur spesifik)..."></textarea>
+                    <button onclick="sendWA('*ORDER JASA SCRIPT - LLC STORE ULTIMATE*%0A%0ADeskripsi kebutuhan: ' + document.getElementById('scriptDesc').value + '%0A%0AMohon info ketersediaan, harga, dan estimasi. Terima kasih.')"><i class="fab fa-whatsapp"></i> KONSULTASI VIA WA</button>
                 </div>
             `;
         }
         else if (menu === 'website') {
-            panelTitle.innerHTML = '<i class="fas fa-globe"></i> Jasa Pembuatan Website';
+            panelTitle.innerHTML = '<i class="fas fa-globe"></i> Jasa Pembuatan Website Professional (Responsive + SEO Friendly)';
             panelContent.innerHTML = `
                 <div class="service-form">
-                    <textarea id="webDesc" placeholder="Jelaskan jenis website dan fitur..."></textarea>
-                    <button onclick="sendWA('*ORDER JASA WEBSITE*%0A%0ADeskripsi: ' + document.getElementById('webDesc').value)"><i class="fab fa-whatsapp"></i> KONSULTASI VIA WA</button>
+                    <p>🌐 LLC Store Ultimate menerima jasa pembuatan website dengan teknologi modern:</p>
+                    <div class="products-grid" style="grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); margin-bottom:1rem;">
+                        <div class="product-card"><h4>🛍️ Landing Page / Company Profile</h4><p>Mulai Rp 400k | 2-3 Hari</p></div>
+                        <div class="product-card"><h4>📦 Toko Online (E-commerce) Full</h4><p>Mulai Rp 1.2jt | 10-14 Hari</p></div>
+                        <div class="product-card"><h4>📊 Dashboard Admin / CMS Custom</h4><p>Mulai Rp 800k | 5-7 Hari</p></div>
+                        <div class="product-card"><h4>📱 Website + Mobile Responsive</h4><p>Mulai Rp 500k | 3-5 Hari</p></div>
+                        <div class="product-card"><h4>📰 Blog / Portal Berita</h4><p>Mulai Rp 600k | 5-7 Hari</p></div>
+                        <div class="product-card"><h4>🎓 Website Sekolah / Kampus</h4><p>Mulai Rp 1jt | 7-10 Hari</p></div>
+                    </div>
+                    <textarea id="webDesc" placeholder="Jelaskan jenis website, fitur, jumlah halaman, dan referensi desain (jika ada)..."></textarea>
+                    <button onclick="sendWA('*ORDER JASA WEBSITE - LLC STORE ULTIMATE*%0A%0ADeskripsi: ' + document.getElementById('webDesc').value + '%0A%0AMohon penawaran harga, timeline, dan portofolio. Terima kasih.')"><i class="fab fa-whatsapp"></i> KONSULTASI VIA WA</button>
+                </div>
+            `;
+        }
+        else if (menu === 'desain') {
+            panelTitle.innerHTML = '<i class="fas fa-palette"></i> Jasa Desain Grafis & Edit Video (Kualitas Premium)';
+            panelContent.innerHTML = `
+                <div class="products-grid">
+                    <div class="product-card"><h4>🎨 Logo Brand / Perusahaan</h4><p>Mulai Rp 75k | 1x24 Jam</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order DESAIN LOGO. Tolong infokan harga dan prosesnya.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
+                    <div class="product-card"><h4>🖼️ Banner / Thumbnail YouTube</h4><p>Mulai Rp 50k | 1x12 Jam</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order BANNER / THUMBNAIL. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
+                    <div class="product-card"><h4>📱 Feed Instagram / Sosmed</h4><p>Mulai Rp 40k | 1x12 Jam</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order DESAIN FEED IG. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
+                    <div class="product-card"><h4>📽️ Edit Video Promo (CapCut/Adobe)</h4><p>Mulai Rp 150k | 2-3 Hari</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order EDIT VIDEO PROMO. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
+                    <div class="product-card"><h4>🎬 Edit Video YouTube (Vlog/Review)</h4><p>Mulai Rp 200k | 3-5 Hari</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order EDIT VIDEO YOUTUBE. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
+                    <div class="product-card"><h4>📊 Desain Presentasi (PowerPoint/Canva)</h4><p>Mulai Rp 100k | 1-2 Hari</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order DESAIN PRESENTASI. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
+                </div>
+            `;
+        }
+        else if (menu === 'modinstall') {
+            panelTitle.innerHTML = '<i class="fas fa-download"></i> Jasa Install MOD, Bypass, Root, & Custom ROM';
+            panelContent.innerHTML = `
+                <div class="products-grid">
+                    <div class="product-card"><h4>🔧 Install MOD Game (Remote)</h4><p>Mulai Rp 50k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya butuh bantuan INSTALL MOD GAME. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
+                    <div class="product-card"><h4>🔓 Bypass Akun / Verifikasi</h4><p>Mulai Rp 75k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya butuh bantuan BYPASS AKUN. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
+                    <div class="product-card"><h4>👑 Root HP Android (Semua Merk)</h4><p>Mulai Rp 100k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya butuh jasa ROOT HP. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
+                    <div class="product-card"><h4>🔄 Install Custom ROM</h4><p>Mulai Rp 200k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya butuh INSTALL CUSTOM ROM. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
+                    <div class="product-card"><h4>🔑 Bypass FRP (Lupa Password)</h4><p>Mulai Rp 75k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya butuh BYPASS FRP. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
                 </div>
             `;
         }
         else if (menu === 'other') {
-            panelTitle.innerHTML = '<i class="fas fa-tools"></i> Layanan Lainnya';
+            panelTitle.innerHTML = '<i class="fas fa-tools"></i> Layanan Digital Lainnya (50+ Layanan)';
             panelContent.innerHTML = `
                 <div class="products-grid">
-                    <div class="product-card"><h4>🎮 Joki Game</h4><button class="btn-order" onclick="sendWA('Halo LLC, saya mau tanya layanan JOKI GAME.')"><i class="fab fa-whatsapp"></i> TANYA</button></div>
-                    <div class="product-card"><h4>🎨 Desain Grafis</h4><button class="btn-order" onclick="sendWA('Halo LLC, saya mau order DESAIN GRAFIS.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
-                    <div class="product-card"><h4>✏️ Edit Video</h4><button class="btn-order" onclick="sendWA('Halo LLC, saya mau order EDIT VIDEO.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
+                    <div class="product-card"><h4>📈 SEO Optimasi Website</h4><p>Mulai Rp 300k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order SEO OPTIMASI website. Mohon infonya.')"><i class="fab fa-whatsapp"></i> TANYA</button></div>
+                    <div class="product-card"><h4>🔑 Install Ulang HP (Semua OS)</h4><p>Mulai Rp 75k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya butuh INSTALL ULANG HP. Tolong infokan.')"><i class="fab fa-whatsapp"></i> TANYA</button></div>
+                    <div class="product-card"><h4>🆔 Bypass IMEI HP</h4><p>Mulai Rp 100k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya butuh BYPASS IMEI. Tolong infokan.')"><i class="fab fa-whatsapp"></i> TANYA</button></div>
+                    <div class="product-card"><h4>📧 Jasa Pembuatan Email/Google Drive</h4><p>Mulai Rp 25k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order JASA BUAT EMAIL. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
+                    <div class="product-card"><h4>📱 TopUp Pulsa & Data</h4><p>Harga Normal</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau TOPUP PULSA/DATA. Tolong infokan nominalnya.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
+                    <div class="product-card"><h4>🎮 Sewa Akun Game Premium</h4><p>Mulai Rp 30k/hari</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau SEWA AKUN GAME. Tolong infokan daftar akun.')"><i class="fab fa-whatsapp"></i> TANYA</button></div>
                 </div>
             `;
         }
     }
 
+    // Event listener menu
     document.querySelectorAll('.menu-card').forEach(card => {
         card.addEventListener('click', () => {
             renderMenu(card.getAttribute('data-menu'));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
 
+    // Floating WhatsApp
     document.getElementById('waFloat').addEventListener('click', () => {
-        sendWA('Halo LLC Store! Saya mau nanya tentang layanan yang tersedia.');
+        sendWA('Halo LLC Store Ultimate! Saya mau nanya-nanya tentang layanan yang tersedia (Jual Beli Akun, MOD Game, TopUp, Jasa APK/Script/Website, dll). Mohon infonya. Terima kasih.');
     });
 
-    renderMenu('mod');
+    // Scroll to top
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) scrollBtn.classList.add('show');
+        else scrollBtn.classList.remove('show');
+    });
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Default tampilkan menu unggulan (Jual Beli Akun)
+    renderMenu('akun');
 </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>LLC Store | TopUp Higgs & Domino Sultan | Berfist - Full Animasi</title>
+    <title>LLC Store | TopUp Higgs & Domino Sultan | Live Chat 24 Jam</title>
     <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -263,16 +263,6 @@
             transform: scale(1.1);
         }
         
-        /* Fallback icon styling */
-        .game-logo .fallback-icon {
-            font-size: 2.2rem;
-            transition: all 0.3s;
-        }
-        .card:hover .game-logo .fallback-icon {
-            transform: scale(1.15) rotate(5deg);
-            filter: drop-shadow(0 0 5px #fbbf24);
-        }
-        
         .info-header h2 {
             font-weight: 800;
             font-size: 1.5rem;
@@ -368,9 +358,9 @@
         
         .btn-topup, .btn-download {
             flex: 1;
-            background: linear-gradient(95deg, #f59e0b, #ea580c);
+            background: linear-gradient(95deg, #4f46e5, #7c3aed);
             border: none;
-            color: #0f172a;
+            color: white;
             font-weight: 800;
             padding: 10px 12px;
             border-radius: 40px;
@@ -514,7 +504,7 @@
             50% { opacity: 0.7; text-shadow: 0 0 5px #ffb347; }
         }
         
-        /* Sembunyikan floating WhatsApp jika ada */
+        /* Sembunyikan floating WA jika ada */
         .wa-float {
             display: none !important;
         }
@@ -528,7 +518,7 @@
 <div class="container">
     <div class="hero">
         <h1><i class="fas fa-crown"></i> LLC KOIN <i class="fas fa-bolt"></i></h1>
-        <p>TopUp Higgs Games Island • Bos Domino • Royal Domino • Berfist | Harga Beli & Jual Terbaik</p>
+        <p>TopUp Higgs Games Island • Bos Domino • Royal Domino • Berfist | Live Chat 24 Jam</p>
         <div class="badge-group">
             <span class="badge" style="animation-delay: 0.05s;"><i class="fab fa-fort-awesome"></i> Higgs Games</span>
             <span class="badge" style="animation-delay: 0.1s;"><i class="fas fa-crown"></i> Bos Domino</span>
@@ -552,16 +542,32 @@
             if(link && link !== "#") {
                 window.open(link, '_blank');
             } else {
-                alert("Link download akan segera diperbarui. Hubungi admin via WhatsApp.");
+                alert("Link download akan segera diperbarui. Hubungi admin via Live Chat.");
             }
         }
         
-        function orderNow(gameName) {
-            const adminPhone = "6285823710815";
-            let message = `Halo LLC Store Admin, saya ingin melakukan TRANSAKSI (BELI/JUAL) untuk: ${gameName}.%0A%0A`;
-            message += `Saya tertarik dengan daftar harga di website LLC Store.%0A`;
-            message += `Mohon info ketersediaan dan proses untuk ${gameName}. Terima kasih!`;
-            window.open(`https://wa.me/${adminPhone}?text=${message}`, '_blank');
+        // ========== FUNGSI UNTUK MEMBUKA TAWK.TO CHAT ==========
+        function openTawkTo() {
+            if (typeof Tawk_API !== 'undefined' && Tawk_API) {
+                Tawk_API.maximize();
+                Tawk_API.showWidget();
+            } else {
+                alert("Chat sedang dimuat. Silakan tunggu sebentar atau refresh halaman.");
+            }
+        }
+        
+        function orderNowViaChat(gameName) {
+            // Buka Tawk.to chat
+            if (typeof Tawk_API !== 'undefined' && Tawk_API) {
+                Tawk_API.maximize();
+                Tawk_API.showWidget();
+                // Kirim pesan otomatis (opsional, tergantung Tawk.to)
+                setTimeout(function() {
+                    console.log("Chat opened for: " + gameName);
+                }, 1000);
+            } else {
+                alert("Chat sedang dimuat. Silakan tunggu sebentar.");
+            }
         }
         
         // PARTIKEL CANVAS
@@ -672,9 +678,9 @@
                         <tr><td><strong>💥 100B</strong></td><td class="price-beli"><strong>Rp 65.000</strong></td><td class="price-jual"><strong>Rp 55.000</strong></td></tr>
                     </tbody>
                 </table>
-                <div class="note"><i class="fas fa-tag"></i> Harga update Maret 2026 | Beli = Anda beli dari kami | Jual = Kami beli dari Anda</div>
+                <div class="note"><i class="fas fa-tag"></i> Harga update April 2026 | Beli = Anda beli dari kami | Jual = Kami beli dari Anda</div>
                 <div class="btn-group">
-                    <button class="btn-topup" onclick="orderNow('Higgs Games Island')"><i class="fab fa-whatsapp"></i> BELI / JUAL</button>
+                    <button class="btn-topup" onclick="orderNowViaChat('Higgs Games Island')"><i class="fas fa-comment-dots"></i> BELI / JUAL</button>
                     <button class="btn-download" onclick="downloadGame('higgs')"><i class="fas fa-download"></i> DOWNLOAD GAME</button>
                 </div>
             </div>
@@ -708,7 +714,7 @@
                 </table>
                 <div class="note"><i class="fas fa-chart-line"></i> Harga paling kompetitif se-Indonesia</div>
                 <div class="btn-group">
-                    <button class="btn-topup" onclick="orderNow('Bos Domino')"><i class="fab fa-whatsapp"></i> BELI / JUAL</button>
+                    <button class="btn-topup" onclick="orderNowViaChat('Bos Domino')"><i class="fas fa-comment-dots"></i> BELI / JUAL</button>
                     <button class="btn-download" onclick="downloadGame('bosDomino')"><i class="fas fa-download"></i> DOWNLOAD GAME</button>
                 </div>
             </div>
@@ -744,7 +750,7 @@
                 </table>
                 <div class="note"><i class="fas fa-exchange-alt"></i> Harga bersaing, proses cepat 24 jam</div>
                 <div class="btn-group">
-                    <button class="btn-topup" onclick="orderNow('Royal Domino')"><i class="fab fa-whatsapp"></i> BELI / JUAL</button>
+                    <button class="btn-topup" onclick="orderNowViaChat('Royal Domino')"><i class="fas fa-comment-dots"></i> BELI / JUAL</button>
                     <button class="btn-download" onclick="downloadGame('royalDomino')"><i class="fas fa-download"></i> DOWNLOAD GAME</button>
                 </div>
             </div>
@@ -777,7 +783,7 @@
                 </table>
                 <div class="note"><i class="fas fa-fist-raised"></i> Spesial member LLC Store</div>
                 <div class="btn-group">
-                    <button class="btn-topup" onclick="orderNow('Berfist')"><i class="fab fa-whatsapp"></i> BELI / JUAL</button>
+                    <button class="btn-topup" onclick="orderNowViaChat('Berfist')"><i class="fas fa-comment-dots"></i> BELI / JUAL</button>
                     <button class="btn-download" onclick="downloadGame('berfist')"><i class="fas fa-download"></i> DOWNLOAD GAME</button>
                 </div>
             </div>
@@ -795,13 +801,12 @@
     </div>
 
     <div class="footer-note">
-        <i class="fab fa-whatsapp"></i> <strong>LLC</strong> • Proses 1-3 Menit • Garansi Penuh • Aman & Terpercaya<br>
-        <strong style="color: #fbbf24; animation: blinkGold 1.5s infinite;">© LLC STORE 2026 | TopUp Sultan Se-Indonesia</strong>
+        <i class="fas fa-comment-dots"></i> <strong>LLC</strong> • Proses 1-3 Menit • Garansi Penuh • Aman & Terpercaya<br>
+        <strong style="color: #fbbf24; animation: blinkGold 1.5s infinite;">© LLC STORE 2026 | TopUp Sultan Se-Indonesia | Live Chat 24 Jam</strong>
     </div>
 </div>
 
 <!-- ========== TAWK.TO CHAT WIDGET ========== -->
-<!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -813,7 +818,6 @@ s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
-<!--End of Tawk.to Script-->
 <!-- ========== AKHIR TAWK.TO ========== -->
 
 </body>

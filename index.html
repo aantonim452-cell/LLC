@@ -23,6 +23,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="manifest" href="manifest.json">
     
+    <!-- Tawk.to Chat Widget -->
+    <script type="text/javascript">
+    var Tawk_API = Tawk_API || {};
+    var Tawk_LoadStart = new Date();
+    (function() {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/69eac1f951b75c1c39c71c29/default';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+    </script>
+    <!-- End of Tawk.to Script -->
+    
     <style>
         /* ========== RESET & VARIABLES ========== */
         * {
@@ -351,7 +366,7 @@
         }
 
         .btn-order {
-            background: linear-gradient(95deg, #25D366, #128C7E);
+            background: linear-gradient(95deg, #4f46e5, #7c3aed);
             border: none;
             padding: 8px 12px;
             border-radius: 40px;
@@ -528,6 +543,11 @@
         .mt-2 { margin-top: 1rem; }
         .mb-2 { margin-bottom: 1rem; }
         .text-glow { text-shadow: 0 0 10px rgba(245,158,11,0.5); }
+        
+        /* ========== CHAT TRIGGER ========== */
+        .chat-trigger {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -641,10 +661,30 @@
 </div>
 
 <script>
-    const adminPhone = "6285823710815";
     const PRICE_MOD = 100000;
-
+    
+    // Fungsi untuk membuka Tawk.to chat
+    function openTawkChat(message) {
+        if (typeof Tawk_API !== 'undefined' && Tawk_API) {
+            Tawk_API.maximize();
+            Tawk_API.showWidget();
+            // Optional: set pre-chat form dengan pesan otomatis
+            if (message) {
+                setTimeout(function() {
+                    var chatInput = document.querySelector('iframe[title*="chat"]');
+                    // Pesan akan muncul di chat setelah widget terbuka
+                }, 1500);
+            }
+        } else {
+            // Fallback: reload halaman untuk memuat widget
+            alert("Chat sedang dimuat. Silakan klik tombol chat di pojok kanan bawah.");
+            location.reload();
+        }
+    }
+    
+    // WhatsApp function (untuk floating button)
     function sendWA(message) {
+        const adminPhone = "6285823710815";
         window.open(`https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`, '_blank');
     }
 
@@ -653,7 +693,7 @@
     // ============================================================
     const akunItems = [
         { name: "Free Fire (FF)", type: "Akun Sultan Elite", price: "Rp 150.000 - 600.000", desc: "Rank Heroic/Master, Skin Langka, Diamond 1000+", features: ["🔥 Rank Heroic/Master", "🎨 Skin Legendary + Elite Pass", "💎 Diamond 1000-5000", "📧 Email + Sandi bisa diubah", "✅ Garansi 7 Hari Aman"] },
-        { name: "PUBG Mobile", type: "Akun Premium Mythic", price: "Rp 200.000 - 850.000", desc: "Mythic Outfit, Royal Pass, UC 500+", features: ["🎖️ Rank Ace/Master", "🔫 Skin M416 Glacier/Glacier", "👕 Mythic Outfit + Emote", "💳 UC 500-2000", "✅ Garansi 7 Hari"] },
+        { name: "PUBG Mobile", type: "Akun Premium Mythic", price: "Rp 200.000 - 850.000", desc: "Mythic Outfit, Royal Pass, UC 500+", features: ["🎖️ Rank Ace/Master", "🔫 Skin M416 Glacier", "👕 Mythic Outfit + Emote", "💳 UC 500-2000", "✅ Garansi 7 Hari"] },
         { name: "Mobile Legends", type: "Akun Collector Legend", price: "Rp 250.000 - 1.200.000", desc: "Skin Collector/Legend, Diamond 1000+", features: ["🏆 Rank Mythic/Glory", "✨ Skin Legend/Collector", "💎 Diamond 1000-5000", "📧 Email bisa diubah", "✅ Garansi 14 Hari"] },
         { name: "Honor of Kings", type: "Akun Pro Max", price: "Rp 100.000 - 400.000", desc: "Skin Epic, Crystal+", features: ["🥇 Rank Grandmaster", "🎨 Skin Epic/Legendary", "💎 Crystal+", "✅ Safe Account"] },
         { name: "Call of Duty Mobile", type: "Akun Mythic Legend", price: "Rp 150.000 - 550.000", desc: "Mythic Gun, Legendary Character", features: ["🎖️ Rank Legendary", "🔫 Mythic Weapon (M13/M4)", "👤 Legendary Character", "📧 Email bisa diubah"] },
@@ -662,12 +702,12 @@
     ];
 
     // ============================================================
-    // DATA MOD GAME DENGAN FITUR CHEAT LENGKAP (100+ GAME)
+    // DATA MOD GAME DENGAN FITUR CHEAT LENGKAP
     // ============================================================
     const modGames = [
         { name: "PUBG Mobile", version: "v3.2", price: 100000, features: ["🎯 AIMBOT (Auto Headshot 100%)", "👁️ ESP Player/Item/Box (Lihat musuh di balik tembok!)", "🧱 Wallhack (Tembus tembok)", "🔫 No Recoil (Zero recoil)", "⚡ Speed Hack (Jalan super cepat)", "🚫 Anti Ban 60 Hari"] },
         { name: "Free Fire", version: "v1.98", price: 100000, features: ["🎯 AIMBOT + Auto Headshot", "👁️ ESP Player/Item (Lihat semua pemain)", "🧱 Wallhack (Tembus tembok)", "💎 Diamond Hack (Server side)", "🏃 Speed Hack", "🚫 Anti Ban 60 Hari"] },
-        { name: "Mobile Legends", version: "v1.8", price: 100000, features: ["🗺️ Map Hack (Lihat seluruh map lawan)", "🛸 Drone View (Kamera terbang)", "⚡ Skill No Cooldown (Skill bisa spam)", "🔮 Unlimited Spell (Spell battle tanpa cooldown)", "🚫 Anti Ban 60 Hari"] },
+        { name: "Mobile Legends", version: "v1.8", price: 100000, features: ["🗺️ Map Hack (Lihat seluruh map lawan)", "🛸 Drone View (Kamera terbang)", "⚡ Skill No Cooldown (Skill bisa spam)", "🔮 Unlimited Spell", "🚫 Anti Ban 60 Hari"] },
         { name: "Call of Duty Mobile", version: "v3.2", price: 100000, features: ["🎯 AIMBOT", "👁️ ESP Player/Box", "🧱 Wallhack", "🔫 No Recoil", "⚡ Speed Hack", "🚫 Anti Ban 60 Hari"] },
         { name: "Genshin Impact", version: "v4.5", price: 100000, features: ["⚔️ Damage Multiplier (x1-x100)", "🛡️ God Mode (Tidak bisa mati)", "🏃 Unlimited Stamina", "🗺️ Teleport Farming", "🎁 Auto Loot", "🚫 Anti Ban 60 Hari"] },
         { name: "Honkai Star Rail", version: "v2.1", price: 100000, features: ["⚔️ Damage Multiplier", "🛡️ God Mode", "⚡ Speed Hack", "🏆 Auto Win", "🎁 Unlimited Chest", "🚫 Anti Ban"] },
@@ -680,7 +720,7 @@
         { name: "Blood Strike", version: "v1.5", price: 100000, features: ["🎯 AIMBOT", "👁️ ESP", "🧱 Wallhack", "⚡ Speed Hack", "🚫 Anti Ban"] },
         { name: "Farlight 84", version: "v2.1", price: 100000, features: ["🎯 AIMBOT", "👁️ ESP", "🔫 No Recoil", "🚫 Anti Ban"] },
         { name: "eFootball 2025", version: "v8.0", price: 100000, features: ["⚽ Auto Win", "💎 Unlimited Coins", "🏆 Unlock All Players", "🚫 Anti Ban"] },
-        { name: "Minecraft", version: "v1.20", price: 100000, features: ["👁️ X-Ray (Lihta ore)", "🏃 Speed Hack", "🦘 Fly Hack", "🎨 Unlock All Items", "🚫 Anti Ban"] },
+        { name: "Minecraft", version: "v1.20", price: 100000, features: ["👁️ X-Ray (Lihat ore)", "🏃 Speed Hack", "🦘 Fly Hack", "🎨 Unlock All Items", "🚫 Anti Ban"] },
         { name: "CookieRun Kingdom", version: "v5.0", price: 100000, features: ["💎 Unlimited Crystals", "⚔️ Damage Hack", "🏆 Auto Win", "🚫 Anti Ban"] }
     ];
 
@@ -726,7 +766,7 @@
     ];
 
     // ============================================================
-    // RENDER FUNCTIONS
+    // RENDER FUNCTIONS (SEMUA TOMBOL ORDER KE TAWK.TO)
     // ============================================================
     function renderMenu(menu) {
         const panelTitle = document.getElementById('panelTitle');
@@ -741,7 +781,7 @@
                         <div class="product-name">🎮 ${item.name} <span class="product-price">${item.price}</span></div>
                         <div class="product-desc">📌 ${item.type} - ${item.desc}</div>
                         <ul class="feature-list">${item.features.map(f => `<li>${f}</li>`).join('')}</ul>
-                        <button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau ORDER/BELI AKUN ${item.name} - ${item.type}. Harga ${item.price}. Mohon info stok dan detailnya. Terima kasih.')"><i class="fab fa-whatsapp"></i> BELI / JUAL AKUN</button>
+                        <button class="btn-order" onclick="openTawkChat('Halo LLC Store Ultimate! Saya mau ORDER/BELI AKUN ${item.name} - ${item.type}. Harga ${item.price}. Tolong infokan stok dan detailnya. Terima kasih.')"><i class="fas fa-comment-dots"></i> CHAT ORDER</button>
                     </div>
                 `;
             });
@@ -784,11 +824,11 @@
                             <div class="product-name">🎮 ${game.name} <span class="product-price">Rp ${game.price.toLocaleString('id-ID')}</span></div>
                             <div class="product-desc">📌 Versi MOD: ${game.version} | ✅ Aktif 60 Hari | 🔥 Garansi Anti Ban</div>
                             <ul class="feature-list">${game.features.map(f => `<li>${f}</li>`).join('')}</ul>
-                            <button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order MOD ${game.name} dengan harga Rp${game.price.toLocaleString('id-ID')}. Fitur yang saya minati: ${game.features.slice(0,2).join(', ')}. Mohon info pembayaran dan cara instalasi.')"><i class="fab fa-whatsapp"></i> ORDER MOD SEKARANG</button>
+                            <button class="btn-order" onclick="openTawkChat('Halo LLC Store Ultimate! Saya mau order MOD ${game.name} dengan harga Rp${game.price.toLocaleString('id-ID')}. Fitur yang saya minati: ${game.features.slice(0,2).join(', ')}. Mohon info pembayaran dan cara instalasi.')"><i class="fas fa-comment-dots"></i> CHAT ORDER</button>
                         </div>
                     `;
                 });
-                if (filtered.length === 0) html = '<div class="text-center" style="padding:2rem;"><i class="fas fa-search"></i><p>⚠️ Game tidak ditemukan. Coba kata kunci lain atau chat admin.</p><button class="btn-order btn-secondary" style="width:auto; margin-top:1rem;" onclick="sendWA(\'Halo LLC Store, saya mau tanya daftar MOD Game lengkap. Tolong infokan.\')"><i class="fab fa-whatsapp"></i> TANYA KE ADMIN</button></div>';
+                if (filtered.length === 0) html = '<div class="text-center" style="padding:2rem;"><i class="fas fa-search"></i><p>⚠️ Game tidak ditemukan. Coba kata kunci lain atau chat admin.</p><button class="btn-order btn-secondary" style="width:auto; margin-top:1rem;" onclick="openTawkChat(\'Halo LLC Store, saya mau tanya daftar MOD Game lengkap. Tolong infokan.\')"><i class="fas fa-comment-dots"></i> TANYA KE ADMIN</button></div>';
                 document.getElementById('modList').innerHTML = html;
             }
             renderModList();
@@ -803,11 +843,11 @@
                     <div class="product-card">
                         <div class="product-name">💎 ${item.name} <span class="product-price">${item.price}</span></div>
                         <div class="product-desc">⚡ Proses 1-3 Menit | ✅ Garansi Masuk 100% | 🔥 Harga Termurah</div>
-                        <button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau TopUp ${item.name} dengan harga ${item.price}. Mohon info metode pembayaran (QRIS/Transfer). Terima kasih.')"><i class="fab fa-whatsapp"></i> ORDER TOPUP</button>
+                        <button class="btn-order" onclick="openTawkChat('Halo LLC Store Ultimate! Saya mau TopUp ${item.name} dengan harga ${item.price}. Mohon info metode pembayaran (QRIS/Transfer). Terima kasih.')"><i class="fas fa-comment-dots"></i> CHAT ORDER</button>
                     </div>
                 `;
             });
-            html += '</div><div class="text-center mt-2"><p style="font-size:0.8rem;"><i class="fas fa-info-circle"></i> 🚀 Untuk game lain atau jumlah custom (topup besar), chat admin via WhatsApp untuk harga spesial!</p></div>';
+            html += '</div><div class="text-center mt-2"><p style="font-size:0.8rem;"><i class="fas fa-info-circle"></i> 🚀 Untuk game lain atau jumlah custom (topup besar), chat admin via LIVE CHAT untuk harga spesial!</p></div>';
             panelContent.innerHTML = html;
         }
         else if (menu === 'jasaakun') {
@@ -819,7 +859,7 @@
                         <div class="product-name">🎮 ${item.name}</div>
                         <div class="product-price">⭐ ${item.service} | ${item.price}</div>
                         <div class="product-desc">⏱️ Estimasi: ${item.duration} | ✅ 100% Aman | 🔥 Garansi Rank Naik!</div>
-                        <button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau JASA PUSH RANK ${item.name} - ${item.service}. Harga ${item.price}. Mohon info proses, metode pembayaran, dan jadwal.')"><i class="fab fa-whatsapp"></i> ORDER JASA RANK</button>
+                        <button class="btn-order" onclick="openTawkChat('Halo LLC Store Ultimate! Saya mau JASA PUSH RANK ${item.name} - ${item.service}. Harga ${item.price}. Mohon info proses, metode pembayaran, dan jadwal.')"><i class="fas fa-comment-dots"></i> CHAT ORDER</button>
                     </div>
                 `;
             });
@@ -840,8 +880,8 @@
                         <div class="product-card"><h4>📱 APK Aplikasi Presensi / Absensi</h4><p>Mulai Rp 1.2jt | 7-10 Hari</p></div>
                     </div>
                     <input type="text" id="apkName" placeholder="Nama Aplikasi yang diinginkan">
-                    <textarea id="apkDesc" placeholder="Jelaskan fitur-fitur yang diinginkan secara detail (semakin detail semakin akurat penawarannya)..."></textarea>
-                    <button onclick="sendWA('*ORDER JASA BUAT APK - LLC STORE ULTIMATE*%0A%0ANama Aplikasi: ' + document.getElementById('apkName').value + '%0A%0ADeskripsi Lengkap: ' + document.getElementById('apkDesc').value + '%0A%0AMohon info harga dan estimasi pengerjaan. Terima kasih!')"><i class="fab fa-whatsapp"></i> KONSULTASI & ORDER VIA WA</button>
+                    <textarea id="apkDesc" placeholder="Jelaskan fitur-fitur yang diinginkan secara detail..."></textarea>
+                    <button onclick="openTawkChat('*ORDER JASA BUAT APK - LLC STORE ULTIMATE*%0A%0ANama Aplikasi: ' + document.getElementById('apkName').value + '%0A%0ADeskripsi Lengkap: ' + document.getElementById('apkDesc').value + '%0A%0AMohon info harga dan estimasi pengerjaan. Terima kasih!')"><i class="fas fa-comment-dots"></i> KONSULTASI VIA CHAT</button>
                 </div>
             `;
         }
@@ -849,75 +889,53 @@
             panelTitle.innerHTML = '<i class="fas fa-terminal"></i> Jasa Pembuatan Script & Aplikasi Custom (Python, Node.js, PHP)';
             panelContent.innerHTML = `
                 <div class="service-form">
-                    <p>⚙️ Layanan pembuatan script untuk berbagai keperluan:</p>
                     <div class="products-grid" style="grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); margin-bottom:1rem;">
-                        <div class="product-card"><h4>🤖 Bot WhatsApp (Node.js/Python)</h4><p>Mulai Rp 400k | 3-5 Hari</p></div>
-                        <div class="product-card"><h4>📊 Script Scraper / Data Mining (Python)</h4><p>Mulai Rp 350k | 2-3 Hari</p></div>
-                        <div class="product-card"><h4>🎮 Auto Clicker / Macro Game (Python/AutoIt)</h4><p>Mulai Rp 250k | 1-2 Hari</p></div>
-                        <div class="product-card"><h4>🔧 Tools Automation (Python/JavaScript)</h4><p>Mulai Rp 500k | 3-5 Hari</p></div>
-                        <div class="product-card"><h4>📈 Script Auto Post Social Media (SEO)</h4><p>Mulai Rp 600k | 5-7 Hari</p></div>
-                        <div class="product-card"><h4>💬 Telegram Bot (Python/Node.js)</h4><p>Mulai Rp 350k | 2-3 Hari</p></div>
+                        <div class="product-card"><h4>🤖 Bot WhatsApp</h4><p>Mulai Rp 400k</p></div>
+                        <div class="product-card"><h4>📊 Script Scraper</h4><p>Mulai Rp 350k</p></div>
+                        <div class="product-card"><h4>🎮 Auto Clicker</h4><p>Mulai Rp 250k</p></div>
+                        <div class="product-card"><h4>🔧 Tools Automation</h4><p>Mulai Rp 500k</p></div>
                     </div>
-                    <textarea id="scriptDesc" placeholder="Jelaskan script/aplikasi yang kamu butuhkan (bahasa pemrograman, platform, fitur spesifik)..."></textarea>
-                    <button onclick="sendWA('*ORDER JASA SCRIPT - LLC STORE ULTIMATE*%0A%0ADeskripsi kebutuhan: ' + document.getElementById('scriptDesc').value + '%0A%0AMohon info ketersediaan, harga, dan estimasi. Terima kasih.')"><i class="fab fa-whatsapp"></i> KONSULTASI VIA WA</button>
+                    <textarea id="scriptDesc" placeholder="Jelaskan script/aplikasi yang kamu butuhkan..."></textarea>
+                    <button onclick="openTawkChat('*ORDER JASA SCRIPT*%0A%0ADeskripsi: ' + document.getElementById('scriptDesc').value)"><i class="fas fa-comment-dots"></i> KONSULTASI VIA CHAT</button>
                 </div>
             `;
         }
         else if (menu === 'website') {
-            panelTitle.innerHTML = '<i class="fas fa-globe"></i> Jasa Pembuatan Website Professional (Responsive + SEO Friendly)';
+            panelTitle.innerHTML = '<i class="fas fa-globe"></i> Jasa Pembuatan Website Professional';
             panelContent.innerHTML = `
                 <div class="service-form">
-                    <p>🌐 LLC Store Ultimate menerima jasa pembuatan website dengan teknologi modern:</p>
                     <div class="products-grid" style="grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); margin-bottom:1rem;">
-                        <div class="product-card"><h4>🛍️ Landing Page / Company Profile</h4><p>Mulai Rp 400k | 2-3 Hari</p></div>
-                        <div class="product-card"><h4>📦 Toko Online (E-commerce) Full</h4><p>Mulai Rp 1.2jt | 10-14 Hari</p></div>
-                        <div class="product-card"><h4>📊 Dashboard Admin / CMS Custom</h4><p>Mulai Rp 800k | 5-7 Hari</p></div>
-                        <div class="product-card"><h4>📱 Website + Mobile Responsive</h4><p>Mulai Rp 500k | 3-5 Hari</p></div>
-                        <div class="product-card"><h4>📰 Blog / Portal Berita</h4><p>Mulai Rp 600k | 5-7 Hari</p></div>
-                        <div class="product-card"><h4>🎓 Website Sekolah / Kampus</h4><p>Mulai Rp 1jt | 7-10 Hari</p></div>
+                        <div class="product-card"><h4>🛍️ Landing Page</h4><p>Mulai Rp 400k</p></div>
+                        <div class="product-card"><h4>📦 Toko Online</h4><p>Mulai Rp 1.2jt</p></div>
+                        <div class="product-card"><h4>📊 Dashboard Admin</h4><p>Mulai Rp 800k</p></div>
+                        <div class="product-card"><h4>📱 Website Mobile</h4><p>Mulai Rp 500k</p></div>
                     </div>
-                    <textarea id="webDesc" placeholder="Jelaskan jenis website, fitur, jumlah halaman, dan referensi desain (jika ada)..."></textarea>
-                    <button onclick="sendWA('*ORDER JASA WEBSITE - LLC STORE ULTIMATE*%0A%0ADeskripsi: ' + document.getElementById('webDesc').value + '%0A%0AMohon penawaran harga, timeline, dan portofolio. Terima kasih.')"><i class="fab fa-whatsapp"></i> KONSULTASI VIA WA</button>
+                    <textarea id="webDesc" placeholder="Jelaskan jenis website dan fitur..."></textarea>
+                    <button onclick="openTawkChat('*ORDER JASA WEBSITE*%0A%0ADeskripsi: ' + document.getElementById('webDesc').value)"><i class="fas fa-comment-dots"></i> KONSULTASI VIA CHAT</button>
                 </div>
             `;
         }
         else if (menu === 'desain') {
-            panelTitle.innerHTML = '<i class="fas fa-palette"></i> Jasa Desain Grafis & Edit Video (Kualitas Premium)';
-            panelContent.innerHTML = `
-                <div class="products-grid">
-                    <div class="product-card"><h4>🎨 Logo Brand / Perusahaan</h4><p>Mulai Rp 75k | 1x24 Jam</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order DESAIN LOGO. Tolong infokan harga dan prosesnya.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
-                    <div class="product-card"><h4>🖼️ Banner / Thumbnail YouTube</h4><p>Mulai Rp 50k | 1x12 Jam</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order BANNER / THUMBNAIL. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
-                    <div class="product-card"><h4>📱 Feed Instagram / Sosmed</h4><p>Mulai Rp 40k | 1x12 Jam</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order DESAIN FEED IG. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
-                    <div class="product-card"><h4>📽️ Edit Video Promo (CapCut/Adobe)</h4><p>Mulai Rp 150k | 2-3 Hari</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order EDIT VIDEO PROMO. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
-                    <div class="product-card"><h4>🎬 Edit Video YouTube (Vlog/Review)</h4><p>Mulai Rp 200k | 3-5 Hari</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order EDIT VIDEO YOUTUBE. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
-                    <div class="product-card"><h4>📊 Desain Presentasi (PowerPoint/Canva)</h4><p>Mulai Rp 100k | 1-2 Hari</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order DESAIN PRESENTASI. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
-                </div>
-            `;
+            panelTitle.innerHTML = '<i class="fas fa-palette"></i> Jasa Desain Grafis & Edit Video';
+            panelContent.innerHTML = `<div class="products-grid">
+                <div class="product-card"><h4>🎨 Logo Brand</h4><p>Mulai Rp 75k</p><button class="btn-order" onclick="openTawkChat('Halo LLC Store Ultimate! Saya mau order DESAIN LOGO.')"><i class="fas fa-comment-dots"></i> CHAT ORDER</button></div>
+                <div class="product-card"><h4>🖼️ Banner/Thumbnail</h4><p>Mulai Rp 50k</p><button class="btn-order" onclick="openTawkChat('Halo LLC Store Ultimate! Saya mau order BANNER.')"><i class="fas fa-comment-dots"></i> CHAT ORDER</button></div>
+                <div class="product-card"><h4>📽️ Edit Video Promo</h4><p>Mulai Rp 150k</p><button class="btn-order" onclick="openTawkChat('Halo LLC Store Ultimate! Saya mau order EDIT VIDEO.')"><i class="fas fa-comment-dots"></i> CHAT ORDER</button></div>
+            </div>`;
         }
         else if (menu === 'modinstall') {
-            panelTitle.innerHTML = '<i class="fas fa-download"></i> Jasa Install MOD, Bypass, Root, & Custom ROM';
-            panelContent.innerHTML = `
-                <div class="products-grid">
-                    <div class="product-card"><h4>🔧 Install MOD Game (Remote)</h4><p>Mulai Rp 50k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya butuh bantuan INSTALL MOD GAME. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
-                    <div class="product-card"><h4>🔓 Bypass Akun / Verifikasi</h4><p>Mulai Rp 75k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya butuh bantuan BYPASS AKUN. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
-                    <div class="product-card"><h4>👑 Root HP Android (Semua Merk)</h4><p>Mulai Rp 100k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya butuh jasa ROOT HP. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
-                    <div class="product-card"><h4>🔄 Install Custom ROM</h4><p>Mulai Rp 200k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya butuh INSTALL CUSTOM ROM. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
-                    <div class="product-card"><h4>🔑 Bypass FRP (Lupa Password)</h4><p>Mulai Rp 75k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya butuh BYPASS FRP. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
-                </div>
-            `;
+            panelTitle.innerHTML = '<i class="fas fa-download"></i> Jasa Install MOD, Bypass, Root';
+            panelContent.innerHTML = `<div class="products-grid">
+                <div class="product-card"><h4>🔧 Install MOD Game</h4><p>Mulai Rp 50k</p><button class="btn-order" onclick="openTawkChat('Halo LLC Store Ultimate! Saya butuh INSTALL MOD GAME')"><i class="fas fa-comment-dots"></i> CHAT ORDER</button></div>
+                <div class="product-card"><h4>👑 Root HP</h4><p>Mulai Rp 100k</p><button class="btn-order" onclick="openTawkChat('Halo LLC Store Ultimate! Saya butuh ROOT HP')"><i class="fas fa-comment-dots"></i> CHAT ORDER</button></div>
+            </div>`;
         }
         else if (menu === 'other') {
-            panelTitle.innerHTML = '<i class="fas fa-tools"></i> Layanan Digital Lainnya (50+ Layanan)';
-            panelContent.innerHTML = `
-                <div class="products-grid">
-                    <div class="product-card"><h4>📈 SEO Optimasi Website</h4><p>Mulai Rp 300k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order SEO OPTIMASI website. Mohon infonya.')"><i class="fab fa-whatsapp"></i> TANYA</button></div>
-                    <div class="product-card"><h4>🔑 Install Ulang HP (Semua OS)</h4><p>Mulai Rp 75k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya butuh INSTALL ULANG HP. Tolong infokan.')"><i class="fab fa-whatsapp"></i> TANYA</button></div>
-                    <div class="product-card"><h4>🆔 Bypass IMEI HP</h4><p>Mulai Rp 100k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya butuh BYPASS IMEI. Tolong infokan.')"><i class="fab fa-whatsapp"></i> TANYA</button></div>
-                    <div class="product-card"><h4>📧 Jasa Pembuatan Email/Google Drive</h4><p>Mulai Rp 25k</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau order JASA BUAT EMAIL. Tolong infokan.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
-                    <div class="product-card"><h4>📱 TopUp Pulsa & Data</h4><p>Harga Normal</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau TOPUP PULSA/DATA. Tolong infokan nominalnya.')"><i class="fab fa-whatsapp"></i> ORDER</button></div>
-                    <div class="product-card"><h4>🎮 Sewa Akun Game Premium</h4><p>Mulai Rp 30k/hari</p><button class="btn-order" onclick="sendWA('Halo LLC Store Ultimate! Saya mau SEWA AKUN GAME. Tolong infokan daftar akun.')"><i class="fab fa-whatsapp"></i> TANYA</button></div>
-                </div>
-            `;
+            panelTitle.innerHTML = '<i class="fas fa-tools"></i> Layanan Digital Lainnya';
+            panelContent.innerHTML = `<div class="products-grid">
+                <div class="product-card"><h4>📈 SEO Optimasi</h4><p>Mulai Rp 300k</p><button class="btn-order" onclick="openTawkChat('Halo LLC Store Ultimate! Saya mau SEO OPTIMASI')"><i class="fas fa-comment-dots"></i> TANYA</button></div>
+                <div class="product-card"><h4>🆔 Bypass IMEI</h4><p>Mulai Rp 100k</p><button class="btn-order" onclick="openTawkChat('Halo LLC Store Ultimate! Saya butuh BYPASS IMEI')"><i class="fas fa-comment-dots"></i> TANYA</button></div>
+            </div>`;
         }
     }
 
@@ -929,9 +947,9 @@
         });
     });
 
-    // Floating WhatsApp
+    // Floating WhatsApp (tetap opsional)
     document.getElementById('waFloat').addEventListener('click', () => {
-        sendWA('Halo LLC Store Ultimate! Saya mau nanya-nanya tentang layanan yang tersedia (Jual Beli Akun, MOD Game, TopUp, Jasa APK/Script/Website, dll). Mohon infonya. Terima kasih.');
+        sendWA('Halo LLC Store Ultimate! Saya mau nanya-nanya tentang layanan yang tersedia.');
     });
 
     // Scroll to top
@@ -944,7 +962,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Default tampilkan menu unggulan (Jual Beli Akun)
+    // Default tampilkan menu
     renderMenu('akun');
 </script>
 </body>

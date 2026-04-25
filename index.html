@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>LLC Store | TopUp Higgs & Domino Sultan | Berfist - Live Chat 24 Jam</title>
+    <title>LLC Store | TopUp Higgs & Domino Sultan | Berfist - Full Animasi</title>
     <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -24,6 +24,7 @@
             overflow-x: hidden;
         }
 
+        /* === ANIMASI BACKGROUND === */
         .stars, .twinkling {
             position: fixed;
             top: 0;
@@ -85,6 +86,7 @@
             z-index: 2;
         }
 
+        /* Hero Animations */
         .hero {
             background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
             backdrop-filter: blur(10px);
@@ -261,6 +263,7 @@
             transform: scale(1.1);
         }
         
+        /* Fallback icon styling */
         .game-logo .fallback-icon {
             font-size: 2.2rem;
             transition: all 0.3s;
@@ -510,6 +513,11 @@
         @keyframes blinkGold {
             50% { opacity: 0.7; text-shadow: 0 0 5px #ffb347; }
         }
+        
+        /* Sembunyikan floating WA jika ada */
+        .wa-float {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -519,7 +527,7 @@
 
 <div class="container">
     <div class="hero">
-        <h1><i class="fas fa-crown"></i> LLC STORE <i class="fas fa-bolt"></i></h1>
+        <h1><i class="fas fa-crown"></i> LLC KOIN <i class="fas fa-bolt"></i></h1>
         <p>TopUp Higgs Games Island • Bos Domino • Royal Domino • Berfist | Harga Beli & Jual Terbaik</p>
         <div class="badge-group">
             <span class="badge" style="animation-delay: 0.05s;"><i class="fab fa-fort-awesome"></i> Higgs Games</span>
@@ -548,20 +556,27 @@
             }
         }
         
-        // 🔥🔥🔥 PANGGIL CHAT DI APK CUSTOMER 🔥🔥🔥
+        // ========== FUNGSI CHAT KE ADMIN (BUKA ChatActivity) ==========
         function openCustomerChat() {
-            if (window.Android && window.Android.openChat) {
-                window.Android.openChat();
+            // Memanggil ChatActivity yang ada di APK (khusus customer)
+            // Untuk WebView, kita gunakan skema custom atau fallback
+            if (window.LLCStoreChat) {
+                window.LLCStoreChat.openCustomerChat();
             } else {
+                // Fallback: buka halaman chat di WebView internal
                 window.location.href = "llcstore://customer_chat";
             }
         }
         
         function orderNow(gameName) {
-            const message = "Halo Admin LLC Store, saya ingin melakukan TRANSAKSI (BELI/JUAL) untuk: " + gameName + ". Mohon bantuannya.";
-            if (window.Android && window.Android.sendMessageToAdmin) {
-                window.Android.sendMessageToAdmin(message);
+            // Kirim pesan ke Admin via ChatActivity
+            const message = `Halo Admin LLC Store, saya ingin melakukan TRANSAKSI (BELI/JUAL) untuk: ${gameName}. Mohon bantuannya. Terima kasih!`;
+            
+            // Coba panggil fungsi native di APK
+            if (window.LLCStoreChat) {
+                window.LLCStoreChat.sendMessageToAdmin(message);
             } else {
+                // Fallback: buka halaman chat
                 window.location.href = "llcstore://customer_chat";
             }
         }
@@ -630,10 +645,12 @@
         initParticles();
         animateParticles();
         
+        // Animasi card delay
         document.querySelectorAll('.card').forEach((card, idx) => {
             card.style.animationDelay = `${idx * 0.1}s`;
         });
         
+        // Fungsi untuk handle error image logo
         function handleImageError(imgElement, iconClass) {
             imgElement.style.display = 'none';
             let parent = imgElement.parentElement;
@@ -663,21 +680,13 @@
                 <table>
                     <thead><tr><th>Jumlah Koin</th><th>Harga Beli (IDR)</th><th>Harga Jual (IDR)</th></tr></thead>
                     <tbody>
-                        <tr><td>🔥 1.000.000 Koin</td><td class="price-beli">Rp 65.000</td><td class="price-jual">Rp 55.000</td></tr>
-                        <tr class="buffed><tr>
-                        <tr class="buffed><tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr><td class="price-beli"><strong>Rp 1.450.000</strong></td><td class="price-jual"><strong>Rp 1.350.000</strong></td></tr>
-                        <tr class="buffed><tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr><td class="price-beli"><strong>Rp 550.000</strong></td><td class="price-jual"><strong>Rp 500.000</strong></td></tr>
+                        <tr><td>🔥 100M</td><td class="price-beli">Rp 65.000</td><td class="price-jual">Rp 55.000</td></tr>
+                        <tr><td>⭐ 500M</td><td class="price-beli">Rp 310.000</td><td class="price-jual">Rp 280.000</td></tr>
+                        <tr><td>💎 1B</td><td class="price-beli">Rp 600.000</td><td class="price-jual">Rp 550.000</td></tr>
+                        <tr><td>👑 5B</td><td class="price-beli">Rp 1.450.000</td><td class="price-jual">Rp 1.350.000</td></tr>
+                        <tr><td>🚀 10B</td><td class="price-beli">Rp 2.850.000</td><td class="price-jual">Rp 2.650.000</td></tr>
+                        <tr><td>🏆 50B</td><td class="price-beli">Rp 5.500.000</td><td class="price-jual">Rp 5.100.000</td></tr>
+                        <tr><td><strong>💥 100B</strong></td><td class="price-beli"><strong>Rp 65.000</strong></td><td class="price-jual"><strong>Rp 55.000</strong></td></tr>
                     </tbody>
                 </table>
                 <div class="note"><i class="fas fa-tag"></i> Harga update April 2026 | Beli = Anda beli dari kami | Jual = Kami beli dari Anda</div>
@@ -705,22 +714,13 @@
                 <table>
                     <thead><tr><th>Jumlah Chip</th><th>Harga Beli (IDR)</th><th>Harga Jual (IDR)</th></tr></thead>
                     <tbody>
-                        <tr><td class="price-beli">Rp 70.000</td><td class="price-jual">Rp 60.000</td></tr>
-                        <tr class="buffed><tr>
-                        <tr class="buffed><tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr><td class="price-beli"><strong>Rp 1.550.000</strong></td><td class="price-jual"><strong>Rp 1.420.000</strong></td></tr>
-                        <tr class="buffed><tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></td>
-                        <tr class="buffed></tr>
-                        <tr><td class="price-beli"><strong>Rp 550.000</strong></td><td class="price-jual"><strong>Rp 500.000</strong></td></tr>
+                        <tr><td>📦 1B</td><td class="price-beli">Rp 70.000</td><td class="price-jual">Rp 60.000</td></tr>
+                        <tr><td>💎 10B</td><td class="price-beli">Rp 330.000</td><td class="price-jual">Rp 295.000</td></tr>
+                        <tr><td>🏆 50B</td><td class="price-beli">Rp 640.000</td><td class="price-jual">Rp 580.000</td></tr>
+                        <tr><td>👑 100B</td><td class="price-beli">Rp 1.550.000</td><td class="price-jual">Rp 1.420.000</td></tr>
+                        <tr><td>🚀 150B</td><td class="price-beli">Rp 3.000.000</td><td class="price-jual">Rp 2.750.000</td></tr>
+                        <tr><td>✨ 200B</td><td class="price-beli">Rp 5.800.000</td><td class="price-jual">Rp 5.350.000</td></tr>
+                        <tr><td><strong>🌟 500B</strong></td><td class="price-beli"><strong>Rp 550.000</strong></td><td class="price-jual"><strong>Rp 500.000</strong></td></tr>
                     </tbody>
                 </table>
                 <div class="note"><i class="fas fa-chart-line"></i> Harga paling kompetitif se-Indonesia</div>
@@ -748,17 +748,15 @@
                 <table>
                     <thead><tr><th>Jumlah Chip</th><th>Harga Beli (IDR)</th><th>Harga Jual (IDR)</th></tr></thead>
                     <tbody>
-                        <tr><td class="price-beli">Rp 40.000</td><td class="price-jual">Rp 32.000</td></tr>
-                        <tr class="buffed><tr>
-                        <tr class="buffed><tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr><td class="price-beli"><strong>Rp 58.000.000</strong></td><td class="price-jual"><strong>Rp 48.000.000</strong></td></tr>
+                        <tr><td>500M</td><td class="price-beli">Rp 40.000</td><td class="price-jual">Rp 32.000</td></tr>
+                        <tr><td>1B</td><td class="price-beli">Rp 75.000</td><td class="price-jual">Rp 62.000</td></tr>
+                        <tr><td>2B</td><td class="price-beli">Rp 180.000</td><td class="price-jual">Rp 148.000</td></tr>
+                        <tr><td>5B</td><td class="price-beli">Rp 345.000</td><td class="price-jual">Rp 285.000</td></tr>
+                        <tr><td>10B</td><td class="price-beli">Rp 665.000</td><td class="price-jual">Rp 550.000</td></tr>
+                        <tr><td>15B</td><td class="price-beli">Rp 1.600.000</td><td class="price-jual">Rp 1.320.000</td></tr>
+                        <tr><td>30B</td><td class="price-beli">Rp 3.100.000</td><td class="price-jual">Rp 2.550.000</td></tr>
+                        <tr><td>50B</td><td class="price-beli">Rp 6.000.000</td><td class="price-jual">Rp 4.950.000</td></tr>
+                        <tr><td><strong>100B</strong></td><td class="price-beli"><strong>Rp 58.000.000</strong></td><td class="price-jual"><strong>Rp 48.000.000</strong></td></tr>
                     </tbody>
                 </table>
                 <div class="note"><i class="fas fa-exchange-alt"></i> Harga bersaing, proses cepat 24 jam</div>
@@ -786,14 +784,12 @@
                 <table>
                     <thead><tr><th>Jumlah Koin</th><th>Harga Beli (IDR)</th><th>Harga Jual (IDR)</th></tr></thead>
                     <tbody>
-                        <tr><td class="price-beli">Rp 35.000</td><td class="price-jual">Rp 28.000</td></tr>
-                        <tr class="buffed><tr>
-                        <tr class="buffed></td>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr class="buffed></tr>
-                        <tr><td class="price-beli"><strong>Rp 68.000</strong></td><td class="price-jual"><strong>Rp 58.000</strong></td></tr>
+                        <tr><td>🔥 500M</td><td class="price-beli">Rp 35.000</td><td class="price-jual">Rp 28.000</td></tr>
+                        <tr><td>⭐ 1B</td><td class="price-beli">Rp 65.000</td><td class="price-jual">Rp 55.000</td></tr>
+                        <tr><td>💎 5B</td><td class="price-beli">Rp 315.000</td><td class="price-jual">Rp 275.000</td></tr>
+                        <tr><td>👑 10B</td><td class="price-beli">Rp 610.000</td><td class="price-jual">Rp 540.000</td></tr>
+                        <tr><td>🚀 20B</td><td class="price-beli">Rp 1.480.000</td><td class="price-jual">Rp 1.320.000</td></tr>
+                        <tr><td><strong>💢 50B</strong></td><td class="price-beli"><strong>Rp 68.000</strong></td><td class="price-jual"><strong>Rp 58.000</strong></td></tr>
                     </tbody>
                 </table>
                 <div class="note"><i class="fas fa-fist-raised"></i> Spesial member LLC Store</div>
@@ -808,16 +804,16 @@
     <div class="promo-box">
         <h3><i class="fas fa-list-ul text-gold"></i> RINGKASAN HARGA BELI & JUAL SEMUA GAME</h3>
         <div class="promo-grid">
-            <div class="promo-item"><h4>🎮 HIGGS GAMES</h4><ul><li>🔹 1B Koin → Beli Rp65K / Jual Rp55K</li><li>🔹 5B Koin → Beli Rp299K / Jual Rp270K</li></ul></div>
-            <div class="promo-item"><h4>👑 BOS DOMINO</h4><ul><li>🔸 1B Chip → Beli Rp550K / Jual Rp500K</li><li>🔸 100M Chip → Beli Rp5,8JT / Jual Rp5,35JT</li></ul></div>
-            <div class="promo-item"><h4>♟️ ROYAL DOMINO</h4><ul><li>💎 1B Chip → Beli Rp58JT / Jual Rp48JT</li><li>💎 100M Chip → Beli Rp6JT / Jual Rp4,95JT</li></ul></div>
-            <div class="promo-item"><h4>🥊 BERFIST</h4><ul><li>🥊 1B Koin → Beli Rp68K / Jual Rp58K</li><li>🥊 500M Koin → Beli Rp35K / Jual Rp28K</li></ul></div>
+            <div class="promo-item"><h4>🎮 HIGGS GAMES</h4><ul><li>🔹 100M→ Beli Rp65K / Jual Rp55K</li><li>🔹 1B → Beli Rp299K / Jual Rp270K</li></ul></div>
+            <div class="promo-item"><h4>👑 BOS DOMINO</h4><ul><li>🔸 100M → Beli Rp550K / Jual Rp500K</li><li>🔸 1B → Beli Rp5,8JT / Jual Rp5,35JT</li></ul></div>
+            <div class="promo-item"><h4>♟️ ROYAL DOMINO</h4><ul><li>💎 100M → Beli Rp58JT / Jual Rp48JT</li><li>💎 1B → Beli Rp6JT / Jual Rp4,95JT</li></ul></div>
+            <div class="promo-item"><h4>🥊 BERFIST</h4><ul><li>🥊 100M → Beli Rp68K / Jual Rp58K</li><li>🥊 1B → Beli Rp35K / Jual Rp28K</li></ul></div>
         </div>
     </div>
 
     <div class="footer-note">
-        <i class="fas fa-comment-dots"></i> <strong>LLC STORE</strong> • Proses 1-3 Menit • Garansi Penuh • Aman & Terpercaya<br>
-        <strong style="color: #fbbf24; animation: blinkGold 1.5s infinite;">© LLC STORE 2026 | TopUp Sultan Se-Indonesia | Live Chat 24 Jam</strong>
+        <i class="fas fa-comment-dots"></i> <strong>LLC</strong> • Proses 1-3 Menit • Garansi Penuh • Aman & Terpercaya<br>
+        <strong style="color: #fbbf24; animation: blinkGold 1.5s infinite;">© LLC STORE 2026 | TopUp Sultan Se-Indonesia | Chat Admin 24 Jam</strong>
     </div>
 </div>
 </body>

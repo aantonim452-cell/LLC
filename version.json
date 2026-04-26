@@ -1,20 +1,8 @@
-
 {
-  "versionCode": 4,
-  "versionName": "3.0",
-  "minRequiredVersion": 2,
-  "updateType": "recommended",
-  "changelog": [
-    "✨ Fitur baru: Dark Mode",
-    "🐛 Perbaikan crash saat login",
-    "⚡ Peningkatan kecepatan loading",
-    "🔒 Update library keamanan",
-    "🎨 Desain UI lebih modern"
-  ],
-  "downloadUrl": "https://llcstore92-lab.github.io/IIc_store/LLC STORE.apk",
-  "fileSizeMB": 12.5
+  "version": "4.3.0",
+  "lastUpdate": "2026-04-18",
+  "changelog": "✨ Perbaikan tampilan\n🚀 Fitur riwayat transaksi\n🎨 Animasi baru",
+  "forceUpdate": false,
+  "downloadUrl": "https://www.mediafire.com/file/4036edxrg18erxk/LLC_Store_4.3.0.apk/file",
+  "fileSize": "20.96 MB"
 }
-
-
-
-

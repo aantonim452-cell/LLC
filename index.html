@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>LLC Store | TopUp Higgs & Domino Sultan | Live Chat Internal</title>
+    <title>LLC Store | TopUp Higgs & Domino | Real-time Chat + Order</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -19,6 +22,7 @@
             overflow-x: hidden;
         }
 
+        /* Background efek */
         .stars, .twinkling {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -38,66 +42,57 @@
         }
         @keyframes twinkle { 0% { opacity: 0.2; } 100% { opacity: 0.9; } }
 
-        .particle-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #1e293b; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #f59e0b, #fbbf24); border-radius: 10px; }
-
         .container { max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
 
+        /* Hero */
         .hero {
             background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.95));
             backdrop-filter: blur(10px);
             border-radius: 2rem;
-            padding: 2.5rem 2rem;
+            padding: 2rem;
             margin-bottom: 2rem;
-            border: 1px solid rgba(245,158,11,0.3);
             text-align: center;
-            animation: fadeInUp 0.8s ease-out;
+            border: 1px solid rgba(245,158,11,0.3);
         }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
         .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c);
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-        .badge-group { margin-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; }
+        .badge-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-top: 1rem; }
         .badge {
             background: rgba(51,65,85,0.8);
-            padding: 0.5rem 1.2rem;
+            padding: 0.4rem 1rem;
             border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             border-left: 3px solid #f59e0b;
-            transition: all 0.3s;
         }
-        .badge:hover { transform: scale(1.07); background: #f59e0b; color: #0f172a; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.8rem; margin-bottom: 2rem; }
+        /* Grid Game */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
         .card {
             background: rgba(30,41,59,0.85);
             backdrop-filter: blur(8px);
             border-radius: 1.5rem;
-            border: 1px solid rgba(245,158,11,0.25);
+            border: 1px solid rgba(245,158,11,0.3);
             overflow: hidden;
-            transition: all 0.4s;
+            transition: all 0.3s;
         }
-        .card:hover { transform: translateY(-8px); border-color: #f59e0b; }
+        .card:hover { transform: translateY(-5px); border-color: #f59e0b; }
         .card-header {
-            padding: 1.2rem 1.5rem;
+            padding: 1rem;
             background: linear-gradient(115deg, #1e293b, #0f172a);
             border-bottom: 2px solid #f59e0b;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
         .game-logo {
-            width: 65px; height: 65px;
+            width: 55px; height: 55px;
             background: #0f172a;
-            border-radius: 18px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -105,34 +100,32 @@
             overflow: hidden;
         }
         .game-logo img { width: 100%; height: 100%; object-fit: cover; }
-        .info-header h2 { font-size: 1.3rem; background: linear-gradient(45deg, #ffd966, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .table-wrapper { padding: 0 1rem 1rem; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.7rem; }
-        th { text-align: left; padding: 0.6rem 0.3rem; color: #fbbf24; }
-        td { padding: 0.5rem 0.3rem; border-bottom: 1px solid #334155; }
-        .price-beli { color: #fde68a; font-weight: 800; }
-        .note { font-size: 0.65rem; background: #1e293b; padding: 0.2rem 0.8rem; border-radius: 20px; display: inline-block; margin-top: 8px; }
-        .btn-group { display: flex; gap: 10px; margin-top: 1rem; }
-        .btn-topup, .btn-download {
+        .info-header h2 { font-size: 1.1rem; }
+        .sub { font-size: 0.65rem; opacity: 0.7; }
+        .table-wrapper { padding: 0.8rem; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.65rem; }
+        th { text-align: left; padding: 0.4rem; color: #fbbf24; }
+        td { padding: 0.4rem; border-bottom: 1px solid #334155; }
+        .price-beli { color: #fde68a; font-weight: bold; }
+        .btn-group { display: flex; gap: 8px; margin-top: 0.8rem; }
+        .btn-order, .btn-download {
             flex: 1;
             background: linear-gradient(95deg, #f59e0b, #ea580c);
             border: none;
             color: #0f172a;
-            font-weight: 800;
-            padding: 8px 12px;
+            font-weight: bold;
+            padding: 8px;
             border-radius: 40px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            transition: 0.3s;
+            gap: 5px;
         }
         .btn-download { background: linear-gradient(95deg, #0284c7, #0369a1); color: white; }
-        .btn-topup:hover, .btn-download:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
-        /* LIVE CHAT PANEL */
+        /* Chat Panel Real-time */
         .chat-panel {
             background: rgba(18,25,45,0.95);
             backdrop-filter: blur(12px);
@@ -143,24 +136,25 @@
         }
         .chat-header {
             background: linear-gradient(95deg, #1e293b, #0f172a);
-            padding: 1rem 1.5rem;
+            padding: 0.8rem 1.2rem;
             border-bottom: 1px solid #f59e0b;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
         }
-        .chat-header h3 { color: #fbbf24; font-size: 1.2rem; }
+        .chat-header h3 { color: #fbbf24; font-size: 1rem; }
+        .admin-badge { background: #ea580c; padding: 2px 8px; border-radius: 20px; font-size: 0.7rem; }
         .chat-messages {
-            height: 300px;
+            height: 280px;
             overflow-y: auto;
             padding: 1rem;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
         .message {
-            padding: 10px 14px;
-            border-radius: 18px;
+            padding: 8px 12px;
+            border-radius: 16px;
             max-width: 80%;
             word-wrap: break-word;
         }
@@ -168,30 +162,22 @@
             background: linear-gradient(135deg, #1e3a5f, #0f2b44);
             align-self: flex-end;
             border-bottom-right-radius: 4px;
-            color: white;
         }
         .message.admin {
             background: linear-gradient(135deg, #2d3748, #1e293b);
             align-self: flex-start;
-            border-bottom-left-radius: 4px;
             border-left: 3px solid #f59e0b;
-            color: #e2e8f0;
         }
-        .message small {
-            display: block;
-            font-size: 0.65rem;
-            opacity: 0.7;
-            margin-top: 4px;
-        }
+        .message small { font-size: 0.6rem; opacity: 0.6; display: block; margin-top: 4px; }
         .chat-input-area {
-            padding: 1rem;
+            padding: 0.8rem;
             border-top: 1px solid #334155;
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
         .chat-input-area input {
             flex: 1;
-            padding: 12px;
+            padding: 10px;
             background: #0b1120;
             border: 1px solid #334155;
             border-radius: 2rem;
@@ -201,32 +187,67 @@
         .chat-input-area button {
             background: #f59e0b;
             border: none;
-            padding: 0 20px;
+            padding: 0 18px;
             border-radius: 2rem;
             font-weight: bold;
             cursor: pointer;
             color: #0f172a;
         }
-        .admin-badge {
-            background: #ea580c;
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 20px;
-            margin-left: 8px;
+
+        /* Modal Order Form */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
         }
-        .footer-note { text-align: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #334155; font-size: 0.7rem; color: #94a3b8; }
-        @media (max-width: 768px) { body { padding: 1rem; } .hero h1 { font-size: 2rem; } .message { max-width: 95%; } }
+        .modal-content {
+            background: rgba(18,25,45,0.98);
+            width: 90%;
+            max-width: 450px;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #f59e0b;
+        }
+        .modal-content h3 { margin-bottom: 1rem; color: #fbbf24; }
+        .modal-content input, .modal-content select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            background: #0b1120;
+            border: 1px solid #334155;
+            border-radius: 1rem;
+            color: white;
+        }
+        .modal-buttons { display: flex; gap: 10px; margin-top: 1rem; }
+        .modal-buttons button {
+            flex: 1;
+            padding: 10px;
+            border-radius: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .confirm-btn { background: #10b981; color: white; border: none; }
+        .cancel-btn { background: rgba(255,80,100,0.2); border: 1px solid #ff8a8a; color: #ffc4c4; }
+        .close-modal { float: right; font-size: 1.5rem; cursor: pointer; color: #fbbf24; }
+
+        .footer { text-align: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #334155; font-size: 0.7rem; }
+        @media (max-width: 768px) { body { padding: 1rem; } }
     </style>
 </head>
 <body>
-<canvas id="particleCanvas" class="particle-canvas"></canvas>
 <div class="stars"></div>
 <div class="twinkling"></div>
 
 <div class="container">
     <div class="hero">
         <h1><i class="fas fa-crown"></i> LLC STORE <i class="fas fa-bolt"></i></h1>
-        <p>TopUp & Jual Beli Koin • Higgs Games Island • Bos Domino • Royal Domino • Berfist</p>
+        <p>TopUp & Jual Beli Koin • Higgs • Bos Domino • Royal Domino • Berfist</p>
         <div class="badge-group">
             <span class="badge"><i class="fab fa-fort-awesome"></i> Higgs Games</span>
             <span class="badge"><i class="fas fa-crown"></i> Bos Domino</span>
@@ -236,276 +257,277 @@
         </div>
     </div>
 
-    <div class="grid">
-        <!-- HIGGS -->
-        <div class="card">
-            <div class="card-header">
-                <div class="game-logo"><img src="https://play-lh.googleusercontent.com/0AfLM4u9VMWMwZK6jeC1ax4mWdM4eQAl3N5jWl2AParMUK65WOEXF_owy6fbtnJS5XY" alt="Higgs" onerror="this.src='https://via.placeholder.com/65?text=H'"></div>
-                <div class="info-header"><h2>HIGGS GAMES ISLAND</h2><div class="sub">Beli 60K/1B | Jual 56K/1B</div></div>
-            </div>
-            <div class="table-wrapper">
-                <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead>
-                <tbody>
-                    <tr><td>100M</td><td class="price-beli">Rp 6.000</td><td>Rp 5.600</td></tr>
-                    <tr><td>200M</td><td class="price-beli">Rp 12.000</td><td>Rp 11.200</td></tr>
-                    <tr><td>500M</td><td class="price-beli">Rp 30.000</td><td>Rp 28.000</td></tr>
-                    <tr><td>1B</td><td class="price-beli">Rp 60.000</td><td>Rp 56.000</td></tr>
-                    <tr><td>2B</td><td class="price-beli">Rp 120.000</td><td>Rp 112.000</td></tr>
-                    <tr><td>5B</td><td class="price-beli">Rp 300.000</td><td>Rp 280.000</td></tr>
-                    <tr><td>10B</td><td class="price-beli">Rp 600.000</td><td>Rp 560.000</td></tr>
-                    <tr><td>20B</td><td class="price-beli">Rp 1.200.000</td><td>Rp 1.120.000</td></tr>
-                </tbody></table>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="quickOrder('Higgs Games Island')"><i class="fas fa-comment-dots"></i> ORDER LANGSUNG</button>
-                    <button class="btn-download" onclick="downloadGame('higgs')"><i class="fas fa-download"></i> DOWNLOAD</button>
-                </div>
-            </div>
-        </div>
+    <div class="grid" id="gameGrid"></div>
 
-        <!-- BOS DOMINO -->
-        <div class="card">
-            <div class="card-header">
-                <div class="game-logo"><img src="https://dl.memuplay.com/new_market/img/com.vivid.domino.icon.2023-11-24-13-29-36.png" alt="Bos" onerror="this.src='https://via.placeholder.com/65?text=B'"></div>
-                <div class="info-header"><h2>BOS DOMINO</h2><div class="sub">Beli 4K/1B | Jual 3K/1B</div></div>
-            </div>
-            <div class="table-wrapper">
-                <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead>
-                <tbody>
-                    <tr><td>10B</td><td class="price-beli">Rp 40.000</td><td>Rp 30.000</td></tr>
-                    <tr><td>20B</td><td class="price-beli">Rp 80.000</td><td>Rp 60.000</td></tr>
-                    <tr><td>30B</td><td class="price-beli">Rp 120.000</td><td>Rp 90.000</td></tr>
-                    <tr><td>40B</td><td class="price-beli">Rp 160.000</td><td>Rp 120.000</td></tr>
-                    <tr><td>50B</td><td class="price-beli">Rp 200.000</td><td>Rp 150.000</td></tr>
-                    <tr><td>100B</td><td class="price-beli">Rp 400.000</td><td>Rp 300.000</td></tr>
-                </tbody></table>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="quickOrder('Bos Domino')"><i class="fas fa-comment-dots"></i> ORDER LANGSUNG</button>
-                    <button class="btn-download" onclick="downloadGame('bosDomino')"><i class="fas fa-download"></i> DOWNLOAD</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- ROYAL DOMINO -->
-        <div class="card">
-            <div class="card-header">
-                <div class="game-logo"><img src="https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO%20DOWNLOAD" alt="Royal" onerror="this.src='https://via.placeholder.com/65?text=R'"></div>
-                <div class="info-header"><h2>ROYAL DOMINO</h2><div class="sub">Beli 64K/1B | Jual 61K/1B</div></div>
-            </div>
-            <div class="table-wrapper">
-                <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead>
-                <tbody>
-                    <tr><td>100M</td><td class="price-beli">Rp 6.400</td><td>Rp 6.100</td></tr>
-                    <tr><td>200M</td><td class="price-beli">Rp 12.800</td><td>Rp 12.200</td></tr>
-                    <tr><td>500M</td><td class="price-beli">Rp 32.000</td><td>Rp 30.500</td></tr>
-                    <tr><td>1B</td><td class="price-beli">Rp 64.000</td><td>Rp 61.000</td></tr>
-                    <tr><td>2B</td><td class="price-beli">Rp 128.000</td><td>Rp 122.000</td></tr>
-                    <tr><td>5B</td><td class="price-beli">Rp 320.000</td><td>Rp 305.000</td></tr>
-                    <tr><td>10B</td><td class="price-beli">Rp 640.000</td><td>Rp 610.000</td></tr>
-                    <tr><td>20B</td><td class="price-beli">Rp 1.280.000</td><td>Rp 1.220.000</td></tr>
-                </tbody></table>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="quickOrder('Royal Domino')"><i class="fas fa-comment-dots"></i> ORDER LANGSUNG</button>
-                    <button class="btn-download" onclick="downloadGame('royalDomino')"><i class="fas fa-download"></i> DOWNLOAD</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- BERFIST -->
-        <div class="card">
-            <div class="card-header">
-                <div class="game-logo"><img src="https://play-lh.googleusercontent.com/mvFrMMdovquq71B-ta-JVKBdw4Zbs2RmPxe8EVFyGiXAtHAm_p0x3940NqDmFGk6vg" alt="Berfist" onerror="this.src='https://via.placeholder.com/65?text=F'"></div>
-                <div class="info-header"><h2>BERFIST</h2><div class="sub">Beli 35K/1B | Jual 31K/1B</div></div>
-            </div>
-            <div class="table-wrapper">
-                <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead>
-                <tbody>
-                    <tr><td>100M</td><td class="price-beli">Rp 3.500</td><td>Rp 3.100</td></tr>
-                    <tr><td>200M</td><td class="price-beli">Rp 7.000</td><td>Rp 6.200</td></tr>
-                    <tr><td>500M</td><td class="price-beli">Rp 17.500</td><td>Rp 15.500</td></tr>
-                    <tr><td>1B</td><td class="price-beli">Rp 35.000</td><td>Rp 31.000</td></tr>
-                    <tr><td>2B</td><td class="price-beli">Rp 70.000</td><td>Rp 62.000</td></tr>
-                    <tr><td>5B</td><td class="price-beli">Rp 175.000</td><td>Rp 155.000</td></tr>
-                    <tr><td>10B</td><td class="price-beli">Rp 350.000</td><td>Rp 310.000</td></tr>
-                    <tr><td>20B</td><td class="price-beli">Rp 700.000</td><td>Rp 620.000</td></tr>
-                </tbody></table>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="quickOrder('Berfist')"><i class="fas fa-comment-dots"></i> ORDER LANGSUNG</button>
-                    <button class="btn-download" onclick="downloadGame('berfist')"><i class="fas fa-download"></i> DOWNLOAD</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- LIVE CHAT INTERNAL -->
+    <!-- REAL-TIME CHAT PANEL -->
     <div class="chat-panel">
         <div class="chat-header">
-            <i class="fas fa-comments" style="color:#f59e0b; font-size:1.5rem;"></i>
-            <h3>Live Chat Internal <span class="admin-badge">Admin Online</span></h3>
+            <h3><i class="fas fa-comments"></i> Live Chat Internal</h3>
+            <span class="admin-badge"><i class="fas fa-circle" style="color:#10b981; font-size:0.7rem;"></i> Real-time</span>
         </div>
         <div class="chat-messages" id="chatMessages">
-            <div class="message admin">
-                <strong>🛡️ Admin LLC Store:</strong> Selamat datang! Silakan kirim pesanan atau tanya harga. Saya akan merespon langsung di sini.
-                <small>online</small>
-            </div>
+            <div class="message admin"><strong>🛡️ Admin LLC:</strong> Selamat datang! Silakan chat untuk order atau tanya harga.<small>online</small></div>
         </div>
         <div class="chat-input-area">
-            <input type="text" id="chatInput" placeholder="Tulis pesan atau pesanan Anda... contoh: Saya mau beli Higgs 1B, ID: 12345">
+            <input type="text" id="chatInput" placeholder="Tulis pesan... contoh: Saya mau beli Higgs 1B, ID: 12345">
             <button id="sendChatBtn"><i class="fas fa-paper-plane"></i> Kirim</button>
         </div>
     </div>
 
-    <div class="footer-note">
-        <i class="fas fa-headset"></i> <strong>LLC Store</strong> • Chat Internal Langsung • Respon Cepat • Garansi Penuh<br>
-        <strong style="color: #fbbf24;">© LLC STORE 2026 | TopUp Sultan Se-Indonesia</strong>
+    <div class="footer">
+        <strong>© LLC STORE 2026</strong> • Chat & Order Real-time • Admin Langsung Membalas
+    </div>
+</div>
+
+<!-- MODAL ORDER -->
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeModalBtn">&times;</span>
+        <h3><i class="fas fa-shopping-cart"></i> <span id="modalGameName"></span></h3>
+        <input type="text" id="orderUserId" placeholder="ID Game / User ID">
+        <select id="orderAmount">
+            <option value="">Pilih Jumlah Koin</option>
+        </select>
+        <select id="orderType">
+            <option value="BELI">🔹 Saya ingin BELI (TopUp)</option>
+            <option value="JUAL">🔸 Saya ingin JUAL (Koin ke LLC)</option>
+        </select>
+        <select id="orderPayment">
+            <option value="Bank BCA">🏦 Bank BCA</option>
+            <option value="Bank Mandiri">🏦 Bank Mandiri</option>
+            <option value="Bank BRI">🏦 Bank BRI</option>
+            <option value="Bank BNI">🏦 Bank BNI</option>
+            <option value="OVO">📱 OVO</option>
+            <option value="DANA">💸 DANA</option>
+            <option value="QRIS">📲 QRIS</option>
+            <option value="Gopay">🟢 Gopay</option>
+        </select>
+        <div class="modal-buttons">
+            <button class="confirm-btn" id="submitOrderBtn"><i class="fas fa-paper-plane"></i> Kirim Order</button>
+            <button class="cancel-btn" id="cancelModalBtn">Batal</button>
+        </div>
     </div>
 </div>
 
 <script>
-    // Data harga untuk quick order
-    const priceData = {
-        "Higgs Games Island": { perB: 60000, perB_jual: 56000 },
-        "Bos Domino": { perB: 4000, perB_jual: 3000 },
-        "Royal Domino": { perB: 64000, perB_jual: 61000 },
-        "Berfist": { perB: 35000, perB_jual: 31000 }
+    // ============ FIREBASE KONFIGURASI ============
+    // Gunakan project Firebase yang sudah dibuat
+    const firebaseConfig = {
+        apiKey: "AIzaSyB8x0X8X8X8X8X8X8X8X8X8X8X8X8X8X8",
+        authDomain: "llcstore-chat.firebaseapp.com",
+        databaseURL: "https://llcstore-chat-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "llcstore-chat",
+        storageBucket: "llcstore-chat.appspot.com",
+        messagingSenderId: "123456789012",
+        appId: "1:123456789012:web:abcdef123456"
     };
-
-    // LOAD & SAVE CHAT ke localStorage (biar pesan tersimpan)
-    let messages = [];
     
-    function loadMessages() {
-        const saved = localStorage.getItem("llcstore_chat_messages");
-        if(saved) {
-            try {
-                messages = JSON.parse(saved);
-            } catch(e) { messages = []; }
-        }
-        if(messages.length === 0) {
-            messages = [{
-                id: Date.now(),
-                sender: "admin",
-                text: "Selamat datang! Silakan kirim pesanan atau tanya harga. Saya akan merespon langsung di sini.",
-                time: new Date().toLocaleTimeString()
-            }];
-        }
-        renderMessages();
-    }
+    // Inisialisasi Firebase
+    let database;
+    let messagesRef;
+    let ordersRef;
+    let isFirebaseReady = false;
     
-    function saveMessages() {
-        localStorage.setItem("llcstore_chat_messages", JSON.stringify(messages));
-    }
-    
-    function renderMessages() {
-        const container = document.getElementById("chatMessages");
-        if(!container) return;
-        container.innerHTML = "";
-        messages.forEach(msg => {
-            const div = document.createElement("div");
-            div.className = `message ${msg.sender === "customer" ? "customer" : "admin"}`;
-            const name = msg.sender === "customer" ? "👤 Anda" : "🛡️ Admin LLC";
-            div.innerHTML = `<strong>${name}:</strong> ${msg.text}<br><small>${msg.time || "baru"}</small>`;
-            container.appendChild(div);
-        });
-        container.scrollTop = container.scrollHeight;
-    }
-    
-    function addMessage(sender, text) {
-        const newMsg = {
-            id: Date.now(),
-            sender: sender,
-            text: text,
-            time: new Date().toLocaleTimeString()
-        };
-        messages.push(newMsg);
-        saveMessages();
-        renderMessages();
-    }
-    
-    // Kirim pesan dari customer
-    function sendCustomerMessage() {
-        const input = document.getElementById("chatInput");
-        const text = input.value.trim();
-        if(text === "") return;
-        addMessage("customer", text);
-        input.value = "";
+    try {
+        firebase.initializeApp(firebaseConfig);
+        database = firebase.database();
+        messagesRef = database.ref('chat_messages');
+        ordersRef = database.ref('orders');
+        isFirebaseReady = true;
+        console.log("✅ Firebase Connected!");
         
-        // Auto reply sederhana (opsional: admin akan baca & balas nanti)
-        // Biar lebih realistis, admin bisa balas manual dari console/admin panel
-        // Tapi kita tambahkan notifikasi bahwa pesan sudah masuk ke admin
-        setTimeout(() => {
-            // Simulasi admin akan membaca (tapi tidak auto reply biar natural)
-            // Admin bisa balas dengan mengirim dari console atau kita buat panel admin sederhana?
-            // Kita tambahkan kemampuan untuk admin membalas via prompt jika ingin (tapi biar simpel, admin bisa balas manual dari sisi lain)
-            // Tapi karena ini internal, kita kasih tombol tersembunyi? lebih baik admin bisa balas dengan klik di pesan?
-            // Untuk keperluan demo, kita buat fitur "Admin reply" melalui double click di chat area?
-        }, 100);
+        // Tampilkan pesan sukses di chat
+        messagesRef.push({
+            sender: "admin",
+            text: "✅ Sistem Online! Silakan kirim pesan atau order.",
+            timestamp: Date.now(),
+            time: new Date().toLocaleTimeString()
+        });
+    } catch(e) {
+        console.error("Firebase Error:", e);
+        alert("⚠️ Gagal konek ke Firebase. Pastikan konfigurasi benar.\n\n" + e.message);
     }
     
-    // Fungsi quick order dari tombol game
-    function quickOrder(gameName) {
-        const gamePrice = priceData[gameName];
-        if(!gamePrice) return;
-        const pesan = `🔥 ORDER ${gameName}\nSaya ingin BELI koin. Mohon info harga terbaru dan cara bayar. Terima kasih.`;
-        addMessage("customer", pesan);
-        // Scroll & notif
-        document.getElementById("chatInput").value = "";
+    // ============ DATA GAME ============
+    const games = [
+        { name: "Higgs Games Island", short: "higgs", logo: "https://play-lh.googleusercontent.com/0AfLM4u9VMWMwZK6jeC1ax4mWdM4eQAl3N5jWl2AParMUK65WOEXF_owy6fbtnJS5XY", amounts: ["100M","200M","500M","1B","2B","5B","10B","20B"], buy: [6000,12000,30000,60000,120000,300000,600000,1200000], sell: [5600,11200,28000,56000,112000,280000,560000,1120000] },
+        { name: "Bos Domino", short: "bos", logo: "https://dl.memuplay.com/new_market/img/com.vivid.domino.icon.2023-11-24-13-29-36.png", amounts: ["10B","20B","30B","40B","50B","100B"], buy: [40000,80000,120000,160000,200000,400000], sell: [30000,60000,90000,120000,150000,300000] },
+        { name: "Royal Domino", short: "royal", logo: "https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO%20DOWNLOAD", amounts: ["100M","200M","500M","1B","2B","5B","10B","20B"], buy: [6400,12800,32000,64000,128000,320000,640000,1280000], sell: [6100,12200,30500,61000,122000,305000,610000,1220000] },
+        { name: "Berfist", short: "berfist", logo: "https://play-lh.googleusercontent.com/mvFrMMdovquq71B-ta-JVKBdw4Zbs2RmPxe8EVFyGiXAtHAm_p0x3940NqDmFGk6vg", amounts: ["100M","200M","500M","1B","2B","5B","10B","20B"], buy: [3500,7000,17500,35000,70000,175000,350000,700000], sell: [3100,6200,15500,31000,62000,155000,310000,620000] }
+    ];
+    
+    // Render Game Grid
+    function renderGames() {
+        const grid = document.getElementById("gameGrid");
+        grid.innerHTML = "";
+        games.forEach(game => {
+            let rows = "";
+            for(let i=0; i<game.amounts.length; i++) {
+                rows += `<tr><td>${game.amounts[i]}</td><td class="price-beli">Rp ${game.buy[i].toLocaleString()}</td><td>Rp ${game.sell[i].toLocaleString()}</td></tr>`;
+            }
+            const card = `
+                <div class="card">
+                    <div class="card-header">
+                        <div class="game-logo"><img src="${game.logo}" onerror="this.src='https://via.placeholder.com/55?text=${game.name.charAt(0)}'"></div>
+                        <div class="info-header"><h2>${game.name}</h2><div class="sub">Beli ${formatRibuan(game.buy[3])}/1B | Jual ${formatRibuan(game.sell[3])}/1B</div></div>
+                    </div>
+                    <div class="table-wrapper"><table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead><tbody>${rows}</tbody></table></div>
+                    <div style="padding:0 0.8rem 0.8rem 0.8rem">
+                        <div class="btn-group">
+                            <button class="btn-order" onclick="openOrderModal('${game.name}')"><i class="fas fa-shopping-cart"></i> ORDER</button>
+                            <button class="btn-download" onclick="downloadGame('${game.short}')"><i class="fas fa-download"></i> DOWNLOAD</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            grid.innerHTML += card;
+        });
     }
     
-    // Download game
-    const DOWNLOAD_LINKS = {
+    function formatRibuan(num) { return "Rp " + num.toLocaleString(); }
+    
+    // Download Links
+    const downloadLinks = {
         higgs: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
-        bosDomino: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
-        royalDomino: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
+        bos: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
+        royal: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
         berfist: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip"
     };
-    function downloadGame(gameKey) {
-        let link = DOWNLOAD_LINKS[gameKey];
+    function downloadGame(short) {
+        const link = downloadLinks[short];
         if(link) window.open(link, '_blank');
-        else alert("Link download akan segera diperbarui");
+        else alert("Link download akan segera tersedia");
     }
     
-    // Event listener
-    document.getElementById("sendChatBtn").addEventListener("click", sendCustomerMessage);
-    document.getElementById("chatInput").addEventListener("keypress", (e) => {
-        if(e.key === "Enter") sendCustomerMessage();
+    // ============ MODAL ORDER ============
+    let currentOrderGame = "";
+    function openOrderModal(gameName) {
+        currentOrderGame = gameName;
+        document.getElementById("modalGameName").innerText = gameName;
+        const game = games.find(g => g.name === gameName);
+        const select = document.getElementById("orderAmount");
+        select.innerHTML = '<option value="">Pilih Jumlah Koin</option>';
+        for(let i=0; i<game.amounts.length; i++) {
+            const opt = document.createElement("option");
+            opt.value = game.amounts[i];
+            opt.textContent = `${game.amounts[i]} (Beli Rp ${game.buy[i].toLocaleString()} / Jual Rp ${game.sell[i].toLocaleString()})`;
+            select.appendChild(opt);
+        }
+        document.getElementById("orderModal").style.display = "flex";
+    }
+    
+    function closeModal() { document.getElementById("orderModal").style.display = "none"; }
+    
+    document.getElementById("closeModalBtn").addEventListener("click", closeModal);
+    document.getElementById("cancelModalBtn").addEventListener("click", closeModal);
+    window.onclick = (e) => { if(e.target === document.getElementById("orderModal")) closeModal(); };
+    
+    // Submit Order ke Firebase (langsung masuk ke chat juga)
+    document.getElementById("submitOrderBtn").addEventListener("click", () => {
+        const userId = document.getElementById("orderUserId").value.trim();
+        const amount = document.getElementById("orderAmount").value;
+        const type = document.getElementById("orderType").value;
+        const payment = document.getElementById("orderPayment").value;
+        
+        if(!userId) { alert("⚠️ Masukkan ID Game!"); return; }
+        if(!amount) { alert("⚠️ Pilih jumlah koin!"); return; }
+        
+        const game = games.find(g => g.name === currentOrderGame);
+        let price = 0;
+        let priceText = "";
+        const idx = game.amounts.indexOf(amount);
+        if(type === "BELI") price = game.buy[idx];
+        else price = game.sell[idx];
+        priceText = `Rp ${price.toLocaleString()}`;
+        
+        const orderMsg = `📦 *ORDER ${type}* 🎮 ${currentOrderGame}\n🆔 ID: ${userId}\n💰 Jumlah: ${amount}\n💵 Total: ${priceText}\n💳 Bayar: ${payment}\n⏰ ${new Date().toLocaleString()}`;
+        
+        // Simpan order ke Firebase
+        if(isFirebaseReady && ordersRef) {
+            ordersRef.push({
+                game: currentOrderGame,
+                userId: userId,
+                amount: amount,
+                type: type,
+                payment: payment,
+                totalPrice: priceText,
+                timestamp: Date.now(),
+                time: new Date().toLocaleString()
+            });
+        }
+        
+        // Kirim pesan ke chat (agar customer & admin lihat)
+        if(isFirebaseReady && messagesRef) {
+            messagesRef.push({
+                sender: "customer",
+                text: orderMsg,
+                timestamp: Date.now(),
+                time: new Date().toLocaleTimeString()
+            });
+        } else {
+            alert("⚠️ Firebase belum terhubung, tapi pesan sudah disiapkan.\n" + orderMsg);
+        }
+        
+        alert("✅ Pesanan terkirim! Admin akan segera merespon di chat.");
+        closeModal();
+        document.getElementById("orderUserId").value = "";
     });
     
-    // Fitur ADMIN REPLY (double click di area chat untuk membalas sebagai admin)
-    // Ini memudahkan admin (pemilik toko) untuk membalas customer langsung dari browser yang sama
-    let lastReplyTime = 0;
+    // ============ REAL-TIME CHAT ============
+    function sendChatMessage() {
+        const input = document.getElementById("chatInput");
+        const text = input.value.trim();
+        if(!text) return;
+        if(!isFirebaseReady || !messagesRef) {
+            alert("⚠️ Chat sedang offline, coba refresh halaman.");
+            return;
+        }
+        messagesRef.push({
+            sender: "customer",
+            text: text,
+            timestamp: Date.now(),
+            time: new Date().toLocaleTimeString()
+        });
+        input.value = "";
+    }
+    
+    document.getElementById("sendChatBtn").addEventListener("click", sendChatMessage);
+    document.getElementById("chatInput").addEventListener("keypress", (e) => { if(e.key === "Enter") sendChatMessage(); });
+    
+    // Listen chat dari Firebase
+    if(isFirebaseReady && messagesRef) {
+        messagesRef.orderByChild("timestamp").limitToLast(50).on("child_added", (snapshot) => {
+            const msg = snapshot.val();
+            const chatDiv = document.getElementById("chatMessages");
+            const messageDiv = document.createElement("div");
+            messageDiv.className = `message ${msg.sender === "admin" ? "admin" : "customer"}`;
+            const senderName = msg.sender === "admin" ? "🛡️ Admin LLC" : "👤 Anda";
+            messageDiv.innerHTML = `<strong>${senderName}:</strong> ${msg.text}<br><small>${msg.time || "baru"}</small>`;
+            chatDiv.appendChild(messageDiv);
+            chatDiv.scrollTop = chatDiv.scrollHeight;
+        });
+    }
+    
+    // Fitur Admin Reply (double click di chat area untuk membalas)
     document.getElementById("chatMessages").addEventListener("dblclick", () => {
-        const now = Date.now();
-        if(now - lastReplyTime < 500) return;
-        lastReplyTime = now;
-        const replyText = prompt("💬 Balas sebagai Admin LLC Store:\nKetik balasan untuk customer:");
-        if(replyText && replyText.trim() !== "") {
-            addMessage("admin", replyText);
+        const reply = prompt("💬 BALAS SEBAGAI ADMIN:\nKetik balasan untuk customer:");
+        if(reply && reply.trim() && isFirebaseReady && messagesRef) {
+            messagesRef.push({
+                sender: "admin",
+                text: reply,
+                timestamp: Date.now(),
+                time: new Date().toLocaleTimeString()
+            });
+        } else if(!isFirebaseReady) {
+            alert("Firebase belum terhubung!");
         }
     });
     
-    // Tambahkan juga instruksi kecil di console untuk admin
-    console.log("%c✨ ADMIN PANEL ✨\nGunakan DOUBLE CLICK di area chat untuk membalas customer.\nBalasan akan muncul sebagai ADMIN.", "color: #fbbf24; font-size: 14px;");
+    // ============ INISIALISASI ============
+    renderGames();
     
-    // Tampilkan pesan selamat datang jika kosong
-    loadMessages();
-    
-    // Particles effect
-    const canvas = document.getElementById('particleCanvas');
-    let ctx = canvas.getContext('2d');
-    let w = window.innerWidth, h = window.innerHeight;
-    let particles = [];
-    function resizeCanvas() { w = window.innerWidth; h = window.innerHeight; canvas.width = w; canvas.height = h; }
-    class Particle {
-        constructor() { this.x = Math.random() * w; this.y = Math.random() * h; this.size = Math.random() * 3 + 1; this.speedX = (Math.random() - 0.5) * 0.5; this.speedY = (Math.random() - 0.5) * 0.3 + 0.2; this.color = `rgba(245, 158, 11, ${Math.random() * 0.5 + 0.2})`; }
-        update() { this.x += this.speedX; this.y += this.speedY; if(this.x > w) this.x = 0; if(this.x < 0) this.x = w; if(this.y > h) this.y = 0; if(this.y < 0) this.y = h; }
-        draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fillStyle = this.color; ctx.fill(); }
-    }
-    function initParticles() { particles = []; let num = Math.min(100, Math.floor(w * h / 9000)); for(let i=0;i<num;i++) particles.push(new Particle()); }
-    function animate() { ctx.clearRect(0, 0, w, h); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
-    window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
-    resizeCanvas(); initParticles(); animate();
-    
-    // Animasi card delay
-    document.querySelectorAll('.card').forEach((c,i) => c.style.animationDelay = `${i*0.1}s`);
+    // Tampilkan instruksi admin di console
+    console.log("%c✨ ADMIN PANEL ✨\n✅ Double click di area chat untuk membalas customer!\n✅ Semua pesan real-time via Firebase", "color: #fbbf24; font-size: 14px;");
 </script>
 </body>
 </html>

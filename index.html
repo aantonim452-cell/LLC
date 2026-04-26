@@ -17,7 +17,7 @@
         }
         .container { max-width: 1400px; margin: 0 auto; }
         
-        /* HERO */
+        /* HERO DENGAN ANIMASI TEKS */
         .hero {
             background: linear-gradient(135deg, rgba(30,41,59,0.95), rgba(15,23,42,0.98));
             backdrop-filter: blur(10px);
@@ -26,36 +26,78 @@
             margin-bottom: 2.5rem;
             border: 1px solid rgba(245,158,11,0.4);
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        .hero h1 {
-            font-size: 2.8rem;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245,158,11,0.08), transparent 70%);
+            animation: rotateSlow 20s linear infinite;
+        }
+        @keyframes rotateSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* ANIMASI TEKS LLC STORE */
+        .animated-logo {
+            font-size: 3rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c);
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c, #fbbf24);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: -0.5px;
+            animation: gradientShift 3s ease infinite, textGlow 2s ease-in-out infinite alternate;
+            display: inline-block;
+            letter-spacing: -1px;
         }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 5px rgba(245,158,11,0.3); }
+            100% { text-shadow: 0 0 20px rgba(245,158,11,0.6); }
+        }
+        
         .hero p {
             margin-top: 0.8rem;
             opacity: 0.8;
             font-size: 0.9rem;
             color: #cbd5e1;
         }
+        
+        /* BADGE GAME - DIPISAHKAN PER GAME */
         .badge-group {
-            margin-top: 1.2rem;
+            margin-top: 1.5rem;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 0.6rem;
+            gap: 0.8rem;
         }
         .badge {
             background: rgba(51,65,85,0.7);
-            padding: 0.4rem 1rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 50px;
             font-size: 0.75rem;
             font-weight: 600;
             border-left: 3px solid #f59e0b;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        .badge:hover {
+            transform: translateY(-3px) scale(1.05);
+            background: #f59e0b;
+            color: #0f172a;
+            border-left-color: white;
+            box-shadow: 0 5px 15px rgba(245,158,11,0.4);
         }
         
         /* GRID */
@@ -91,7 +133,9 @@
             justify-content: center;
             border: 2px solid #f59e0b;
             overflow: hidden;
+            transition: all 0.3s;
         }
+        .card:hover .game-logo { transform: scale(1.05); border-color: #fbbf24; }
         .game-logo img { width: 100%; height: 100%; object-fit: cover; }
         .info-header h2 {
             font-size: 1.3rem;
@@ -106,8 +150,31 @@
         table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
         th { text-align: left; padding: 0.6rem 0.3rem; color: #fbbf24; border-bottom: 1px dashed #334155; }
         td { padding: 0.5rem 0.3rem; border-bottom: 1px solid #334155; }
-        .price-beli { color: #fde68a; font-weight: 700; }
-        .price-jual { color: #7dd3fc; font-weight: 700; }
+        
+        /* HARGA DENGAN ANIMASI KLIK */
+        .price-beli, .price-jual {
+            font-weight: 700;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 20px;
+        }
+        .price-beli { color: #fde68a; }
+        .price-jual { color: #7dd3fc; }
+        .price-beli:active, .price-jual:active {
+            transform: scale(0.95);
+            background: rgba(245,158,11,0.3);
+        }
+        .click-animation {
+            animation: pricePop 0.3s ease;
+        }
+        @keyframes pricePop {
+            0% { transform: scale(1); background: rgba(245,158,11,0); }
+            50% { transform: scale(1.2); background: rgba(245,158,11,0.5); color: white; }
+            100% { transform: scale(1); background: rgba(245,158,11,0); }
+        }
+        
         .btn-group { display: flex; gap: 8px; margin-top: 0.8rem; }
         .btn-topup, .btn-download {
             flex: 1;
@@ -115,7 +182,7 @@
             border: none;
             color: white;
             font-weight: 700;
-            padding: 8px 10px;
+            padding: 10px 12px;
             border-radius: 40px;
             font-size: 0.7rem;
             cursor: pointer;
@@ -123,10 +190,11 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            transition: 0.2s;
+            transition: all 0.2s;
         }
         .btn-download { background: linear-gradient(95deg, #0284c7, #0369a1); }
-        .btn-topup:hover, .btn-download:hover { transform: scale(1.02); filter: brightness(1.1); }
+        .btn-topup:active, .btn-download:active { transform: scale(0.97); }
+        .btn-topup:hover, .btn-download:hover { transform: translateY(-2px); filter: brightness(1.1); }
         
         /* INFO STORE */
         .info-store {
@@ -147,7 +215,7 @@
         .info-card h4 { color: #f59e0b; margin-bottom: 8px; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
         .info-card p { font-size: 0.7rem; color: #cbd5e1; line-height: 1.4; }
         
-        /* FOOTER RAPI */
+        /* FOOTER */
         .footer {
             text-align: center;
             margin-top: 2rem;
@@ -164,6 +232,11 @@
             background-clip: text;
             color: transparent;
             margin-bottom: 0.8rem;
+            animation: footerGlow 2s infinite alternate;
+        }
+        @keyframes footerGlow {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; text-shadow: 0 0 5px rgba(245,158,11,0.3); }
         }
         .footer-info {
             display: flex;
@@ -192,7 +265,7 @@
         
         @media (max-width: 768px) { 
             body { padding: 1rem; } 
-            .hero h1 { font-size: 1.8rem; } 
+            .animated-logo { font-size: 2rem; }
             .info-card { min-width: 100%; }
             .footer-info { gap: 0.8rem; }
         }
@@ -265,7 +338,8 @@
             justify-content: center;
             gap: 8px;
         }
-        .btn-copy-main:hover { background: #475569; transform: scale(1.01); }
+        .btn-copy-main:active { transform: scale(0.98); }
+        .btn-copy-main:hover { background: #475569; }
         .btn-send-main {
             background: linear-gradient(95deg, #f59e0b, #fbbf24);
             width: 100%;
@@ -283,7 +357,8 @@
             justify-content: center;
             gap: 8px;
         }
-        .btn-send-main:hover { transform: scale(1.01); filter: brightness(1.05); }
+        .btn-send-main:active { transform: scale(0.98); }
+        .btn-send-main:hover { filter: brightness(1.05); }
         .info-step {
             font-size: 0.65rem;
             text-align: center;
@@ -310,7 +385,7 @@
 
 <div class="container">
     <div class="hero">
-        <h1><i class="fas fa-crown"></i> LLC STORE <i class="fas fa-bolt"></i></h1>
+        <h1><span class="animated-logo"><i class="fas fa-crown"></i> LLC STORE <i class="fas fa-bolt"></i></span></h1>
         <p>TopUp Higgs Domino · Royal Domino · Bos Domino · Berfist | Auto Kirim ke Chat APK</p>
         <div class="badge-group">
             <span class="badge"><i class="fas fa-gamepad"></i> Higgs Domino</span>
@@ -377,12 +452,12 @@
             <div class="table-wrapper">
                 <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead>
                 <tbody>
-                    <tr><td>100M</td><td class="price-beli">Rp 6.000</td><td class="price-jual">Rp 5.600</td></tr>
-                    <tr><td>500M</td><td class="price-beli">Rp 30.000</td><td class="price-jual">Rp 28.000</td></tr>
-                    <tr><td>1B</td><td class="price-beli">Rp 60.000</td><td class="price-jual">Rp 56.000</td></tr>
-                    <tr><td>5B</td><td class="price-beli">Rp 300.000</td><td class="price-jual">Rp 280.000</td></tr>
-                    <tr><td>10B</td><td class="price-beli">Rp 600.000</td><td class="price-jual">Rp 560.000</td></tr>
-                    <tr><td>30B+</td><td class="price-beli">Rp 60K/B</td><td class="price-jual">Rp 56K/B</td></tr>
+                    <tr><td class="clickable-price">100M</td><td class="price-beli" onclick="animatePrice(this)">Rp 6.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 5.600</td></tr>
+                    <tr><td class="clickable-price">500M</td><td class="price-beli" onclick="animatePrice(this)">Rp 30.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 28.000</td></tr>
+                    <tr><td class="clickable-price">1B</td><td class="price-beli" onclick="animatePrice(this)">Rp 60.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 56.000</td></tr>
+                    <tr><td class="clickable-price">5B</td><td class="price-beli" onclick="animatePrice(this)">Rp 300.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 280.000</td></tr>
+                    <tr><td class="clickable-price">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 600.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 560.000</td></tr>
+                    <tr><td class="clickable-price">30B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 60K/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 56K/B</td></tr>
                 </tbody>
             </table>
             <div class="btn-group">
@@ -391,7 +466,7 @@
             </div>
         </div>
 
-        <!-- ROYAL DOMINO - DAFTAR HARGA RAPI -->
+        <!-- ROYAL DOMINO -->
         <div class="card">
             <div class="card-header">
                 <div class="game-logo"><img src="https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO%20DOWNLOAD%20installworks.ca" alt="Royal Domino" onerror="this.src='https://via.placeholder.com/55?text=RD'"></div>
@@ -400,12 +475,12 @@
             <div class="table-wrapper">
                 <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead>
                 <tbody>
-                    <tr><td>100M</td><td class="price-beli">Rp 6.400</td><td class="price-jual">Rp 6.100</td></tr>
-                    <tr><td>500M</td><td class="price-beli">Rp 32.000</td><td class="price-jual">Rp 30.500</td></tr>
-                    <tr><td>1B</td><td class="price-beli">Rp 64.000</td><td class="price-jual">Rp 61.000</td></tr>
-                    <tr><td>5B</td><td class="price-beli">Rp 320.000</td><td class="price-jual">Rp 305.000</td></tr>
-                    <tr><td>10B</td><td class="price-beli">Rp 640.000</td><td class="price-jual">Rp 610.000</td></tr>
-                    <tr><td>30B+</td><td class="price-beli">Rp 64K/B</td><td class="price-jual">Rp 61K/B</td></tr>
+                    <tr><td class="clickable-price">100M</td><td class="price-beli" onclick="animatePrice(this)">Rp 6.400</td><td class="price-jual" onclick="animatePrice(this)">Rp 6.100</td></tr>
+                    <tr><td class="clickable-price">500M</td><td class="price-beli" onclick="animatePrice(this)">Rp 32.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 30.500</td></tr>
+                    <tr><td class="clickable-price">1B</td><td class="price-beli" onclick="animatePrice(this)">Rp 64.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 61.000</td></tr>
+                    <tr><td class="clickable-price">5B</td><td class="price-beli" onclick="animatePrice(this)">Rp 320.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 305.000</td></tr>
+                    <tr><td class="clickable-price">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 640.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 610.000</td></tr>
+                    <tr><td class="clickable-price">30B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 64K/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 61K/B</td></tr>
                 </tbody>
             </table>
             <div class="btn-group">
@@ -423,12 +498,12 @@
             <div class="table-wrapper">
                 <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead>
                 <tbody>
-                    <tr><td>10B</td><td class="price-beli">Rp 40.000</td><td class="price-jual">Rp 30.000</td></tr>
-                    <tr><td>25B</td><td class="price-beli">Rp 100.000</td><td class="price-jual">Rp 75.000</td></tr>
-                    <tr><td>50B</td><td class="price-beli">Rp 200.000</td><td class="price-jual">Rp 150.000</td></tr>
-                    <tr><td>75B</td><td class="price-beli">Rp 300.000</td><td class="price-jual">Rp 225.000</td></tr>
-                    <tr><td>100B</td><td class="price-beli">Rp 400.000</td><td class="price-jual">Rp 300.000</td></tr>
-                    <tr><td>100B+</td><td class="price-beli">Rp 4K/B</td><td class="price-jual">Rp 3K/B</td></tr>
+                    <tr><td class="clickable-price">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 40.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 30.000</td></tr>
+                    <tr><td class="clickable-price">25B</td><td class="price-beli" onclick="animatePrice(this)">Rp 100.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 75.000</td></tr>
+                    <tr><td class="clickable-price">50B</td><td class="price-beli" onclick="animatePrice(this)">Rp 200.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 150.000</td></tr>
+                    <tr><td class="clickable-price">75B</td><td class="price-beli" onclick="animatePrice(this)">Rp 300.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 225.000</td></tr>
+                    <tr><td class="clickable-price">100B</td><td class="price-beli" onclick="animatePrice(this)">Rp 400.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 300.000</td></tr>
+                    <tr><td class="clickable-price">100B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 4K/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 3K/B</td></tr>
                 </tbody>
             </table>
             <div class="btn-group">
@@ -446,12 +521,12 @@
             <div class="table-wrapper">
                 <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead>
                 <tbody>
-                    <tr><td>100M</td><td class="price-beli">Rp 3.500</td><td class="price-jual">Rp 3.100</td></tr>
-                    <tr><td>500M</td><td class="price-beli">Rp 17.500</td><td class="price-jual">Rp 15.500</td></tr>
-                    <tr><td>1B</td><td class="price-beli">Rp 35.000</td><td class="price-jual">Rp 31.000</td></tr>
-                    <tr><td>5B</td><td class="price-beli">Rp 175.000</td><td class="price-jual">Rp 155.000</td></tr>
-                    <tr><td>10B</td><td class="price-beli">Rp 350.000</td><td class="price-jual">Rp 310.000</td></tr>
-                    <tr><td>30B+</td><td class="price-beli">Rp 35K/B</td><td class="price-jual">Rp 31K/B</td></tr>
+                    <tr><td class="clickable-price">100M</td><td class="price-beli" onclick="animatePrice(this)">Rp 3.500</td><td class="price-jual" onclick="animatePrice(this)">Rp 3.100</td></tr>
+                    <tr><td class="clickable-price">500M</td><td class="price-beli" onclick="animatePrice(this)">Rp 17.500</td><td class="price-jual" onclick="animatePrice(this)">Rp 15.500</td></tr>
+                    <tr><td class="clickable-price">1B</td><td class="price-beli" onclick="animatePrice(this)">Rp 35.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 31.000</td></tr>
+                    <tr><td class="clickable-price">5B</td><td class="price-beli" onclick="animatePrice(this)">Rp 175.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 155.000</td></tr>
+                    <tr><td class="clickable-price">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 350.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 310.000</td></tr>
+                    <tr><td class="clickable-price">30B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 35K/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 31K/B</td></tr>
                 </tbody>
             </table>
             <div class="btn-group">
@@ -475,7 +550,7 @@
         </div>
     </div>
 
-    <!-- FOOTER RAPI -->
+    <!-- FOOTER -->
     <div class="footer">
         <div class="footer-logo">
             <i class="fas fa-crown"></i> LLC STORE <i class="fas fa-bolt"></i>
@@ -506,6 +581,14 @@
         let link = DOWNLOAD_LINKS[gameKey] || "#";
         if(link !== "#") window.open(link, '_blank');
         else alert("Link download hubungi admin via Chat APK.");
+    }
+
+    // Animasi harga saat diklik
+    function animatePrice(element) {
+        element.classList.add('click-animation');
+        setTimeout(() => {
+            element.classList.remove('click-animation');
+        }, 300);
     }
 
     function generateMessageText() {
@@ -545,7 +628,6 @@
         return msg;
     }
 
-    // Salin Pesanan
     function copyMessage() {
         const msg = updatePreview();
         if (msg.startsWith("⚠️")) {
@@ -560,7 +642,6 @@
         return true;
     }
 
-    // Kirim Pesanan ke APK
     function sendToAPK() {
         const msg = updatePreview();
         if (msg.startsWith("⚠️")) {

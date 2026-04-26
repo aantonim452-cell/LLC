@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Dashboard - LLC Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a1a;
+            color: white;
+            min-height: 100vh;
+        }
+        .bg-system { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10; background: radial-gradient(ellipse at 20% 30%, #0a0a2a, #000); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        .header { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; justify-content: space-between; }
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .back-btn { background: rgba(255,255,255,0.1); border: none; width: 45px; height: 45px; border-radius: 50%; color: #fbbf24; cursor: pointer; font-size: 1.2rem; transition: 0.3s; }
+        .back-btn:hover { background: #f59e0b; color: black; }
+        .title { font-size: 1.8rem; background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .edit-btn { background: rgba(245,158,11,0.2); border: 1px solid #f59e0b; padding: 8px 20px; border-radius: 30px; color: #fbbf24; cursor: pointer; transition: 0.2s; }
+        .edit-btn:hover { background: #f59e0b; color: black; }
+        
+        .profile-card { background: rgba(15,25,45,0.7); backdrop-filter: blur(10px); border-radius: 1.5rem; padding: 25px; margin-bottom: 30px; border: 1px solid rgba(245,158,11,0.3); display: flex; align-items: center; gap: 25px; flex-wrap: wrap; }
+        .avatar { width: 80px; height: 80px; background: linear-gradient(135deg, #f59e0b, #ea580c); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: white; }
+        .profile-info h3 { color: #fbbf24; margin-bottom: 5px; }
+        .profile-info p { color: #94a3b8; font-size: 13px; }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .stat-card { background: rgba(15,25,45,0.7); backdrop-filter: blur(10px); border-radius: 1rem; padding: 20px; text-align: center; border: 1px solid rgba(245,158,11,0.3); transition: 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); border-color: #f59e0b; }
+        .stat-card i { font-size: 30px; color: #f59e0b; margin-bottom: 10px; }
+        .stat-card .value { font-size: 28px; font-weight: 700; color: #fbbf24; }
+        .stat-card .label { font-size: 12px; color: #94a3b8; margin-top: 5px; }
+        
+        .riwayat-terbaru { background: rgba(10,20,35,0.5); border-radius: 1.5rem; padding: 20px; border: 1px solid rgba(245,158,11,0.2); }
+        .riwayat-terbaru h3 { color: #fbbf24; margin-bottom: 15px; }
+        .riwayat-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #334155; }
+        .riwayat-item:last-child { border-bottom: none; }
+        .riwayat-game { font-weight: 600; }
+        .riwayat-status { font-size: 12px; padding: 2px 10px; border-radius: 20px; }
+        .status-selesai { background: #22c55e20; color: #22c55e; }
+        .status-proses { background: #f59e0b20; color: #f59e0b; }
+        
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(20px); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: #1e293b; max-width: 400px; width: 90%; border-radius: 1.5rem; padding: 25px; border: 2px solid #f59e0b; }
+        .modal-header { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .modal-header h3 { color: #fbbf24; }
+        .close-modal { background: none; border: none; color: #94a3b8; font-size: 24px; cursor: pointer; }
+        .form-group { margin-bottom: 15px; }
+        .form-group input { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 40px; color: white; }
+        .save-btn { background: #f59e0b; width: 100%; padding: 12px; border-radius: 40px; border: none; font-weight: bold; cursor: pointer; }
+        
+        @media (max-width: 768px) {
+            .title { font-size: 1.3rem; }
+            .profile-card { justify-content: center; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+<div class="bg-system"></div>
+<div id="editModal" class="modal"><div class="modal-content"><div class="modal-header"><h3>Edit Profil</h3><button class="close-modal" onclick="closeModal()">&times;</button></div><div class="form-group"><label>Nama</label><input type="text" id="editNama" placeholder="Nama Anda"></div><div class="form-group"><label>No. HP</label><input type="text" id="editNoHp" placeholder="Nomor WhatsApp/Telepon"></div><button class="save-btn" onclick="simpanProfil()">Simpan</button></div></div>
+
+<div class="container">
+    <div class="header">
+        <div class="header-left"><button class="back-btn" onclick="window.location.href='../index.html'"><i class="fas fa-arrow-left"></i></button><h1 class="title"><i class="fas fa-user"></i> Dashboard Member</h1></div>
+        <button class="edit-btn" onclick="openEditModal()"><i class="fas fa-edit"></i> Edit Profil</button>
+    </div>
+    
+    <div class="profile-card" id="profileCard"><div class="avatar" id="avatarIcon">U</div><div class="profile-info"><h3 id="profileName">User LLC</h3><p id="profileEmail">member@llcstore.com</p><p><i class="fas fa-phone"></i> <span id="profilePhone">Belum diisi</span></p><p><i class="fas fa-calendar"></i> Member sejak: <span id="memberSince">2026</span></p></div></div>
+    
+    <div class="stats-grid"><div class="stat-card"><i class="fas fa-shopping-cart"></i><div class="value" id="totalBeli">0</div><div class="label">Total Beli</div></div><div class="stat-card"><i class="fas fa-tag"></i><div class="value" id="totalJual">0</div><div class="label">Total Jual</div></div><div class="stat-card"><i class="fas fa-history"></i><div class="value" id="totalTrans">0</div><div class="label">Total Transaksi</div></div></div>
+    
+    <div class="riwayat-terbaru"><h3><i class="fas fa-clock"></i> Riwayat Terbaru</h3><div id="riwayatList"></div></div>
+</div>
+
+<script>
+    let userProfile = { name: "User LLC", phone: "", email: "member@llcstore.com", memberSince: "2026" };
+    
+    function loadProfile() { const saved = localStorage.getItem('llc_user_profile'); if(saved) userProfile = JSON.parse(saved); updateProfileDisplay(); }
+    function saveProfile() { localStorage.setItem('llc_user_profile', JSON.stringify(userProfile)); updateProfileDisplay(); }
+    
+    function updateProfileDisplay() {
+        document.getElementById('profileName').innerText = userProfile.name;
+        document.getElementById('profilePhone').innerText = userProfile.phone || "Belum diisi";
+        document.getElementById('memberSince').innerText = userProfile.memberSince;
+        document.getElementById('avatarIcon').innerText = userProfile.name.charAt(0).toUpperCase();
+    }
+    
+    function openEditModal() {
+        document.getElementById('editNama').value = userProfile.name;
+        document.getElementById('editNoHp').value = userProfile.phone || "";
+        document.getElementById('editModal').style.display = 'flex';
+    }
+    function closeModal() { document.getElementById('editModal').style.display = 'none'; }
+    function simpanProfil() { userProfile.name = document.getElementById('editNama').value || "User LLC"; userProfile.phone = document.getElementById('editNoHp').value; saveProfile(); closeModal(); }
+    
+    function loadDashboardStats() {
+        const stored = localStorage.getItem('llc_riwayat');
+        let riwayat = stored ? JSON.parse(stored) : [];
+        const totalBeli = riwayat.filter(r => r.jenis === 'BELI').length;
+        const totalJual = riwayat.filter(r => r.jenis === 'JUAL').length;
+        document.getElementById('totalBeli').innerText = totalBeli;
+        document.getElementById('totalJual').innerText = totalJual;
+        document.getElementById('totalTrans').innerText = riwayat.length;
+        
+        const riwayatTerbaru = riwayat.slice(-5).reverse();
+        const riwayatList = document.getElementById('riwayatList');
+        if (riwayatTerbaru.length === 0) { riwayatList.innerHTML = '<p style="color:#94a3b8; text-align:center;">Belum ada riwayat transaksi</p>'; return; }
+        riwayatList.innerHTML = riwayatTerbaru.map(r => `<div class="riwayat-item"><div><div class="riwayat-game">${r.game}</div><div style="font-size:11px; color:#94a3b8;">${r.tanggal}</div></div><div><span class="riwayat-status status-${r.status}">${r.status === 'selesai' ? '✓ Selesai' : '⏳ Proses'}</span></div></div>`).join('');
+    }
+    
+    loadProfile(); loadDashboardStats();
+    window.onclick = e => { if (e.target === document.getElementById('editModal')) closeModal(); };
+</script>
+</body>
+</html>

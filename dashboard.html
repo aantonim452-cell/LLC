@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Dashboard - LLC Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a1a;
+            color: white;
+            min-height: 100vh;
+        }
+        .bg-system { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10; background: radial-gradient(ellipse at 20% 30%, #0a0a2a, #000); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        .header { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; justify-content: space-between; }
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .back-btn { background: rgba(255,255,255,0.1); border: none; width: 45px; height: 45px; border-radius: 50%; color: #fbbf24; cursor: pointer; font-size: 1.2rem; transition: 0.3s; }
+        .back-btn:hover { background: #f59e0b; color: black; transform: scale(1.05); }
+        .title { font-size: 1.8rem; background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .edit-btn { background: rgba(245,158,11,0.2); border: 1px solid #f59e0b; padding: 8px 20px; border-radius: 30px; color: #fbbf24; cursor: pointer; transition: 0.2s; font-weight: 500; }
+        .edit-btn:hover { background: #f59e0b; color: black; }
+        
+        .profile-card { background: rgba(15,25,45,0.7); backdrop-filter: blur(10px); border-radius: 1.5rem; padding: 25px; margin-bottom: 30px; border: 1px solid rgba(245,158,11,0.3); display: flex; align-items: center; gap: 25px; flex-wrap: wrap; }
+        .avatar { width: 80px; height: 80px; background: linear-gradient(135deg, #f59e0b, #ea580c); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: white; }
+        .profile-info h3 { color: #fbbf24; margin-bottom: 5px; font-size: 1.3rem; }
+        .profile-info p { color: #94a3b8; font-size: 13px; margin: 5px 0; }
+        .profile-info i { width: 20px; color: #f59e0b; }
+        
+        .info-chat { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); border-radius: 1rem; padding: 15px 20px; margin-bottom: 25px; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        .info-chat i { font-size: 28px; color: #f59e0b; }
+        .info-chat p { font-size: 13px; color: #cbd5e1; flex: 1; }
+        .info-chat strong { color: #fbbf24; }
+        .btn-chat { background: linear-gradient(95deg, #25D366, #128C7E); border: none; padding: 8px 20px; border-radius: 30px; color: white; cursor: pointer; font-weight: 600; transition: 0.2s; }
+        .btn-chat:hover { transform: scale(1.02); filter: brightness(1.05); }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .stat-card { background: rgba(15,25,45,0.7); backdrop-filter: blur(10px); border-radius: 1rem; padding: 20px; text-align: center; border: 1px solid rgba(245,158,11,0.3); transition: 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); border-color: #f59e0b; }
+        .stat-card i { font-size: 30px; color: #f59e0b; margin-bottom: 10px; }
+        .stat-card .value { font-size: 28px; font-weight: 700; color: #fbbf24; }
+        .stat-card .label { font-size: 12px; color: #94a3b8; margin-top: 5px; }
+        
+        .riwayat-terbaru { background: rgba(10,20,35,0.5); backdrop-filter: blur(10px); border-radius: 1.5rem; padding: 20px; border: 1px solid rgba(245,158,11,0.2); }
+        .riwayat-terbaru h3 { color: #fbbf24; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .riwayat-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(51,65,85,0.5); }
+        .riwayat-item:last-child { border-bottom: none; }
+        .riwayat-game { font-weight: 600; font-size: 14px; }
+        .riwayat-tanggal { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+        .riwayat-status { font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: 500; }
+        .status-selesai { background: rgba(34,197,94,0.2); color: #22c55e; border: 1px solid #22c55e; }
+        .status-proses { background: rgba(245,158,11,0.2); color: #f59e0b; border: 1px solid #f59e0b; }
+        .status-batal { background: rgba(239,68,68,0.2); color: #ef4444; border: 1px solid #ef4444; }
+        
+        .lihat-semua { display: inline-block; margin-top: 15px; color: #f59e0b; text-decoration: none; font-size: 13px; transition: 0.2s; }
+        .lihat-semua:hover { color: #fbbf24; text-decoration: underline; }
+        
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(20px); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: linear-gradient(135deg, #1e293b, #0f172a); max-width: 400px; width: 90%; border-radius: 1.5rem; padding: 25px; border: 2px solid #f59e0b; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .modal-header h3 { color: #fbbf24; }
+        .close-modal { background: none; border: none; color: #94a3b8; font-size: 28px; cursor: pointer; transition: 0.2s; }
+        .close-modal:hover { color: #f59e0b; transform: rotate(90deg); }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { font-size: 12px; color: #94a3b8; display: block; margin-bottom: 5px; }
+        .form-group input { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 40px; color: white; font-size: 14px; }
+        .form-group input:focus { border-color: #f59e0b; outline: none; }
+        .save-btn { background: linear-gradient(95deg, #f59e0b, #fbbf24); width: 100%; padding: 12px; border-radius: 40px; border: none; font-weight: bold; cursor: pointer; color: #0f172a; transition: 0.2s; }
+        .save-btn:hover { filter: brightness(1.05); transform: scale(1.02); }
+        
+        @media (max-width: 768px) {
+            .title { font-size: 1.3rem; }
+            .profile-card { justify-content: center; text-align: center; }
+            .info-chat { text-align: center; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+<div class="bg-system"></div>
+
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fas fa-user-edit"></i> Edit Profil</h3>
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="form-group">
+            <label><i class="fas fa-user"></i> Nama Lengkap</label>
+            <input type="text" id="editNama" placeholder="Nama Anda">
+        </div>
+        <div class="form-group">
+            <label><i class="fab fa-whatsapp"></i> Nomor WhatsApp</label>
+            <input type="tel" id="editNoHp" placeholder="Contoh: 08123456789">
+        </div>
+        <button class="save-btn" onclick="simpanProfil()"><i class="fas fa-save"></i> Simpan Profil</button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="header">
+        <div class="header-left">
+            <button class="back-btn" onclick="window.location.href='../index.html'"><i class="fas fa-arrow-left"></i></button>
+            <h1 class="title"><i class="fas fa-user"></i> Dashboard Member</h1>
+        </div>
+        <button class="edit-btn" onclick="openEditModal()"><i class="fas fa-edit"></i> Edit Profil</button>
+    </div>
+    
+    <div class="profile-card" id="profileCard">
+        <div class="avatar" id="avatarIcon">U</div>
+        <div class="profile-info">
+            <h3 id="profileName">User LLC</h3>
+            <p><i class="fas fa-envelope"></i> <span id="profileEmail">member@llcstore.com</span></p>
+            <p><i class="fab fa-whatsapp"></i> <span id="profilePhone">Belum diisi</span></p>
+            <p><i class="fas fa-calendar-alt"></i> Member sejak: <span id="memberSince">2026</span></p>
+        </div>
+    </div>
+    
+    <div class="info-chat">
+        <i class="fab fa-whatsapp"></i>
+        <p><strong>Informasi Penting:</strong> Status transaksi akan dikonfirmasi melalui chat. Pastikan nomor WhatsApp Anda sudah benar untuk memudahkan admin menghubungi Anda.</p>
+        <button class="btn-chat" onclick="window.location.href='llcstore://customer_chat'"><i class="fab fa-whatsapp"></i> Chat Admin</button>
+    </div>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <i class="fas fa-shopping-cart"></i>
+            <div class="value" id="totalBeli">0</div>
+            <div class="label">Total Pembelian</div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-tag"></i>
+            <div class="value" id="totalJual">0</div>
+            <div class="label">Total Penjualan</div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-history"></i>
+            <div class="value" id="totalTrans">0</div>
+            <div class="label">Total Transaksi</div>
+        </div>
+    </div>
+    
+    <div class="riwayat-terbaru">
+        <h3><i class="fas fa-clock"></i> Riwayat Transaksi Terbaru</h3>
+        <div id="riwayatList"></div>
+        <a href="riwayat.html" class="lihat-semua"><i class="fas fa-arrow-right"></i> Lihat semua riwayat</a>
+    </div>
+</div>
+
+<script>
+    let userProfile = { name: "User LLC", phone: "", email: "member@llcstore.com", memberSince: "2026" };
+    
+    function loadProfile() { 
+        const saved = localStorage.getItem('llc_user_profile'); 
+        if(saved) userProfile = JSON.parse(saved); 
+        updateProfileDisplay(); 
+    }
+    
+    function saveProfile() { 
+        localStorage.setItem('llc_user_profile', JSON.stringify(userProfile)); 
+        updateProfileDisplay(); 
+        showToast("✅ Profil berhasil disimpan!");
+    }
+    
+    function updateProfileDisplay() {
+        document.getElementById('profileName').innerText = userProfile.name;
+        document.getElementById('profilePhone').innerText = userProfile.phone || "Belum diisi";
+        document.getElementById('memberSince').innerText = userProfile.memberSince;
+        document.getElementById('avatarIcon').innerText = userProfile.name.charAt(0).toUpperCase();
+    }
+    
+    function openEditModal() {
+        document.getElementById('editNama').value = userProfile.name;
+        document.getElementById('editNoHp').value = userProfile.phone || "";
+        document.getElementById('editModal').style.display = 'flex';
+    }
+    
+    function closeModal() { 
+        document.getElementById('editModal').style.display = 'none'; 
+    }
+    
+    function simpanProfil() { 
+        const namaBaru = document.getElementById('editNama').value.trim();
+        if (namaBaru) userProfile.name = namaBaru;
+        userProfile.phone = document.getElementById('editNoHp').value.trim();
+        saveProfile(); 
+        closeModal(); 
+    }
+    
+    function showToast(msg) {
+        let toast = document.createElement('div');
+        toast.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#1e293b;color:white;padding:12px 24px;border-radius:50px;z-index:3000;border-left:4px solid #f59e0b;font-size:13px;';
+        toast.innerHTML = msg;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2000);
+    }
+    
+    function getStatusBadge(status) {
+        if (status === 'selesai') return '<span class="riwayat-status status-selesai"><i class="fas fa-check-circle"></i> Selesai</span>';
+        if (status === 'batal') return '<span class="riwayat-status status-batal"><i class="fas fa-times-circle"></i> Batal</span>';
+        return '<span class="riwayat-status status-proses"><i class="fas fa-clock"></i> Proses</span>';
+    }
+    
+    function loadDashboardStats() {
+        const stored = localStorage.getItem('llc_riwayat');
+        let riwayat = stored ? JSON.parse(stored) : [];
+        
+        const totalBeli = riwayat.filter(r => r.jenis === 'BELI').length;
+        const totalJual = riwayat.filter(r => r.jenis === 'JUAL').length;
+        
+        document.getElementById('totalBeli').innerText = totalBeli;
+        document.getElementById('totalJual').innerText = totalJual;
+        document.getElementById('totalTrans').innerText = riwayat.length;
+        
+        // Ambil 5 transaksi terbaru (index terakhir yang masuk)
+        const riwayatTerbaru = [...riwayat].reverse().slice(0, 5);
+        const riwayatList = document.getElementById('riwayatList');
+        
+        if (riwayatTerbaru.length === 0) { 
+            riwayatList.innerHTML = '<div style="text-align:center; padding:30px; color:#94a3b8;"><i class="fas fa-inbox" style="font-size:40px; margin-bottom:10px; display:block;"></i>Belum ada riwayat transaksi</div>'; 
+            return; 
+        }
+        
+        riwayatList.innerHTML = riwayatTerbaru.map(r => `
+            <div class="riwayat-item">
+                <div>
+                    <div class="riwayat-game">${r.game} • ${r.jenis === 'BELI' ? '🔰 Beli' : '💰 Jual'}</div>
+                    <div class="riwayat-tanggal"><i class="far fa-calendar-alt"></i> ${r.tanggal || '-'} | ${r.jumlah} | ID: ${r.idGame}</div>
+                </div>
+                ${getStatusBadge(r.status)}
+            </div>
+        `).join('');
+    }
+    
+    loadProfile(); 
+    loadDashboardStats();
+    
+    window.onclick = e => { 
+        if (e.target === document.getElementById('editModal')) closeModal(); 
+    };
+</script>
+</body>
+</html>

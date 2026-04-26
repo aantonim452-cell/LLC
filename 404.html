@@ -2,30 +2,65 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Halaman Tidak Ditemukan - LLC Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f0c1f, #1a1a2e);
+            background: linear-gradient(135deg, #0a0a1a, #1a1a2e);
             color: white;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             text-align: center;
-            margin: 0;
         }
-        h1 { font-size: 6rem; margin: 0; background: linear-gradient(135deg, #f59e0b, #ef4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .btn { background: #4f46e5; padding: 12px 30px; border-radius: 50px; margin-top: 20px; display: inline-block; color: white; text-decoration: none; }
+        .error-container {
+            padding: 20px;
+        }
+        .error-code {
+            font-size: 120px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+        .error-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .error-desc {
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+        .back-btn {
+            background: linear-gradient(95deg, #f59e0b, #fbbf24);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #0f172a;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.05);
+        }
     </style>
 </head>
 <body>
-    <div>
-        <h1>404</h1>
-        <h2>Waduh! Halaman Nggak Ditemukan</h2>
-        <p>Kembali ke beranda yuk!</p>
-        <a href="/LLC/" class="btn">Kembali ke LLC Store</a>
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <div class="error-title">Halaman Tidak Ditemukan</div>
+        <div class="error-desc">Maaf, halaman yang Anda cari tidak tersedia atau telah dipindahkan.</div>
+        <a href="/" class="back-btn"><i class="fas fa-home"></i> Kembali ke Beranda</a>
     </div>
 </body>
 </html>

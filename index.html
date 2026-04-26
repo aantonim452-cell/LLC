@@ -329,7 +329,6 @@
         const videoFrame = document.getElementById('videoFrame');
         videoFrame.src = url;
         videoModal.style.display = 'flex';
-        // Mencegah scroll body
         document.body.style.overflow = 'hidden';
     }
     
@@ -439,6 +438,15 @@
         document.getElementById("bankTransfer")?.addEventListener("input", () => { saveFormData(); updatePreview(); });
     }
     
+    // ========== FUNGSI UPDATE STATUS RIWAYAT ==========
+    function updateStatusTransaksi(index, statusBaru) {
+        let riwayat = JSON.parse(localStorage.getItem('llc_riwayat') || '[]');
+        if (riwayat[index]) {
+            riwayat[index].status = statusBaru;
+            localStorage.setItem('llc_riwayat', JSON.stringify(riwayat));
+        }
+    }
+    
     // ONLINE STATS REALISTIS
     const STORAGE_KEY = 'llc_online_smooth';
     const STORAGE_TIME = 'llc_online_time';
@@ -521,7 +529,42 @@
     }
     function updatePreview() { let m = generateMessage(); currentMsg = m; let b = document.getElementById("previewBox"); if (m.startsWith("⚠️")) { b.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${m}`; b.style.borderLeftColor = "#ef4444"; } else { b.innerHTML = m.replace(/\n/g, '<br>'); b.style.borderLeftColor = "#f59e0b"; } }
     function copyMessage() { if (currentMsg && !currentMsg.startsWith("⚠️")) { navigator.clipboard.writeText(currentMsg); showToast("✅ Pesanan disalin! Buka Chat APK dan paste."); } else showToast("❌ Lengkapi data!"); }
-    function sendMessage() { if (currentMsg && !currentMsg.startsWith("⚠️")) { if (window.Android && window.Android.sendMessageToAdmin) window.Android.sendMessageToAdmin(currentMsg); else window.location.href = `llcstore://customer_chat?message=${encodeURIComponent(currentMsg)}`; showToast("✅ Pesanan dikirim ke Admin!"); closeModal(); } else showToast("❌ Lengkapi data!"); }
+    
+    // ========== FUNGSI SEND MESSAGE DENGAN PENYIMPANAN RIWAYAT ==========
+    function sendMessage() { 
+        if (currentMsg && !currentMsg.startsWith("⚠️")) { 
+            // TAMBAHAN: SIMPAN RIWAYAT TRANSAKSI
+            const game = document.getElementById("gameNameDisplay").value;
+            const jenis = document.getElementById("transaksiType").value;
+            const jumlah = document.getElementById("jumlahKoin").value.trim();
+            const idGame = document.getElementById("idGame").value.trim();
+            
+            let riwayat = JSON.parse(localStorage.getItem('llc_riwayat') || '[]');
+            riwayat.unshift({
+                tanggal: new Date().toLocaleString('id-ID'),
+                game: game,
+                jenis: jenis,
+                jumlah: jumlah,
+                idGame: idGame,
+                status: 'proses'
+            });
+            if (riwayat.length > 50) riwayat.pop();
+            localStorage.setItem('llc_riwayat', JSON.stringify(riwayat));
+            
+            if (window.Android && window.Android.sendMessageToAdmin) {
+                window.Android.sendMessageToAdmin(currentMsg);
+                showToast("✅ Pesanan dikirim ke Admin!");
+                closeModal();
+            } else {
+                window.location.href = `llcstore://customer_chat?message=${encodeURIComponent(currentMsg)}`;
+                showToast("✅ Pesanan dikirim ke Admin!");
+                closeModal();
+            }
+        } else {
+            showToast("❌ Lengkapi data!");
+        }
+    }
+    
     function openModal(gameName) { loadFormData(gameName); document.getElementById("orderModal").style.display = "flex"; }
     function closeModal() { document.getElementById("orderModal").style.display = "none"; }
     

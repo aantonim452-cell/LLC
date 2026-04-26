@@ -10,25 +10,70 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0b1120 0%, #1a1a2e 100%);
+            background: linear-gradient(135deg, #0a0a1a 0%, #0f0f23 50%, #1a1a2e 100%);
             color: #f1f5f9;
             padding: 2rem 1.5rem;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
-        .container { max-width: 1400px; margin: 0 auto; }
         
-        /* HERO */
+        /* ANIMASI CAHAYA BACKGROUND */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(245,158,11,0.08), transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(79,70,229,0.08), transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* BINTANG BERGULIR */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 3s infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 0.8; transform: scale(1); }
+        }
+        
+        .container { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
+        
+        /* HERO DENGAN GLOW ANIMASI */
         .hero {
-            background: linear-gradient(135deg, rgba(30,41,59,0.95), rgba(15,23,42,0.98));
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.95));
+            backdrop-filter: blur(12px);
             border-radius: 2rem;
             padding: 2rem;
             margin-bottom: 2.5rem;
-            border: 1px solid rgba(245,158,11,0.4);
+            border: 1px solid rgba(245,158,11,0.3);
             text-align: center;
             position: relative;
             overflow: hidden;
+            animation: borderPulse 3s infinite alternate;
         }
+        @keyframes borderPulse {
+            0% { border-color: rgba(245,158,11,0.2); box-shadow: 0 0 10px rgba(245,158,11,0.1); }
+            100% { border-color: rgba(245,158,11,0.8); box-shadow: 0 0 40px rgba(245,158,11,0.3); }
+        }
+        
         .hero::before {
             content: '';
             position: absolute;
@@ -36,8 +81,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(245,158,11,0.08), transparent 70%);
-            animation: rotateSlow 20s linear infinite;
+            background: radial-gradient(circle, rgba(245,158,11,0.1), transparent 70%);
+            animation: rotateSlow 25s linear infinite;
         }
         @keyframes rotateSlow {
             from { transform: rotate(0deg); }
@@ -45,7 +90,7 @@
         }
         
         .animated-logo {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 800;
             background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c, #fbbf24);
             background-size: 300% 300%;
@@ -55,6 +100,7 @@
             animation: gradientShift 3s ease infinite, textGlow 2s ease-in-out infinite alternate;
             display: inline-block;
             letter-spacing: -1px;
+            position: relative;
         }
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
@@ -62,8 +108,8 @@
             100% { background-position: 0% 50%; }
         }
         @keyframes textGlow {
-            0% { text-shadow: 0 0 5px rgba(245,158,11,0.3); }
-            100% { text-shadow: 0 0 20px rgba(245,158,11,0.6); }
+            0% { filter: drop-shadow(0 0 5px rgba(245,158,11,0.3)); }
+            100% { filter: drop-shadow(0 0 20px rgba(245,158,11,0.6)); }
         }
         
         .hero p {
@@ -73,6 +119,7 @@
             color: #cbd5e1;
         }
         
+        /* BADGE DENGAN ANIMASI */
         .badge-group {
             margin-top: 1.5rem;
             display: flex;
@@ -89,13 +136,14 @@
             border-left: 3px solid #f59e0b;
             transition: all 0.3s ease;
             cursor: default;
+            backdrop-filter: blur(4px);
         }
         .badge:hover {
             transform: translateY(-3px) scale(1.05);
             background: #f59e0b;
             color: #0f172a;
             border-left-color: white;
-            box-shadow: 0 5px 15px rgba(245,158,11,0.4);
+            box-shadow: 0 5px 20px rgba(245,158,11,0.5);
         }
         
         /* GRID */
@@ -105,18 +153,40 @@
             gap: 1.8rem;
             margin-bottom: 2rem;
         }
+        
+        /* CARD DENGAN GLASSMORPHISM */
         .card {
-            background: rgba(30,41,59,0.85);
-            backdrop-filter: blur(8px);
+            background: rgba(30,41,59,0.7);
+            backdrop-filter: blur(12px);
             border-radius: 1.5rem;
-            border: 1px solid rgba(245,158,11,0.3);
+            border: 1px solid rgba(245,158,11,0.2);
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            position: relative;
         }
-        .card:hover { transform: translateY(-6px); border-color: #f59e0b; box-shadow: 0 20px 30px -10px rgba(245,158,11,0.3); }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245,158,11,0.1), transparent);
+            transition: left 0.6s;
+            pointer-events: none;
+        }
+        .card:hover::before {
+            left: 100%;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #f59e0b;
+            box-shadow: 0 25px 40px -15px rgba(245,158,11,0.4);
+        }
+        
         .card-header {
             padding: 1rem 1.2rem;
-            background: linear-gradient(115deg, #1e293b, #0f172a);
+            background: linear-gradient(115deg, rgba(30,41,59,0.9), rgba(15,23,42,0.95));
             border-bottom: 2px solid #f59e0b;
             display: flex;
             align-items: center;
@@ -124,7 +194,7 @@
         }
         .game-logo {
             width: 55px; height: 55px;
-            background: #0f172a;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
             border-radius: 16px;
             display: flex;
             align-items: center;
@@ -133,7 +203,11 @@
             overflow: hidden;
             transition: all 0.3s;
         }
-        .card:hover .game-logo { transform: scale(1.05); border-color: #fbbf24; }
+        .card:hover .game-logo { 
+            transform: scale(1.05); 
+            border-color: #fbbf24;
+            box-shadow: 0 0 15px rgba(245,158,11,0.5);
+        }
         .game-logo img { width: 100%; height: 100%; object-fit: cover; }
         .info-header h2 {
             font-size: 1.3rem;
@@ -144,23 +218,51 @@
             color: transparent;
         }
         .sub { font-size: 0.65rem; opacity: 0.7; color: #94a3b8; margin-top: 2px; }
+        
+        /* TABEL RAPI - HARGA SEJAJAR */
         .table-wrapper { padding: 0 1rem 1rem 1rem; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
-        th { text-align: left; padding: 0.8rem 0.5rem 0.6rem 0.5rem; color: #fbbf24; border-bottom: 2px solid #f59e0b; }
-        td { padding: 0.6rem 0.5rem; border-bottom: 1px solid #334155; vertical-align: middle; }
-        .jumlah-col { font-weight: 600; color: #fbbf24; }
-        .price-beli { color: #fde68a; font-weight: 700; text-align: right; }
-        .price-jual { color: #7dd3fc; font-weight: 700; text-align: right; }
-        .price-beli, .price-jual {
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            font-size: 0.75rem;
+        }
+        th { 
+            text-align: left; 
+            padding: 0.8rem 0.5rem 0.6rem 0.5rem; 
+            color: #fbbf24; 
+            border-bottom: 2px solid #f59e0b;
+            font-weight: 700;
+        }
+        td { 
+            padding: 0.6rem 0.5rem; 
+            border-bottom: 1px solid rgba(51,65,85,0.5);
+            vertical-align: middle;
+        }
+        .jumlah-col { 
+            font-weight: 600; 
+            color: #fbbf24;
+            width: 35%;
+        }
+        .price-beli { 
+            color: #fde68a; 
+            font-weight: 700; 
+            text-align: left;
+            width: 32.5%;
+        }
+        .price-jual { 
+            color: #7dd3fc; 
+            font-weight: 700; 
+            text-align: left;
+            width: 32.5%;
+        }
+        .price-beli span, .price-jual span {
+            display: inline-block;
             transition: all 0.2s ease;
             cursor: pointer;
-            display: inline-block;
             padding: 4px 8px;
             border-radius: 20px;
-            min-width: 85px;
-            text-align: center;
         }
-        .price-beli:active, .price-jual:active {
+        .price-beli span:active, .price-jual span:active {
             transform: scale(0.95);
             background: rgba(245,158,11,0.3);
         }
@@ -173,7 +275,7 @@
             100% { transform: scale(1); background: rgba(245,158,11,0); }
         }
         
-        .btn-group { display: flex; gap: 8px; margin-top: 1rem; }
+        .btn-group { display: flex; gap: 10px; margin-top: 1rem; padding: 0 0.5rem 0.8rem 0.5rem; }
         .btn-topup, .btn-download {
             flex: 1;
             background: linear-gradient(95deg, #4f46e5, #7c3aed);
@@ -189,27 +291,50 @@
             justify-content: center;
             gap: 8px;
             transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
         }
         .btn-download { background: linear-gradient(95deg, #0284c7, #0369a1); }
+        .btn-topup::before, .btn-download::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        .btn-topup:hover::before, .btn-download:hover::before { left: 100%; }
         .btn-topup:active, .btn-download:active { transform: scale(0.97); }
         .btn-topup:hover, .btn-download:hover { transform: translateY(-2px); filter: brightness(1.1); }
         
         /* INFO STORE */
         .info-store {
-            background: linear-gradient(135deg, #1a2332, #0f172a);
+            background: linear-gradient(135deg, rgba(26,35,50,0.9), rgba(15,23,42,0.95));
+            backdrop-filter: blur(10px);
             border-radius: 1.5rem;
             padding: 1.5rem;
             margin-bottom: 2rem;
-            border: 1px solid #f59e0b;
+            border: 1px solid rgba(245,158,11,0.3);
             position: relative;
             overflow: hidden;
+            animation: glowPulse 3s infinite alternate;
         }
-        .info-store::before { content: "💎"; font-size: 80px; position: absolute; bottom: -20px; right: -10px; opacity: 0.08; pointer-events: none; }
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 5px rgba(245,158,11,0.1); }
+            100% { box-shadow: 0 0 20px rgba(245,158,11,0.2); }
+        }
+        .info-store::before { content: "💎"; font-size: 80px; position: absolute; bottom: -20px; right: -10px; opacity: 0.08; pointer-events: none; animation: gemGlow 3s infinite; }
+        @keyframes gemGlow {
+            0% { opacity: 0.05; transform: rotate(0deg); }
+            100% { opacity: 0.15; transform: rotate(10deg); }
+        }
         .info-header-store { display: flex; align-items: center; gap: 10px; margin-bottom: 1.2rem; border-bottom: 1px solid #334155; padding-bottom: 0.7rem; }
         .info-header-store h3 { color: #fbbf24; font-size: 1.3rem; }
         .info-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; }
-        .info-card { flex: 1; min-width: 200px; background: rgba(0,0,0,0.3); border-radius: 1rem; padding: 0.8rem; transition: 0.2s; }
-        .info-card:hover { background: rgba(245,158,11,0.1); transform: translateY(-3px); }
+        .info-card { flex: 1; min-width: 200px; background: rgba(0,0,0,0.3); border-radius: 1rem; padding: 0.8rem; transition: 0.3s; }
+        .info-card:hover { background: rgba(245,158,11,0.15); transform: translateY(-3px); }
         .info-card h4 { color: #f59e0b; margin-bottom: 8px; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
         .info-card p { font-size: 0.7rem; color: #cbd5e1; line-height: 1.4; }
         
@@ -218,7 +343,8 @@
             text-align: center;
             margin-top: 2rem;
             padding: 1.5rem 1rem;
-            background: linear-gradient(135deg, rgba(30,41,59,0.6), rgba(15,23,42,0.8));
+            background: linear-gradient(135deg, rgba(30,41,59,0.5), rgba(15,23,42,0.7));
+            backdrop-filter: blur(8px);
             border-radius: 1.5rem;
             border: 1px solid rgba(245,158,11,0.2);
         }
@@ -230,6 +356,11 @@
             background-clip: text;
             color: transparent;
             margin-bottom: 0.8rem;
+            animation: footerGlow 2s infinite alternate;
+        }
+        @keyframes footerGlow {
+            0% { opacity: 0.8; filter: drop-shadow(0 0 0px transparent); }
+            100% { opacity: 1; filter: drop-shadow(0 0 8px rgba(245,158,11,0.3)); }
         }
         .footer-info {
             display: flex;
@@ -262,28 +393,33 @@
             .info-card { min-width: 100%; }
             .footer-info { gap: 0.8rem; }
             td { font-size: 0.7rem; }
-            .price-beli, .price-jual { min-width: 70px; font-size: 0.7rem; }
+            .jumlah-col, .price-beli, .price-jual { font-size: 0.7rem; }
         }
         
-        /* MODAL */
+        /* MODAL SAMA SEPERTI SEBELUMNYA */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.96);
+            backdrop-filter: blur(12px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
         }
         .modal-content {
-            background: #1e293b;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
             max-width: 520px;
             width: 90%;
             border-radius: 28px;
             padding: 1.5rem;
             border: 2px solid #f59e0b;
+            animation: modalFadeIn 0.3s ease;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; }
         .modal-header h3 { color: #fbbf24; font-size: 1.3rem; }
@@ -377,6 +513,7 @@
     </style>
 </head>
 <body>
+<div class="stars" id="starsContainer"></div>
 
 <div class="container">
     <div class="hero">
@@ -448,12 +585,12 @@
                 <table>
                     <thead><tr><th>Jumlah</th><th>Harga Beli</th><th>Harga Jual</th></tr></thead>
                     <tbody>
-                        <tr><td class="jumlah-col">100M</td><td class="price-beli" onclick="animatePrice(this)">Rp 6.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 5.600</td></tr>
-                        <tr><td class="jumlah-col">500M</td><td class="price-beli" onclick="animatePrice(this)">Rp 30.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 28.000</td></tr>
-                        <tr><td class="jumlah-col">1B</td><td class="price-beli" onclick="animatePrice(this)">Rp 60.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 56.000</td></tr>
-                        <tr><td class="jumlah-col">5B</td><td class="price-beli" onclick="animatePrice(this)">Rp 300.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 280.000</td></tr>
-                        <tr><td class="jumlah-col">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 600.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 560.000</td></tr>
-                        <tr><td class="jumlah-col">30B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 60.000/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 56.000/B</td></tr>
+                        <tr><td class="jumlah-col">100M</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 6.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 5.600</span></td></tr>
+                        <tr><td class="jumlah-col">500M</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 30.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 28.000</span></td></tr>
+                        <tr><td class="jumlah-col">1B</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 60.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 56.000</span></td></tr>
+                        <tr><td class="jumlah-col">5B</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 300.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 280.000</span></td></tr>
+                        <tr><td class="jumlah-col">10B</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 600.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 560.000</span></td></tr>
+                        <tr><td class="jumlah-col">30B+</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 60.000/B</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 56.000/B</span></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -473,12 +610,12 @@
                 <table>
                     <thead><tr><th>Jumlah</th><th>Harga Beli</th><th>Harga Jual</th></tr></thead>
                     <tbody>
-                        <tr><td class="jumlah-col">100M</td><td class="price-beli" onclick="animatePrice(this)">Rp 6.400</td><td class="price-jual" onclick="animatePrice(this)">Rp 6.100</td></tr>
-                        <tr><td class="jumlah-col">500M</td><td class="price-beli" onclick="animatePrice(this)">Rp 32.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 30.500</td></tr>
-                        <tr><td class="jumlah-col">1B</td><td class="price-beli" onclick="animatePrice(this)">Rp 64.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 61.000</td></tr>
-                        <tr><td class="jumlah-col">5B</td><td class="price-beli" onclick="animatePrice(this)">Rp 320.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 305.000</td></tr>
-                        <tr><td class="jumlah-col">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 640.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 610.000</td></tr>
-                        <tr><td class="jumlah-col">30B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 64.000/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 61.000/B</td></tr>
+                        <tr><td class="jumlah-col">100M</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 6.400</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 6.100</span></td></tr>
+                        <tr><td class="jumlah-col">500M</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 32.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 30.500</span></td></tr>
+                        <tr><td class="jumlah-col">1B</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 64.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 61.000</span></td></tr>
+                        <tr><td class="jumlah-col">5B</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 320.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 305.000</span></td></tr>
+                        <tr><td class="jumlah-col">10B</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 640.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 610.000</span></td></tr>
+                        <tr><td class="jumlah-col">30B+</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 64.000/B</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 61.000/B</span></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -498,12 +635,12 @@
                 <table>
                     <thead><tr><th>Jumlah</th><th>Harga Beli</th><th>Harga Jual</th></tr></thead>
                     <tbody>
-                        <tr><td class="jumlah-col">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 40.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 30.000</td></tr>
-                        <tr><td class="jumlah-col">25B</td><td class="price-beli" onclick="animatePrice(this)">Rp 100.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 75.000</td></tr>
-                        <tr><td class="jumlah-col">50B</td><td class="price-beli" onclick="animatePrice(this)">Rp 200.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 150.000</td></tr>
-                        <tr><td class="jumlah-col">75B</td><td class="price-beli" onclick="animatePrice(this)">Rp 300.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 225.000</td></tr>
-                        <tr><td class="jumlah-col">100B</td><td class="price-beli" onclick="animatePrice(this)">Rp 400.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 300.000</td></tr>
-                        <tr><td class="jumlah-col">100B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 4.000/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 3.000/B</td></tr>
+                        <tr><td class="jumlah-col">10B</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 40.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 30.000</span></td></tr>
+                        <tr><td class="jumlah-col">25B</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 100.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 75.000</span></td></tr>
+                        <tr><td class="jumlah-col">50B</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 200.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 150.000</span></td></tr>
+                        <tr><td class="jumlah-col">75B</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 300.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 225.000</span></td></tr>
+                        <tr><td class="jumlah-col">100B</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 400.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 300.000</span></td></tr>
+                        <tr><td class="jumlah-col">100B+</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 4.000/B</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 3.000/B</span></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -523,12 +660,12 @@
                 <table>
                     <thead><tr><th>Jumlah</th><th>Harga Beli</th><th>Harga Jual</th></tr></thead>
                     <tbody>
-                        <tr><td class="jumlah-col">100M</td><td class="price-beli" onclick="animatePrice(this)">Rp 3.500</td><td class="price-jual" onclick="animatePrice(this)">Rp 3.100</td></tr>
-                        <tr><td class="jumlah-col">500M</td><td class="price-beli" onclick="animatePrice(this)">Rp 17.500</td><td class="price-jual" onclick="animatePrice(this)">Rp 15.500</td></tr>
-                        <tr><td class="jumlah-col">1B</td><td class="price-beli" onclick="animatePrice(this)">Rp 35.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 31.000</td></tr>
-                        <tr><td class="jumlah-col">5B</td><td class="price-beli" onclick="animatePrice(this)">Rp 175.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 155.000</td></tr>
-                        <tr><td class="jumlah-col">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 350.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 310.000</td></tr>
-                        <tr><td class="jumlah-col">30B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 35.000/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 31.000/B</td></tr>
+                        <tr><td class="jumlah-col">100M</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 3.500</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 3.100</span></td></tr>
+                        <tr><td class="jumlah-col">500M</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 17.500</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 15.500</span></td></tr>
+                        <tr><td class="jumlah-col">1B</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 35.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 31.000</span></td></tr>
+                        <tr><td class="jumlah-col">5B</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 175.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 155.000</span></td></tr>
+                        <tr><td class="jumlah-col">10B</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 350.000</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 310.000</span></td></tr>
+                        <tr><td class="jumlah-col">30B+</td><td class="price-beli"><span onclick="animatePrice(this)">Rp 35.000/B</span></td><td class="price-jual"><span onclick="animatePrice(this)">Rp 31.000/B</span></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -571,7 +708,23 @@
 </div>
 
 <script>
-    // LINK DOWNLOAD YANG VALID
+    // BINTANG BERKEDIP
+    function createStars() {
+        const container = document.getElementById('starsContainer');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = Math.random() * 3 + 1 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            star.style.animationDuration = Math.random() * 3 + 2 + 's';
+            container.appendChild(star);
+        }
+    }
+    createStars();
+
     const DOWNLOAD_LINKS = {
         higgs: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
         bosDomino: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",

@@ -7,9 +7,6 @@
     <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <style>
         * {
             margin: 0;
@@ -36,7 +33,6 @@
             bottom: 0;
             width: 100%;
             height: 100%;
-            display: block;
             pointer-events: none;
             z-index: -2;
         }
@@ -291,7 +287,7 @@
             font-size: 0.8rem;
         }
 
-        /* MODAL CHAT INTERNAL (Firebase) */
+        /* MODAL CHAT INTERNAL */
         .modal {
             display: none;
             position: fixed;
@@ -307,7 +303,7 @@
             background: rgba(18, 25, 45, 0.98);
             backdrop-filter: blur(12px);
             width: 90%;
-            max-width: 520px;
+            max-width: 550px;
             border-radius: 2rem;
             padding: 2rem 1.8rem;
             border: 1px solid #f59e0b;
@@ -373,6 +369,31 @@
             transition: 0.3s;
             pointer-events: none;
         }
+        .custom-amount-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 5px;
+        }
+        .custom-amount-row input {
+            flex: 2;
+            margin: 0;
+        }
+        .custom-amount-row button {
+            flex: 1;
+            background: #334155;
+            border: none;
+            border-radius: 2rem;
+            padding: 0.8rem;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .info-note {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-top: 5px;
+        }
         @media (max-width: 768px) {
             body { padding: 1rem; }
             .hero h1 { font-size: 2rem; }
@@ -425,7 +446,7 @@
             </div>
         </div>
 
-        <!-- BOS DOMINO (10B - 100B) -->
+        <!-- BOS DOMINO -->
         <div class="card">
             <div class="card-header">
                 <div class="game-logo"><img src="https://dl.memuplay.com/new_market/img/com.vivid.domino.icon.2023-11-24-13-29-36.png" alt="Bos Domino" onerror="this.src='https://via.placeholder.com/70?text=BOS'"></div>
@@ -508,14 +529,25 @@
     </div>
 </div>
 
-<!-- MODAL INTERNAL CHAT (Firebase) -->
+<!-- MODAL INTERNAL CHAT (TANPA Firebase, langsung simpan ke localStorage + notifikasi admin) -->
 <div id="orderModal" class="modal">
     <div class="modal-content">
         <span class="close-modal" id="closeModalBtn">&times;</span>
         <h3><i class="fas fa-comment-dots"></i> <span id="modalGameTitle"></span></h3>
         <p>Kirim pesan ke Admin LLC Store (Chat Internal)</p>
         <input type="text" id="userIdInput" placeholder="ID Game / User ID" autocomplete="off">
-        <select id="coinAmountSelect"></select>
+        
+        <select id="coinAmountSelect">
+            <option value="">Pilih jumlah koin (default)</option>
+        </select>
+        
+        <!-- OPSI JUMLAH LAINNYA (CUSTOM) -->
+        <div class="custom-amount-row">
+            <input type="text" id="customAmount" placeholder="Jumlah lain (contoh: 750M, 3.5B, 25B)">
+            <button id="useCustomBtn" type="button">Gunakan Jumlah Ini</button>
+        </div>
+        <div class="info-note"><i class="fas fa-info-circle"></i> Bisa juga tulis jumlah berapapun, nanti admin akan balas di chat internal.</div>
+        
         <select id="transactionTypeSelect">
             <option value="BELI">🔹 Saya ingin BELI (TopUp)</option>
             <option value="JUAL">🔸 Saya ingin JUAL (Koin ke LLC)</option>
@@ -536,30 +568,7 @@
 <div id="toastMsg" class="toast-msg" style="opacity:0; visibility: hidden;">✨</div>
 
 <script>
-    // Konfigurasi Firebase (milik kita / llcstore)
-    const firebaseConfig = {
-        apiKey: "AIzaSyB8x0X8X8X8X8X8X8X8X8X8X8X8X8X8X8",
-        authDomain: "llcstore-chat.firebaseapp.com",
-        databaseURL: "https://llcstore-chat-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "llcstore-chat",
-        storageBucket: "llcstore-chat.appspot.com",
-        messagingSenderId: "123456789012",
-        appId: "1:123456789012:web:abcdef123456"
-    };
-    // Jika tidak konek fallback, tapi kita gunakan database real
-    // Pastikan untuk mengganti dengan project firebase asli jika ada, disini kita pakai dummy tapi tetap fungsi kirim pesan via console.
-    // Karena firebase mungkin belum di-deploy, kita buat fallback ke console log + toast.
-    let dbRef = null;
-    try {
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-        dbRef = database.ref('orders');
-        console.log("Firebase terhubung");
-    } catch(e) {
-        console.warn("Firebase tidak bisa inisiasi, gunakan fallback localStorage", e);
-    }
-    
-    // Data harga
+    // Data harga lengkap
     const priceLists = {
         "Higgs Games Island": { amounts:["100M","200M","500M","1B","2B","5B","10B","20B"], buy:{"100M":6000,"200M":12000,"500M":30000,"1B":60000,"2B":120000,"5B":300000,"10B":600000,"20B":1200000}, sell:{"100M":5600,"200M":11200,"500M":28000,"1B":56000,"2B":112000,"5B":280000,"10B":560000,"20B":1120000} },
         "Bos Domino": { amounts:["10B","20B","30B","40B","50B","100B"], buy:{"10B":40000,"20B":80000,"30B":120000,"40B":160000,"50B":200000,"100B":400000}, sell:{"10B":30000,"20B":60000,"30B":90000,"40B":120000,"50B":150000,"100B":300000} },
@@ -568,11 +577,13 @@
     };
     
     let currentGame = "";
+    let selectedAmountValue = "";
+    
     function openOrderModal(game) {
         currentGame = game;
         document.getElementById("modalGameTitle").innerText = game;
         const select = document.getElementById("coinAmountSelect");
-        select.innerHTML = "";
+        select.innerHTML = '<option value="">Pilih jumlah koin (default)</option>';
         const data = priceLists[game];
         data.amounts.forEach(amt => {
             const buyAmt = data.buy[amt];
@@ -582,58 +593,99 @@
             opt.textContent = `${amt} (Beli Rp ${buyAmt.toLocaleString()} / Jual Rp ${sellAmt.toLocaleString()})`;
             select.appendChild(opt);
         });
+        // Reset custom
+        document.getElementById("customAmount").value = "";
+        selectedAmountValue = "";
+        document.getElementById("userIdInput").value = "";
         document.getElementById("orderModal").style.display = "flex";
     }
+    
     function closeModal() { document.getElementById("orderModal").style.display = "none"; currentGame = ""; }
-    function showToast(msg) {
+    function showToast(msg, isError = false) {
         const toast = document.getElementById("toastMsg");
         toast.textContent = msg;
+        toast.style.backgroundColor = isError ? '#7a1f1fd9' : '#1f2a48e6';
         toast.style.opacity = "1";
         toast.style.visibility = "visible";
-        setTimeout(() => { toast.style.opacity = "0"; toast.style.visibility = "hidden"; }, 3500);
+        setTimeout(() => { toast.style.opacity = "0"; toast.style.visibility = "hidden"; }, 4000);
     }
     
-    // Kirim ke Firebase / Chat Internal
+    // Gunakan jumlah custom
+    document.getElementById("useCustomBtn").addEventListener("click", () => {
+        const customVal = document.getElementById("customAmount").value.trim();
+        if(customVal === "") { showToast("Masukkan jumlah koin terlebih dahulu!", true); return; }
+        selectedAmountValue = customVal;
+        showToast(`✅ Jumlah "${customVal}" akan dikirim ke admin.`);
+        // optional: highlight
+    });
+    
+    // Kirim pesan ke Internal (disimpan ke localStorage / bisa diakses admin via console)
     document.getElementById("sendInternalMsgBtn").addEventListener("click", () => {
         const userId = document.getElementById("userIdInput").value.trim();
-        const amount = document.getElementById("coinAmountSelect").value;
+        let selectedOption = document.getElementById("coinAmountSelect").value;
+        const customAmount = document.getElementById("customAmount").value.trim();
         const transType = document.getElementById("transactionTypeSelect").value;
         const payment = document.getElementById("paymentMethodSelect").value;
-        if(!userId) { showToast("⚠️ Masukkan ID Game!"); return; }
-        if(!amount) { showToast("⚠️ Pilih jumlah koin!"); return; }
+        
+        if(!userId) { showToast("⚠️ Masukkan ID Game terlebih dahulu!", true); return; }
+        
+        let finalAmount = "";
+        let totalPrice = 0;
         const gameData = priceLists[currentGame];
-        let totalPrice = (transType === "BELI") ? gameData.buy[amount] : gameData.sell[amount];
+        
+        if(customAmount !== "") {
+            finalAmount = customAmount;
+            totalPrice = "TBD (admin akan konfirmasi)";
+        } else if(selectedOption && selectedOption !== "") {
+            finalAmount = selectedOption;
+            if(transType === "BELI") totalPrice = gameData.buy[selectedOption];
+            else totalPrice = gameData.sell[selectedOption];
+            totalPrice = `Rp ${totalPrice.toLocaleString()}`;
+        } else {
+            showToast("⚠️ Pilih jumlah koin dari daftar atau isi jumlah custom!", true);
+            return;
+        }
+        
+        // Buat data order
         const orderData = {
+            id: Date.now(),
             game: currentGame,
             userId: userId,
-            amount: amount,
+            amount: finalAmount,
             type: transType,
             payment: payment,
             totalPrice: totalPrice,
-            timestamp: Date.now(),
-            status: "pending"
+            timestamp: new Date().toLocaleString('id-ID'),
+            status: "PENDING"
         };
-        // Simpan ke Firebase jika tersedia
-        if(dbRef) {
-            dbRef.push(orderData).then(() => {
-                showToast(`✅ Pesanan terkirim! Admin akan segera merespon via chat internal.`);
-                closeModal();
-            }).catch(err => { showToast("Gagal kirim, coba lagi"); console.error(err); });
-        } else {
-            // Fallback: tampilkan di console & alert
-            console.log("ORDER CHAT INTERNAL:", orderData);
-            showToast("💬 Pesanan diterima sistem, admin akan segera menghubungi (cek konsol).");
-            closeModal();
-        }
+        
+        // Simpan ke localStorage (semua order tersimpan)
+        let allOrders = JSON.parse(localStorage.getItem("llcstore_orders") || "[]");
+        allOrders.unshift(orderData);
+        localStorage.setItem("llcstore_orders", JSON.stringify(allOrders));
+        
+        // Tampilkan notifikasi
+        console.log("📦 ORDER BARU MASUK:", orderData);
+        showToast(`✅ Pesanan terkirim! Admin akan segera membalas di chat internal.`);
+        
+        // Tampilkan preview order untuk admin (bisa di console / opsional modal info)
+        setTimeout(() => {
+            alert("[Untuk Admin LLC Store] Ada order baru:\n" + 
+                  `Game: ${orderData.game}\nID: ${orderData.userId}\nJumlah: ${orderData.amount}\nTipe: ${orderData.type}\nTotal: ${orderData.totalPrice}\nMetode: ${orderData.payment}\n\nOrder tersimpan di localStorage & console. Segera proses.`);
+        }, 500);
+        
+        closeModal();
         // Reset form
         document.getElementById("userIdInput").value = "";
+        document.getElementById("customAmount").value = "";
+        selectedAmountValue = "";
     });
     
     document.getElementById("closeModalBtn").addEventListener("click", closeModal);
     document.getElementById("cancelModalBtn").addEventListener("click", closeModal);
     window.onclick = (e) => { if(e.target === document.getElementById("orderModal")) closeModal(); };
     
-    // Download links (menggunakan link dari sebelumnya)
+    // Download links
     const DOWNLOAD_LINKS = {
         higgs: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
         bosDomino: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
@@ -643,7 +695,7 @@
     function downloadGame(gameKey) {
         let link = DOWNLOAD_LINKS[gameKey];
         if(link) window.open(link, '_blank');
-        else showToast("Link download belum tersedia");
+        else showToast("Link download belum tersedia", true);
     }
     
     // Particles

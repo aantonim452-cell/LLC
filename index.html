@@ -3,273 +3,664 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>LLC Store | TopUp Higgs & Domino Sultan</title>
+    <title>LLC Store | TopUp Higgs & Domino Sultan | Berfist</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b2e 100%);
+            background: linear-gradient(135deg, #0b1120 0%, #1a1a2e 100%);
             color: #f1f5f9;
             padding: 2rem 1.5rem;
             min-height: 100vh;
         }
-        .container { max-width: 1400px; margin: 0 auto; }
-        
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* HERO SECTION */
         .hero {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
             backdrop-filter: blur(10px);
             border-radius: 2rem;
-            padding: 2.5rem 2rem;
-            margin-bottom: 3rem;
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 2rem 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(245, 158, 11, 0.4);
             text-align: center;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
         }
+
         .hero h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
+
+        .hero p {
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+
         .badge-group {
-            margin-top: 1.5rem;
+            margin-top: 1.2rem;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 0.8rem;
+            gap: 0.6rem;
         }
+
         .badge {
-            background: rgba(51, 65, 85, 0.8);
-            padding: 0.5rem 1.2rem;
+            background: rgba(51, 65, 85, 0.7);
+            padding: 0.4rem 1rem;
             border-radius: 50px;
+            font-size: 0.75rem;
             font-weight: 600;
-            font-size: 0.8rem;
             border-left: 3px solid #f59e0b;
         }
-        
+
+        /* GRID CARD */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
             gap: 1.8rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
+
         .card {
             background: rgba(30, 41, 59, 0.85);
             backdrop-filter: blur(8px);
             border-radius: 1.5rem;
-            border: 1px solid rgba(245, 158, 11, 0.25);
+            border: 1px solid rgba(245, 158, 11, 0.3);
             overflow: hidden;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
-        .card:hover { transform: translateY(-8px); border-color: #f59e0b; }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: #f59e0b;
+            box-shadow: 0 20px 30px -10px rgba(245, 158, 11, 0.3);
+        }
+
         .card-header {
-            padding: 1.2rem 1.5rem;
+            padding: 1rem 1.2rem;
             background: linear-gradient(115deg, #1e293b, #0f172a);
             border-bottom: 2px solid #f59e0b;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
+
         .game-logo {
-            width: 65px; height: 65px;
+            width: 55px;
+            height: 55px;
             background: #0f172a;
-            border-radius: 18px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 2px solid #f59e0b;
             overflow: hidden;
         }
-        .game-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+        .game-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .info-header h2 {
+            font-size: 1.3rem;
             font-weight: 800;
-            font-size: 1.5rem;
             background: linear-gradient(45deg, #ffd966, #f59e0b);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-        .sub { font-size: 0.7rem; opacity: 0.75; color: #94a3b8; }
-        .table-wrapper { padding: 0 1rem 1.2rem 1rem; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-        th { text-align: left; padding: 0.8rem 0.5rem 0.5rem; color: #fbbf24; border-bottom: 1px dashed #334155; }
-        td { padding: 0.7rem 0.5rem; border-bottom: 1px solid #334155; color: #e2e8f0; }
-        .price-beli { color: #fde68a; font-weight: 800; }
-        .price-jual { color: #7dd3fc; font-weight: 800; }
-        .btn-group { display: flex; gap: 10px; margin-top: 1rem; }
+
+        .sub {
+            font-size: 0.65rem;
+            opacity: 0.7;
+            color: #94a3b8;
+        }
+
+        .table-wrapper {
+            padding: 0 0.8rem 1rem 0.8rem;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.75rem;
+        }
+
+        th {
+            text-align: left;
+            padding: 0.6rem 0.3rem;
+            color: #fbbf24;
+            border-bottom: 1px dashed #334155;
+        }
+
+        td {
+            padding: 0.5rem 0.3rem;
+            border-bottom: 1px solid #334155;
+        }
+
+        .price-beli {
+            color: #fde68a;
+            font-weight: 700;
+        }
+
+        .price-jual {
+            color: #7dd3fc;
+            font-weight: 700;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 0.8rem;
+        }
+
         .btn-topup, .btn-download {
             flex: 1;
             background: linear-gradient(95deg, #4f46e5, #7c3aed);
             border: none;
             color: white;
-            font-weight: 800;
-            padding: 10px 12px;
+            font-weight: 700;
+            padding: 8px 10px;
             border-radius: 40px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
+            transition: 0.2s;
         }
-        .btn-download { background: linear-gradient(95deg, #0284c7, #0369a1); }
-        .btn-topup:hover, .btn-download:hover { transform: translateY(-2px); filter: brightness(1.1); }
-        
-        .promo-box {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
+
+        .btn-download {
+            background: linear-gradient(95deg, #0284c7, #0369a1);
+        }
+
+        .btn-topup:hover, .btn-download:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        /* INFO LLC STORE - RINGKASAN HARGA */
+        .info-store {
+            background: linear-gradient(135deg, #1a2332, #0f172a);
             border-radius: 1.5rem;
             padding: 1.5rem;
             margin-bottom: 2rem;
             border: 1px solid #f59e0b;
+            position: relative;
+            overflow: hidden;
         }
-        .promo-box h3 { color: #fbbf24; margin-bottom: 1rem; }
-        .promo-grid { display: flex; flex-wrap: wrap; gap: 1.5rem; }
-        .promo-item { flex: 1; min-width: 180px; }
-        .promo-item h4 { color: #f59e0b; margin-bottom: 10px; }
-        .footer-note { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #334155; color: #94a3b8; font-size: 0.8rem; }
-        
+
+        .info-store::before {
+            content: "💎";
+            font-size: 80px;
+            position: absolute;
+            bottom: -20px;
+            right: -10px;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .info-header-store {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 0.7rem;
+        }
+
+        .info-header-store h3 {
+            color: #fbbf24;
+            font-size: 1.3rem;
+        }
+
+        .info-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: space-between;
+        }
+
+        .info-card {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 1rem;
+            padding: 0.8rem;
+            transition: 0.2s;
+        }
+
+        .info-card:hover {
+            background: rgba(245,158,11,0.1);
+            transform: translateY(-3px);
+        }
+
+        .info-card h4 {
+            color: #f59e0b;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .info-card p {
+            font-size: 0.7rem;
+            color: #cbd5e1;
+            line-height: 1.4;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #334155;
+            font-size: 0.7rem;
+            color: #94a3b8;
+        }
+
         @media (max-width: 768px) {
             body { padding: 1rem; }
-            .hero h1 { font-size: 2rem; }
-            .game-logo { width: 50px; height: 50px; }
+            .hero h1 { font-size: 1.8rem; }
+            .info-card { min-width: 100%; }
         }
-        
-        /* MODAL */
+
+        /* MODAL FORM - MUDAH DIPAHAMI */
         .modal {
             display: none;
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
         }
+
         .modal-content {
             background: #1e293b;
-            max-width: 550px;
+            max-width: 500px;
             width: 90%;
             border-radius: 28px;
-            padding: 1.8rem;
+            padding: 1.5rem;
             border: 2px solid #f59e0b;
         }
-        .modal-content h3 { color: #fbbf24; margin-bottom: 1rem; font-size: 1.4rem; }
-        .modal-content input, .modal-content select {
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 0.5rem;
+        }
+
+        .modal-header h3 {
+            color: #fbbf24;
+            font-size: 1.3rem;
+        }
+
+        .close-modal {
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #94a3b8;
+        }
+
+        .close-modal:hover { color: #f59e0b; }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-bottom: 5px;
+        }
+
+        .form-group label i {
+            width: 20px;
+            color: #f59e0b;
+        }
+
+        .form-group input, .form-group select {
             width: 100%;
-            padding: 12px 15px;
-            margin: 8px 0;
+            padding: 12px 14px;
             background: #0f172a;
-            border: 1px solid #f59e0b;
+            border: 1px solid #334155;
             border-radius: 40px;
             color: white;
-            font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
         }
-        .result-box {
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #f59e0b;
+            outline: none;
+        }
+
+        .preview-box {
             background: #0f172a;
-            padding: 15px;
+            padding: 12px;
             border-radius: 16px;
             margin: 15px 0;
             border-left: 4px solid #f59e0b;
+            font-size: 0.75rem;
             white-space: pre-wrap;
             word-break: break-word;
-            font-size: 0.8rem;
-            max-height: 200px;
-            overflow-y: auto;
             font-family: monospace;
+            max-height: 180px;
+            overflow-y: auto;
         }
-        .btn-group-modal { display: flex; gap: 10px; margin: 10px 0; }
-        .btn-group-modal button { flex: 1; padding: 12px; border-radius: 40px; border: none; font-weight: bold; cursor: pointer; }
-        .btn-copy { background: #334155; color: white; }
-        .btn-chat { background: #f59e0b; color: #0f172a; }
-        .btn-submit { background: linear-gradient(95deg, #f59e0b, #fbbf24); width: 100%; padding: 12px; border-radius: 40px; border: none; font-weight: bold; margin-top: 8px; cursor: pointer; color: #0f172a; }
-        .close-modal { float: right; font-size: 1.8rem; cursor: pointer; color: #94a3b8; }
-        .close-modal:hover { color: #f59e0b; }
-        .info-text { font-size: 0.7rem; color: #94a3b8; text-align: center; margin-top: 12px; }
+
+        .btn-modal-group {
+            display: flex;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .btn-modal-group button {
+            flex: 1;
+            padding: 10px;
+            border-radius: 40px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .btn-copy {
+            background: #334155;
+            color: white;
+        }
+
+        .btn-chat {
+            background: #f59e0b;
+            color: #0f172a;
+        }
+
+        .btn-submit {
+            background: linear-gradient(95deg, #f59e0b, #fbbf24);
+            width: 100%;
+            padding: 12px;
+            border-radius: 40px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #0f172a;
+        }
+
+        .info-step {
+            font-size: 0.65rem;
+            text-align: center;
+            color: #94a3b8;
+            margin-top: 12px;
+            background: #0f172a;
+            padding: 8px;
+            border-radius: 30px;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- HERO -->
     <div class="hero">
-        <h1><i class="fas fa-crown"></i> LLC KOIN <i class="fas fa-bolt"></i></h1>
-        <p>TopUp Higgs Games Island • Bos Domino • Royal Domino • Berfist | Harga Beli & Jual Terbaik</p>
+        <h1><i class="fas fa-crown"></i> LLC STORE <i class="fas fa-bolt"></i></h1>
+        <p>TopUp Higgs Games • Bos Domino • Royal Domino • Berfist | Harga Beli & Jual Tertinggi</p>
         <div class="badge-group">
-            <span class="badge"><i class="fab fa-fort-awesome"></i> Higgs Games</span>
+            <span class="badge"><i class="fas fa-gamepad"></i> Higgs Games</span>
             <span class="badge"><i class="fas fa-crown"></i> Bos Domino</span>
             <span class="badge"><i class="fas fa-chess-queen"></i> Royal Domino</span>
             <span class="badge"><i class="fas fa-fist-raised"></i> Berfist</span>
-            <span class="badge"><i class="fas fa-clock"></i> 24/7</span>
+            <span class="badge"><i class="fas fa-clock"></i> 24 Jam Nonstop</span>
             <span class="badge"><i class="fas fa-exchange-alt"></i> Beli & Jual</span>
         </div>
     </div>
 
-    <!-- MODAL -->
+    <!-- MODAL FORM TRANSAKSI -->
     <div id="orderModal" class="modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h3><i class="fas fa-file-alt"></i> Form Transaksi</h3>
-            <input type="text" id="gameNameDisplay" readonly style="background:#334155;">
-            <select id="transaksiType">
-                <option value="">Pilih Jenis Transaksi</option>
-                <option value="BELI (Saya beli dari LLC)">🔰 BELI - Saya beli koin dari LLC</option>
-                <option value="JUAL (Saya jual ke LLC)">💰 JUAL - Saya jual koin ke LLC</option>
-            </select>
-            <input type="text" id="jumlahKoin" placeholder="Jumlah Koin (contoh: 100M / 1B)">
-            <input type="text" id="idGame" placeholder="ID / User ID Game">
-            <input type="text" id="bankTransfer" placeholder="Metode Bayar (BCA/BRI/DANA/OVO)">
-            
-            <div class="result-box" id="resultMessageBox">
-                ⚡ Isi semua data, pesan akan muncul di sini
+            <div class="modal-header">
+                <h3><i class="fas fa-file-invoice"></i> Form Transaksi LLC</h3>
+                <span class="close-modal" onclick="closeModal()">&times;</span>
             </div>
-            
-            <div class="btn-group-modal">
+
+            <div class="form-group">
+                <label><i class="fas fa-gamepad"></i> Game</label>
+                <input type="text" id="gameNameDisplay" readonly style="background:#334155;">
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-tag"></i> Jenis Transaksi</label>
+                <select id="transaksiType">
+                    <option value="">-- Pilih --</option>
+                    <option value="BELI (Saya beli dari LLC)">🔰 BELI - Saya beli koin/chip dari LLC</option>
+                    <option value="JUAL (Saya jual ke LLC)">💰 JUAL - Saya jual koin/chip ke LLC</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-coins"></i> Jumlah Koin / Chip</label>
+                <input type="text" id="jumlahKoin" placeholder="Contoh: 100M, 1B, 500M">
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-id-card"></i> ID Game / User ID</label>
+                <input type="text" id="idGame" placeholder="Masukkan ID Game Anda">
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-university"></i> Metode Pembayaran</label>
+                <input type="text" id="bankTransfer" placeholder="BCA / BRI / Mandiri / DANA / OVO">
+            </div>
+
+            <div class="preview-box" id="previewBox">
+                ⚡ Isi data di atas, pesan akan muncul di sini
+            </div>
+
+            <div class="btn-modal-group">
                 <button class="btn-copy" id="copyBtn"><i class="fas fa-copy"></i> Salin Pesan</button>
                 <button class="btn-chat" id="chatBtn"><i class="fas fa-comment-dots"></i> Buka Chat APK</button>
             </div>
-            <button class="btn-submit" id="submitBtn"><i class="fas fa-paper-plane"></i> Buat Pesan</button>
-            <div class="info-text">
-                <i class="fas fa-info-circle"></i> <strong>Cara order:</strong><br>
-                1. Isi semua data di atas<br>
-                2. Klik "Buat Pesan" → pesan akan muncul<br>
-                3. Klik "Salin Pesan" → lalu "Buka Chat APK" → Paste pesan ke Admin
+            <button class="btn-submit" id="generateBtn"><i class="fas fa-magic"></i> Buat Pesan</button>
+
+            <div class="info-step">
+                <i class="fas fa-info-circle"></i> <strong>Cara Order:</strong><br>
+                1️⃣ Isi semua data → 2️⃣ Klik "Buat Pesan" → 3️⃣ Klik "Salin Pesan" → 4️⃣ "Buka Chat APK" → Paste pesan ke Admin
             </div>
         </div>
     </div>
 
-    <script>
-        const DOWNLOAD_LINKS = {
-            higgs: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
-            bosDomino: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
-            royalDomino: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
-            berfist: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip"
-        };
-        
-        let currentMessage = "";
-        
-        function downloadGame(gameKey) {
-            let link = DOWNLOAD_LINKS[gameKey] || "#";
-            if(link && link !== "#") window.open(link, '_blank');
-            else alert("Link download hubungi admin via Chat APK.");
-        }
-        
-        function generateMessage() {
-            const game = document.getElementById("gameNameDisplay").value || "Game";
-            const type = document.getElementById("transaksiType").value;
-            const jumlah = document.getElementById("jumlahKoin").value.trim();
-            const userId = document.getElementById("idGame").value.trim();
-            const bank = document.getElementById("bankTransfer").value.trim();
-            
-            if(!type) return "⚠️ Pilih jenis transaksi (BELI / JUAL)";
-            if(!jumlah) return "⚠️ Masukkan jumlah koin";
-            if(!userId) return "⚠️ Masukkan ID Game";
-            if(!bank) return "⚠️ Masukkan metode pembayaran";
-            
-            return `🛒 ORDER LLC STORE 🛒
+    <!-- GAME LIST -->
+    <div class="grid">
+        <!-- HIGGS -->
+        <div class="card">
+            <div class="card-header">
+                <div class="game-logo"><img src="https://play-lh.googleusercontent.com/0AfLM4u9VMWMwZK6jeC1ax4mWdM4eQAl3N5jWl2AParMUK65WOEXF_owy6fbtnJS5XY" alt="Higgs" onerror="this.src='https://via.placeholder.com/55?text=H'"></div>
+                <div class="info-header"><h2>HIGGS GAMES</h2><div class="sub">Domino Island · TopUp & Jual</div></div>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Koin</th><th>Beli (IDR)</th><th>Jual (IDR)</th></tr></thead>
+                    <tbody>
+                        <tr><td>🔥 100M</td><td class="price-beli">65.000</td><td class="price-jual">55.000</td></tr>
+                        <tr><td>⭐ 500M</td><td class="price-beli">310.000</td><td class="price-jual">280.000</td></tr>
+                        <tr><td>💎 1B</td><td class="price-beli">600.000</td><td class="price-jual">550.000</td></tr>
+                        <tr><td>👑 5B</td><td class="price-beli">1.450.000</td><td class="price-jual">1.350.000</td></tr>
+                        <tr><td>🚀 10B</td><td class="price-beli">2.850.000</td><td class="price-jual">2.650.000</td></tr>
+                        <tr><td>💥 100B</td><td class="price-beli">11.000.000</td><td class="price-jual">10.200.000</td></tr>
+                    </tbody>
+                </table>
+                <div class="btn-group">
+                    <button class="btn-topup" onclick="openModalWithGame('HIGGS GAMES ISLAND')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
+                    <button class="btn-download" onclick="downloadGame('higgs')"><i class="fas fa-download"></i> Download</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOS DOMINO -->
+        <div class="card">
+            <div class="card-header">
+                <div class="game-logo"><img src="https://dl.memuplay.com/new_market/img/com.vivid.domino.icon.2023-11-24-13-29-36.png" alt="Bos Domino" onerror="this.src='https://via.placeholder.com/55?text=BD'"></div>
+                <div class="info-header"><h2>BOS DOMINO</h2><div class="sub">Chip Sultan · Beli & Jual</div></div>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Chip</th><th>Beli (IDR)</th><th>Jual (IDR)</th></tr></thead>
+                    <tbody>
+                        <tr><td>📦 1B</td><td class="price-beli">70.000</td><td class="price-jual">60.000</td></tr>
+                        <tr><td>💎 10B</td><td class="price-beli">330.000</td><td class="price-jual">295.000</td></tr>
+                        <tr><td>🏆 50B</td><td class="price-beli">640.000</td><td class="price-jual">580.000</td></tr>
+                        <tr><td>👑 100B</td><td class="price-beli">1.550.000</td><td class="price-jual">1.420.000</td></tr>
+                        <tr><td>🚀 150B</td><td class="price-beli">3.000.000</td><td class="price-jual">2.750.000</td></tr>
+                        <tr><td>🌟 500B</td><td class="price-beli">12.800.000</td><td class="price-jual">11.700.000</td></tr>
+                    </tbody>
+                </table>
+                <div class="btn-group">
+                    <button class="btn-topup" onclick="openModalWithGame('BOS DOMINO')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
+                    <button class="btn-download" onclick="downloadGame('bosDomino')"><i class="fas fa-download"></i> Download</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROYAL DOMINO -->
+        <div class="card">
+            <div class="card-header">
+                <div class="game-logo"><img src="https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO%20DOWNLOAD%20installworks.ca" alt="Royal Domino" onerror="this.src='https://via.placeholder.com/55?text=RD'"></div>
+                <div class="info-header"><h2>ROYAL DOMINO</h2><div class="sub">Premium Chip · Beli & Jual</div></div>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Chip</th><th>Beli (IDR)</th><th>Jual (IDR)</th></tr></thead>
+                    <tbody>
+                        <tr><td>500M</td><td class="price-beli">40.000</td><td class="price-jual">32.000</td></tr>
+                        <tr><td>1B</td><td class="price-beli">75.000</td><td class="price-jual">62.000</td></tr>
+                        <tr><td>5B</td><td class="price-beli">345.000</td><td class="price-jual">285.000</td></tr>
+                        <tr><td>10B</td><td class="price-beli">665.000</td><td class="price-jual">550.000</td></tr>
+                        <tr><td>30B</td><td class="price-beli">3.100.000</td><td class="price-jual">2.550.000</td></tr>
+                        <tr><td>100B</td><td class="price-beli">9.800.000</td><td class="price-jual">8.500.000</td></tr>
+                    </tbody>
+                </table>
+                <div class="btn-group">
+                    <button class="btn-topup" onclick="openModalWithGame('ROYAL DOMINO')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
+                    <button class="btn-download" onclick="downloadGame('royalDomino')"><i class="fas fa-download"></i> Download</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- BERFIST -->
+        <div class="card">
+            <div class="card-header">
+                <div class="game-logo"><img src="https://play-lh.googleusercontent.com/mvFrMMdovquq71B-ta-JVKBdw4Zbs2RmPxe8EVFyGiXAtHAm_p0x3940NqDmFGk6vg" alt="Berfist" onerror="this.src='https://via.placeholder.com/55?text=BF'"></div>
+                <div class="info-header"><h2>BERFIST</h2><div class="sub">Koin Bertarung · Beli & Jual</div></div>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Koin</th><th>Beli (IDR)</th><th>Jual (IDR)</th></tr></thead>
+                    <tbody>
+                        <tr><td>🥊 100M</td><td class="price-beli">35.000</td><td class="price-jual">28.000</td></tr>
+                        <tr><td>💪 500M</td><td class="price-beli">160.000</td><td class="price-jual">140.000</td></tr>
+                        <tr><td>🔥 1B</td><td class="price-beli">310.000</td><td class="price-jual">280.000</td></tr>
+                        <tr><td>🌟 5B</td><td class="price-beli">1.450.000</td><td class="price-jual">1.300.000</td></tr>
+                        <tr><td>🏆 10B</td><td class="price-beli">2.700.000</td><td class="price-jual">2.450.000</td></tr>
+                    </tbody>
+                </table>
+                <div class="btn-group">
+                    <button class="btn-topup" onclick="openModalWithGame('BERFIST')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
+                    <button class="btn-download" onclick="downloadGame('berfist')"><i class="fas fa-download"></i> Download</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INFO LLC STORE (RINGKASAN HARGA) -->
+    <div class="info-store">
+        <div class="info-header-store">
+            <i class="fas fa-store" style="font-size: 1.8rem; color: #f59e0b;"></i>
+            <h3>📋 INFO LLC STORE</h3>
+        </div>
+        <div class="info-grid">
+            <div class="info-card">
+                <h4><i class="fab fa-fort-awesome"></i> Higgs Games</h4>
+                <p>100M: Beli 65K / Jual 55K<br>1B: Beli 600K / Jual 550K<br>100B: Beli 11JT / Jual 10,2JT</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-crown"></i> Bos Domino</h4>
+                <p>100B: Beli 1,55JT / Jual 1,42JT<br>500B: Beli 12,8JT / Jual 11,7JT</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-chess-queen"></i> Royal Domino</h4>
+                <p>100B: Beli 9,8JT / Jual 8,5JT<br>30B: Beli 3,1JT / Jual 2,55JT</p>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-fist-raised"></i> Berfist</h4>
+                <p>100M: Beli 35K / Jual 28K<br>10B: Beli 2,7JT / Jual 2,45JT</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <i class="fas fa-shield-alt"></i> LLC STORE • Proses Cepat 1-3 Menit • Garansi Penuh • Aman & Terpercaya<br>
+        <strong style="color: #fbbf24;">© 2026 LLC STORE | TopUp Sultan Se-Indonesia | Chat APK 24 Jam</strong>
+    </div>
+</div>
+
+<script>
+    const DOWNLOAD_LINKS = {
+        higgs: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
+        bosDomino: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
+        royalDomino: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
+        berfist: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip"
+    };
+
+    let currentMessage = "";
+
+    function downloadGame(gameKey) {
+        let link = DOWNLOAD_LINKS[gameKey] || "#";
+        if(link !== "#") window.open(link, '_blank');
+        else alert("Link download hubungi admin via Chat APK.");
+    }
+
+    function generateMessageText() {
+        const game = document.getElementById("gameNameDisplay").value || "Game";
+        const type = document.getElementById("transaksiType").value;
+        const jumlah = document.getElementById("jumlahKoin").value.trim();
+        const userId = document.getElementById("idGame").value.trim();
+        const bank = document.getElementById("bankTransfer").value.trim();
+
+        if (!type) return "⚠️ Pilih jenis transaksi (BELI atau JUAL)";
+        if (!jumlah) return "⚠️ Masukkan jumlah koin/chip";
+        if (!userId) return "⚠️ Masukkan ID Game Anda";
+        if (!bank) return "⚠️ Masukkan metode pembayaran (BCA/DANA/OVO dll)";
+
+        return `🛒 ORDER LLC STORE 🛒
 ━━━━━━━━━━━━━━━━━━━━
 🎮 Game: ${game}
 📌 Jenis: ${type}
@@ -278,180 +669,69 @@
 🏦 Metode Bayar: ${bank}
 ━━━━━━━━━━━━━━━━━━━━
 ⏰ Mohon diproses, terima kasih.`;
-        }
-        
-        function updatePreview() {
-            const msg = generateMessage();
-            currentMessage = msg;
-            const box = document.getElementById("resultMessageBox");
-            if(msg.startsWith("⚠️")) {
-                box.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${msg}`;
-                box.style.borderLeftColor = "#ef4444";
-            } else {
-                box.innerHTML = msg.replace(/\n/g, '<br>');
-                box.style.borderLeftColor = "#f59e0b";
-            }
-        }
-        
-        function copyMessage() {
-            if(currentMessage && !currentMessage.startsWith("⚠️")) {
-                navigator.clipboard.writeText(currentMessage).then(() => {
-                    alert("✅ Pesan berhasil disalin!\n\nSekarang buka Chat APK dan paste pesan ke Admin.");
-                }).catch(() => {
-                    alert("❌ Gagal menyalin, silakan blok dan copy manual.");
-                });
-            } else {
-                alert("❌ Lengkapi semua data terlebih dahulu!");
-            }
-        }
-        
-        function openChatAPK() {
-            // Coba kirim ke APK dulu jika ada interface
-            if (window.Android && typeof window.Android.openChat === 'function') {
-                window.Android.openChat();
-                alert("✅ Membuka Chat APK...");
-                closeModal();
-            } else {
-                // Fallback: buka custom scheme
-                window.location.href = "llcstore://customer_chat";
-                alert("📱 Membuka Chat APK... Jika tidak terbuka, buka aplikasi LLC Store secara manual.");
-                closeModal();
-            }
-        }
-        
-        function openModalWithGame(gameName) {
-            document.getElementById("gameNameDisplay").value = gameName;
-            document.getElementById("transaksiType").value = "";
-            document.getElementById("jumlahKoin").value = "";
-            document.getElementById("idGame").value = "";
-            document.getElementById("bankTransfer").value = "";
-            currentMessage = "";
-            document.getElementById("resultMessageBox").innerHTML = "⚡ Isi semua data, pesan akan muncul di sini";
-            document.getElementById("orderModal").style.display = "flex";
-        }
-        
-        function closeModal() {
-            document.getElementById("orderModal").style.display = "none";
-        }
-        
-        document.getElementById("transaksiType").addEventListener("change", updatePreview);
-        document.getElementById("jumlahKoin").addEventListener("input", updatePreview);
-        document.getElementById("idGame").addEventListener("input", updatePreview);
-        document.getElementById("bankTransfer").addEventListener("input", updatePreview);
-        document.getElementById("copyBtn").addEventListener("click", copyMessage);
-        document.getElementById("chatBtn").addEventListener("click", openChatAPK);
-        document.getElementById("submitBtn").addEventListener("click", updatePreview);
-        
-        window.onclick = function(event) { if (event.target === document.getElementById("orderModal")) closeModal(); };
-    </script>
+    }
 
-    <div class="grid">
-        <!-- HIGGS -->
-        <div class="card">
-            <div class="card-header">
-                <div class="game-logo"><img src="https://play-lh.googleusercontent.com/0AfLM4u9VMWMwZK6jeC1ax4mWdM4eQAl3N5jWl2AParMUK65WOEXF_owy6fbtnJS5XY" alt="Higgs" onerror="this.src='https://via.placeholder.com/65?text=H'"></div>
-                <div class="info-header"><h2>HIGGS GAMES ISLAND</h2><div class="sub">TOPUP & JUAL KOIN</div></div>
-            </div>
-            <div class="table-wrapper">
-                <table><thead><tr><th>Jumlah Koin</th><th>Harga Beli</th><th>Harga Jual</th></tr></thead>
-                <tbody>
-                    <tr><td>🔥 100M</td><td class="price-beli">Rp 65.000</td><td class="price-jual">Rp 55.000</td></tr>
-                    <tr><td>⭐ 500M</td><td class="price-beli">Rp 310.000</td><td class="price-jual">Rp 280.000</td></tr>
-                    <tr><td>💎 1B</td><td class="price-beli">Rp 600.000</td><td class="price-jual">Rp 550.000</td></tr>
-                    <tr><td>👑 5B</td><td class="price-beli">Rp 1.450.000</td><td class="price-jual">Rp 1.350.000</td></tr>
-                    <tr><td>🚀 10B</td><td class="price-beli">Rp 2.850.000</td><td class="price-jual">Rp 2.650.000</td></tr>
-                    <tr><td><strong>💥 100B</strong></td><td class="price-beli"><strong>Rp 11.000.000</strong></td><td class="price-jual"><strong>Rp 10.200.000</strong></td></tr>
-                </tbody></table>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="openModalWithGame('HIGGS GAMES ISLAND')"><i class="fas fa-comment-dots"></i> BELI / JUAL</button>
-                    <button class="btn-download" onclick="downloadGame('higgs')"><i class="fas fa-download"></i> DOWNLOAD</button>
-                </div>
-            </div>
-        </div>
+    function updatePreview() {
+        const msg = generateMessageText();
+        currentMessage = msg;
+        const box = document.getElementById("previewBox");
+        if (msg.startsWith("⚠️")) {
+            box.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${msg}`;
+            box.style.borderLeftColor = "#ef4444";
+        } else {
+            box.innerHTML = msg.replace(/\n/g, '<br>');
+            box.style.borderLeftColor = "#f59e0b";
+        }
+    }
 
-        <!-- BOS DOMINO -->
-        <div class="card">
-            <div class="card-header">
-                <div class="game-logo"><img src="https://dl.memuplay.com/new_market/img/com.vivid.domino.icon.2023-11-24-13-29-36.png" alt="Bos Domino" onerror="this.src='https://via.placeholder.com/65?text=BD'"></div>
-                <div class="info-header"><h2>BOS DOMINO</h2><div class="sub">BELI & JUAL CHIP</div></div>
-            </div>
-            <div class="table-wrapper">
-                <table><thead><tr><th>Jumlah Chip</th><th>Harga Beli</th><th>Harga Jual</th></tr></thead>
-                <tbody>
-                    <tr><td>📦 1B</td><td class="price-beli">Rp 70.000</td><td class="price-jual">Rp 60.000</td></tr>
-                    <tr><td>💎 10B</td><td class="price-beli">Rp 330.000</td><td class="price-jual">Rp 295.000</td></tr>
-                    <tr><td>🏆 50B</td><td class="price-beli">Rp 640.000</td><td class="price-jual">Rp 580.000</td></tr>
-                    <tr><td>👑 100B</td><td class="price-beli">Rp 1.550.000</td><td class="price-jual">Rp 1.420.000</td></tr>
-                    <tr><td>🚀 150B</td><td class="price-beli">Rp 3.000.000</td><td class="price-jual">Rp 2.750.000</td></tr>
-                    <tr><td><strong>🌟 500B</strong></td><td class="price-beli"><strong>Rp 12.800.000</strong></td><td class="price-jual"><strong>Rp 11.700.000</strong></td></tr>
-                </tbody></table>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="openModalWithGame('BOS DOMINO')"><i class="fas fa-comment-dots"></i> BELI / JUAL</button>
-                    <button class="btn-download" onclick="downloadGame('bosDomino')"><i class="fas fa-download"></i> DOWNLOAD</button>
-                </div>
-            </div>
-        </div>
+    function copyMessage() {
+        if (currentMessage && !currentMessage.startsWith("⚠️")) {
+            navigator.clipboard.writeText(currentMessage).then(() => {
+                alert("✅ Pesan berhasil disalin!\n\nSekarang buka Chat APK dan paste pesan ke Admin.");
+            }).catch(() => alert("❌ Gagal menyalin, silakan blok dan copy manual."));
+        } else {
+            alert("❌ Lengkapi semua data terlebih dahulu!");
+        }
+    }
 
-        <!-- ROYAL DOMINO -->
-        <div class="card">
-            <div class="card-header">
-                <div class="game-logo"><img src="https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO%20DOWNLOAD%20installworks.ca" alt="Royal Domino" onerror="this.src='https://via.placeholder.com/65?text=RD'"></div>
-                <div class="info-header"><h2>ROYAL DOMINO</h2><div class="sub">BELI & JUAL CHIP</div></div>
-            </div>
-            <div class="table-wrapper">
-                <table><thead><tr><th>Jumlah Chip</th><th>Harga Beli</th><th>Harga Jual</th></tr></thead>
-                <tbody>
-                    <tr><td>500M</td><td class="price-beli">Rp 40.000</td><td class="price-jual">Rp 32.000</td></tr>
-                    <tr><td>1B</td><td class="price-beli">Rp 75.000</td><td class="price-jual">Rp 62.000</td></tr>
-                    <tr><td>5B</td><td class="price-beli">Rp 345.000</td><td class="price-jual">Rp 285.000</td></tr>
-                    <tr><td>10B</td><td class="price-beli">Rp 665.000</td><td class="price-jual">Rp 550.000</td></tr>
-                    <tr><td>30B</td><td class="price-beli">Rp 3.100.000</td><td class="price-jual">Rp 2.550.000</td></tr>
-                    <tr><td><strong>100B</strong></td><td class="price-beli"><strong>Rp 9.800.000</strong></td><td class="price-jual"><strong>Rp 8.500.000</strong></td></tr>
-                </tbody></table>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="openModalWithGame('ROYAL DOMINO')"><i class="fas fa-comment-dots"></i> BELI / JUAL</button>
-                    <button class="btn-download" onclick="downloadGame('royalDomino')"><i class="fas fa-download"></i> DOWNLOAD</button>
-                </div>
-            </div>
-        </div>
+    function openChatAPK() {
+        if (window.Android && typeof window.Android.openChat === 'function') {
+            window.Android.openChat();
+            alert("✅ Membuka Chat APK...");
+            closeModal();
+        } else {
+            window.location.href = "llcstore://customer_chat";
+            alert("📱 Membuka Chat APK... Jika tidak terbuka, buka aplikasi LLC Store secara manual.");
+            closeModal();
+        }
+    }
 
-        <!-- BERFIST -->
-        <div class="card">
-            <div class="card-header">
-                <div class="game-logo"><img src="https://play-lh.googleusercontent.com/mvFrMMdovquq71B-ta-JVKBdw4Zbs2RmPxe8EVFyGiXAtHAm_p0x3940NqDmFGk6vg" alt="Berfist" onerror="this.src='https://via.placeholder.com/65?text=BF'"></div>
-                <div class="info-header"><h2>BERFIST</h2><div class="sub">BELI & JUAL KOIN</div></div>
-            </div>
-            <div class="table-wrapper">
-                <table><thead><tr><th>Jumlah Koin</th><th>Harga Beli</th><th>Harga Jual</th></tr></thead>
-                <tbody>
-                    <tr><td>🥊 100M</td><td class="price-beli">Rp 35.000</td><td class="price-jual">Rp 28.000</td></tr>
-                    <tr><td>💪 500M</td><td class="price-beli">Rp 160.000</td><td class="price-jual">Rp 140.000</td></tr>
-                    <tr><td>🔥 1B</td><td class="price-beli">Rp 310.000</td><td class="price-jual">Rp 280.000</td></tr>
-                    <tr><td>🌟 5B</td><td class="price-beli">Rp 1.450.000</td><td class="price-jual">Rp 1.300.000</td></tr>
-                    <tr><td><strong>🏆 10B</strong></td><td class="price-beli"><strong>Rp 2.700.000</strong></td><td class="price-jual"><strong>Rp 2.450.000</strong></td></tr>
-                </tbody></table>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="openModalWithGame('BERFIST')"><i class="fas fa-comment-dots"></i> BELI / JUAL</button>
-                    <button class="btn-download" onclick="downloadGame('berfist')"><i class="fas fa-download"></i> DOWNLOAD</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    function openModalWithGame(gameName) {
+        document.getElementById("gameNameDisplay").value = gameName;
+        document.getElementById("transaksiType").value = "";
+        document.getElementById("jumlahKoin").value = "";
+        document.getElementById("idGame").value = "";
+        document.getElementById("bankTransfer").value = "";
+        document.getElementById("previewBox").innerHTML = "⚡ Isi data di atas, pesan akan muncul di sini";
+        currentMessage = "";
+        document.getElementById("orderModal").style.display = "flex";
+    }
 
-    <div class="promo-box">
-        <h3><i class="fas fa-list-ul"></i> RINGKASAN HARGA</h3>
-        <div class="promo-grid">
-            <div class="promo-item"><h4>🎮 HIGGS</h4><ul><li>100M: Beli 65K / Jual 55K</li><li>1B: Beli 600K / Jual 550K</li></ul></div>
-            <div class="promo-item"><h4>👑 BOS DOMINO</h4><ul><li>100B: Beli 1,55JT / Jual 1,42JT</li><li>500B: Beli 12,8JT / Jual 11,7JT</li></ul></div>
-            <div class="promo-item"><h4>♟️ ROYAL</h4><ul><li>100B: Beli 9,8JT / Jual 8,5JT</li><li>30B: Beli 3,1JT / Jual 2,55JT</li></ul></div>
-            <div class="promo-item"><h4>🥊 BERFIST</h4><ul><li>100M: Beli 35K / Jual 28K</li><li>10B: Beli 2,7JT / Jual 2,45JT</li></ul></div>
-        </div>
-    </div>
+    function closeModal() {
+        document.getElementById("orderModal").style.display = "none";
+    }
 
-    <div class="footer-note">
-        <i class="fas fa-comment-dots"></i> <strong>LLC STORE</strong> • Proses 1-3 Menit • Garansi Penuh<br>
-        <strong style="color: #fbbf24;">© LLC STORE 2026 | Chat APK 24 Jam</strong>
-    </div>
-</div>
+    document.getElementById("transaksiType").addEventListener("change", updatePreview);
+    document.getElementById("jumlahKoin").addEventListener("input", updatePreview);
+    document.getElementById("idGame").addEventListener("input", updatePreview);
+    document.getElementById("bankTransfer").addEventListener("input", updatePreview);
+    document.getElementById("copyBtn").addEventListener("click", copyMessage);
+    document.getElementById("chatBtn").addEventListener("click", openChatAPK);
+    document.getElementById("generateBtn").addEventListener("click", updatePreview);
+
+    window.onclick = function(event) {
+        if (event.target === document.getElementById("orderModal")) closeModal();
+    };
+</script>
 </body>
 </html>

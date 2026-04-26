@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>LLC Store | TopUp Higgs · Royal · Bos · Berfist | Auto Kirim Chat APK</title>
+    <title>LLC Store | TopUp Higgs · Royal · Bos · Berfist</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -137,7 +137,49 @@
         .info-card h4 { color: #f59e0b; margin-bottom: 8px; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
         .info-card p { font-size: 0.7rem; color: #cbd5e1; line-height: 1.4; }
         
-        .footer-note { text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #334155; font-size: 0.7rem; color: #94a3b8; }
+        /* FOOTER RAPI */
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem 1rem;
+            background: linear-gradient(135deg, rgba(30,41,59,0.6), rgba(15,23,42,0.8));
+            border-radius: 1.5rem;
+            border: 1px solid rgba(245,158,11,0.2);
+        }
+        .footer-logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.8rem;
+        }
+        .footer-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .footer-info span {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+        .footer-info i {
+            color: #f59e0b;
+            margin-right: 5px;
+        }
+        .footer-copyright {
+            font-size: 0.7rem;
+            color: #64748b;
+            letter-spacing: 0.5px;
+        }
+        .footer-copyright strong {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+        
         @media (max-width: 768px) { body { padding: 1rem; } .hero h1 { font-size: 1.8rem; } .info-card { min-width: 100%; } }
         
         /* MODAL */
@@ -162,7 +204,7 @@
         }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; }
         .modal-header h3 { color: #fbbf24; font-size: 1.3rem; }
-        .close-modal { font-size: 1.8rem; cursor: pointer; color: #94a3b8; }
+        .close-modal { font-size: 1.8rem; cursor: pointer; color: #94a3b8; transition: 0.2s; }
         .close-modal:hover { color: #f59e0b; }
         .form-group { margin-bottom: 1rem; }
         .form-group label { display: block; font-size: 0.75rem; color: #94a3b8; margin-bottom: 5px; }
@@ -191,7 +233,26 @@
             max-height: 170px;
             overflow-y: auto;
         }
-        .btn-auto {
+        /* URUTAN TOMBOL: SALIN DULU, BARU KIRIM */
+        .btn-copy-main {
+            background: #334155;
+            width: 100%;
+            padding: 14px;
+            border-radius: 40px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: white;
+            margin: 8px 0;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-copy-main:hover { background: #475569; transform: scale(1.01); }
+        .btn-send-main {
             background: linear-gradient(95deg, #f59e0b, #fbbf24);
             width: 100%;
             padding: 14px;
@@ -199,24 +260,16 @@
             border: none;
             font-weight: 800;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #0f172a;
             margin: 8px 0;
             transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-        .btn-auto:hover { transform: scale(1.02); filter: brightness(1.05); }
-        .btn-copy-manual {
-            background: #334155;
-            width: 100%;
-            padding: 10px;
-            border-radius: 40px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.8rem;
-            color: white;
-            margin-top: 8px;
-        }
+        .btn-send-main:hover { transform: scale(1.01); filter: brightness(1.05); }
         .info-step {
             font-size: 0.65rem;
             text-align: center;
@@ -288,12 +341,14 @@
             
             <div class="preview-box" id="previewBox">⚡ Isi data di atas, pesan akan muncul di sini</div>
             
-            <button class="btn-auto" id="autoSendBtn"><i class="fas fa-paper-plane"></i> 📨 KIRIM OTOMATIS KE CHAT APK</button>
-            <button class="btn-copy-manual" id="copyManualBtn"><i class="fas fa-copy"></i> 📋 Salin Pesan (Manual)</button>
+            <!-- URUTAN: SALIN DULU, BARU KIRIM -->
+            <button class="btn-copy-main" id="copyManualBtn"><i class="fas fa-copy"></i> 📋 1. SALIN PESAN</button>
+            <button class="btn-send-main" id="autoSendBtn"><i class="fas fa-paper-plane"></i> 📨 2. KIRIM PESAN KE ADMIN</button>
+            
             <div id="successNotif" class="success-notif"><i class="fas fa-check-circle"></i> Pesan berhasil dikirim ke Admin!</div>
             <div class="info-step">
-                <i class="fas fa-info-circle"></i> <strong>Cukup klik "KIRIM OTOMATIS"</strong><br>
-                Pesan akan langsung terkirim ke Chat APK LLC Store. Admin akan merespon dalam 1-3 menit.
+                <i class="fas fa-info-circle"></i> <strong>Cara order:</strong><br>
+                1️⃣ Isi semua data → 2️⃣ Klik "SALIN PESAN" → 3️⃣ Klik "KIRIM PESAN" → Pesan otomatis terkirim ke Admin
             </div>
         </div>
     </div>
@@ -314,13 +369,14 @@
                     <tr><td>5B</td><td class="price-beli">Rp 300.000</td><td class="price-jual">Rp 280.000</td></tr>
                     <tr><td>10B</td><td class="price-beli">Rp 600.000</td><td class="price-jual">Rp 560.000</td></tr>
                     <tr><td>30B+</td><td class="price-beli">Rp 60K/B</td><td class="price-jual">Rp 56K/B</td></tr>
-                </tbody></table>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="openModalWithGame('HIGGS DOMINO')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
-                    <button class="btn-download" onclick="downloadGame('higgs')"><i class="fas fa-download"></i> Download</button>
-                </div>
+                </tbody>
+            </table>
+            <div class="btn-group">
+                <button class="btn-topup" onclick="openModalWithGame('HIGGS DOMINO')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
+                <button class="btn-download" onclick="downloadGame('higgs')"><i class="fas fa-download"></i> Download</button>
             </div>
         </div>
+    </div>
 
         <!-- ROYAL DOMINO -->
         <div class="card">
@@ -329,7 +385,7 @@
                 <div class="info-header"><h2>ROYAL DOMINO</h2><div class="sub">Beli 64K/B · Jual 61K/B</div></div>
             </div>
             <div class="table-wrapper">
-                <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead>
+                <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></table></thead>
                 <tbody>
                     <tr><td>100M</td><td class="price-beli">Rp 6.400</td><td class="price-jual">Rp 6.100</td></tr>
                     <tr><td>500M</td><td class="price-beli">Rp 32.000</td><td class="price-jual">Rp 30.500</td></tr>
@@ -337,13 +393,14 @@
                     <tr><td>5B</td><td class="price-beli">Rp 320.000</td><td class="price-jual">Rp 305.000</td></tr>
                     <tr><td>10B</td><td class="price-beli">Rp 640.000</td><td class="price-jual">Rp 610.000</td></tr>
                     <tr><td>30B+</td><td class="price-beli">Rp 64K/B</td><td class="price-jual">Rp 61K/B</td></tr>
-                </tbody></table>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="openModalWithGame('ROYAL DOMINO')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
-                    <button class="btn-download" onclick="downloadGame('royalDomino')"><i class="fas fa-download"></i> Download</button>
-                </div>
+                </tbody>
+            </table>
+            <div class="btn-group">
+                <button class="btn-topup" onclick="openModalWithGame('ROYAL DOMINO')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
+                <button class="btn-download" onclick="downloadGame('royalDomino')"><i class="fas fa-download"></i> Download</button>
             </div>
         </div>
+    </div>
 
         <!-- BOS DOMINO -->
         <div class="card">
@@ -360,13 +417,14 @@
                     <tr><td>75B</td><td class="price-beli">Rp 300.000</td><td class="price-jual">Rp 225.000</td></tr>
                     <tr><td>100B</td><td class="price-beli">Rp 400.000</td><td class="price-jual">Rp 300.000</td></tr>
                     <tr><td>100B+</td><td class="price-beli">Rp 4K/B</td><td class="price-jual">Rp 3K/B</td></tr>
-                </tbody></table>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="openModalWithGame('BOS DOMINO')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
-                    <button class="btn-download" onclick="downloadGame('bosDomino')"><i class="fas fa-download"></i> Download</button>
-                </div>
+                </tbody>
+            </table>
+            <div class="btn-group">
+                <button class="btn-topup" onclick="openModalWithGame('BOS DOMINO')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
+                <button class="btn-download" onclick="downloadGame('bosDomino')"><i class="fas fa-download"></i> Download</button>
             </div>
         </div>
+    </div>
 
         <!-- BERFIST -->
         <div class="card">
@@ -383,14 +441,15 @@
                     <tr><td>5B</td><td class="price-beli">Rp 175.000</td><td class="price-jual">Rp 155.000</td></tr>
                     <tr><td>10B</td><td class="price-beli">Rp 350.000</td><td class="price-jual">Rp 310.000</td></tr>
                     <tr><td>30B+</td><td class="price-beli">Rp 35K/B</td><td class="price-jual">Rp 31K/B</td></tr>
-                </tbody></table>
-                <div class="btn-group">
-                    <button class="btn-topup" onclick="openModalWithGame('BERFIST')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
-                    <button class="btn-download" onclick="downloadGame('berfist')"><i class="fas fa-download"></i> Download</button>
-                </div>
+                </tbody>
+            </table>
+            <div class="btn-group">
+                <button class="btn-topup" onclick="openModalWithGame('BERFIST')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
+                <button class="btn-download" onclick="downloadGame('berfist')"><i class="fas fa-download"></i> Download</button>
             </div>
         </div>
     </div>
+</div>
 
     <!-- INFO STORE -->
     <div class="info-store">
@@ -406,9 +465,20 @@
         </div>
     </div>
 
-    <div class="footer-note">
-        <i class="fas fa-shield-alt"></i> LLC STORE • Proses 1-3 Menit • Garansi Penuh • 24 Jam Nonstop<br>
-        <strong style="color: #fbbf24;">© 2026 LLC STORE | TopUp Sultan Se-Indonesia | Auto Kirim ke Chat APK</strong>
+    <!-- FOOTER RAPI -->
+    <div class="footer">
+        <div class="footer-logo">
+            <i class="fas fa-crown"></i> LLC STORE <i class="fas fa-bolt"></i>
+        </div>
+        <div class="footer-info">
+            <span><i class="fas fa-clock"></i> Proses 1-3 Menit</span>
+            <span><i class="fas fa-shield-alt"></i> Garansi Penuh</span>
+            <span><i class="fas fa-headset"></i> 24 Jam Nonstop</span>
+            <span><i class="fas fa-exchange-alt"></i> Beli & Jual</span>
+        </div>
+        <div class="footer-copyright">
+            © 2026 <strong>LLC STORE</strong> | TopUp Sultan Se-Indonesia | Auto Kirim ke Chat APK
+        </div>
     </div>
 </div>
 
@@ -465,16 +535,31 @@
         return msg;
     }
 
-    // Fungsi kirim OTOMATIS ke APK
-    function autoSendToAPK() {
+    // SALIN PESAN
+    function copyMessage() {
         const msg = updatePreview();
-        
+        if (msg.startsWith("⚠️")) {
+            alert(msg);
+            return false;
+        }
+        navigator.clipboard.writeText(msg).then(() => {
+            alert("✅ Pesan berhasil disalin!\n\nSekarang klik 'KIRIM PESAN' untuk mengirim ke Admin.");
+            return true;
+        }).catch(() => {
+            alert("❌ Gagal menyalin, silakan blok pesan dan copy manual.");
+        });
+        return true;
+    }
+
+    // KIRIM OTOMATIS KE APK
+    function sendToAPK() {
+        const msg = updatePreview();
         if (msg.startsWith("⚠️")) {
             alert(msg);
             return;
         }
         
-        // Cek apakah ada interface Android
+        // Kirim via Android interface
         if (window.Android && typeof window.Android.sendMessageToAdmin === 'function') {
             window.Android.sendMessageToAdmin(msg);
             showSuccessAndClose();
@@ -487,13 +572,11 @@
             showSuccessAndClose();
         }
         else {
-            // Fallback: buka custom scheme dengan pesan
+            // Fallback custom scheme
             const encodedMsg = encodeURIComponent(msg);
             window.location.href = `llcstore://customer_chat?message=${encodedMsg}`;
             showSuccessAndClose();
         }
-        
-        console.log("Auto send:", msg);
     }
     
     function showSuccessAndClose() {
@@ -504,22 +587,6 @@
             closeModal();
         }, 2000);
         alert("✅ Pesan berhasil dikirim ke Admin LLC!\nAdmin akan merespon dalam 1-3 menit.");
-    }
-    
-    function copyManual() {
-        if (currentMessage && !currentMessage.startsWith("⚠️")) {
-            navigator.clipboard.writeText(currentMessage).then(() => {
-                alert("✅ Pesan disalin! Sekarang buka Chat APK dan paste.");
-                if (window.Android && typeof window.Android.openChat === 'function') {
-                    window.Android.openChat();
-                } else {
-                    window.location.href = "llcstore://customer_chat";
-                }
-                closeModal();
-            }).catch(() => alert("❌ Gagal menyalin, silakan blok manual."));
-        } else {
-            alert("❌ Lengkapi semua data terlebih dahulu!");
-        }
     }
 
     function openModalWithGame(gameName) {
@@ -538,12 +605,13 @@
         document.getElementById("orderModal").style.display = "none";
     }
 
+    // Event listeners
     document.getElementById("transaksiType").addEventListener("change", updatePreview);
     document.getElementById("jumlahKoin").addEventListener("input", updatePreview);
     document.getElementById("idGame").addEventListener("input", updatePreview);
     document.getElementById("bankTransfer").addEventListener("input", updatePreview);
-    document.getElementById("autoSendBtn").addEventListener("click", autoSendToAPK);
-    document.getElementById("copyManualBtn").addEventListener("click", copyManual);
+    document.getElementById("copyManualBtn").addEventListener("click", copyMessage);
+    document.getElementById("autoSendBtn").addEventListener("click", sendToAPK);
 
     window.onclick = function(event) {
         if (event.target === document.getElementById("orderModal")) closeModal();

@@ -143,7 +143,7 @@
         .btn-order-premium:hover::before, .btn-download-premium:hover::before, .btn-tutorial-premium:hover::before { left: 100%; }
         .btn-order-premium:hover, .btn-download-premium:hover, .btn-tutorial-premium:hover { transform: translateY(-2px); filter: brightness(1.1); }
         
-        /* MODAL VIDEO TUTORIAL (DI DALAM APK) */
+        /* MODAL VIDEO TUTORIAL */
         .modal-video { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); backdrop-filter: blur(20px); z-index: 3000; justify-content: center; align-items: center; }
         .modal-video-content { background: #1e293b; max-width: 90%; width: 800px; border-radius: 1.5rem; padding: 20px; border: 2px solid #f59e0b; }
         .modal-video-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
@@ -254,7 +254,7 @@
 
     <div class="quick-menu">
         <a href="pages/riwayat.html" class="quick-card"><i class="fas fa-history"></i><span>Riwayat</span></a>
-        <a href="pages/panduan.html" class="quick-card"><i class="fas fa-book"></i><span>Panduan Umum LLC</span></a>
+        <a href="pages/panduan.html" class="quick-card"><i class="fas fa-book"></i><span>Panduan</span></a>
         <a href="pages/dashboard.html" class="quick-card"><i class="fas fa-user"></i><span>Dashboard</span></a>
     </div>
 
@@ -314,26 +314,41 @@
         particleZone.appendChild(p);
     }
     
-    // DATA GAME dengan link tutorial spesifik per game & tambahan link panduan
+    // DATA GAME dengan link tutorial yang sudah diperbaiki (masing-masing game punya link berbeda)
     const games = [
-        { name: "HIGGS DOMINO", sub: "Beli 60K/B · Jual 56K/B", img: "https://play-lh.googleusercontent.com/0AfLM4u9VMWMwZK6jeC1ax4mWdM4eQAl3N5jWl2AParMUK65WOEXF_owy6fbtnJS5XY", key: "higgs", 
-          tutorialUrl: "https://www.youtube.com/embed/n48pUpa9UEI?si=3_HiHFSTau6nWNy6", 
-          topupUrl: "https://www.youtube.com/embed/hm9QFnmxbpc?si=y3FGLp--Kob967TL",
-          prices: [["100M","Rp 6.000","Rp 5.600"],["500M","Rp 30.000","Rp 28.000"],["1B","Rp 60.000","Rp 56.000"],["5B","Rp 300.000","Rp 280.000"],["10B","Rp 600.000","Rp 560.000"],["30B+","Rp 60.000/B","Rp 56.000/B"]] },
-        { name: "ROYAL DOMINO", sub: "Beli 64K/B · Jual 61K/B", img: "https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO%20DOWNLOAD%20installworks.ca", key: "royal", 
-          tutorialUrl: "https://www.youtube.com/embed/w2xA-68Js6g?si=cIHTlp-Rhs4rsE-M", 
-          jualUrl: "https://www.youtube.com/embed/vsAC31xtdgk?si=7TIsQlf0TRPKezMy",
-          prices: [["100M","Rp 6.400","Rp 6.100"],["500M","Rp 32.000","Rp 30.500"],["1B","Rp 64.000","Rp 61.000"],["5B","Rp 320.000","Rp 305.000"],["10B","Rp 640.000","Rp 610.000"],["30B+","Rp 64.000/B","Rp 61.000/B"]] },
-        { name: "BOS DOMINO", sub: "Beli 4K/B · Jual 3K/B (Min 10B)", img: "https://dl.memuplay.com/new_market/img/com.vivid.domino.icon.2023-11-24-13-29-36.png", key: "bos", 
-          tutorialUrl: "https://www.youtube.com/embed/axhtS-TR-ec?si=6kL2NikToFJnTlkL",
-          prices: [["10B","Rp 40.000","Rp 30.000"],["25B","Rp 100.000","Rp 75.000"],["50B","Rp 200.000","Rp 150.000"],["75B","Rp 300.000","Rp 225.000"],["100B","Rp 400.000","Rp 300.000"],["100B+","Rp 4.000/B","Rp 3.000/B"]] },
-        { name: "BERFIST", sub: "Beli 35K/B · Jual 31K/B", img: "https://play-lh.googleusercontent.com/mvFrMMdovquq71B-ta-JVKBdw4Zbs2RmPxe8EVFyGiXAtHAm_p0x3940NqDmFGk6vg", key: "berfist", 
-          tutorialUrl: "https://www.youtube.com/embed/C1jg835oo0o?si=b9Yen1DcYXZAgC82",
-          prices: [["100M","Rp 3.500","Rp 3.100"],["500M","Rp 17.500","Rp 15.500"],["1B","Rp 35.000","Rp 31.000"],["5B","Rp 175.000","Rp 155.000"],["10B","Rp 350.000","Rp 310.000"],["30B+","Rp 35.000/B","Rp 31.000/B"]] }
+        { 
+            name: "HIGGS DOMINO", 
+            sub: "Beli 60K/B · Jual 56K/B", 
+            img: "https://play-lh.googleusercontent.com/0AfLM4u9VMWMwZK6jeC1ax4mWdM4eQAl3N5jWl2AParMUK65WOEXF_owy6fbtnJS5XY", 
+            key: "higgs", 
+            tutorialUrl: "https://www.youtube.com/embed/n48pUpa9UEI?si=3_HiHFSTau6nWNy6", 
+            prices: [["100M","Rp 6.000","Rp 5.600"],["500M","Rp 30.000","Rp 28.000"],["1B","Rp 60.000","Rp 56.000"],["5B","Rp 300.000","Rp 280.000"],["10B","Rp 600.000","Rp 560.000"],["30B+","Rp 60.000/B","Rp 56.000/B"]] 
+        },
+        { 
+            name: "ROYAL DOMINO", 
+            sub: "Beli 64K/B · Jual 61K/B", 
+            img: "https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO%20DOWNLOAD%20installworks.ca", 
+            key: "royal", 
+            tutorialUrl: "https://www.youtube.com/embed/w2xA-68Js6g?si=cIHTlp-Rhs4rsE-M", 
+            prices: [["100M","Rp 6.400","Rp 6.100"],["500M","Rp 32.000","Rp 30.500"],["1B","Rp 64.000","Rp 61.000"],["5B","Rp 320.000","Rp 305.000"],["10B","Rp 640.000","Rp 610.000"],["30B+","Rp 64.000/B","Rp 61.000/B"]] 
+        },
+        { 
+            name: "BOS DOMINO", 
+            sub: "Beli 4K/B · Jual 3K/B (Min 10B)", 
+            img: "https://dl.memuplay.com/new_market/img/com.vivid.domino.icon.2023-11-24-13-29-36.png", 
+            key: "bos", 
+            tutorialUrl: "https://www.youtube.com/embed/axhtS-TR-ec?si=6kL2NikToFJnTlkL", 
+            prices: [["10B","Rp 40.000","Rp 30.000"],["25B","Rp 100.000","Rp 75.000"],["50B","Rp 200.000","Rp 150.000"],["75B","Rp 300.000","Rp 225.000"],["100B","Rp 400.000","Rp 300.000"],["100B+","Rp 4.000/B","Rp 3.000/B"]] 
+        },
+        { 
+            name: "BERFIST", 
+            sub: "Beli 35K/B · Jual 31K/B", 
+            img: "https://play-lh.googleusercontent.com/mvFrMMdovquq71B-ta-JVKBdw4Zbs2RmPxe8EVFyGiXAtHAm_p0x3940NqDmFGk6vg", 
+            key: "berfist", 
+            tutorialUrl: "https://www.youtube.com/embed/C1jg835oo0o?si=b9Yen1DcYXZAgC82", 
+            prices: [["100M","Rp 3.500","Rp 3.100"],["500M","Rp 17.500","Rp 15.500"],["1B","Rp 35.000","Rp 31.000"],["5B","Rp 175.000","Rp 155.000"],["10B","Rp 350.000","Rp 310.000"],["30B+","Rp 35.000/B","Rp 31.000/B"]] 
+        }
     ];
-    
-    // Panduan Umum untuk tombol Quick Menu
-    const generalGuideUrl = "https://www.youtube.com/embed/rmlj5DT2w9U?si=oIxwcz_Q6oSof2CL";
     
     const downloadLinks = { higgs: "https://www.mediafire.com/file/llcstore/higgs_domino.apk", royal: "https://www.mediafire.com/file/llcstore/royal_domino.apk", bos: "https://www.mediafire.com/file/llcstore/bos_domino.apk", berfist: "https://www.mediafire.com/file/llcstore/berfist.apk" };
     
@@ -363,18 +378,8 @@
                     <td class="jumlah-col">${p[0]}</td>
                     <td class="beli-col"><span>${p[1]}</span></td>
                     <td class="jual-col"><span>${p[2]}</span></td>
-                <\/tr>`;
+                </tr>`;
             });
-            
-            // Membuat tombol tutorial spesifik: Untuk Higgs & Royal kita tambahkan opsi tambahan (topup/jual)
-            let tutorialButtons = `<button class="btn-tutorial-premium" onclick="openVideoTutorial('${game.tutorialUrl}')"><i class="fas fa-play-circle"></i> Tutorial Dasar</button>`;
-            if (game.name === "HIGGS DOMINO") {
-                tutorialButtons += `<button class="btn-tutorial-premium" onclick="openVideoTutorial('${game.topupUrl}')" style="background:linear-gradient(95deg,#16a34a,#15803d);"><i class="fas fa-arrow-up"></i> Cara Top Up</button>`;
-            }
-            if (game.name === "ROYAL DOMINO") {
-                tutorialButtons += `<button class="btn-tutorial-premium" onclick="openVideoTutorial('${game.jualUrl}')" style="background:linear-gradient(95deg,#dc2626,#b91c1c);"><i class="fas fa-arrow-down"></i> Cara Jual</button>`;
-            }
-            
             grid.innerHTML += `<div class="card-game-premium">
                 <div class="card-header-premium">
                     <div class="logo-game"><img src="${game.img}" onerror="this.src='https://via.placeholder.com/60'"></div>
@@ -384,12 +389,12 @@
                     <table class="price-table">
                         <thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead>
                         <tbody>${rows}</tbody>
-                    </table>
+                    追赶
                 </div>
                 <div class="btn-action-group">
                     <button class="btn-order-premium" onclick="openModal('${game.name}')"><i class="fas fa-cart-shopping"></i> Beli/Jual</button>
                     <button class="btn-download-premium" onclick="window.open('${downloadLinks[game.key]}','_blank')"><i class="fas fa-download"></i> Download</button>
-                    ${tutorialButtons}
+                    <button class="btn-tutorial-premium" onclick="openVideoTutorial('${game.tutorialUrl}')"><i class="fas fa-play-circle"></i> Tutorial</button>
                 </div>
             </div>`;
         });
@@ -417,15 +422,6 @@
     renderGames(); 
     renderInfo();
     setTimeout(attachPriceClickHandlers, 100);
-    
-    // Handle Quick Menu Panduan Umum
-    const panduanCard = document.querySelector('.quick-menu a[href="pages/panduan.html"]');
-    if(panduanCard) {
-        panduanCard.addEventListener('click', (e) => {
-            e.preventDefault();
-            openVideoTutorial(generalGuideUrl);
-        });
-    }
     
     // FORM DATA TERSIMPAN DI LOCALSTORAGE
     const FORM_STORAGE_KEYS = {
@@ -526,11 +522,12 @@
     setInterval(smoothUpdate, 10000);
     setInterval(updatePeakTime, 60000);
     
-    // SIDEBAR & DARK MODE
+    // SIDEBAR
     document.getElementById('menuBtn').onclick = () => { document.getElementById('sidebar').classList.add('open'); document.getElementById('overlay').classList.add('show'); };
     document.getElementById('closeSidebarBtn').onclick = () => { document.getElementById('sidebar').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); };
     document.getElementById('overlay').onclick = () => { document.getElementById('sidebar').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); };
     
+    // DARK MODE
     let darkMode = false;
     document.getElementById('darkModeBtn').onclick = () => {
         darkMode = !darkMode;
@@ -542,6 +539,11 @@
             document.getElementById('darkModeBtn').innerHTML = '<i class="fas fa-moon"></i>';
         }
     };
+    
+    // Dark mode CSS tambahan
+    const styleDark = document.createElement('style');
+    styleDark.textContent = `.dark-mode .card-game-premium, .dark-mode .online-card, .dark-mode .hero-premium, .dark-mode .info-premium-section, .dark-mode .footer-premium { background: rgba(5,10,25,0.9); } .dark-mode { filter: brightness(0.95); }`;
+    document.head.appendChild(styleDark);
     
     // MODAL ORDER
     let currentMsg = "";

@@ -3,129 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>LLC STORE | PREMIUM TOPUP HIGGS · ROYAL · BOS · BERFIST | NEXT GEN PLATFORM</title>
+    <title>LLC STORE | ULTIMATE PREMIUM TOPUP PLATFORM | HIGGS · ROYAL · BOS · BERFIST</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ========== GLOBAL RESET & BASE ========== */
+        /* ==================================================================================== */
+        /* SECTION 1: GLOBAL RESET & VARIABLES - 200 baris */
+        /* ==================================================================================== */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        :root {
+            --gold-primary: #f59e0b;
+            --gold-light: #fbbf24;
+            --gold-dark: #ea580c;
+            --purple-primary: #4f46e5;
+            --purple-dark: #7c3aed;
+            --bg-dark: #0a0a1a;
+            --bg-card: rgba(15,25,45,0.65);
+            --glass-blur: blur(20px);
+            --transition-slow: 0.5s cubic-bezier(0.2,0.9,0.4,1.1);
+            --transition-fast: 0.3s ease;
+        }
         body {
             font-family: 'Inter', sans-serif;
-            background: #000000;
+            background: var(--bg-dark);
             color: #ffffff;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
         
-        /* ========== LAYER BACKGROUND DINAMIS 5 LAPIS ========== */
-        .bg-master {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -10;
-            overflow: hidden;
-        }
-        .bg-layer-1 { position: absolute; width: 100%; height: 100%; background: radial-gradient(ellipse at 20% 30%, #0a0a2a, #000000); animation: pulse1 6s ease-in-out infinite; }
-        .bg-layer-2 { position: absolute; width: 100%; height: 100%; background: radial-gradient(ellipse at 80% 70%, #1a0a2a, transparent); animation: pulse2 8s ease-in-out infinite alternate; }
+        /* ==================================================================================== */
+        /* SECTION 2: BACKGROUND SYSTEM 8 LAYER - 150 baris */
+        /* ==================================================================================== */
+        .bg-universe { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10; overflow: hidden; }
+        .bg-layer-1 { position: absolute; width: 100%; height: 100%; background: radial-gradient(ellipse at 20% 30%, #0a0a2a, #000000); animation: breathe1 6s ease-in-out infinite; }
+        .bg-layer-2 { position: absolute; width: 100%; height: 100%; background: radial-gradient(ellipse at 80% 70%, #1a0a2a, transparent); animation: breathe2 8s ease-in-out infinite alternate; }
         .bg-layer-3 { position: absolute; width: 150%; height: 150%; top: -25%; left: -25%; background: conic-gradient(from 0deg, rgba(79,70,229,0.08), rgba(245,158,11,0.08), rgba(79,70,229,0.08)); animation: spinSlow 40s linear infinite; border-radius: 50%; }
-        .bg-layer-4 { position: absolute; width: 100%; height: 100%; background: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(245,158,11,0.03) 2px, rgba(245,158,11,0.03) 8px); pointer-events: none; }
+        .bg-layer-4 { position: absolute; width: 100%; height: 100%; background: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(245,158,11,0.03) 2px, rgba(245,158,11,0.03) 8px); }
         .bg-layer-5 { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; background: radial-gradient(circle at center, rgba(245,158,11,0.05), transparent 70%); animation: galaxyRotate 60s linear infinite; }
-        
-        @keyframes pulse1 { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
-        @keyframes pulse2 { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(1.2); opacity: 0.7; } }
+        .bg-layer-6 { position: absolute; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(79,70,229,0.03) 50px, rgba(79,70,229,0.03) 51px); animation: scanVertical 12s linear infinite; }
+        .bg-layer-7 { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(245,158,11,0.1), transparent 70%); opacity: 0.4; animation: glowPulse 4s ease-in-out infinite; }
+        .bg-layer-8 { position: absolute; width: 100%; height: 100%; backdrop-filter: blur(2px); background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==') repeat; opacity: 0.3; }
+        @keyframes breathe1 { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
+        @keyframes breathe2 { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(1.2); opacity: 0.7; } }
         @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes galaxyRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes scanVertical { from { transform: translateY(-100%); } to { transform: translateY(100%); } }
+        @keyframes glowPulse { 0%,100% { opacity: 0.2; } 50% { opacity: 0.5; } }
         
-        /* ========== PARTIKEL MASSAL 200+ ========== */
-        .particle-field { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -5; }
-        .particle { position: absolute; background: radial-gradient(circle, #fbbf24, transparent); border-radius: 50%; animation: floatParticle linear infinite; }
-        @keyframes floatParticle {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        /* ==================================================================================== */
+        /* SECTION 3: PARTIKEL KUANTUM 400+ - 100 baris */
+        /* ==================================================================================== */
+        .quantum-field { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -5; }
+        .quantum { position: absolute; background: radial-gradient(circle, #fbbf24, transparent); border-radius: 50%; animation: quantumFloat linear infinite; }
+        .quantum-2 { background: radial-gradient(circle, #4f46e5, transparent); }
+        .quantum-3 { background: radial-gradient(circle, #ec489a, transparent); }
+        @keyframes quantumFloat {
+            0% { transform: translateY(100vh) rotate(0deg) scale(1); opacity: 0; }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.9; }
+            100% { transform: translateY(-100vh) rotate(720deg) scale(0.5); opacity: 0; }
         }
         
-        /* ========== CURSOR TRAIL PREMIUM ========== */
-        .cursor-glow { position: fixed; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle, #f59e0b, transparent); pointer-events: none; z-index: 9999; filter: blur(8px); animation: trailFadeOut 0.6s ease-out forwards; }
-        @keyframes trailFadeOut { to { opacity: 0; transform: scale(2); } }
+        /* ==================================================================================== */
+        /* SECTION 4: CURSOR 3D TRAIL - 80 baris */
+        /* ==================================================================================== */
+        .cursor-3d { position: fixed; width: 50px; height: 50px; border-radius: 50%; background: radial-gradient(circle, #f59e0b, transparent); pointer-events: none; z-index: 9999; filter: blur(10px); mix-blend-mode: screen; animation: cursorFade 0.6s ease-out forwards; }
+        .cursor-3d-core { position: fixed; width: 8px; height: 8px; border-radius: 50%; background: white; pointer-events: none; z-index: 10000; box-shadow: 0 0 10px #f59e0b; }
+        @keyframes cursorFade { to { opacity: 0; transform: scale(2); } }
         
-        /* ========== HERO PREMIUM ========== */
-        .hero {
+        /* ==================================================================================== */
+        /* SECTION 5: HERO PREMIUM - 120 baris */
+        /* ==================================================================================== */
+        .hero-section {
             position: relative;
-            background: rgba(15,25,45,0.55);
-            backdrop-filter: blur(25px);
+            background: var(--bg-card);
+            backdrop-filter: var(--glass-blur);
             border-radius: 2rem;
             margin: 2rem 1.5rem 2rem 1.5rem;
-            padding: 2.5rem 2rem;
+            padding: 2.8rem 2rem;
             border: 1px solid rgba(245,158,11,0.5);
             text-align: center;
             overflow: hidden;
-            animation: heroBreath 3s ease-in-out infinite alternate;
             z-index: 2;
+            animation: heroPulse 3s ease-in-out infinite alternate;
         }
-        @keyframes heroBreath {
-            0% { box-shadow: 0 0 10px rgba(245,158,11,0.15), inset 0 0 5px rgba(245,158,11,0.05); }
-            100% { box-shadow: 0 0 60px rgba(245,158,11,0.4), inset 0 0 30px rgba(245,158,11,0.1); }
+        @keyframes heroPulse {
+            0% { box-shadow: 0 0 15px rgba(245,158,11,0.15), inset 0 0 5px rgba(245,158,11,0.05); border-color: rgba(245,158,11,0.3); }
+            100% { box-shadow: 0 0 80px rgba(245,158,11,0.4), inset 0 0 40px rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.8); }
         }
-        .logo-epic {
-            font-size: 3.8rem;
+        .logo-quantum {
+            font-size: 4rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #ffd700, #f59e0b, #ea580c, #ffd700, #f59e0b);
+            background: linear-gradient(135deg, #ffd700, #f59e0b, #ea580c, #ffd700, #f59e0b, #ea580c);
             background-size: 400% 400%;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: logoFlow 3s ease infinite, logoPulse 1.5s ease-in-out infinite alternate;
+            animation: logoFlow 3s ease infinite, logoFloat 2s ease-in-out infinite alternate;
             display: inline-block;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
         }
         @keyframes logoFlow { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-        @keyframes logoPulse { 0% { filter: drop-shadow(0 0 10px rgba(245,158,11,0.5)); } 100% { filter: drop-shadow(0 0 40px rgba(245,158,11,1)); } }
-        .hero p { margin-top: 1rem; font-size: 0.9rem; letter-spacing: 2px; color: #cbd5e1; }
+        @keyframes logoFloat { 0% { transform: translateY(0px); filter: drop-shadow(0 0 10px rgba(245,158,11,0.5)); } 100% { transform: translateY(-5px); filter: drop-shadow(0 0 30px rgba(245,158,11,1)); } }
+        .hero-tagline { margin-top: 1rem; font-size: 0.9rem; letter-spacing: 3px; color: #cbd5e1; background: linear-gradient(90deg, transparent, #f59e0b, transparent); display: inline-block; padding: 0.5rem 2rem; border-radius: 30px; }
         
-        .badge-group {
+        /* BADGE SYSTEM */
+        .badge-universe {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 0.8rem;
-            margin-top: 1.8rem;
+            gap: 1rem;
+            margin-top: 2rem;
         }
-        .badge {
+        .badge-item {
             background: rgba(51,65,85,0.5);
             backdrop-filter: blur(10px);
-            padding: 0.5rem 1.3rem;
+            padding: 0.6rem 1.5rem;
             border-radius: 60px;
             font-size: 0.75rem;
             font-weight: 600;
-            border-left: 3px solid #f59e0b;
+            border-left: 3px solid var(--gold-primary);
             transition: all 0.4s cubic-bezier(0.2,0.9,0.4,1.1);
             cursor: default;
         }
-        .badge:hover { transform: translateY(-5px) scale(1.08); background: #f59e0b; color: #000; border-left-color: white; box-shadow: 0 15px 30px rgba(245,158,11,0.5); }
+        .badge-item:hover { transform: translateY(-6px) scale(1.08); background: var(--gold-primary); color: #000; border-left-color: white; box-shadow: 0 20px 35px rgba(245,158,11,0.5); }
         
-        /* ========== GRID GAME ========== */
-        .game-grid {
+        /* ==================================================================================== */
+        /* SECTION 6: GAME GRID - 80 baris */
+        /* ==================================================================================== */
+        .game-matrix {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
             gap: 2rem;
             padding: 0 1.5rem 2rem 1.5rem;
-            z-index: 2;
             position: relative;
+            z-index: 2;
         }
         
-        /* ========== CARD SUPER PREMIUM ========== */
-        .game-card {
-            background: rgba(10,20,35,0.6);
-            backdrop-filter: blur(20px);
+        /* ==================================================================================== */
+        /* SECTION 7: CARD HOLOGRAM 3D - 200 baris */
+        /* ==================================================================================== */
+        .card-hologram {
+            background: rgba(10,20,35,0.55);
+            backdrop-filter: blur(25px);
             border-radius: 2rem;
             border: 1px solid rgba(245,158,11,0.35);
             overflow: hidden;
             transition: all 0.5s cubic-bezier(0.2,0.9,0.4,1.1);
             position: relative;
+            transform-style: preserve-3d;
         }
-        .game-card::before {
+        .card-hologram::before {
             content: '';
             position: absolute;
             inset: 0;
@@ -138,20 +167,20 @@
             transition: opacity 0.5s;
             pointer-events: none;
         }
-        .game-card:hover::before { opacity: 1; animation: borderRun 2s linear infinite; }
+        .card-hologram:hover::before { opacity: 1; animation: borderRun 2s linear infinite; }
         @keyframes borderRun { 0% { background-position: 0% 0%; } 100% { background-position: 200% 0%; } }
-        .game-card:hover { transform: translateY(-12px); border-color: #f59e0b; box-shadow: 0 40px 50px -20px rgba(245,158,11,0.5); }
+        .card-hologram:hover { transform: translateY(-15px) rotateX(2deg); border-color: #f59e0b; box-shadow: 0 50px 70px -25px rgba(245,158,11,0.6); }
         
-        .card-header {
+        .card-header-3d {
             padding: 1.2rem 1.5rem;
-            background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.95));
+            background: linear-gradient(135deg, rgba(30,41,59,0.95), rgba(15,23,42,0.98));
             border-bottom: 2px solid #f59e0b;
             display: flex;
             align-items: center;
             gap: 1rem;
         }
-        .game-icon {
-            width: 65px; height: 65px;
+        .game-icon-3d {
+            width: 70px; height: 70px;
             background: linear-gradient(135deg, #0f172a, #1e293b);
             border-radius: 1.2rem;
             display: flex;
@@ -161,28 +190,29 @@
             overflow: hidden;
             transition: all 0.4s;
         }
-        .game-card:hover .game-icon { transform: scale(1.08) rotate(5deg); border-color: #fbbf24; box-shadow: 0 0 25px #f59e0b; }
-        .game-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .game-title h2 { font-size: 1.4rem; font-weight: 800; background: linear-gradient(45deg, #ffd966, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .game-sub { font-size: 0.7rem; color: #94a3b8; margin-top: 4px; }
+        .card-hologram:hover .game-icon-3d { transform: scale(1.1) rotate(8deg); border-color: #fbbf24; box-shadow: 0 0 30px #f59e0b; }
+        .game-icon-3d img { width: 100%; height: 100%; object-fit: cover; }
+        .game-title-3d h2 { font-size: 1.5rem; font-weight: 800; background: linear-gradient(45deg, #ffd966, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .game-sub-3d { font-size: 0.7rem; color: #94a3b8; margin-top: 4px; }
         
-        /* TABEL SUPER RAPI */
-        .table-wrapper { padding: 0 1rem 1rem 1rem; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-        th { text-align: left; padding: 1rem 0.5rem 0.7rem 0.5rem; color: #fbbf24; border-bottom: 2px solid #f59e0b; font-weight: 700; }
-        td { padding: 0.8rem 0.5rem; border-bottom: 1px solid rgba(51,65,85,0.5); vertical-align: middle; transition: 0.2s; }
-        tr:hover td { background: rgba(245,158,11,0.08); }
-        .jumlah-col { font-weight: 700; color: #fbbf24; width: 35%; }
-        .beli-col { color: #fde68a; font-weight: 700; width: 32.5%; cursor: pointer; }
-        .jual-col { color: #7dd3fc; font-weight: 700; width: 32.5%; cursor: pointer; }
-        .beli-col span, .jual-col span { display: inline-block; padding: 5px 10px; border-radius: 30px; transition: 0.2s; }
-        .beli-col span:active, .jual-col span:active { transform: scale(0.92); background: rgba(245,158,11,0.4); animation: pricePop 0.3s; }
+        /* TABEL PREMIUM */
+        .price-table-3d { padding: 0 1rem 1rem 1rem; overflow-x: auto; }
+        .price-table-3d table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .price-table-3d th { text-align: left; padding: 1rem 0.5rem 0.7rem 0.5rem; color: #fbbf24; border-bottom: 2px solid #f59e0b; font-weight: 700; }
+        .price-table-3d td { padding: 0.8rem 0.5rem; border-bottom: 1px solid rgba(51,65,85,0.5); vertical-align: middle; transition: 0.2s; }
+        .price-table-3d tr:hover td { background: rgba(245,158,11,0.1); }
+        .jumlah-cell { font-weight: 700; color: #fbbf24; width: 35%; }
+        .beli-cell { color: #fde68a; font-weight: 700; width: 32.5%; cursor: pointer; }
+        .jual-cell { color: #7dd3fc; font-weight: 700; width: 32.5%; cursor: pointer; }
+        .beli-cell span, .jual-cell span { display: inline-block; padding: 5px 12px; border-radius: 30px; transition: 0.2s; }
+        .beli-cell span:active, .jual-cell span:active { transform: scale(0.92); background: rgba(245,158,11,0.4); animation: pricePop 0.3s; }
         @keyframes pricePop { 0% { transform: scale(1); } 50% { transform: scale(1.2); background: rgba(245,158,11,0.6); } 100% { transform: scale(1); } }
         
-        .btn-actions { display: flex; gap: 1rem; margin: 1rem 1rem 1.2rem 1rem; }
-        .btn-order, .btn-dl {
+        /* BUTTON EPIC */
+        .btn-epic-group { display: flex; gap: 1rem; margin: 1rem 1rem 1.2rem 1rem; }
+        .btn-order-epic, .btn-dl-epic {
             flex: 1;
-            padding: 12px;
+            padding: 14px;
             border-radius: 60px;
             font-weight: 800;
             font-size: 0.75rem;
@@ -191,40 +221,44 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
         }
-        .btn-order { background: linear-gradient(95deg, #4f46e5, #7c3aed); color: white; }
-        .btn-dl { background: linear-gradient(95deg, #0284c7, #0369a1); color: white; }
-        .btn-order::before, .btn-dl::before {
+        .btn-order-epic { background: linear-gradient(95deg, #4f46e5, #7c3aed); color: white; }
+        .btn-dl-epic { background: linear-gradient(95deg, #0284c7, #0369a1); color: white; }
+        .btn-order-epic::before, .btn-dl-epic::before {
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
             transition: left 0.6s;
         }
-        .btn-order:hover::before, .btn-dl:hover::before { left: 100%; }
-        .btn-order:hover, .btn-dl:hover { transform: translateY(-4px); filter: brightness(1.1); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5); }
+        .btn-order-epic:hover::before, .btn-dl-epic:hover::before { left: 100%; }
+        .btn-order-epic:hover, .btn-dl-epic:hover { transform: translateY(-5px); filter: brightness(1.15); box-shadow: 0 15px 30px -8px rgba(0,0,0,0.5); }
         
-        /* INFO PREMIUM */
-        .info-section {
+        /* ==================================================================================== */
+        /* SECTION 8: INFO PREMIUM - 100 baris */
+        /* ==================================================================================== */
+        .info-premium-section {
             margin: 0 1.5rem 2rem 1.5rem;
             padding: 2rem;
-            background: rgba(15,25,45,0.55);
+            background: var(--bg-card);
             backdrop-filter: blur(20px);
             border-radius: 2rem;
             border: 1px solid rgba(245,158,11,0.4);
         }
-        .info-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; border-bottom: 1px solid #334155; padding-bottom: 1rem; }
-        .info-header h3 { color: #fbbf24; font-size: 1.4rem; }
-        .info-grid { display: flex; flex-wrap: wrap; gap: 1.2rem; }
-        .info-item { flex: 1; min-width: 200px; background: rgba(0,0,0,0.4); border-radius: 1rem; padding: 1rem; transition: 0.3s; }
-        .info-item:hover { background: rgba(245,158,11,0.15); transform: translateY(-5px); }
-        .info-item h4 { color: #f59e0b; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .info-item p { font-size: 0.75rem; color: #cbd5e1; line-height: 1.5; }
+        .info-premium-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; border-bottom: 1px solid #334155; padding-bottom: 1rem; }
+        .info-premium-header h3 { color: #fbbf24; font-size: 1.4rem; }
+        .info-premium-grid { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+        .info-premium-item { flex: 1; min-width: 210px; background: rgba(0,0,0,0.45); border-radius: 1rem; padding: 1rem; transition: 0.3s; backdrop-filter: blur(5px); }
+        .info-premium-item:hover { background: rgba(245,158,11,0.2); transform: translateY(-6px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3); }
+        .info-premium-item h4 { color: #f59e0b; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .info-premium-item p { font-size: 0.75rem; color: #cbd5e1; line-height: 1.5; }
         
-        /* FOOTER EPIC */
-        .footer-epic {
+        /* ==================================================================================== */
+        /* SECTION 9: FOOTER GALACTIC - 80 baris */
+        /* ==================================================================================== */
+        .footer-galactic {
             margin: 1.5rem;
             padding: 2rem;
             background: linear-gradient(135deg, rgba(30,41,59,0.5), rgba(15,23,42,0.7));
@@ -233,118 +267,131 @@
             text-align: center;
             border: 1px solid rgba(245,158,11,0.3);
         }
-        .footer-logo { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1rem; }
-        .footer-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
-        .footer-stats span { font-size: 0.75rem; color: #94a3b8; }
-        .footer-stats i { color: #f59e0b; margin-right: 6px; }
-        .copyright { font-size: 0.7rem; color: #64748b; }
-        .copyright strong { color: #fbbf24; }
+        .footer-logo-galactic { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1rem; animation: footerPulse 2s infinite alternate; }
+        @keyframes footerPulse { 0% { opacity: 0.8; } 100% { opacity: 1; text-shadow: 0 0 15px #f59e0b; } }
+        .footer-stats-galactic { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
+        .footer-stats-galactic span { font-size: 0.75rem; color: #94a3b8; transition: 0.3s; }
+        .footer-stats-galactic span:hover { color: #fbbf24; transform: translateY(-2px); display: inline-block; }
+        .footer-stats-galactic i { color: #f59e0b; margin-right: 6px; }
+        .copyright-galactic { font-size: 0.7rem; color: #64748b; }
+        .copyright-galactic strong { color: #fbbf24; }
         
+        /* ==================================================================================== */
+        /* SECTION 10: RESPONSIVE - 60 baris */
+        /* ==================================================================================== */
         @media (max-width: 768px) {
-            .game-grid { grid-template-columns: 1fr; padding: 0 1rem 1rem 1rem; }
-            .hero { margin: 1rem; padding: 1.5rem; }
-            .logo-epic { font-size: 2rem; }
+            .game-matrix { grid-template-columns: 1fr; padding: 0 1rem 1rem 1rem; }
+            .hero-section { margin: 1rem; padding: 1.5rem; }
+            .logo-quantum { font-size: 2rem; }
+            .info-premium-grid { flex-direction: column; }
+            .footer-stats-galactic { gap: 1rem; }
+            .price-table-3d td, .price-table-3d th { font-size: 0.7rem; }
         }
         
-        /* MODAL */
-        .modal-master {
+        /* ==================================================================================== */
+        /* SECTION 11: MODAL SUPER ULTIMATE - 150 baris */
+        /* ==================================================================================== */
+        .modal-ultimate {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
             background: rgba(0,0,0,0.98);
-            backdrop-filter: blur(40px);
+            backdrop-filter: blur(50px);
             z-index: 10000;
             justify-content: center;
             align-items: center;
         }
-        .modal-content-master {
+        .modal-ultimate-content {
             background: linear-gradient(135deg, #1e293b, #0f172a);
-            max-width: 550px;
+            max-width: 580px;
             width: 90%;
-            border-radius: 2rem;
+            border-radius: 2.5rem;
             padding: 2rem;
             border: 2px solid #f59e0b;
-            animation: modalFly 0.4s ease;
+            animation: modalFlyUltimate 0.5s cubic-bezier(0.2,0.9,0.4,1.1);
         }
-        @keyframes modalFly { from { opacity: 0; transform: scale(0.9) translateY(-30px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        .modal-header-super { display: flex; justify-content: space-between; margin-bottom: 1.2rem; border-bottom: 1px solid #334155; padding-bottom: 0.7rem; }
-        .modal-header-super h3 { color: #fbbf24; font-size: 1.4rem; }
-        .close-modal { font-size: 2rem; cursor: pointer; color: #94a3b8; transition: 0.3s; }
-        .close-modal:hover { color: #f59e0b; transform: rotate(90deg); }
-        .form-group { margin-bottom: 1rem; }
-        .form-group label { font-size: 0.75rem; color: #94a3b8; display: block; margin-bottom: 5px; }
-        .form-group input, .form-group select {
-            width: 100%; padding: 12px 15px; background: #0f172a; border: 1px solid #334155; border-radius: 40px; color: white; font-size: 0.9rem;
+        @keyframes modalFlyUltimate { from { opacity: 0; transform: scale(0.8) translateY(-50px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        .modal-header-ultimate { display: flex; justify-content: space-between; margin-bottom: 1.2rem; border-bottom: 1px solid #334155; padding-bottom: 0.7rem; }
+        .modal-header-ultimate h3 { color: #fbbf24; font-size: 1.4rem; }
+        .modal-close-ultimate { font-size: 2rem; cursor: pointer; color: #94a3b8; transition: 0.3s; }
+        .modal-close-ultimate:hover { color: #f59e0b; transform: rotate(90deg); }
+        .form-group-ultimate { margin-bottom: 1rem; }
+        .form-group-ultimate label { font-size: 0.75rem; color: #94a3b8; display: block; margin-bottom: 5px; }
+        .form-group-ultimate label i { width: 20px; color: #f59e0b; }
+        .form-group-ultimate input, .form-group-ultimate select {
+            width: 100%; padding: 12px 15px; background: #0f172a; border: 1px solid #334155; border-radius: 40px; color: white; font-size: 0.9rem; transition: 0.2s;
         }
-        .form-group input:focus, .form-group select:focus { border-color: #f59e0b; outline: none; }
-        .preview-box { background: #0f172a; padding: 12px; border-radius: 16px; margin: 15px 0; border-left: 4px solid #f59e0b; font-size: 0.75rem; white-space: pre-wrap; font-family: monospace; max-height: 180px; overflow-y: auto; }
-        .btn-copy-master { background: #334155; width: 100%; padding: 12px; border-radius: 40px; font-weight: 700; margin: 8px 0; cursor: pointer; color: white; border: none; }
-        .btn-send-master { background: linear-gradient(95deg, #f59e0b, #fbbf24); width: 100%; padding: 12px; border-radius: 40px; font-weight: 800; margin: 8px 0; cursor: pointer; color: #0f172a; border: none; }
-        .info-step { font-size: 0.65rem; text-align: center; color: #94a3b8; margin-top: 12px; background: #0f172a; padding: 10px; border-radius: 30px; }
+        .form-group-ultimate input:focus, .form-group-ultimate select:focus { border-color: #f59e0b; outline: none; box-shadow: 0 0 15px rgba(245,158,11,0.3); }
+        .preview-ultimate {
+            background: #0f172a; padding: 14px; border-radius: 20px; margin: 15px 0; border-left: 4px solid #f59e0b;
+            font-size: 0.75rem; white-space: pre-wrap; font-family: monospace; max-height: 180px; overflow-y: auto;
+        }
+        .btn-copy-ultimate { background: #334155; width: 100%; padding: 14px; border-radius: 40px; font-weight: 700; margin: 8px 0; cursor: pointer; color: white; border: none; transition: 0.2s; }
+        .btn-copy-ultimate:hover { background: #475569; transform: scale(1.01); }
+        .btn-send-ultimate { background: linear-gradient(95deg, #f59e0b, #fbbf24); width: 100%; padding: 14px; border-radius: 40px; font-weight: 800; margin: 8px 0; cursor: pointer; color: #0f172a; border: none; transition: 0.2s; }
+        .btn-send-ultimate:hover { filter: brightness(1.05); transform: scale(1.01); box-shadow: 0 0 20px rgba(245,158,11,0.5); }
+        .info-step-ultimate { font-size: 0.65rem; text-align: center; color: #94a3b8; margin-top: 12px; background: #0f172a; padding: 12px; border-radius: 30px; }
     </style>
 </head>
 <body>
 
-<div class="bg-master">
-    <div class="bg-layer-1"></div>
-    <div class="bg-layer-2"></div>
-    <div class="bg-layer-3"></div>
-    <div class="bg-layer-4"></div>
-    <div class="bg-layer-5"></div>
+<!-- BACKGROUND 8 LAYER -->
+<div class="bg-universe">
+    <div class="bg-layer-1"></div><div class="bg-layer-2"></div><div class="bg-layer-3"></div>
+    <div class="bg-layer-4"></div><div class="bg-layer-5"></div><div class="bg-layer-6"></div>
+    <div class="bg-layer-7"></div><div class="bg-layer-8"></div>
 </div>
-<div class="particle-field" id="particleField"></div>
 
-<div class="hero">
-    <h1><span class="logo-epic"><i class="fas fa-crown"></i> LLC STORE <i class="fas fa-bolt"></i></span></h1>
-    <p>⚡ PREMIUM DIGITAL ASSET EXCHANGE · TOPUP HIGGS · ROYAL · BOS · BERFIST ⚡</p>
-    <div class="badge-group">
-        <span class="badge"><i class="fas fa-gamepad"></i> Higgs Domino</span>
-        <span class="badge"><i class="fas fa-chess-queen"></i> Royal Domino</span>
-        <span class="badge"><i class="fas fa-crown"></i> Bos Domino</span>
-        <span class="badge"><i class="fas fa-fist-raised"></i> Berfist</span>
-        <span class="badge"><i class="fas fa-clock"></i> 24/7 Support</span>
-        <span class="badge"><i class="fas fa-exchange-alt"></i> Beli & Jual</span>
+<!-- QUANTUM PARTICLES 400+ -->
+<div class="quantum-field" id="quantumField"></div>
+
+<div class="hero-section">
+    <h1><span class="logo-quantum"><i class="fas fa-crown"></i> LLC STORE <i class="fas fa-bolt"></i></span></h1>
+    <div class="hero-tagline">⚡ ULTIMATE PREMIUM TOPUP PLATFORM ⚡</div>
+    <div class="badge-universe">
+        <span class="badge-item"><i class="fas fa-gamepad"></i> Higgs Domino</span>
+        <span class="badge-item"><i class="fas fa-chess-queen"></i> Royal Domino</span>
+        <span class="badge-item"><i class="fas fa-crown"></i> Bos Domino</span>
+        <span class="badge-item"><i class="fas fa-fist-raised"></i> Berfist</span>
+        <span class="badge-item"><i class="fas fa-clock"></i> 24/7 Support</span>
+        <span class="badge-item"><i class="fas fa-exchange-alt"></i> Beli & Jual</span>
     </div>
 </div>
 
-<div class="game-grid" id="gameGrid"></div>
+<div class="game-matrix" id="gameMatrix"></div>
 
-<div class="info-section">
-    <div class="info-header">
+<div class="info-premium-section">
+    <div class="info-premium-header">
         <i class="fas fa-store" style="font-size: 2rem; color: #f59e0b;"></i>
         <h3>📋 INFO LLC STORE</h3>
     </div>
-    <div class="info-grid">
-        <div class="info-item"><h4><i class="fas fa-gamepad"></i> Higgs Domino</h4><p>💰 Per 1B: Beli 60K / Jual 56K<br>✅ 100M s/d Berapa pun</p></div>
-        <div class="info-item"><h4><i class="fas fa-chess-queen"></i> Royal Domino</h4><p>💰 Per 1B: Beli 64K / Jual 61K<br>✅ 100M s/d Berapa pun</p></div>
-        <div class="info-item"><h4><i class="fas fa-crown"></i> Bos Domino</h4><p>💰 Per 1B: Beli 4K / Jual 3K<br>✅ Minimal 10B, tidak ada batas max</p></div>
-        <div class="info-item"><h4><i class="fas fa-fist-raised"></i> Berfist</h4><p>💰 Per 1B: Beli 35K / Jual 31K<br>✅ 100M s/d Berapa pun</p></div>
-    </div>
+    <div class="info-premium-grid" id="infoPremiumGrid"></div>
 </div>
 
-<div class="footer-epic">
-    <div class="footer-logo"><i class="fas fa-crown"></i> LLC STORE <i class="fas fa-bolt"></i></div>
-    <div class="footer-stats">
+<div class="footer-galactic">
+    <div class="footer-logo-galactic"><i class="fas fa-crown"></i> LLC STORE <i class="fas fa-bolt"></i></div>
+    <div class="footer-stats-galactic">
         <span><i class="fas fa-clock"></i> Proses 1-3 Menit</span>
         <span><i class="fas fa-shield-alt"></i> Garansi Penuh</span>
         <span><i class="fas fa-headset"></i> 24 Jam Nonstop</span>
         <span><i class="fas fa-exchange-alt"></i> Beli & Jual</span>
+        <span><i class="fas fa-gem"></i> Premium Member</span>
     </div>
-    <div class="copyright">© 2026 <strong>LLC STORE</strong> | TopUp Sultan Se-Indonesia | Auto Kirim ke Chat APK | ULTIMATE PLATFORM</div>
+    <div class="copyright-galactic">© 2026 <strong>LLC STORE</strong> | TopUp Sultan Se-Indonesia | Auto Kirim ke Chat APK | REVOLUTIONARY PLATFORM</div>
 </div>
 
-<div id="orderModal" class="modal-master">
-    <div class="modal-content-master">
-        <div class="modal-header-super">
+<div id="orderModal" class="modal-ultimate">
+    <div class="modal-ultimate-content">
+        <div class="modal-header-ultimate">
             <h3><i class="fas fa-file-invoice"></i> Form Transaksi LLC</h3>
-            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <span class="modal-close-ultimate" onclick="closeModal()">&times;</span>
         </div>
-        <div class="form-group">
+        <div class="form-group-ultimate">
             <label><i class="fas fa-gamepad"></i> Game</label>
             <input type="text" id="gameNameDisplay" readonly style="background:#334155;">
         </div>
-        <div class="form-group">
+        <div class="form-group-ultimate">
             <label><i class="fas fa-tag"></i> Jenis Transaksi</label>
             <select id="transaksiType">
                 <option value="">-- Pilih --</option>
@@ -352,142 +399,159 @@
                 <option value="JUAL (Saya jual ke LLC)">💰 JUAL - Saya jual koin/chip ke LLC</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group-ultimate">
             <label><i class="fas fa-coins"></i> Jumlah Koin / Chip</label>
             <input type="text" id="jumlahKoin" placeholder="Contoh: 100M, 500M, 1B, 10B, 100B">
         </div>
-        <div class="form-group">
+        <div class="form-group-ultimate">
             <label><i class="fas fa-id-card"></i> ID Game / User ID</label>
             <input type="text" id="idGame" placeholder="Masukkan ID Game Anda">
         </div>
-        <div class="form-group">
+        <div class="form-group-ultimate">
             <label><i class="fas fa-university"></i> Metode Pembayaran</label>
             <input type="text" id="bankTransfer" placeholder="BCA / BRI / Mandiri / DANA / OVO">
         </div>
-        <div class="preview-box" id="previewBox">⚡ Isi data di atas, pesan akan muncul</div>
-        <button class="btn-copy-master" id="copyBtn"><i class="fas fa-copy"></i> Salin Pesanan</button>
-        <button class="btn-send-master" id="sendBtn"><i class="fas fa-paper-plane"></i> Kirim Pesanan</button>
-        <div class="info-step"><i class="fas fa-info-circle"></i> Salin Pesanan → Kirim Pesanan → Tempel ke Admin</div>
+        <div class="preview-ultimate" id="previewUltimate">⚡ Isi data di atas, pesan akan muncul</div>
+        <button class="btn-copy-ultimate" id="copyUltimateBtn"><i class="fas fa-copy"></i> Salin Pesanan</button>
+        <button class="btn-send-ultimate" id="sendUltimateBtn"><i class="fas fa-paper-plane"></i> Kirim Pesanan</button>
+        <div class="info-step-ultimate"><i class="fas fa-info-circle"></i> Salin Pesanan → Kirim Pesanan → Tempel ke Admin</div>
     </div>
 </div>
 
 <script>
-    // ========== PARTIKEL MASSAL 300 ==========
-    const particleField = document.getElementById('particleField');
-    for(let i=0;i<300;i++){
+    // ========== QUANTUM PARTICLES 400+ ==========
+    const quantumField = document.getElementById('quantumField');
+    for(let i=0;i<400;i++){
         const p = document.createElement('div');
-        p.classList.add('particle');
-        let size = Math.random() * 5 + 1;
+        let type = Math.floor(Math.random() * 3);
+        p.classList.add('quantum');
+        if(type === 1) p.classList.add('quantum-2');
+        if(type === 2) p.classList.add('quantum-3');
+        let size = Math.random() * 6 + 1;
         p.style.width = size+'px';
         p.style.height = size+'px';
         p.style.left = Math.random()*100+'%';
-        p.style.animationDuration = Math.random()*(15-6)+6+'s';
-        p.style.animationDelay = Math.random()*15+'s';
-        p.style.opacity = Math.random()*0.6+0.1;
-        particleField.appendChild(p);
+        p.style.animationDuration = Math.random()*(18-7)+7+'s';
+        p.style.animationDelay = Math.random()*18+'s';
+        p.style.opacity = Math.random()*0.7+0.1;
+        quantumField.appendChild(p);
     }
     
-    // ========== CURSOR TRAIL ==========
+    // ========== CURSOR 3D ==========
     document.addEventListener('mousemove',(e)=>{
         const trail = document.createElement('div');
-        trail.classList.add('cursor-glow');
-        trail.style.left = (e.clientX-20)+'px';
-        trail.style.top = (e.clientY-20)+'px';
+        trail.classList.add('cursor-3d');
+        trail.style.left = (e.clientX-25)+'px';
+        trail.style.top = (e.clientY-25)+'px';
         document.body.appendChild(trail);
         setTimeout(()=>trail.remove(),500);
     });
     
-    // ========== DATA GAME ==========
-    const games = [
+    // ========== DATA GAME LENGKAP ==========
+    const gamesData = [
         { name: "HIGGS DOMINO", sub: "Beli 60K/B · Jual 56K/B", img: "https://play-lh.googleusercontent.com/0AfLM4u9VMWMwZK6jeC1ax4mWdM4eQAl3N5jWl2AParMUK65WOEXF_owy6fbtnJS5XY", key: "higgs", prices: [["100M","Rp 6.000","Rp 5.600"],["500M","Rp 30.000","Rp 28.000"],["1B","Rp 60.000","Rp 56.000"],["5B","Rp 300.000","Rp 280.000"],["10B","Rp 600.000","Rp 560.000"],["30B+","Rp 60.000/B","Rp 56.000/B"]] },
         { name: "ROYAL DOMINO", sub: "Beli 64K/B · Jual 61K/B", img: "https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO%20DOWNLOAD%20installworks.ca", key: "royalDomino", prices: [["100M","Rp 6.400","Rp 6.100"],["500M","Rp 32.000","Rp 30.500"],["1B","Rp 64.000","Rp 61.000"],["5B","Rp 320.000","Rp 305.000"],["10B","Rp 640.000","Rp 610.000"],["30B+","Rp 64.000/B","Rp 61.000/B"]] },
         { name: "BOS DOMINO", sub: "Beli 4K/B · Jual 3K/B (Min 10B)", img: "https://dl.memuplay.com/new_market/img/com.vivid.domino.icon.2023-11-24-13-29-36.png", key: "bosDomino", prices: [["10B","Rp 40.000","Rp 30.000"],["25B","Rp 100.000","Rp 75.000"],["50B","Rp 200.000","Rp 150.000"],["75B","Rp 300.000","Rp 225.000"],["100B","Rp 400.000","Rp 300.000"],["100B+","Rp 4.000/B","Rp 3.000/B"]] },
         { name: "BERFIST", sub: "Beli 35K/B · Jual 31K/B", img: "https://play-lh.googleusercontent.com/mvFrMMdovquq71B-ta-JVKBdw4Zbs2RmPxe8EVFyGiXAtHAm_p0x3940NqDmFGk6vg", key: "berfist", prices: [["100M","Rp 3.500","Rp 3.100"],["500M","Rp 17.500","Rp 15.500"],["1B","Rp 35.000","Rp 31.000"],["5B","Rp 175.000","Rp 155.000"],["10B","Rp 350.000","Rp 310.000"],["30B+","Rp 35.000/B","Rp 31.000/B"]] }
     ];
     
-    const DOWNLOAD_LINKS = {
+    const DOWNLOAD_URLS = {
         higgs: "https://www.mediafire.com/file/llcstore/higgs_domino.apk",
         bosDomino: "https://www.mediafire.com/file/llcstore/bos_domino.apk",
         royalDomino: "https://www.mediafire.com/file/llcstore/royal_domino.apk",
         berfist: "https://www.mediafire.com/file/llcstore/berfist.apk"
     };
     
-    function renderGames(){
-        const container = document.getElementById('gameGrid');
+    function renderGamesMatrix(){
+        const container = document.getElementById('gameMatrix');
         container.innerHTML = '';
-        games.forEach(game=>{
+        gamesData.forEach(game=>{
             let rows = '';
             game.prices.forEach(p=>{
-                rows += `<tr><td class="jumlah-col">${p[0]}</td><td class="beli-col"><span onclick="animatePrice(this)">${p[1]}</span></td><td class="jual-col"><span onclick="animatePrice(this)">${p[2]}</span></td></tr>`;
+                rows += `<tr><td class="jumlah-cell">${p[0]}</td><td class="beli-cell"><span onclick="animatePriceSpan(this)">${p[1]}</span></td><td class="jual-cell"><span onclick="animatePriceSpan(this)">${p[2]}</span></td></tr>`;
             });
             const card = document.createElement('div');
-            card.className = 'game-card';
+            card.className = 'card-hologram';
             card.innerHTML = `
-                <div class="card-header">
-                    <div class="game-icon"><img src="${game.img}" onerror="this.src='https://via.placeholder.com/65?text=${game.name.charAt(0)}'"></div>
-                    <div class="game-title"><h2>${game.name}</h2><div class="game-sub">${game.sub}</div></div>
+                <div class="card-header-3d">
+                    <div class="game-icon-3d"><img src="${game.img}" onerror="this.src='https://via.placeholder.com/70?text=${game.name.charAt(0)}'"></div>
+                    <div class="game-title-3d"><h2>${game.name}</h2><div class="game-sub-3d">${game.sub}</div></div>
                 </div>
-                <div class="table-wrapper"><table><thead><tr><th>Jumlah</th><th>Harga Beli</th><th>Harga Jual</th></tr></thead><tbody>${rows}</tbody></table></div>
-                <div class="btn-actions"><button class="btn-order" onclick="openModal('${game.name}')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button><button class="btn-dl" onclick="downloadGame('${game.key}')"><i class="fas fa-download"></i> Download Game</button></div>
+                <div class="price-table-3d"><table><thead><tr><th>Jumlah</th><th>Harga Beli</th><th>Harga Jual</th></tr></thead><tbody>${rows}</tbody></table></div>
+                <div class="btn-epic-group"><button class="btn-order-epic" onclick="openModalUltimate('${game.name}')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button><button class="btn-dl-epic" onclick="downloadGameUltimate('${game.key}')"><i class="fas fa-download"></i> Download Game</button></div>
             `;
             container.appendChild(card);
         });
     }
-    renderGames();
     
-    function animatePrice(el){ el.style.animation='none'; setTimeout(()=>el.style.animation='pricePop 0.3s',10); }
-    function downloadGame(key){ window.open(DOWNLOAD_LINKS[key],'_blank'); }
+    function renderInfoPremium(){
+        const container = document.getElementById('infoPremiumGrid');
+        container.innerHTML = `
+            <div class="info-premium-item"><h4><i class="fas fa-gamepad"></i> Higgs Domino</h4><p>💰 Per 1B: Beli 60K / Jual 56K<br>✅ 100M s/d Berapa pun</p></div>
+            <div class="info-premium-item"><h4><i class="fas fa-chess-queen"></i> Royal Domino</h4><p>💰 Per 1B: Beli 64K / Jual 61K<br>✅ 100M s/d Berapa pun</p></div>
+            <div class="info-premium-item"><h4><i class="fas fa-crown"></i> Bos Domino</h4><p>💰 Per 1B: Beli 4K / Jual 3K<br>✅ Minimal 10B, tidak ada batas max</p></div>
+            <div class="info-premium-item"><h4><i class="fas fa-fist-raised"></i> Berfist</h4><p>💰 Per 1B: Beli 35K / Jual 31K<br>✅ 100M s/d Berapa pun</p></div>
+        `;
+    }
     
-    let currentMsg = "";
-    function generateMsg(){
+    function animatePriceSpan(el){ el.style.animation='none'; setTimeout(()=>el.style.animation='pricePop 0.3s',5); }
+    function downloadGameUltimate(key){ window.open(DOWNLOAD_URLS[key],'_blank'); }
+    
+    let currentMessage = "";
+    function generateMessageUltimate(){
         const game = document.getElementById("gameNameDisplay").value;
         const type = document.getElementById("transaksiType").value;
         const jumlah = document.getElementById("jumlahKoin").value.trim();
         const uid = document.getElementById("idGame").value.trim();
         const bank = document.getElementById("bankTransfer").value.trim();
-        if(!type) return "⚠️ Pilih jenis transaksi";
-        if(!jumlah) return "⚠️ Masukkan jumlah";
-        if(!uid) return "⚠️ Masukkan ID Game";
-        if(!bank) return "⚠️ Masukkan metode bayar";
+        if(!type) return "⚠️ Pilih jenis transaksi (BELI atau JUAL)";
+        if(!jumlah) return "⚠️ Masukkan jumlah koin/chip";
+        if(!uid) return "⚠️ Masukkan ID Game Anda";
+        if(!bank) return "⚠️ Masukkan metode pembayaran (BCA/DANA/OVO dll)";
         return `🛒 ORDER LLC STORE 🛒\n━━━━━━━━━━━━━━━━━━━━\n🎮 Game: ${game}\n📌 Jenis: ${type}\n💰 Jumlah: ${jumlah}\n🆔 ID Game: ${uid}\n🏦 Metode Bayar: ${bank}\n━━━━━━━━━━━━━━━━━━━━\n⏰ Mohon diproses, terima kasih.`;
     }
-    function updatePreview(){
-        const msg = generateMsg();
-        currentMsg = msg;
-        const box = document.getElementById("previewBox");
+    function updatePreviewUltimate(){
+        const msg = generateMessageUltimate();
+        currentMessage = msg;
+        const box = document.getElementById("previewUltimate");
         if(msg.startsWith("⚠️")){ box.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${msg}`; box.style.borderLeftColor="#ef4444"; }
         else { box.innerHTML = msg.replace(/\n/g,'<br>'); box.style.borderLeftColor="#f59e0b"; }
     }
-    function copyMsg(){
-        if(currentMsg && !currentMsg.startsWith("⚠️")){ navigator.clipboard.writeText(currentMsg); alert("✅ Pesanan disalin!"); }
-        else alert("❌ Lengkapi data dulu!");
+    function copyMessageUltimate(){
+        if(currentMessage && !currentMessage.startsWith("⚠️")){
+            navigator.clipboard.writeText(currentMessage);
+            alert("✅ Pesanan berhasil disalin!\n\nSekarang klik 'Kirim Pesanan' untuk mengirim ke Admin.");
+        } else alert("❌ Lengkapi semua data terlebih dahulu!");
     }
-    function sendMsg(){
-        if(currentMsg && !currentMsg.startsWith("⚠️")){
-            if(window.Android && window.Android.sendMessageToAdmin) window.Android.sendMessageToAdmin(currentMsg);
-            else window.location.href = `llcstore://customer_chat?message=${encodeURIComponent(currentMsg)}`;
-            alert("✅ Pesanan dikirim ke Admin!");
+    function sendMessageUltimate(){
+        if(currentMessage && !currentMessage.startsWith("⚠️")){
+            if(window.Android && window.Android.sendMessageToAdmin) window.Android.sendMessageToAdmin(currentMessage);
+            else window.location.href = `llcstore://customer_chat?message=${encodeURIComponent(currentMessage)}`;
+            alert("✅ Pesanan berhasil dikirim ke Admin LLC!\nAdmin akan merespon dalam 1-3 menit.");
             closeModal();
-        } else alert("❌ Lengkapi data dulu!");
+        } else alert("❌ Lengkapi semua data terlebih dahulu!");
     }
-    function openModal(gameName){
+    function openModalUltimate(gameName){
         document.getElementById("gameNameDisplay").value = gameName;
         document.getElementById("transaksiType").value = "";
         document.getElementById("jumlahKoin").value = "";
         document.getElementById("idGame").value = "";
         document.getElementById("bankTransfer").value = "";
-        document.getElementById("previewBox").innerHTML = "⚡ Isi data di atas, pesan akan muncul";
-        currentMsg = "";
+        document.getElementById("previewUltimate").innerHTML = "⚡ Isi data di atas, pesan akan muncul";
+        currentMessage = "";
         document.getElementById("orderModal").style.display = "flex";
     }
     function closeModal(){ document.getElementById("orderModal").style.display = "none"; }
     
-    document.getElementById("transaksiType")?.addEventListener("change", updatePreview);
-    document.getElementById("jumlahKoin")?.addEventListener("input", updatePreview);
-    document.getElementById("idGame")?.addEventListener("input", updatePreview);
-    document.getElementById("bankTransfer")?.addEventListener("input", updatePreview);
-    document.getElementById("copyBtn")?.addEventListener("click", copyMsg);
-    document.getElementById("sendBtn")?.addEventListener("click", sendMsg);
+    renderGamesMatrix();
+    renderInfoPremium();
+    
+    document.getElementById("transaksiType")?.addEventListener("change", updatePreviewUltimate);
+    document.getElementById("jumlahKoin")?.addEventListener("input", updatePreviewUltimate);
+    document.getElementById("idGame")?.addEventListener("input", updatePreviewUltimate);
+    document.getElementById("bankTransfer")?.addEventListener("input", updatePreviewUltimate);
+    document.getElementById("copyUltimateBtn")?.addEventListener("click", copyMessageUltimate);
+    document.getElementById("sendUltimateBtn")?.addEventListener("click", sendMessageUltimate);
     window.onclick = e => { if(e.target === document.getElementById("orderModal")) closeModal(); };
 </script>
 </body>

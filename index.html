@@ -1,13 +1,9 @@
-Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa WhatsApp/Telegram). Formulir tidak akan terhapus/berkedip, dan pesan akan langsung dikirim ke APK dengan format lengkap (ID game, bank transfer, jumlah koin, jual/beli).
-
-```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>LLC Store | TopUp Higgs & Domino Sultan | Berfist - Chat APK Langsung</title>
-    <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -106,11 +102,9 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
             border-left: 3px solid #f59e0b;
             color: #fef3c7;
             transition: all 0.3s;
-            animation: badgeWave 0.6s ease-out backwards;
             cursor: default;
         }
-        .badge:hover { transform: scale(1.07) translateY(-3px); background: #f59e0b; color: #0f172a; border-left-color: white; box-shadow: 0 5px 15px rgba(245,158,11,0.4); }
-        @keyframes badgeWave { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+        .badge:hover { transform: scale(1.07) translateY(-3px); background: #f59e0b; color: #0f172a; }
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -125,9 +119,7 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
-            animation: cardFloat 0.6s ease-out backwards;
         }
-        @keyframes cardFloat { from { opacity: 0; transform: translateY(50px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
         .card:hover { transform: translateY(-12px) scale(1.01); border-color: #f59e0b; box-shadow: 0 30px 40px -12px rgba(245,158,11,0.4); }
         .card-header {
             padding: 1.2rem 1.5rem;
@@ -137,19 +129,7 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
             align-items: center;
             gap: 15px;
             flex-wrap: wrap;
-            position: relative;
-            overflow: hidden;
         }
-        .card-header::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -60%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(245,158,11,0.15) 0%, transparent 70%);
-            animation: rotateShine 12s infinite linear;
-            pointer-events: none;
-        }
-        @keyframes rotateShine { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .game-logo {
             width: 65px; height: 65px;
             background: linear-gradient(135deg, #0f172a, #1e293b);
@@ -158,15 +138,9 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
             align-items: center;
             justify-content: center;
             border: 2px solid #f59e0b;
-            animation: pulseBorder 2s infinite;
-            box-shadow: 0 0 10px rgba(245,158,11,0.3);
             overflow: hidden;
         }
-        @keyframes pulseBorder {
-            0% { border-color: #f59e0b; box-shadow: 0 0 0 0 rgba(245,158,11,0.4);}
-            70% { border-color: #fbbf24; box-shadow: 0 0 0 8px rgba(245,158,11,0);}
-            100% { border-color: #f59e0b; box-shadow: 0 0 0 0 rgba(245,158,11,0);}
-        }
+        .game-logo img { width: 100%; height: 100%; object-fit: cover; }
         .info-header h2 {
             font-weight: 800;
             font-size: 1.5rem;
@@ -179,7 +153,7 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
         .table-wrapper { padding: 0 1rem 1.2rem 1rem; overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
         th { text-align: left; padding: 0.8rem 0.5rem 0.5rem 0.5rem; color: #fbbf24; font-weight: 700; border-bottom: 1px dashed #334155; }
-        td { padding: 0.7rem 0.5rem; border-bottom: 1px solid #334155; font-weight: 500; color: #e2e8f0; transition: all 0.2s; }
+        td { padding: 0.7rem 0.5rem; border-bottom: 1px solid #334155; font-weight: 500; color: #e2e8f0; }
         tr:hover td { background: rgba(245,158,11,0.08); }
         .price-beli { color: #fde68a; font-weight: 800; }
         .price-jual { color: #7dd3fc; font-weight: 800; }
@@ -219,13 +193,10 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
             padding: 1.5rem;
             margin-bottom: 2rem;
             border: 1px solid #f59e0b;
-            position: relative;
-            overflow: hidden;
         }
         .promo-box h3 { color: #fbbf24; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
         .promo-grid { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between; }
-        .promo-item { flex: 1; min-width: 180px; transition: all 0.3s; }
-        .promo-item:hover { transform: translateY(-5px); }
+        .promo-item { flex: 1; min-width: 180px; }
         .promo-item h4 { color: #f59e0b; margin-bottom: 10px; font-size: 0.95rem; }
         .footer-note {
             text-align: center;
@@ -239,12 +210,11 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
             body { padding: 1rem; }
             .hero h1 { font-size: 2rem; }
             .card-header h2 { font-size: 1.2rem; }
-            th, td { font-size: 0.65rem; padding: 0.5rem 0.3rem; }
             .game-logo { width: 50px; height: 50px; }
         }
         .text-gold { color: #fbbf24; }
         
-        /* MODAL FORM - TIDAK ADA GANGGUAN, TIDAK BERKEDIP */
+        /* MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -258,7 +228,7 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
         }
         .modal-content {
             background: #1e293b;
-            max-width: 500px;
+            max-width: 520px;
             width: 90%;
             border-radius: 28px;
             padding: 1.8rem;
@@ -278,7 +248,7 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
             outline: none;
             font-size: 0.9rem;
         }
-        .modal-content input:focus, .modal-content select:focus { border-color: #fbbf24; box-shadow: 0 0 5px #f59e0b; }
+        .modal-content input:focus, .modal-content select:focus { border-color: #fbbf24; }
         .modal-content button {
             background: linear-gradient(95deg, #f59e0b, #fbbf24);
             border: none;
@@ -299,10 +269,23 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
             font-size: 1.8rem;
             cursor: pointer;
             color: #94a3b8;
-            transition: 0.2s;
         }
         .close-modal:hover { color: #f59e0b; }
-        .info-note { font-size: 0.7rem; color: #94a3b8; margin-top: 8px; text-align: center; }
+        .preview-pesan {
+            background: #0f172a;
+            padding: 12px;
+            border-radius: 16px;
+            margin-top: 15px;
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            border-left: 3px solid #f59e0b;
+            max-height: 150px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .preview-pesan span { color: #fbbf24; font-weight: bold; }
+        .info-note { font-size: 0.7rem; color: #94a3b8; margin-top: 10px; text-align: center; }
     </style>
 </head>
 <body>
@@ -324,22 +307,29 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
         </div>
     </div>
 
-    <!-- MODAL FORM ORDER - TIDAK BERKEDIP & TIDAK TERHAPUS -->
+    <!-- MODAL FORM ORDER - DENGAN PREVIEW PESAN -->
     <div id="orderModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <h3><i class="fas fa-paper-plane"></i> Detail Transaksi</h3>
             <form id="orderForm" onsubmit="event.preventDefault(); sendOrderToAPK();">
-                <input type="text" id="gameNameDisplay" readonly style="background:#334155; border-color:#f59e0b; cursor:default;" required>
-                <select id="transaksiType" required>
+                <input type="text" id="gameNameDisplay" readonly style="background:#334155; border-color:#f59e0b;" required>
+                <select id="transaksiType" required onchange="updatePreview()">
                     <option value="">Pilih Jenis Transaksi</option>
                     <option value="BELI">🔰 BELI (Saya beli dari LLC)</option>
                     <option value="JUAL">💰 JUAL (Saya jual ke LLC)</option>
                 </select>
-                <input type="text" id="jumlahKoin" placeholder="Jumlah Koin (contoh: 100M / 1B / 500M)" required autocomplete="off">
-                <input type="text" id="idGame" placeholder="ID / User ID Game" required autocomplete="off">
-                <input type="text" id="bankTransfer" placeholder="Metode Pembayaran (BCA / BRI / Mandiri / DANA / OVO)" required autocomplete="off">
-                <button type="submit"><i class="fas fa-comment-dots"></i> KIRIM KE CHAT APK</button>
+                <input type="text" id="jumlahKoin" placeholder="Jumlah Koin (contoh: 100M / 1B / 500M)" required autocomplete="off" oninput="updatePreview()">
+                <input type="text" id="idGame" placeholder="ID / User ID Game" required autocomplete="off" oninput="updatePreview()">
+                <input type="text" id="bankTransfer" placeholder="Metode Pembayaran (BCA / BRI / Mandiri / DANA / OVO)" required autocomplete="off" oninput="updatePreview()">
+                
+                <!-- PREVIEW PESAN - LIHAT SEBELUM KIRIM -->
+                <div class="preview-pesan" id="previewPesan">
+                    <i class="fas fa-eye"></i> <span>Preview Pesan:</span><br>
+                    Isi form untuk melihat pesan yang akan dikirim...
+                </div>
+                
+                <button type="submit"><i class="fas fa-paper-plane"></i> KIRIM KE CHAT APK</button>
                 <div class="info-note"><i class="fas fa-mobile-alt"></i> Pesan akan langsung dikirim ke Admin via Chat APK LLC Store</div>
             </form>
         </div>
@@ -364,14 +354,43 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
             }
         }
         
+        // Fungsi update preview pesan secara REAL-TIME
+        function updatePreview() {
+            const game = document.getElementById("gameNameDisplay").value || "Game";
+            const type = document.getElementById("transaksiType").value;
+            const jumlah = document.getElementById("jumlahKoin").value;
+            const userId = document.getElementById("idGame").value;
+            const bank = document.getElementById("bankTransfer").value;
+            
+            let previewHtml = '<i class="fas fa-eye"></i> <span>Preview Pesan:</span><br>';
+            
+            if(!type && !jumlah && !userId && !bank) {
+                previewHtml += 'Isi form untuk melihat pesan yang akan dikirim...';
+            } else {
+                previewHtml += `┌─────────────────────────────<br>`;
+                previewHtml += `│ 🛒 ORDER LLC STORE<br>`;
+                previewHtml += `│<br>`;
+                previewHtml += `│ 🎮 Game: ${game || '-'}<br>`;
+                previewHtml += `│ 📌 Jenis: ${type || '-'}<br>`;
+                previewHtml += `│ 💰 Jumlah Koin: ${jumlah || '-'}<br>`;
+                previewHtml += `│ 🆔 ID Game: ${userId || '-'}<br>`;
+                previewHtml += `│ 🏦 Metode Bayar: ${bank || '-'}<br>`;
+                previewHtml += `│<br>`;
+                previewHtml += `└─────────────────────────────`;
+            }
+            
+            document.getElementById("previewPesan").innerHTML = previewHtml;
+        }
+        
         function openModalWithGame(gameName) {
             currentSelectedGame = gameName;
             document.getElementById("gameNameDisplay").value = gameName;
-            // Reset form tapi tanpa menghapus otomatis (bersihkan isian sebelumnya agar fresh)
+            // Reset form
             document.getElementById("transaksiType").value = "";
             document.getElementById("jumlahKoin").value = "";
             document.getElementById("idGame").value = "";
             document.getElementById("bankTransfer").value = "";
+            updatePreview();
             document.getElementById("orderModal").style.display = "flex";
         }
         
@@ -379,7 +398,7 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
             document.getElementById("orderModal").style.display = "none";
         }
         
-        // Fungsi kirim pesan langsung ke APK (tanpa WhatsApp/Telegram)
+        // Kirim pesan ke APK (tanpa WhatsApp/Telegram)
         function sendOrderToAPK() {
             const game = document.getElementById("gameNameDisplay").value.trim();
             const type = document.getElementById("transaksiType").value;
@@ -387,54 +406,37 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
             const userId = document.getElementById("idGame").value.trim();
             const bank = document.getElementById("bankTransfer").value.trim();
             
-            // Validasi sederhana
-            if(!type) {
-                alert("❌ Silakan pilih jenis transaksi (BELI atau JUAL)");
-                return;
-            }
-            if(!jumlah) {
-                alert("❌ Harap masukkan jumlah koin / chip");
-                return;
-            }
-            if(!userId) {
-                alert("❌ Harap masukkan ID Game Anda");
-                return;
-            }
-            if(!bank) {
-                alert("❌ Harap masukkan metode pembayaran / bank transfer");
-                return;
-            }
+            if(!type) { alert("❌ Silakan pilih jenis transaksi (BELI atau JUAL)"); return; }
+            if(!jumlah) { alert("❌ Harap masukkan jumlah koin / chip"); return; }
+            if(!userId) { alert("❌ Harap masukkan ID Game Anda"); return; }
+            if(!bank) { alert("❌ Harap masukkan metode pembayaran / bank transfer"); return; }
             
-            // Format pesan lengkap sesuai permintaan: ID Game, Bank Transfer, Jumlah Koin, Jual/Beli
-            const message = `🛒 *ORDER LLC STORE* 🛒\n\n🎮 Game: ${game}\n📌 Jenis: ${type}\n💰 Jumlah Koin: ${jumlah}\n🆔 ID Game: ${userId}\n🏦 Metode Bayar: ${bank}\n⏰ Mohon diproses, terima kasih.`;
+            // Format pesan lengkap
+            const message = `🛒 ORDER LLC STORE 🛒\n\n🎮 Game: ${game}\n📌 Jenis: ${type}\n💰 Jumlah Koin: ${jumlah}\n🆔 ID Game: ${userId}\n🏦 Metode Bayar: ${bank}\n⏰ Mohon diproses, terima kasih.`;
             
-            // KIRIM LANGSUNG KE APK (interface Android)
+            // KIRIM LANGSUNG KE APK
             if (window.Android && typeof window.Android.sendMessageToAdmin === 'function') {
                 window.Android.sendMessageToAdmin(message);
                 closeModal();
                 alert("✅ Pesan telah terkirim ke Admin LLC via Chat APK.\nAdmin akan merespon dalam 1-3 menit.");
             } 
             else if (window.Android && typeof window.Android.openChat === 'function') {
-                // Alternatif: buka chat dulu lalu kirim (jika ada mekanisme)
                 window.Android.openChat();
                 setTimeout(() => {
                     if(window.Android.sendMessageToAdmin) window.Android.sendMessageToAdmin(message);
                 }, 500);
                 closeModal();
-                alert("✅ Membuka Chat APK... silakan lanjutkan percakapan.");
+                alert("✅ Membuka Chat APK... pesan akan dikirim.");
             }
             else {
-                // FALLBACK: simulasi dan buka custom scheme APK (llcstore://)
-                // Untuk memastikan tetap mengarah ke APK, kita panggil intent dengan membawa pesan
-                // Banyak aplikasi menggunakan skema custom: llcstore://chat?message=...
+                // FALLBACK: kirim via custom scheme APK
                 const encodedMsg = encodeURIComponent(message);
                 window.location.href = `llcstore://customer_chat?message=${encodedMsg}`;
                 closeModal();
-                alert("📱 Mengarahkan ke Chat APK LLC Store... Jika aplikasi tidak terbuka, pastikan Anda menggunakan APK resmi LLC.");
+                alert("📱 Mengarahkan ke Chat APK LLC Store...");
             }
             
-            // Optional: log untuk debugging
-            console.log("Pesan terkirim ke APK:", message);
+            console.log("Pesan dikirim:", message);
         }
         
         // PARTIKEL CANVAS
@@ -493,17 +495,15 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
         initParticles();
         animateParticles();
         
-        document.querySelectorAll('.card').forEach((card, idx) => { card.style.animationDelay = `${idx * 0.1}s`; });
-        
         window.onclick = function(event) { if (event.target === document.getElementById("orderModal")) closeModal(); };
     </script>
 
     <div class="grid">
-        <!-- CARD 1: HIGGS GAMES ISLAND -->
+        <!-- CARD 1: HIGGS GAMES ISLAND dengan logo original -->
         <div class="card">
             <div class="card-header">
                 <div class="game-logo">
-                    <i class="fas fa-gamepad" style="font-size:2.2rem;color:#f97316;"></i>
+                    <img src="https://play-lh.googleusercontent.com/0AfLM4u9VMWMwZK6jeC1ax4mWdM4eQAl3N5jWl2AParMUK65WOEXF_owy6fbtnJS5XY" alt="Higgs Games" onerror="this.src='https://via.placeholder.com/65?text=H'">
                 </div>
                 <div class="info-header">
                     <h2>HIGGS GAMES ISLAND</h2>
@@ -523,7 +523,6 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
                         <tr><td><strong>💥 100B</strong></td><td class="price-beli"><strong>Rp 11.000.000</strong></td><td class="price-jual"><strong>Rp 10.200.000</strong></td></tr>
                     </tbody>
                 </table>
-                <div class="note"><i class="fas fa-tag"></i> Harga update April 2026 | Beli = Anda beli dari kami | Jual = Kami beli dari Anda</div>
                 <div class="btn-group">
                     <button class="btn-topup" onclick="openModalWithGame('HIGGS GAMES ISLAND')"><i class="fas fa-comment-dots"></i> BELI / JUAL</button>
                     <button class="btn-download" onclick="downloadGame('higgs')"><i class="fas fa-download"></i> DOWNLOAD GAME</button>
@@ -531,10 +530,12 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
             </div>
         </div>
 
-        <!-- CARD 2: BOS DOMINO -->
+        <!-- CARD 2: BOS DOMINO logo original -->
         <div class="card">
             <div class="card-header">
-                <div class="game-logo"><i class="fas fa-crown" style="font-size:2rem;color:#fbbf24;"></i></div>
+                <div class="game-logo">
+                    <img src="https://dl.memuplay.com/new_market/img/com.vivid.domino.icon.2023-11-24-13-29-36.png" alt="Bos Domino" onerror="this.src='https://via.placeholder.com/65?text=BD'">
+                </div>
                 <div class="info-header"><h2>BOS DOMINO</h2><div class="sub">BELI & JUAL CHIP</div></div>
             </div>
             <div class="table-wrapper">
@@ -557,10 +558,12 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
             </div>
         </div>
 
-        <!-- CARD 3: ROYAL DOMINO -->
+        <!-- CARD 3: ROYAL DOMINO logo original -->
         <div class="card">
             <div class="card-header">
-                <div class="game-logo"><i class="fas fa-chess-queen" style="font-size:2rem;color:#c084fc;"></i></div>
+                <div class="game-logo">
+                    <img src="https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO%20DOWNLOAD%20installworks.ca" alt="Royal Domino" onerror="this.src='https://via.placeholder.com/65?text=RD'">
+                </div>
                 <div class="info-header"><h2>ROYAL DOMINO</h2><div class="sub">BELI & JUAL CHIP</div></div>
             </div>
             <div class="table-wrapper">
@@ -584,10 +587,12 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
             </div>
         </div>
 
-        <!-- CARD 4: BERFIST -->
+        <!-- CARD 4: BERFIST logo original -->
         <div class="card">
             <div class="card-header">
-                <div class="game-logo"><i class="fas fa-fist-raised" style="font-size:2rem;color:#ef4444;"></i></div>
+                <div class="game-logo">
+                    <img src="https://play-lh.googleusercontent.com/mvFrMMdovquq71B-ta-JVKBdw4Zbs2RmPxe8EVFyGiXAtHAm_p0x3940NqDmFGk6vg" alt="Berfist" onerror="this.src='https://via.placeholder.com/65?text=BF'">
+                </div>
                 <div class="info-header"><h2>BERFIST</h2><div class="sub">BELI & JUAL KOIN</div></div>
             </div>
             <div class="table-wrapper">
@@ -626,4 +631,3 @@ Baik, saya perbaiki. Sekarang sistem chat langsung terintegrasi ke APK (tanpa Wh
 </div>
 </body>
 </html>
-```

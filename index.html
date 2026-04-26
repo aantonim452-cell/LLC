@@ -17,6 +17,7 @@
         }
         .container { max-width: 1400px; margin: 0 auto; }
         
+        /* HERO */
         .hero {
             background: linear-gradient(135deg, rgba(30,41,59,0.95), rgba(15,23,42,0.98));
             backdrop-filter: blur(10px);
@@ -33,6 +34,13 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .hero p {
+            margin-top: 0.8rem;
+            opacity: 0.8;
+            font-size: 0.9rem;
+            color: #cbd5e1;
         }
         .badge-group {
             margin-top: 1.2rem;
@@ -50,6 +58,7 @@
             border-left: 3px solid #f59e0b;
         }
         
+        /* GRID */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -92,7 +101,7 @@
             background-clip: text;
             color: transparent;
         }
-        .sub { font-size: 0.65rem; opacity: 0.7; color: #94a3b8; }
+        .sub { font-size: 0.65rem; opacity: 0.7; color: #94a3b8; margin-top: 2px; }
         .table-wrapper { padding: 0 0.8rem 1rem 0.8rem; overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
         th { text-align: left; padding: 0.6rem 0.3rem; color: #fbbf24; border-bottom: 1px dashed #334155; }
@@ -119,6 +128,7 @@
         .btn-download { background: linear-gradient(95deg, #0284c7, #0369a1); }
         .btn-topup:hover, .btn-download:hover { transform: scale(1.02); filter: brightness(1.1); }
         
+        /* INFO STORE */
         .info-store {
             background: linear-gradient(135deg, #1a2332, #0f172a);
             border-radius: 1.5rem;
@@ -180,7 +190,12 @@
             font-weight: 600;
         }
         
-        @media (max-width: 768px) { body { padding: 1rem; } .hero h1 { font-size: 1.8rem; } .info-card { min-width: 100%; } }
+        @media (max-width: 768px) { 
+            body { padding: 1rem; } 
+            .hero h1 { font-size: 1.8rem; } 
+            .info-card { min-width: 100%; }
+            .footer-info { gap: 0.8rem; }
+        }
         
         /* MODAL */
         .modal {
@@ -233,7 +248,6 @@
             max-height: 170px;
             overflow-y: auto;
         }
-        /* URUTAN TOMBOL: SALIN DULU, BARU KIRIM */
         .btn-copy-main {
             background: #334155;
             width: 100%;
@@ -276,8 +290,9 @@
             color: #94a3b8;
             margin-top: 10px;
             background: #0f172a;
-            padding: 8px;
+            padding: 10px;
             border-radius: 30px;
+            line-height: 1.5;
         }
         .success-notif {
             background: #15803d;
@@ -341,14 +356,13 @@
             
             <div class="preview-box" id="previewBox">⚡ Isi data di atas, pesan akan muncul di sini</div>
             
-            <!-- URUTAN: SALIN DULU, BARU KIRIM -->
-            <button class="btn-copy-main" id="copyManualBtn"><i class="fas fa-copy"></i> 📋 1. SALIN PESAN</button>
-            <button class="btn-send-main" id="autoSendBtn"><i class="fas fa-paper-plane"></i> 📨 2. KIRIM PESAN KE ADMIN</button>
+            <button class="btn-copy-main" id="copyManualBtn"><i class="fas fa-copy"></i> 📋 Salin Pesanan</button>
+            <button class="btn-send-main" id="autoSendBtn"><i class="fas fa-paper-plane"></i> 📨 Kirim Pesanan</button>
             
             <div id="successNotif" class="success-notif"><i class="fas fa-check-circle"></i> Pesan berhasil dikirim ke Admin!</div>
             <div class="info-step">
-                <i class="fas fa-info-circle"></i> <strong>Cara order:</strong><br>
-                1️⃣ Isi semua data → 2️⃣ Klik "SALIN PESAN" → 3️⃣ Klik "KIRIM PESAN" → Pesan otomatis terkirim ke Admin
+                <i class="fas fa-info-circle"></i> <strong>Cara Order:</strong><br>
+                Salin Pesanan → Kirim Pesanan → Tempel Pesanan
             </div>
         </div>
     </div>
@@ -376,16 +390,15 @@
                 <button class="btn-download" onclick="downloadGame('higgs')"><i class="fas fa-download"></i> Download</button>
             </div>
         </div>
-    </div>
 
-        <!-- ROYAL DOMINO -->
+        <!-- ROYAL DOMINO - DAFTAR HARGA RAPI -->
         <div class="card">
             <div class="card-header">
                 <div class="game-logo"><img src="https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO%20DOWNLOAD%20installworks.ca" alt="Royal Domino" onerror="this.src='https://via.placeholder.com/55?text=RD'"></div>
                 <div class="info-header"><h2>ROYAL DOMINO</h2><div class="sub">Beli 64K/B · Jual 61K/B</div></div>
             </div>
             <div class="table-wrapper">
-                <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></table></thead>
+                <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead>
                 <tbody>
                     <tr><td>100M</td><td class="price-beli">Rp 6.400</td><td class="price-jual">Rp 6.100</td></tr>
                     <tr><td>500M</td><td class="price-beli">Rp 32.000</td><td class="price-jual">Rp 30.500</td></tr>
@@ -400,7 +413,6 @@
                 <button class="btn-download" onclick="downloadGame('royalDomino')"><i class="fas fa-download"></i> Download</button>
             </div>
         </div>
-    </div>
 
         <!-- BOS DOMINO -->
         <div class="card">
@@ -424,7 +436,6 @@
                 <button class="btn-download" onclick="downloadGame('bosDomino')"><i class="fas fa-download"></i> Download</button>
             </div>
         </div>
-    </div>
 
         <!-- BERFIST -->
         <div class="card">
@@ -449,7 +460,6 @@
             </div>
         </div>
     </div>
-</div>
 
     <!-- INFO STORE -->
     <div class="info-store">
@@ -535,7 +545,7 @@
         return msg;
     }
 
-    // SALIN PESAN
+    // Salin Pesanan
     function copyMessage() {
         const msg = updatePreview();
         if (msg.startsWith("⚠️")) {
@@ -543,15 +553,14 @@
             return false;
         }
         navigator.clipboard.writeText(msg).then(() => {
-            alert("✅ Pesan berhasil disalin!\n\nSekarang klik 'KIRIM PESAN' untuk mengirim ke Admin.");
-            return true;
+            alert("✅ Pesanan berhasil disalin!\n\nSekarang klik 'Kirim Pesanan' untuk mengirim ke Admin.");
         }).catch(() => {
             alert("❌ Gagal menyalin, silakan blok pesan dan copy manual.");
         });
         return true;
     }
 
-    // KIRIM OTOMATIS KE APK
+    // Kirim Pesanan ke APK
     function sendToAPK() {
         const msg = updatePreview();
         if (msg.startsWith("⚠️")) {
@@ -559,7 +568,6 @@
             return;
         }
         
-        // Kirim via Android interface
         if (window.Android && typeof window.Android.sendMessageToAdmin === 'function') {
             window.Android.sendMessageToAdmin(msg);
             showSuccessAndClose();
@@ -572,7 +580,6 @@
             showSuccessAndClose();
         }
         else {
-            // Fallback custom scheme
             const encodedMsg = encodeURIComponent(msg);
             window.location.href = `llcstore://customer_chat?message=${encodedMsg}`;
             showSuccessAndClose();
@@ -586,7 +593,7 @@
             notif.style.display = "none";
             closeModal();
         }, 2000);
-        alert("✅ Pesan berhasil dikirim ke Admin LLC!\nAdmin akan merespon dalam 1-3 menit.");
+        alert("✅ Pesanan berhasil dikirim ke Admin LLC!\nAdmin akan merespon dalam 1-3 menit.");
     }
 
     function openModalWithGame(gameName) {
@@ -605,7 +612,6 @@
         document.getElementById("orderModal").style.display = "none";
     }
 
-    // Event listeners
     document.getElementById("transaksiType").addEventListener("change", updatePreview);
     document.getElementById("jumlahKoin").addEventListener("input", updatePreview);
     document.getElementById("idGame").addEventListener("input", updatePreview);

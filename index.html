@@ -2,10 +2,10 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>LLCStore | TopUp Game Premium</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>LLC Store | TopUp Higgs & Domino Sultan | Berfist - Full Animasi</title>
     <!-- Google Fonts & Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -15,313 +15,435 @@
         }
 
         body {
-            background: radial-gradient(circle at 10% 20%, #0a0f1e, #03060c);
             font-family: 'Inter', sans-serif;
-            color: #edf4ff;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b2e 100%);
+            color: #f1f5f9;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            position: relative;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        /* Efek bintang / glitch modern */
-        .bg-glow {
+        /* === ANIMASI BACKGROUND === */
+        .stars, .twinkling {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            pointer-events: none;
+            z-index: -2;
+        }
+        .stars {
+            background: #000 url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIxLjUiIGZpbGw9IndoaXRlIi8+PC9zdmc+') repeat;
+            background-size: 200px 200px;
+            animation: starMove 60s linear infinite;
+            opacity: 0.6;
+        }
+        @keyframes starMove {
+            from { transform: translateY(0); }
+            to { transform: translateY(-200px); }
+        }
+        .twinkling {
+            background: transparent url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+PGNpcmNsZSBjeD0iMjAiIGN5PSIzMCIgcj0iMSIgZmlsbD0iI2ZmZGI1YyIvPjwvc3ZnPg==') repeat;
+            background-size: 150px 150px;
+            animation: twinkle 3s infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            100% { opacity: 0.9; }
+        }
+
+        .particle-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0;
-            background: 
-                radial-gradient(circle at 20% 40%, rgba(0, 255, 255, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255, 80, 200, 0.08) 0%, transparent 45%);
-            animation: breathe 8s infinite alternate;
+            z-index: -1;
         }
 
-        @keyframes breathe {
-            0% { opacity: 0.4; }
-            100% { opacity: 1; }
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            border-radius: 10px;
         }
 
         .container {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem 1.5rem 4rem;
             position: relative;
             z-index: 2;
         }
 
-        /* header modern mini */
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
-            padding-bottom: 1rem;
-        }
-
-        .logo-area h1 {
-            font-size: 1.9rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fff, #4affff, #c084fc);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            letter-spacing: -0.5px;
-        }
-
-        .logo-area p {
-            font-size: 0.8rem;
-            color: #9ca3cf;
-            margin-top: 0.25rem;
-            letter-spacing: 0.3px;
-        }
-
-        .badge-year {
-            background: rgba(0, 255, 255, 0.15);
-            backdrop-filter: blur(8px);
-            padding: 0.4rem 1.2rem;
-            border-radius: 80px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid rgba(0, 255, 255, 0.4);
-            box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
-        }
-
-        /* headline keren */
-        .hero-section {
-            text-align: center;
-            margin: 2rem 0 3rem;
-        }
-
-        .hero-section h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(to right, #f0f9ff, #b6e1fc, #f0a6ff);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            letter-spacing: -0.02em;
-        }
-
-        .hero-section p {
-            margin-top: 1rem;
-            font-size: 1.1rem;
-            color: #bbd1f5;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* === GRID GAME (tanpa menu bergambar asli -> icon + animasi glow) === */
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0 4rem;
-        }
-
-        .game-card {
-            background: rgba(12, 20, 35, 0.65);
-            backdrop-filter: blur(12px);
+        /* Hero Animations */
+        .hero {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+            backdrop-filter: blur(10px);
             border-radius: 2rem;
-            padding: 1.8rem 1.2rem 1.8rem;
+            padding: 2.5rem 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
             text-align: center;
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            box-shadow: 0 20px 35px -15px rgba(0,0,0,0.5);
-            cursor: pointer;
+            animation: fadeInUp 0.8s ease-out, borderGlow 3s infinite alternate;
             position: relative;
             overflow: hidden;
         }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245,158,11,0.08), transparent 70%);
+            animation: rotateSlow 20s linear infinite;
+        }
+        @keyframes rotateSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes borderGlow {
+            0% { border-color: rgba(245, 158, 11, 0.3); box-shadow: 0 0 5px rgba(245,158,11,0.2);}
+            100% { border-color: rgba(245, 158, 11, 0.9); box-shadow: 0 0 30px rgba(245,158,11,0.5);}
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        .game-card::before {
-            content: "";
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            animation: textShine 2s infinite;
+        }
+        @keyframes textShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .hero p {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            animation: fadeIn 1s ease 0.2s both;
+        }
+        
+        .badge-group {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+        
+        .badge {
+            background: rgba(51, 65, 85, 0.8);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            border-left: 3px solid #f59e0b;
+            color: #fef3c7;
+            transition: all 0.3s;
+            animation: badgeWave 0.6s ease-out backwards;
+            cursor: default;
+        }
+        .badge:hover {
+            transform: scale(1.07) translateY(-3px);
+            background: #f59e0b;
+            color: #0f172a;
+            border-left-color: white;
+            box-shadow: 0 5px 15px rgba(245,158,11,0.4);
+        }
+        @keyframes badgeWave {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+            animation: cardFloat 0.6s ease-out backwards;
+        }
+        @keyframes cardFloat {
+            from { opacity: 0; transform: translateY(50px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        .card:hover {
+            transform: translateY(-12px) scale(1.01);
+            border-color: #f59e0b;
+            box-shadow: 0 30px 40px -12px rgba(245,158,11,0.4);
+        }
+
+        .card-header {
+            padding: 1.2rem 1.5rem;
+            background: linear-gradient(115deg, #1e293b, #0f172a);
+            border-bottom: 2px solid #f59e0b;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            position: relative;
+            overflow: hidden;
+        }
+        .card-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245,158,11,0.15) 0%, transparent 70%);
+            animation: rotateShine 12s infinite linear;
+            pointer-events: none;
+        }
+        @keyframes rotateShine {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .game-logo {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #f59e0b;
+            animation: pulseBorder 2s infinite;
+            box-shadow: 0 0 10px rgba(245,158,11,0.3);
+            overflow: hidden;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: #f59e0b; box-shadow: 0 0 0 0 rgba(245,158,11,0.4);}
+            70% { border-color: #fbbf24; box-shadow: 0 0 0 8px rgba(245,158,11,0);}
+            100% { border-color: #f59e0b; box-shadow: 0 0 0 0 rgba(245,158,11,0);}
+        }
+        
+        .game-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s;
+        }
+        .card:hover .game-logo img {
+            transform: scale(1.1);
+        }
+        
+        .info-header h2 {
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #ffd966, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: titleGlow 1.5s infinite alternate;
+        }
+
+        .sub {
+            font-size: 0.7rem;
+            opacity: 0.75;
+            margin-top: 4px;
+            color: #94a3b8;
+        }
+
+        .table-wrapper {
+            padding: 0 1rem 1.2rem 1rem;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        
+        th {
+            text-align: left;
+            padding: 0.8rem 0.5rem 0.5rem 0.5rem;
+            color: #fbbf24;
+            font-weight: 700;
+            border-bottom: 1px dashed #334155;
+        }
+        
+        td {
+            padding: 0.7rem 0.5rem;
+            border-bottom: 1px solid #334155;
+            font-weight: 500;
+            color: #e2e8f0;
+            transition: all 0.2s;
+        }
+        tr:hover td {
+            background: rgba(245,158,11,0.08);
+            transform: scale(1.01);
+        }
+        
+        .price-beli {
+            color: #fde68a;
+            font-weight: 800;
+            animation: gentlePulse 1.8s infinite;
+        }
+        @keyframes gentlePulse {
+            0%, 100% { text-shadow: 0 0 0px #fde68a; }
+            50% { text-shadow: 0 0 3px #fbbf24; }
+        }
+        
+        .note {
+            font-size: 0.7rem;
+            background: #1e293b;
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+            color: #cbd5e1;
+            animation: slideInLeft 0.5s;
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-15px);}
+            to { opacity: 1; transform: translateX(0);}
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-topup {
+            flex: 1;
+            background: linear-gradient(95deg, #f59e0b, #ea580c);
+            border: none;
+            color: #0f172a;
+            font-weight: 800;
+            padding: 10px 12px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-topup::before {
+            content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
-            transition: left 0.7s;
-            z-index: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
         }
-
-        .game-card:hover::before {
+        .btn-topup:hover::before {
             left: 100%;
         }
-
-        .game-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            border-color: #4affff;
-            box-shadow: 0 30px 40px -12px rgba(0, 255, 255, 0.25);
-            background: rgba(18, 28, 45, 0.8);
+        
+        .btn-topup:hover {
+            transform: translateY(-3px) scale(1.02);
+            filter: brightness(1.1);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.3);
         }
-
-        /* gambar game ukuran kecil tapi stylish */
-        .game-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.2rem;
-            background: linear-gradient(145deg, #111a2b, #020a16);
-            border-radius: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.8rem;
-            transition: all 0.3s;
-            box-shadow: 0 8px 14px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
-            border: 1px solid rgba(74, 255, 255, 0.4);
-        }
-
-        .game-card:hover .game-icon {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 0 18px rgba(0, 255, 255, 0.5);
-        }
-
-        .game-card h3 {
-            font-size: 1.7rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.3px;
-        }
-
-        .game-tag {
-            font-size: 0.8rem;
-            background: rgba(0, 255, 255, 0.2);
-            display: inline-block;
-            padding: 0.2rem 1rem;
-            border-radius: 40px;
-            margin-bottom: 1rem;
-            font-weight: 500;
-            backdrop-filter: blur(4px);
-        }
-
-        .price-badge {
-            font-weight: 800;
-            font-size: 1.2rem;
-            margin: 0.7rem 0;
-            background: linear-gradient(120deg, #ffe6b3, #ffb347);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .btn-order {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid #4affaa;
-            padding: 0.6rem 1.6rem;
-            border-radius: 40px;
-            font-weight: 600;
-            color: #d6f0ff;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: 0.2s;
-            cursor: pointer;
-            font-size: 0.9rem;
-            backdrop-filter: blur(4px);
-        }
-
-        .btn-order i {
-            font-size: 0.9rem;
-            transition: 0.2s;
-        }
-
-        .btn-order:hover {
-            background: #4affaa20;
-            border-color: #aaffdd;
-            color: white;
-            transform: scale(1.02);
-            gap: 14px;
-        }
-
-        /* informasi kontak / floating minimal +footer */
-        .contact-strip {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin: 2rem 0 1.5rem;
-            padding: 1rem 1.5rem;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(12px);
-            border-radius: 80px;
-            border: 1px solid rgba(0, 255, 255, 0.25);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        .contact-item i {
-            font-size: 1.3rem;
-            color: #4affff;
-            text-shadow: 0 0 4px cyan;
-        }
-
-        footer {
+        
+        .footer-note {
             text-align: center;
-            margin-top: 3rem;
-            font-size: 0.75rem;
-            color: #7f8ea3;
-            border-top: 1px dashed rgba(74, 255, 255, 0.2);
-            padding-top: 1.8rem;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            animation: fadeInUp 0.6s;
         }
-
-        /* Modal beli (pop up modern) */
+        
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .hero h1 { font-size: 2rem; }
+            .card-header h2 { font-size: 1.2rem; }
+            th, td { font-size: 0.65rem; padding: 0.5rem 0.3rem; }
+            .game-logo { width: 50px; height: 50px; }
+        }
+        
+        /* MODAL CHAT ADMIN */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(12px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
         }
-
         .modal-content {
-            background: rgba(14, 22, 40, 0.95);
-            backdrop-filter: blur(20px);
+            background: rgba(18, 25, 45, 0.98);
+            backdrop-filter: blur(12px);
             width: 90%;
-            max-width: 420px;
+            max-width: 500px;
             border-radius: 2rem;
             padding: 2rem 1.8rem;
-            border: 1px solid #4affaa;
-            box-shadow: 0 25px 45px rgba(0,0,0,0.5), 0 0 25px rgba(0,255,255,0.3);
-            text-align: center;
+            border: 1px solid #f59e0b;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.6), 0 0 20px rgba(245,158,11,0.4);
+            text-align: left;
             animation: fadeUp 0.3s ease;
+            color: white;
         }
-
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
         .modal-content h3 {
             font-size: 1.8rem;
             margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-
         .modal-content input, .modal-content select {
             width: 100%;
             padding: 0.9rem;
-            margin: 0.8rem 0;
-            background: #0b101c;
-            border: 1px solid #2c3e66;
+            margin: 0.7rem 0;
+            background: #0b1120;
+            border: 1px solid #334155;
             border-radius: 1.5rem;
             color: white;
             font-size: 1rem;
@@ -329,8 +451,8 @@
             transition: 0.2s;
         }
         .modal-content input:focus, .modal-content select:focus {
-            border-color: #4affff;
-            box-shadow: 0 0 12px #4affff55;
+            border-color: #f59e0b;
+            box-shadow: 0 0 12px #f59e0b55;
         }
         .modal-buttons {
             display: flex;
@@ -345,6 +467,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: 0.2s;
+            font-family: 'Inter', sans-serif;
         }
         .confirm-btn {
             background: linear-gradient(95deg, #10b981, #06b6d4);
@@ -362,30 +485,8 @@
             right: 1.5rem;
             font-size: 1.8rem;
             cursor: pointer;
-            color: #bbf0ff;
+            color: #fbbf24;
         }
-        
-        /* animasi tambahan background */
-        @keyframes float {
-            0% { transform: translateY(0px);}
-            100% { transform: translateY(-15px);}
-        }
-        .game-card {
-            animation: float 4s infinite alternate ease-in-out;
-            animation-delay: calc(var(--order, 0) * 0.2s);
-        }
-        .game-card:nth-child(1) { --order: 0; animation-duration: 4.2s; }
-        .game-card:nth-child(2) { --order: 1; animation-duration: 4.8s; }
-        .game-card:nth-child(3) { --order: 2; animation-duration: 5s; }
-        .game-card:nth-child(4) { --order: 3; animation-duration: 4.5s; }
-
-        @media (max-width: 650px) {
-            .hero-section h2 { font-size: 1.8rem; }
-            .game-card h3 { font-size: 1.4rem; }
-            .contact-strip { border-radius: 2rem; gap: 1rem; }
-        }
-        
-        /* tombol wa langsung tanpa menu bergambar asli tapi tetap keren */
         .toast-msg {
             position: fixed;
             bottom: 20px;
@@ -394,232 +495,316 @@
             background: #1f2a48e6;
             backdrop-filter: blur(20px);
             color: #b9f3ff;
-            padding: 10px 24px;
+            padding: 12px 26px;
             border-radius: 60px;
             font-size: 0.85rem;
             border-left: 4px solid #4affff;
             z-index: 1100;
-            pointer-events: none;
             transition: 0.3s;
             font-weight: 500;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
-<div class="bg-glow"></div>
+<canvas id="particleCanvas" class="particle-canvas"></canvas>
+<div class="stars"></div>
+<div class="twinkling"></div>
+
 <div class="container">
-    <div class="top-bar">
-        <div class="logo-area">
-            <h1><i class="fas fa-crown" style="color: #ffd966; margin-right: 6px;"></i> LLCStore</h1>
-            <p>Pusat TopUp & Jual Beli Koin • Terpercaya sejak 2024</p>
-        </div>
-        <div class="badge-year">
-            <i class="fas fa-bolt"></i> 24/7 Nonstop
-        </div>
-    </div>
-
-    <div class="hero-section">
-        <h2>TopUp Instan & Super Cepat</h2>
-        <p>Nikmati kemudahan beli koin games favoritmu dengan harga terbaik & layanan 24 jam</p>
-    </div>
-
-    <!-- DAFTAR GAME LANGSUNG TANPA MENU BERLEBIH, GAMBAR GAME TIDAK BESAR (icon vector kecil) -->
-    <div class="game-grid">
-        <!-- Game 1: Higgs Games Island -->
-        <div class="game-card" data-game="Higgs Games Island" data-price="Mulai 15K">
-            <div class="game-icon"><i class="fas fa-island-tropical"></i></div>
-            <h3>Higgs Games<br>Island</h3>
-            <div class="game-tag"><i class="fas fa-tag"></i> Top Up Koin</div>
-            <div class="price-badge">⭐ Koin DOMBA / Emas</div>
-            <div class="btn-order"><span>Beli Sekarang</span> <i class="fas fa-arrow-right"></i></div>
-        </div>
-        <!-- Game 2: Bos Domino -->
-        <div class="game-card" data-game="Bos Domino" data-price="Mulai 12K">
-            <div class="game-icon"><i class="fas fa-dice-d6"></i></div>
-            <h3>Bos Domino</h3>
-            <div class="game-tag"><i class="fas fa-gem"></i> Chip / Uang Domino</div>
-            <div class="price-badge">🔥 Bonus 5%</div>
-            <div class="btn-order"><span>Beli Sekarang</span> <i class="fas fa-arrow-right"></i></div>
-        </div>
-        <!-- Game 3: Royal Domino -->
-        <div class="game-card" data-game="Royal Domino" data-price="Mulai 18K">
-            <div class="game-icon"><i class="fas fa-crown"></i></div>
-            <h3>Royal Domino</h3>
-            <div class="game-tag"><i class="fas fa-coins"></i> Koin Royal</div>
-            <div class="price-badge">👑 Instant Delivery</div>
-            <div class="btn-order"><span>Beli Sekarang</span> <i class="fas fa-arrow-right"></i></div>
-        </div>
-        <!-- Game 4: Berfist -->
-        <div class="game-card" data-game="Berfist" data-price="Mulai 20K">
-            <div class="game-icon"><i class="fas fa-fist-raised"></i></div>
-            <h3>Berfist</h3>
-            <div class="game-tag"><i class="fas fa-fire"></i> Battle Pass</div>
-            <div class="price-badge">💎 Top Up Tercepat</div>
-            <div class="btn-order"><span>Beli Sekarang</span> <i class="fas fa-arrow-right"></i></div>
+    <div class="hero">
+        <h1><i class="fas fa-crown"></i> LLC STORE <i class="fas fa-bolt"></i></h1>
+        <p>TopUp & Jual Beli Koin Higgs Games Island • Bos Domino • Royal Domino • Berfist | Harga Terbaik 2026</p>
+        <div class="badge-group">
+            <span class="badge"><i class="fab fa-fort-awesome"></i> Higgs Games</span>
+            <span class="badge"><i class="fas fa-crown"></i> Bos Domino</span>
+            <span class="badge"><i class="fas fa-chess-queen"></i> Royal Domino</span>
+            <span class="badge"><i class="fas fa-fist-raised"></i> Berfist</span>
+            <span class="badge"><i class="fas fa-clock"></i> 24/7 Nonstop</span>
         </div>
     </div>
 
-    <!-- Kontak CTA Modern -->
-    <div class="contact-strip">
-        <div class="contact-item"><i class="fab fa-whatsapp"></i> +62 858-2371-0815</div>
-        <div class="contact-item"><i class="far fa-envelope"></i> admin@llcstore.com</div>
-        <div class="contact-item"><i class="far fa-clock"></i> 24/7 Nonstop</div>
+    <div class="grid">
+        <!-- HIGGS GAMES ISLAND -->
+        <div class="card">
+            <div class="card-header">
+                <div class="game-logo"><i class="fas fa-gamepad" style="font-size:2.5rem; color:#f97316;"></i></div>
+                <div class="info-header"><h2>HIGGS GAMES ISLAND</h2><div class="sub">Beli 60K/1B | Jual 56K/1B (Untung 4rb)</div></div>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Jumlah Koin</th><th>Harga Beli (IDR)</th><th>Harga Jual (IDR)</th></tr></thead>
+                    <tbody>
+                        <tr><td>100M</td><td class="price-beli">Rp 6.000</td><td>Rp 5.600</td></tr>
+                        <tr><td>200M</td><td class="price-beli">Rp 12.000</td><td>Rp 11.200</td></tr>
+                        <tr><td>500M</td><td class="price-beli">Rp 30.000</td><td>Rp 28.000</td></tr>
+                        <tr><td>1B</td><td class="price-beli">Rp 60.000</td><td>Rp 56.000</td></tr>
+                        <tr><td>2B</td><td class="price-beli">Rp 120.000</td><td>Rp 112.000</td></tr>
+                        <tr><td>5B</td><td class="price-beli">Rp 300.000</td><td>Rp 280.000</td></tr>
+                        <tr><td>10B</td><td class="price-beli">Rp 600.000</td><td>Rp 560.000</td></tr>
+                        <tr><td>20B</td><td class="price-beli">Rp 1.200.000</td><td>Rp 1.120.000</td></tr>
+                    </tbody>
+                </table>
+                <div class="note"><i class="fas fa-tag"></i> Harga per 1B: Beli 60rb / Jual 56rb</div>
+                <div class="btn-group">
+                    <button class="btn-topup" onclick="openOrderModal('Higgs Games Island')"><i class="fas fa-comment-dots"></i> CHAT ADMIN</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOS DOMINO (10B - 100B) -->
+        <div class="card">
+            <div class="card-header">
+                <div class="game-logo"><i class="fas fa-crown" style="font-size:2.5rem; color:#fbbf24;"></i></div>
+                <div class="info-header"><h2>BOS DOMINO</h2><div class="sub">Beli 4K/1B | Jual 3K/1B (Untung 1rb)</div></div>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Jumlah Chip</th><th>Harga Beli (IDR)</th><th>Harga Jual (IDR)</th></tr></thead>
+                    <tbody>
+                        <tr><td>10B</td><td class="price-beli">Rp 40.000</td><td>Rp 30.000</td></tr>
+                        <tr><td>20B</td><td class="price-beli">Rp 80.000</td><td>Rp 60.000</td></tr>
+                        <tr><td>30B</td><td class="price-beli">Rp 120.000</td><td>Rp 90.000</td></tr>
+                        <tr><td>40B</td><td class="price-beli">Rp 160.000</td><td>Rp 120.000</td></tr>
+                        <tr><td>50B</td><td class="price-beli">Rp 200.000</td><td>Rp 150.000</td></tr>
+                        <tr><td>100B</td><td class="price-beli">Rp 400.000</td><td>Rp 300.000</td></tr>
+                    </tbody>
+                </table>
+                <div class="note"><i class="fas fa-chart-line"></i> Harga super murah! Beli 4rb/1B | Jual 3rb/1B</div>
+                <div class="btn-group">
+                    <button class="btn-topup" onclick="openOrderModal('Bos Domino')"><i class="fas fa-comment-dots"></i> CHAT ADMIN</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROYAL DOMINO -->
+        <div class="card">
+            <div class="card-header">
+                <div class="game-logo"><i class="fas fa-chess-queen" style="font-size:2.5rem; color:#c084fc;"></i></div>
+                <div class="info-header"><h2>ROYAL DOMINO</h2><div class="sub">Beli 64K/1B | Jual 61K/1B (Untung 3rb)</div></div>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Jumlah Chip</th><th>Harga Beli (IDR)</th><th>Harga Jual (IDR)</th></tr></thead>
+                    <tbody>
+                        <tr><td>100M</td><td class="price-beli">Rp 6.400</td><td>Rp 6.100</td></tr>
+                        <tr><td>200M</td><td class="price-beli">Rp 12.800</td><td>Rp 12.200</td></tr>
+                        <tr><td>500M</td><td class="price-beli">Rp 32.000</td><td>Rp 30.500</td></tr>
+                        <tr><td>1B</td><td class="price-beli">Rp 64.000</td><td>Rp 61.000</td></tr>
+                        <tr><td>2B</td><td class="price-beli">Rp 128.000</td><td>Rp 122.000</td></tr>
+                        <tr><td>5B</td><td class="price-beli">Rp 320.000</td><td>Rp 305.000</td></tr>
+                        <tr><td>10B</td><td class="price-beli">Rp 640.000</td><td>Rp 610.000</td></tr>
+                        <tr><td>20B</td><td class="price-beli">Rp 1.280.000</td><td>Rp 1.220.000</td></tr>
+                    </tbody>
+                </table>
+                <div class="note"><i class="fas fa-exchange-alt"></i> Beli 64k/1B | Jual 61k/1B</div>
+                <div class="btn-group">
+                    <button class="btn-topup" onclick="openOrderModal('Royal Domino')"><i class="fas fa-comment-dots"></i> CHAT ADMIN</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- BERFIST -->
+        <div class="card">
+            <div class="card-header">
+                <div class="game-logo"><i class="fas fa-fist-raised" style="font-size:2.5rem; color:#ef4444;"></i></div>
+                <div class="info-header"><h2>BERFIST</h2><div class="sub">Beli 35K/1B | Jual 31K/1B (Untung 4rb)</div></div>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Jumlah Koin</th><th>Harga Beli (IDR)</th><th>Harga Jual (IDR)</th></tr></thead>
+                    <tbody>
+                        <tr><td>100M</td><td class="price-beli">Rp 3.500</td><td>Rp 3.100</td></tr>
+                        <tr><td>200M</td><td class="price-beli">Rp 7.000</td><td>Rp 6.200</td></tr>
+                        <tr><td>500M</td><td class="price-beli">Rp 17.500</td><td>Rp 15.500</td></tr>
+                        <tr><td>1B</td><td class="price-beli">Rp 35.000</td><td>Rp 31.000</td></tr>
+                        <tr><td>2B</td><td class="price-beli">Rp 70.000</td><td>Rp 62.000</td></tr>
+                        <tr><td>5B</td><td class="price-beli">Rp 175.000</td><td>Rp 155.000</td></tr>
+                        <tr><td>10B</td><td class="price-beli">Rp 350.000</td><td>Rp 310.000</td></tr>
+                        <tr><td>20B</td><td class="price-beli">Rp 700.000</td><td>Rp 620.000</td></tr>
+                    </tbody>
+                </table>
+                <div class="note"><i class="fas fa-fist-raised"></i> Beli 35k/1B | Jual 31k/1B spesial</div>
+                <div class="btn-group">
+                    <button class="btn-topup" onclick="openOrderModal('Berfist')"><i class="fas fa-comment-dots"></i> CHAT ADMIN</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <footer>
-        <p>© 2024 LLCStore • Semua transaksi aman & terpercaya. Support Higgs, Bos Domino, Royal Domino & Berfist.</p>
-    </footer>
+    <div class="footer-note">
+        <i class="fas fa-headset"></i> <strong>LLC Store</strong> • Proses cepat & aman • Garansi penuh • Support 24 jam<br>
+        <strong style="color: #fbbf24;">© LLC STORE 2026 | TopUp Sultan Se-Indonesia</strong>
+    </div>
 </div>
 
-<!-- MODAL PEMBELIAN KEREN -->
+<!-- MODAL ORDER -->
 <div id="orderModal" class="modal">
     <div class="modal-content">
         <span class="close-modal" id="closeModalBtn">&times;</span>
-        <h3><i class="fas fa-shopping-cart"></i> <span id="modalGameName"></span></h3>
-        <p style="margin-bottom: 12px;">Isi data untuk order TopUp</p>
-        <input type="text" id="userId" placeholder="User ID / Game ID" autocomplete="off">
-        <input type="text" id="nominal" placeholder="Nominal / Jumlah Koin (Contoh: 50 Diamond)">
+        <h3><i class="fas fa-cart-shopping"></i> <span id="modalGameTitle"></span></h3>
+        <p>Isi data untuk transaksi (BELI atau JUAL)</p>
+        <input type="text" id="gameId" placeholder="ID Game / User ID" autocomplete="off">
+        <select id="coinAmount">
+            <option value="">Pilih jumlah Koin / Chip</option>
+        </select>
+        <select id="transactionType">
+            <option value="BELI">Saya ingin BELI (TopUp)</option>
+            <option value="JUAL">Saya ingin JUAL (Koin ke LLC)</option>
+        </select>
         <select id="paymentMethod">
-            <option value="QRIS">QRIS - Scan Cepat</option>
-            <option value="DANA">DANA / OVO</option>
-            <option value="Bank Transfer">Bank Transfer</option>
+            <option value="Bank Transfer (BCA/Mandiri/BNI)">🏦 Bank Transfer (BCA/Mandiri/BNI)</option>
+            <option value="OVO">📱 OVO</option>
+            <option value="DANA">💸 DANA</option>
+            <option value="QRIS">📲 QRIS (Semua Bank)</option>
+            <option value="Gopay">🟢 Gopay</option>
         </select>
         <div class="modal-buttons">
-            <button class="confirm-btn" id="confirmOrderBtn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</button>
+            <button class="confirm-btn" id="sendOrderBtn"><i class="fab fa-telegram-plane"></i> Kirim ke Admin</button>
             <button class="cancel-btn" id="cancelModalBtn">Batal</button>
         </div>
     </div>
 </div>
-
-<div id="toastMsg" class="toast-msg" style="opacity:0; visibility: hidden;">✨ Pesan</div>
+<div id="toastMsg" class="toast-msg" style="opacity:0; visibility: hidden;">✨</div>
 
 <script>
-    // Ambil semua kartu game
-    const gameCards = document.querySelectorAll('.game-card');
-    const modal = document.getElementById('orderModal');
-    const modalGameNameSpan = document.getElementById('modalGameName');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const cancelModalBtn = document.getElementById('cancelModalBtn');
-    const confirmOrderBtn = document.getElementById('confirmOrderBtn');
-    let selectedGame = '';
-
-    // Helper show Toast
-    function showToast(message, isError = false) {
-        const toast = document.getElementById('toastMsg');
-        toast.textContent = message;
-        toast.style.backgroundColor = isError ? '#4a1818cc' : '#0f2f2fd9';
-        toast.style.borderLeftColor = isError ? '#ff6666' : '#4affff';
-        toast.style.opacity = '1';
-        toast.style.visibility = 'visible';
-        setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.visibility = 'hidden';
-        }, 3000);
-    }
-
-    // Buka modal dengan game terpilih
-    function openModal(gameName) {
-        selectedGame = gameName;
-        modalGameNameSpan.innerText = gameName;
-        modal.style.display = 'flex';
-        document.getElementById('userId').value = '';
-        document.getElementById('nominal').value = '';
-    }
-
-    // Tutup modal
-    function closeModal() {
-        modal.style.display = 'none';
-        selectedGame = '';
-    }
-
-    // Event listener tiap card
-    gameCards.forEach(card => {
-        const btn = card.querySelector('.btn-order');
-        const gameTitleElem = card.querySelector('h3');
-        let gameName = '';
-        if(gameTitleElem) gameName = gameTitleElem.innerText.trim().replace(/\n/g, ' ');
-        // handle Higgs Games Island mungkin terpecah tapi aman
-        if(card.getAttribute('data-game')) gameName = card.getAttribute('data-game');
-        else {
-            // fix untuk yang h3 ada <br>? kita rapikan
-            const rawText = gameTitleElem.innerText;
-            gameName = rawText.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+    // Data harga per game
+    const priceLists = {
+        "Higgs Games Island": {
+            amounts: ["100M","200M","500M","1B","2B","5B","10B","20B"],
+            buyPrice: { "100M":6000,"200M":12000,"500M":30000,"1B":60000,"2B":120000,"5B":300000,"10B":600000,"20B":1200000 },
+            sellPrice: { "100M":5600,"200M":11200,"500M":28000,"1B":56000,"2B":112000,"5B":280000,"10B":560000,"20B":1120000 }
+        },
+        "Bos Domino": {
+            amounts: ["10B","20B","30B","40B","50B","100B"],
+            buyPrice: { "10B":40000,"20B":80000,"30B":120000,"40B":160000,"50B":200000,"100B":400000 },
+            sellPrice: { "10B":30000,"20B":60000,"30B":90000,"40B":120000,"50B":150000,"100B":300000 }
+        },
+        "Royal Domino": {
+            amounts: ["100M","200M","500M","1B","2B","5B","10B","20B"],
+            buyPrice: { "100M":6400,"200M":12800,"500M":32000,"1B":64000,"2B":128000,"5B":320000,"10B":640000,"20B":1280000 },
+            sellPrice: { "100M":6100,"200M":12200,"500M":30500,"1B":61000,"2B":122000,"5B":305000,"10B":610000,"20B":1220000 }
+        },
+        "Berfist": {
+            amounts: ["100M","200M","500M","1B","2B","5B","10B","20B"],
+            buyPrice: { "100M":3500,"200M":7000,"500M":17500,"1B":35000,"2B":70000,"5B":175000,"10B":350000,"20B":700000 },
+            sellPrice: { "100M":3100,"200M":6200,"500M":15500,"1B":31000,"2B":62000,"5B":155000,"10B":310000,"20B":620000 }
         }
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            openModal(gameName);
-        });
-        // klik area card juga bisa (optional)
-        card.addEventListener('click', (e) => {
-            if(e.target.classList && e.target.classList.contains('btn-order')) return;
-            openModal(gameName);
-        });
-    });
-
-    // Tombol close
-    closeModalBtn.addEventListener('click', closeModal);
-    cancelModalBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
-
-    // Fungsi format WA message super keren
-    confirmOrderBtn.addEventListener('click', () => {
-        const userId = document.getElementById('userId').value.trim();
-        const nominal = document.getElementById('nominal').value.trim();
-        const payment = document.getElementById('paymentMethod').value;
-        
-        if (!userId) {
-            showToast('❌ Masukkan User ID / Game ID dulu ya!', true);
-            return;
-        }
-        if (!nominal) {
-            showToast('💰 Isi nominal top up (Contoh: 100 Diamond / 50K Koin)', true);
-            return;
-        }
-        
-        // nomor WA dari kontak
-        const waNumber = '6285823710815'; // +62 858-2371-0815 -> tanpa +
-        const game = selectedGame;
-        const message = `Halo LLCStore! Saya mau TopUp *${game}*%0A🆔 User ID: ${userId}%0A💎 Nominal: ${nominal}%0A💳 Metode: ${payment}%0A✅ Mohon diproses segera. Terima kasih!`;
-        const waLink = `https://wa.me/${waNumber}?text=${message}`;
-        
-        // menampilkan toast sukses lalu buka link
-        showToast(`📱 Membuka WhatsApp untuk order ${game}...`);
-        setTimeout(() => {
-            window.open(waLink, '_blank');
-            closeModal();
-        }, 400);
-    });
-
-    // efek tambahan keren saat halaman dimuat (partikel sederhana)
-    const createParticle = () => {
-        const particle = document.createElement('div');
-        particle.style.position = 'fixed';
-        particle.style.width = '2px';
-        particle.style.height = '2px';
-        particle.style.background = '#4affff';
-        particle.style.borderRadius = '50%';
-        particle.style.left = Math.random() * window.innerWidth + 'px';
-        particle.style.top = Math.random() * window.innerHeight + 'px';
-        particle.style.opacity = Math.random() * 0.5;
-        particle.style.pointerEvents = 'none';
-        particle.style.zIndex = '1';
-        particle.style.animation = 'fadeOut 3s ease-out forwards';
-        document.body.appendChild(particle);
-        setTimeout(() => particle.remove(), 3000);
     };
-    // Animasi kecil random star
-    setInterval(() => {
-        if(Math.random() > 0.7) createParticle();
-    }, 800);
-    // tambahkan style untuk fadeOut
-    const styleSheet = document.createElement("style");
-    styleSheet.textContent = `@keyframes fadeOut { 0% { opacity: 0.8; transform: scale(1); } 100% { opacity: 0; transform: scale(1.8); } }`;
-    document.head.appendChild(styleSheet);
-    
-    // small responsive fix for any missing
-    console.log("LLCStore super keren, siap order game!");
+
+    let currentGame = "";
+    function openOrderModal(gameName) {
+        currentGame = gameName;
+        document.getElementById("modalGameTitle").innerText = gameName;
+        const amountSelect = document.getElementById("coinAmount");
+        amountSelect.innerHTML = '<option value="">Pilih jumlah Koin / Chip</option>';
+        const gameData = priceLists[gameName];
+        if(gameData) {
+            gameData.amounts.forEach(amt => {
+                const buy = gameData.buyPrice[amt];
+                const sell = gameData.sellPrice[amt];
+                const option = document.createElement("option");
+                option.value = amt;
+                option.textContent = `${amt} (Beli Rp ${buy.toLocaleString()} / Jual Rp ${sell.toLocaleString()})`;
+                amountSelect.appendChild(option);
+            });
+        }
+        document.getElementById("orderModal").style.display = "flex";
+    }
+
+    function closeModal() {
+        document.getElementById("orderModal").style.display = "none";
+        currentGame = "";
+    }
+
+    function showToast(msg) {
+        const toast = document.getElementById("toastMsg");
+        toast.textContent = msg;
+        toast.style.opacity = "1";
+        toast.style.visibility = "visible";
+        setTimeout(() => {
+            toast.style.opacity = "0";
+            toast.style.visibility = "hidden";
+        }, 3500);
+    }
+
+    document.getElementById("closeModalBtn").addEventListener("click", closeModal);
+    document.getElementById("cancelModalBtn").addEventListener("click", closeModal);
+    window.onclick = (e) => { if(e.target === document.getElementById("orderModal")) closeModal(); };
+
+    document.getElementById("sendOrderBtn").addEventListener("click", () => {
+        const gameId = document.getElementById("gameId").value.trim();
+        const amount = document.getElementById("coinAmount").value;
+        const transType = document.getElementById("transactionType").value;
+        const payment = document.getElementById("paymentMethod").value;
+        
+        if(!gameId) { showToast("⚠️ Masukkan ID Game terlebih dahulu!"); return; }
+        if(!amount) { showToast("⚠️ Pilih jumlah koin/chip!"); return; }
+        
+        const gameData = priceLists[currentGame];
+        let price = 0;
+        if(transType === "BELI") price = gameData.buyPrice[amount];
+        else price = gameData.sellPrice[amount];
+        
+        const message = `HALO ADMIN LLC STORE%0A%0A📌 *TRANSAKSI ${transType}*%0A🎮 Game: ${currentGame}%0A🆔 ID Game: ${gameId}%0A💰 Jumlah: ${amount}%0A💵 Total Harga ${transType === "BELI" ? "Bayar" : "Diterima"}: Rp ${price.toLocaleString()}%0A💳 Metode Pembayaran: ${payment}%0A%0A_Saya siap melakukan transaksi. Mohon diproses._%0ATerima kasih LLC Store!`;
+        
+        const adminNumber = "6285823710815";
+        const waLink = `https://wa.me/${adminNumber}?text=${message}`;
+        window.open(waLink, '_blank');
+        showToast("✅ Mengirim pesan ke Admin via WhatsApp...");
+        setTimeout(() => closeModal(), 800);
+    });
+
+    // Particle system
+    const canvasElem = document.getElementById('particleCanvas');
+    let ctxP = canvasElem.getContext('2d');
+    let width = window.innerWidth, height = window.innerHeight;
+    let particles = [];
+    function resizeCanvasP() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvasElem.width = width;
+        canvasElem.height = height;
+    }
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.size = Math.random() * 3 + 1;
+            this.speedX = (Math.random() - 0.5) * 0.5;
+            this.speedY = (Math.random() - 0.5) * 0.3 + 0.2;
+            this.color = `rgba(245, 158, 11, ${Math.random() * 0.5 + 0.2})`;
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if(this.x > width) this.x = 0;
+            if(this.x < 0) this.x = width;
+            if(this.y > height) this.y = 0;
+            if(this.y < 0) this.y = height;
+        }
+        draw() {
+            ctxP.beginPath();
+            ctxP.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctxP.fillStyle = this.color;
+            ctxP.fill();
+        }
+    }
+    function initParticles() {
+        particles = [];
+        let num = Math.min(100, Math.floor(width * height / 9000));
+        for(let i=0;i<num;i++) particles.push(new Particle());
+    }
+    function animateParticles() {
+        ctxP.clearRect(0, 0, width, height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animateParticles);
+    }
+    window.addEventListener('resize', () => { resizeCanvasP(); initParticles(); });
+    resizeCanvasP();
+    initParticles();
+    animateParticles();
+    document.querySelectorAll('.card').forEach((c,i) => c.style.animationDelay = `${i*0.1}s`);
 </script>
 </body>
 </html>

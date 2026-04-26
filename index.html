@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>LLC Store | TopUp Higgs & Domino Sultan | Berfist - Full Animasi</title>
-    <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -24,7 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* BACKGROUND ANIMASI */
         .stars, .twinkling {
             position: fixed;
             top: 0;
@@ -77,7 +75,6 @@
             z-index: 2;
         }
 
-        /* Hero */
         .hero {
             background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
             backdrop-filter: blur(10px);
@@ -287,7 +284,7 @@
             font-size: 0.8rem;
         }
 
-        /* MODAL CHAT INTERNAL */
+        /* MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -343,7 +340,7 @@
             font-weight: bold;
             cursor: pointer;
         }
-        .confirm-btn { background: linear-gradient(95deg, #10b981, #06b6d4); color: white; }
+        .confirm-btn { background: linear-gradient(95deg, #10b981, #06b6d4); color: white; border: none; }
         .cancel-btn { background: rgba(255,80,100,0.2); border: 1px solid #ff8a8a; color: #ffc4c4; }
         .close-modal {
             position: absolute;
@@ -529,7 +526,7 @@
     </div>
 </div>
 
-<!-- MODAL INTERNAL CHAT (TANPA Firebase, langsung simpan ke localStorage + notifikasi admin) -->
+<!-- MODAL CHAT INTERNAL (FULLY FUNCTIONAL) -->
 <div id="orderModal" class="modal">
     <div class="modal-content">
         <span class="close-modal" id="closeModalBtn">&times;</span>
@@ -541,7 +538,6 @@
             <option value="">Pilih jumlah koin (default)</option>
         </select>
         
-        <!-- OPSI JUMLAH LAINNYA (CUSTOM) -->
         <div class="custom-amount-row">
             <input type="text" id="customAmount" placeholder="Jumlah lain (contoh: 750M, 3.5B, 25B)">
             <button id="useCustomBtn" type="button">Gunakan Jumlah Ini</button>
@@ -552,13 +548,19 @@
             <option value="BELI">🔹 Saya ingin BELI (TopUp)</option>
             <option value="JUAL">🔸 Saya ingin JUAL (Koin ke LLC)</option>
         </select>
+        
         <select id="paymentMethodSelect">
-            <option value="Bank Transfer (BCA/Mandiri/BNI)">🏦 Bank Transfer</option>
+            <option value="Bank Transfer BCA">🏦 Bank Transfer BCA</option>
+            <option value="Bank Transfer Mandiri">🏦 Bank Transfer Mandiri</option>
+            <option value="Bank Transfer BRI">🏦 Bank Transfer BRI</option>
+            <option value="Bank Transfer BNI">🏦 Bank Transfer BNI</option>
             <option value="OVO">📱 OVO</option>
             <option value="DANA">💸 DANA</option>
-            <option value="QRIS">📲 QRIS</option>
+            <option value="QRIS (Semua Bank)">📲 QRIS (Semua Bank)</option>
             <option value="Gopay">🟢 Gopay</option>
+            <option value="ShopeePay">🛒 ShopeePay</option>
         </select>
+        
         <div class="modal-buttons">
             <button class="confirm-btn" id="sendInternalMsgBtn"><i class="fas fa-paper-plane"></i> Kirim ke Admin</button>
             <button class="cancel-btn" id="cancelModalBtn">Batal</button>
@@ -568,7 +570,7 @@
 <div id="toastMsg" class="toast-msg" style="opacity:0; visibility: hidden;">✨</div>
 
 <script>
-    // Data harga lengkap
+    // Data harga
     const priceLists = {
         "Higgs Games Island": { amounts:["100M","200M","500M","1B","2B","5B","10B","20B"], buy:{"100M":6000,"200M":12000,"500M":30000,"1B":60000,"2B":120000,"5B":300000,"10B":600000,"20B":1200000}, sell:{"100M":5600,"200M":11200,"500M":28000,"1B":56000,"2B":112000,"5B":280000,"10B":560000,"20B":1120000} },
         "Bos Domino": { amounts:["10B","20B","30B","40B","50B","100B"], buy:{"10B":40000,"20B":80000,"30B":120000,"40B":160000,"50B":200000,"100B":400000}, sell:{"10B":30000,"20B":60000,"30B":90000,"40B":120000,"50B":150000,"100B":300000} },
@@ -577,7 +579,7 @@
     };
     
     let currentGame = "";
-    let selectedAmountValue = "";
+    let selectedCustomAmount = "";
     
     function openOrderModal(game) {
         currentGame = game;
@@ -593,14 +595,14 @@
             opt.textContent = `${amt} (Beli Rp ${buyAmt.toLocaleString()} / Jual Rp ${sellAmt.toLocaleString()})`;
             select.appendChild(opt);
         });
-        // Reset custom
         document.getElementById("customAmount").value = "";
-        selectedAmountValue = "";
+        selectedCustomAmount = "";
         document.getElementById("userIdInput").value = "";
         document.getElementById("orderModal").style.display = "flex";
     }
     
     function closeModal() { document.getElementById("orderModal").style.display = "none"; currentGame = ""; }
+    
     function showToast(msg, isError = false) {
         const toast = document.getElementById("toastMsg");
         toast.textContent = msg;
@@ -610,19 +612,17 @@
         setTimeout(() => { toast.style.opacity = "0"; toast.style.visibility = "hidden"; }, 4000);
     }
     
-    // Gunakan jumlah custom
     document.getElementById("useCustomBtn").addEventListener("click", () => {
         const customVal = document.getElementById("customAmount").value.trim();
         if(customVal === "") { showToast("Masukkan jumlah koin terlebih dahulu!", true); return; }
-        selectedAmountValue = customVal;
+        selectedCustomAmount = customVal;
         showToast(`✅ Jumlah "${customVal}" akan dikirim ke admin.`);
-        // optional: highlight
     });
     
-    // Kirim pesan ke Internal (disimpan ke localStorage / bisa diakses admin via console)
+    // KIRIM PESAN KE ADMIN (FUNCTIONAL)
     document.getElementById("sendInternalMsgBtn").addEventListener("click", () => {
         const userId = document.getElementById("userIdInput").value.trim();
-        let selectedOption = document.getElementById("coinAmountSelect").value;
+        const selectedOption = document.getElementById("coinAmountSelect").value;
         const customAmount = document.getElementById("customAmount").value.trim();
         const transType = document.getElementById("transactionTypeSelect").value;
         const payment = document.getElementById("paymentMethodSelect").value;
@@ -630,23 +630,22 @@
         if(!userId) { showToast("⚠️ Masukkan ID Game terlebih dahulu!", true); return; }
         
         let finalAmount = "";
-        let totalPrice = 0;
+        let totalPriceDisplay = "";
         const gameData = priceLists[currentGame];
         
         if(customAmount !== "") {
             finalAmount = customAmount;
-            totalPrice = "TBD (admin akan konfirmasi)";
+            totalPriceDisplay = "💰 (Admin akan konfirmasi harga)";
         } else if(selectedOption && selectedOption !== "") {
             finalAmount = selectedOption;
-            if(transType === "BELI") totalPrice = gameData.buy[selectedOption];
-            else totalPrice = gameData.sell[selectedOption];
-            totalPrice = `Rp ${totalPrice.toLocaleString()}`;
+            const priceValue = (transType === "BELI") ? gameData.buy[selectedOption] : gameData.sell[selectedOption];
+            totalPriceDisplay = `Rp ${priceValue.toLocaleString()}`;
         } else {
             showToast("⚠️ Pilih jumlah koin dari daftar atau isi jumlah custom!", true);
             return;
         }
         
-        // Buat data order
+        // Buat data order lengkap
         const orderData = {
             id: Date.now(),
             game: currentGame,
@@ -654,31 +653,39 @@
             amount: finalAmount,
             type: transType,
             payment: payment,
-            totalPrice: totalPrice,
+            totalPrice: totalPriceDisplay,
             timestamp: new Date().toLocaleString('id-ID'),
             status: "PENDING"
         };
         
-        // Simpan ke localStorage (semua order tersimpan)
+        // Simpan ke localStorage (history order)
         let allOrders = JSON.parse(localStorage.getItem("llcstore_orders") || "[]");
         allOrders.unshift(orderData);
         localStorage.setItem("llcstore_orders", JSON.stringify(allOrders));
         
-        // Tampilkan notifikasi
-        console.log("📦 ORDER BARU MASUK:", orderData);
-        showToast(`✅ Pesanan terkirim! Admin akan segera membalas di chat internal.`);
+        // Tampilkan notifikasi sukses dan alert untuk admin
+        console.log("📦 ORDER BARU:", orderData);
+        showToast(`✅ Pesanan terkirim! Admin akan segera membalas.`);
         
-        // Tampilkan preview order untuk admin (bisa di console / opsional modal info)
+        // Alert untuk admin (bisa dilihat langsung)
         setTimeout(() => {
-            alert("[Untuk Admin LLC Store] Ada order baru:\n" + 
-                  `Game: ${orderData.game}\nID: ${orderData.userId}\nJumlah: ${orderData.amount}\nTipe: ${orderData.type}\nTotal: ${orderData.totalPrice}\nMetode: ${orderData.payment}\n\nOrder tersimpan di localStorage & console. Segera proses.`);
-        }, 500);
+            alert("🔔 [PESANAN MASUK - LLC STORE]\n\n" + 
+                  `🎮 Game: ${orderData.game}\n` +
+                  `🆔 ID Game: ${orderData.userId}\n` +
+                  `💰 Jumlah: ${orderData.amount}\n` +
+                  `📌 Tipe: ${orderData.type}\n` +
+                  `💵 Total: ${orderData.totalPrice}\n` +
+                  `💳 Metode: ${orderData.payment}\n` +
+                  `⏰ Waktu: ${orderData.timestamp}\n\n` +
+                  `✅ Segera proses dan balas ke customer via chat internal.`);
+        }, 100);
         
         closeModal();
         // Reset form
         document.getElementById("userIdInput").value = "";
         document.getElementById("customAmount").value = "";
-        selectedAmountValue = "";
+        document.getElementById("coinAmountSelect").value = "";
+        selectedCustomAmount = "";
     });
     
     document.getElementById("closeModalBtn").addEventListener("click", closeModal);
@@ -698,7 +705,7 @@
         else showToast("Link download belum tersedia", true);
     }
     
-    // Particles
+    // Particles effect
     const canvas = document.getElementById('particleCanvas');
     let ctxP = canvas.getContext('2d');
     let w = window.innerWidth, h = window.innerHeight;

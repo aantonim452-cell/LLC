@@ -17,7 +17,7 @@
         }
         .container { max-width: 1400px; margin: 0 auto; }
         
-        /* HERO DENGAN ANIMASI TEKS */
+        /* HERO */
         .hero {
             background: linear-gradient(135deg, rgba(30,41,59,0.95), rgba(15,23,42,0.98));
             backdrop-filter: blur(10px);
@@ -44,7 +44,6 @@
             to { transform: rotate(360deg); }
         }
         
-        /* ANIMASI TEKS LLC STORE */
         .animated-logo {
             font-size: 3rem;
             font-weight: 800;
@@ -74,7 +73,6 @@
             color: #cbd5e1;
         }
         
-        /* BADGE GAME - DIPISAHKAN PER GAME */
         .badge-group {
             margin-top: 1.5rem;
             display: flex;
@@ -146,22 +144,22 @@
             color: transparent;
         }
         .sub { font-size: 0.65rem; opacity: 0.7; color: #94a3b8; margin-top: 2px; }
-        .table-wrapper { padding: 0 0.8rem 1rem 0.8rem; overflow-x: auto; }
+        .table-wrapper { padding: 0 1rem 1rem 1rem; overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
-        th { text-align: left; padding: 0.6rem 0.3rem; color: #fbbf24; border-bottom: 1px dashed #334155; }
-        td { padding: 0.5rem 0.3rem; border-bottom: 1px solid #334155; }
-        
-        /* HARGA DENGAN ANIMASI KLIK */
+        th { text-align: left; padding: 0.8rem 0.5rem 0.6rem 0.5rem; color: #fbbf24; border-bottom: 2px solid #f59e0b; }
+        td { padding: 0.6rem 0.5rem; border-bottom: 1px solid #334155; vertical-align: middle; }
+        .jumlah-col { font-weight: 600; color: #fbbf24; }
+        .price-beli { color: #fde68a; font-weight: 700; text-align: right; }
+        .price-jual { color: #7dd3fc; font-weight: 700; text-align: right; }
         .price-beli, .price-jual {
-            font-weight: 700;
             transition: all 0.2s ease;
             cursor: pointer;
             display: inline-block;
-            padding: 2px 6px;
+            padding: 4px 8px;
             border-radius: 20px;
+            min-width: 85px;
+            text-align: center;
         }
-        .price-beli { color: #fde68a; }
-        .price-jual { color: #7dd3fc; }
         .price-beli:active, .price-jual:active {
             transform: scale(0.95);
             background: rgba(245,158,11,0.3);
@@ -171,11 +169,11 @@
         }
         @keyframes pricePop {
             0% { transform: scale(1); background: rgba(245,158,11,0); }
-            50% { transform: scale(1.2); background: rgba(245,158,11,0.5); color: white; }
+            50% { transform: scale(1.15); background: rgba(245,158,11,0.5); color: white; }
             100% { transform: scale(1); background: rgba(245,158,11,0); }
         }
         
-        .btn-group { display: flex; gap: 8px; margin-top: 0.8rem; }
+        .btn-group { display: flex; gap: 8px; margin-top: 1rem; }
         .btn-topup, .btn-download {
             flex: 1;
             background: linear-gradient(95deg, #4f46e5, #7c3aed);
@@ -184,12 +182,12 @@
             font-weight: 700;
             padding: 10px 12px;
             border-radius: 40px;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
             transition: all 0.2s;
         }
         .btn-download { background: linear-gradient(95deg, #0284c7, #0369a1); }
@@ -232,11 +230,6 @@
             background-clip: text;
             color: transparent;
             margin-bottom: 0.8rem;
-            animation: footerGlow 2s infinite alternate;
-        }
-        @keyframes footerGlow {
-            0% { opacity: 0.8; }
-            100% { opacity: 1; text-shadow: 0 0 5px rgba(245,158,11,0.3); }
         }
         .footer-info {
             display: flex;
@@ -268,6 +261,8 @@
             .animated-logo { font-size: 2rem; }
             .info-card { min-width: 100%; }
             .footer-info { gap: 0.8rem; }
+            td { font-size: 0.7rem; }
+            .price-beli, .price-jual { min-width: 70px; font-size: 0.7rem; }
         }
         
         /* MODAL */
@@ -450,19 +445,21 @@
                 <div class="info-header"><h2>HIGGS DOMINO</h2><div class="sub">Beli 60K/B · Jual 56K/B</div></div>
             </div>
             <div class="table-wrapper">
-                <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead>
-                <tbody>
-                    <tr><td class="clickable-price">100M</td><td class="price-beli" onclick="animatePrice(this)">Rp 6.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 5.600</td></tr>
-                    <tr><td class="clickable-price">500M</td><td class="price-beli" onclick="animatePrice(this)">Rp 30.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 28.000</td></tr>
-                    <tr><td class="clickable-price">1B</td><td class="price-beli" onclick="animatePrice(this)">Rp 60.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 56.000</td></tr>
-                    <tr><td class="clickable-price">5B</td><td class="price-beli" onclick="animatePrice(this)">Rp 300.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 280.000</td></tr>
-                    <tr><td class="clickable-price">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 600.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 560.000</td></tr>
-                    <tr><td class="clickable-price">30B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 60K/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 56K/B</td></tr>
-                </tbody>
-            </table>
+                <table>
+                    <thead><tr><th>Jumlah</th><th>Harga Beli</th><th>Harga Jual</th></tr></thead>
+                    <tbody>
+                        <tr><td class="jumlah-col">100M</td><td class="price-beli" onclick="animatePrice(this)">Rp 6.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 5.600</td></tr>
+                        <tr><td class="jumlah-col">500M</td><td class="price-beli" onclick="animatePrice(this)">Rp 30.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 28.000</td></tr>
+                        <tr><td class="jumlah-col">1B</td><td class="price-beli" onclick="animatePrice(this)">Rp 60.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 56.000</td></tr>
+                        <tr><td class="jumlah-col">5B</td><td class="price-beli" onclick="animatePrice(this)">Rp 300.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 280.000</td></tr>
+                        <tr><td class="jumlah-col">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 600.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 560.000</td></tr>
+                        <tr><td class="jumlah-col">30B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 60.000/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 56.000/B</td></tr>
+                    </tbody>
+                </table>
+            </div>
             <div class="btn-group">
                 <button class="btn-topup" onclick="openModalWithGame('HIGGS DOMINO')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
-                <button class="btn-download" onclick="downloadGame('higgs')"><i class="fas fa-download"></i> Download</button>
+                <button class="btn-download" onclick="downloadGame('higgs')"><i class="fas fa-download"></i> Download Game</button>
             </div>
         </div>
 
@@ -473,19 +470,21 @@
                 <div class="info-header"><h2>ROYAL DOMINO</h2><div class="sub">Beli 64K/B · Jual 61K/B</div></div>
             </div>
             <div class="table-wrapper">
-                <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead>
-                <tbody>
-                    <tr><td class="clickable-price">100M</td><td class="price-beli" onclick="animatePrice(this)">Rp 6.400</td><td class="price-jual" onclick="animatePrice(this)">Rp 6.100</td></tr>
-                    <tr><td class="clickable-price">500M</td><td class="price-beli" onclick="animatePrice(this)">Rp 32.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 30.500</td></tr>
-                    <tr><td class="clickable-price">1B</td><td class="price-beli" onclick="animatePrice(this)">Rp 64.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 61.000</td></tr>
-                    <tr><td class="clickable-price">5B</td><td class="price-beli" onclick="animatePrice(this)">Rp 320.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 305.000</td></tr>
-                    <tr><td class="clickable-price">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 640.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 610.000</td></tr>
-                    <tr><td class="clickable-price">30B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 64K/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 61K/B</td></tr>
-                </tbody>
-            </table>
+                <table>
+                    <thead><tr><th>Jumlah</th><th>Harga Beli</th><th>Harga Jual</th></tr></thead>
+                    <tbody>
+                        <tr><td class="jumlah-col">100M</td><td class="price-beli" onclick="animatePrice(this)">Rp 6.400</td><td class="price-jual" onclick="animatePrice(this)">Rp 6.100</td></tr>
+                        <tr><td class="jumlah-col">500M</td><td class="price-beli" onclick="animatePrice(this)">Rp 32.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 30.500</td></tr>
+                        <tr><td class="jumlah-col">1B</td><td class="price-beli" onclick="animatePrice(this)">Rp 64.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 61.000</td></tr>
+                        <tr><td class="jumlah-col">5B</td><td class="price-beli" onclick="animatePrice(this)">Rp 320.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 305.000</td></tr>
+                        <tr><td class="jumlah-col">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 640.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 610.000</td></tr>
+                        <tr><td class="jumlah-col">30B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 64.000/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 61.000/B</td></tr>
+                    </tbody>
+                </table>
+            </div>
             <div class="btn-group">
                 <button class="btn-topup" onclick="openModalWithGame('ROYAL DOMINO')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
-                <button class="btn-download" onclick="downloadGame('royalDomino')"><i class="fas fa-download"></i> Download</button>
+                <button class="btn-download" onclick="downloadGame('royalDomino')"><i class="fas fa-download"></i> Download Game</button>
             </div>
         </div>
 
@@ -496,19 +495,21 @@
                 <div class="info-header"><h2>BOS DOMINO</h2><div class="sub">Beli 4K/B · Jual 3K/B (Min 10B)</div></div>
             </div>
             <div class="table-wrapper">
-                <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead>
-                <tbody>
-                    <tr><td class="clickable-price">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 40.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 30.000</td></tr>
-                    <tr><td class="clickable-price">25B</td><td class="price-beli" onclick="animatePrice(this)">Rp 100.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 75.000</td></tr>
-                    <tr><td class="clickable-price">50B</td><td class="price-beli" onclick="animatePrice(this)">Rp 200.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 150.000</td></tr>
-                    <tr><td class="clickable-price">75B</td><td class="price-beli" onclick="animatePrice(this)">Rp 300.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 225.000</td></tr>
-                    <tr><td class="clickable-price">100B</td><td class="price-beli" onclick="animatePrice(this)">Rp 400.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 300.000</td></tr>
-                    <tr><td class="clickable-price">100B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 4K/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 3K/B</td></tr>
-                </tbody>
-            </table>
+                <table>
+                    <thead><tr><th>Jumlah</th><th>Harga Beli</th><th>Harga Jual</th></tr></thead>
+                    <tbody>
+                        <tr><td class="jumlah-col">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 40.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 30.000</td></tr>
+                        <tr><td class="jumlah-col">25B</td><td class="price-beli" onclick="animatePrice(this)">Rp 100.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 75.000</td></tr>
+                        <tr><td class="jumlah-col">50B</td><td class="price-beli" onclick="animatePrice(this)">Rp 200.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 150.000</td></tr>
+                        <tr><td class="jumlah-col">75B</td><td class="price-beli" onclick="animatePrice(this)">Rp 300.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 225.000</td></tr>
+                        <tr><td class="jumlah-col">100B</td><td class="price-beli" onclick="animatePrice(this)">Rp 400.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 300.000</td></tr>
+                        <tr><td class="jumlah-col">100B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 4.000/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 3.000/B</td></tr>
+                    </tbody>
+                </table>
+            </div>
             <div class="btn-group">
                 <button class="btn-topup" onclick="openModalWithGame('BOS DOMINO')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
-                <button class="btn-download" onclick="downloadGame('bosDomino')"><i class="fas fa-download"></i> Download</button>
+                <button class="btn-download" onclick="downloadGame('bosDomino')"><i class="fas fa-download"></i> Download Game</button>
             </div>
         </div>
 
@@ -519,19 +520,21 @@
                 <div class="info-header"><h2>BERFIST</h2><div class="sub">Beli 35K/B · Jual 31K/B</div></div>
             </div>
             <div class="table-wrapper">
-                <table><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead>
-                <tbody>
-                    <tr><td class="clickable-price">100M</td><td class="price-beli" onclick="animatePrice(this)">Rp 3.500</td><td class="price-jual" onclick="animatePrice(this)">Rp 3.100</td></tr>
-                    <tr><td class="clickable-price">500M</td><td class="price-beli" onclick="animatePrice(this)">Rp 17.500</td><td class="price-jual" onclick="animatePrice(this)">Rp 15.500</td></tr>
-                    <tr><td class="clickable-price">1B</td><td class="price-beli" onclick="animatePrice(this)">Rp 35.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 31.000</td></tr>
-                    <tr><td class="clickable-price">5B</td><td class="price-beli" onclick="animatePrice(this)">Rp 175.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 155.000</td></tr>
-                    <tr><td class="clickable-price">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 350.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 310.000</td></tr>
-                    <tr><td class="clickable-price">30B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 35K/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 31K/B</td></tr>
-                </tbody>
-            </table>
+                <table>
+                    <thead><tr><th>Jumlah</th><th>Harga Beli</th><th>Harga Jual</th></tr></thead>
+                    <tbody>
+                        <tr><td class="jumlah-col">100M</td><td class="price-beli" onclick="animatePrice(this)">Rp 3.500</td><td class="price-jual" onclick="animatePrice(this)">Rp 3.100</td></tr>
+                        <tr><td class="jumlah-col">500M</td><td class="price-beli" onclick="animatePrice(this)">Rp 17.500</td><td class="price-jual" onclick="animatePrice(this)">Rp 15.500</td></tr>
+                        <tr><td class="jumlah-col">1B</td><td class="price-beli" onclick="animatePrice(this)">Rp 35.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 31.000</td></tr>
+                        <tr><td class="jumlah-col">5B</td><td class="price-beli" onclick="animatePrice(this)">Rp 175.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 155.000</td></tr>
+                        <tr><td class="jumlah-col">10B</td><td class="price-beli" onclick="animatePrice(this)">Rp 350.000</td><td class="price-jual" onclick="animatePrice(this)">Rp 310.000</td></tr>
+                        <tr><td class="jumlah-col">30B+</td><td class="price-beli" onclick="animatePrice(this)">Rp 35.000/B</td><td class="price-jual" onclick="animatePrice(this)">Rp 31.000/B</td></tr>
+                    </tbody>
+                </table>
+            </div>
             <div class="btn-group">
                 <button class="btn-topup" onclick="openModalWithGame('BERFIST')"><i class="fas fa-cart-shopping"></i> Beli / Jual</button>
-                <button class="btn-download" onclick="downloadGame('berfist')"><i class="fas fa-download"></i> Download</button>
+                <button class="btn-download" onclick="downloadGame('berfist')"><i class="fas fa-download"></i> Download Game</button>
             </div>
         </div>
     </div>
@@ -568,6 +571,7 @@
 </div>
 
 <script>
+    // LINK DOWNLOAD YANG VALID
     const DOWNLOAD_LINKS = {
         higgs: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
         bosDomino: "https://github.com/llcstore92-lab/LLC_STORE/releases/download/updatedx/sock1.zip",
@@ -578,12 +582,14 @@
     let currentMessage = "";
 
     function downloadGame(gameKey) {
-        let link = DOWNLOAD_LINKS[gameKey] || "#";
-        if(link !== "#") window.open(link, '_blank');
-        else alert("Link download hubungi admin via Chat APK.");
+        let link = DOWNLOAD_LINKS[gameKey];
+        if (link && link !== "#") {
+            window.open(link, '_blank');
+        } else {
+            alert("⚠️ Link download akan segera diperbarui. Hubungi admin via Chat APK.");
+        }
     }
 
-    // Animasi harga saat diklik
     function animatePrice(element) {
         element.classList.add('click-animation');
         setTimeout(() => {

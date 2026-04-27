@@ -111,129 +111,118 @@
         .quick-card i { font-size: 28px; color: #f59e0b; margin-bottom: 10px; display: block; }
         .quick-card span { font-size: 13px; font-weight: 600; }
         
-        /* ========== PAYMENT SECTION (QRIS & BANK) ========== */
+        /* ========== PAYMENT SECTION (KECIL, SAAT DIKLIK BESAR) ========== */
         .payment-section {
             background: rgba(15,25,45,0.6);
             backdrop-filter: blur(15px);
             border-radius: 1.8rem;
-            padding: 25px;
+            padding: 20px;
             margin: 30px 0;
             border: 1px solid rgba(245,158,11,0.3);
         }
         .payment-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 15px;
             border-bottom: 1px solid #334155;
-            padding-bottom: 12px;
+            padding-bottom: 10px;
         }
         .payment-header h3 {
             color: #fbbf24;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
         }
         .payment-methods {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
+            gap: 10px;
+            justify-content: flex-start;
         }
-        .payment-card {
+        .payment-chip {
             background: rgba(0,0,0,0.4);
-            border-radius: 1rem;
-            padding: 20px;
-            min-width: 200px;
-            text-align: center;
-            transition: 0.3s;
-            cursor: pointer;
-            border: 1px solid rgba(245,158,11,0.2);
-        }
-        .payment-card:hover {
-            transform: translateY(-5px);
-            border-color: #f59e0b;
-            background: rgba(245,158,11,0.15);
-        }
-        .payment-card i {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-        .payment-card .qris-icon {
-            width: 48px;
-            height: 48px;
-            margin: 0 auto 15px;
-            background: #fff;
-            border-radius: 10px;
-            display: flex;
+            border-radius: 50px;
+            padding: 8px 16px;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-        }
-        .payment-card .qris-icon img {
-            width: 40px;
-            height: 40px;
-        }
-        .payment-card h4 {
-            color: #f59e0b;
-            margin-bottom: 10px;
-        }
-        .payment-card .nomor {
-            font-size: 12px;
-            color: #cbd5e1;
-            word-break: break-all;
-            background: rgba(0,0,0,0.3);
-            padding: 8px;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-        .payment-card .copy-btn {
-            background: #334155;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 20px;
-            color: white;
-            font-size: 11px;
-            margin-top: 10px;
+            gap: 8px;
             cursor: pointer;
             transition: 0.2s;
+            border: 1px solid rgba(245,158,11,0.3);
         }
-        .payment-card .copy-btn:hover {
-            background: #f59e0b;
-            color: black;
+        .payment-chip:hover {
+            background: rgba(245,158,11,0.2);
+            transform: translateY(-2px);
+        }
+        .payment-chip i {
+            font-size: 14px;
+        }
+        .payment-chip span {
+            font-size: 12px;
+            font-weight: 500;
         }
         
-        /* MODAL QRIS */
-        .modal-qris {
+        /* MODAL DETAIL PEMBAYARAN */
+        .modal-payment {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(20px);
-            z-index: 4000;
+            background: rgba(0,0,0,0.97);
+            backdrop-filter: blur(25px);
+            z-index: 5000;
             justify-content: center;
             align-items: center;
         }
-        .modal-qris-content {
-            background: #1e293b;
-            max-width: 400px;
+        .modal-payment-content {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            max-width: 380px;
             width: 90%;
             border-radius: 2rem;
             padding: 25px;
             border: 2px solid #f59e0b;
             text-align: center;
+            animation: modalPop 0.3s ease;
         }
-        .modal-qris-content h3 {
+        .modal-payment-content h3 {
             color: #fbbf24;
             margin-bottom: 20px;
         }
-        .modal-qris-content img {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 1rem;
-            margin-bottom: 15px;
+        .modal-payment-content .qris-img {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 15px;
+            background: white;
+            border-radius: 20px;
+            padding: 10px;
         }
-        .close-qris {
+        .modal-payment-content .qris-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .modal-payment-content .nomor-besar {
+            background: #0f172a;
+            padding: 12px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 15px 0;
+            word-break: break-all;
+        }
+        .modal-payment-content .copy-btn-besar {
+            background: #f59e0b;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .close-payment {
             background: #334155;
             border: none;
             padding: 10px 20px;
@@ -241,8 +230,9 @@
             color: white;
             cursor: pointer;
             margin-top: 15px;
+            width: 100%;
         }
-        .close-qris:hover {
+        .close-payment:hover {
             background: #f59e0b;
             color: black;
         }
@@ -315,7 +305,8 @@
             .quick-menu { grid-template-columns: repeat(2, 1fr); }
             .btn-action-group { flex-direction: column; }
             .btn-order-premium, .btn-download-premium, .btn-tutorial-premium { width: 100%; }
-            .payment-methods { flex-direction: column; align-items: center; }
+            .payment-methods { gap: 8px; }
+            .payment-chip { padding: 6px 12px; font-size: 11px; }
         }
         
         /* MODAL ORDER */
@@ -343,7 +334,15 @@
 <div id="loadingScreen" class="loading-screen"><div class="loader-single"><div class="loader-ring-single"></div><p>LLC STORE</p></div></div>
 <div id="toastMsg" class="toast-msg">✅ Pesan disalin!</div>
 <div id="videoModal" class="modal-video"><div class="modal-video-content"><div class="modal-video-header"><h3><i class="fas fa-play-circle"></i> Video Tutorial</h3><button class="close-video" onclick="closeVideoModal()">&times;</button></div><div class="video-container"><iframe id="videoFrame" src="" allowfullscreen></iframe></div></div></div>
-<div id="modalQRIS" class="modal-qris"><div class="modal-qris-content"><h3><i class="fas fa-qrcode"></i> Scan QRIS</h3><img src="https://media.perkakasku.com/image/qrperkakasku.jpeg" alt="QRIS" onerror="this.src='https://placehold.co/300x300?text=QRIS'"><button class="close-qris" onclick="closeQRISModal()">Tutup</button></div></div>
+
+<!-- MODAL PAYMENT (QRIS & BANK) -->
+<div id="modalPayment" class="modal-payment">
+    <div class="modal-payment-content">
+        <h3 id="paymentTitle">QRIS</h3>
+        <div id="paymentDetail"></div>
+        <button class="close-payment" onclick="closePaymentModal()">Tutup</button>
+    </div>
+</div>
 
 <div id="sidebar" class="sidebar-premium">
     <div class="sidebar-header"><i class="fas fa-crown" style="color:#fbbf24"></i><h3>LLC STORE</h3><button class="close-sidebar" id="closeSidebarBtn">&times;</button></div>
@@ -390,47 +389,36 @@
         </div>
     </div>
 
-    <!-- ========== PAYMENT SECTION (QRIS & BANK) ========== -->
+    <!-- ========== PAYMENT SECTION (KECIL - CHIP) ========== -->
     <div class="payment-section">
         <div class="payment-header">
-            <i class="fas fa-credit-card" style="font-size: 1.6rem; color: #f59e0b;"></i>
-            <h3>💳 Metode Pembayaran</h3>
+            <i class="fas fa-credit-card" style="font-size: 1.2rem; color: #f59e0b;"></i>
+            <h3>Metode Pembayaran</h3>
         </div>
         <div class="payment-methods">
-            <div class="payment-card" onclick="openQRISModal()">
-                <div class="qris-icon"><img src="https://media.perkakasku.com/image/qrperkakasku.jpeg" alt="QRIS" onerror="this.src='https://placehold.co/40x40?text=QRIS'"></div>
-                <h4><i class="fas fa-qrcode"></i> QRIS</h4>
-                <p>Scan QR Code</p>
+            <div class="payment-chip" onclick="showPaymentDetail('qris')">
+                <i class="fas fa-qrcode" style="color:#f59e0b;"></i>
+                <span>QRIS</span>
             </div>
-            <div class="payment-card" onclick="copyNumber('086262627272772', 'DANA')">
+            <div class="payment-chip" onclick="showPaymentDetail('dana')">
                 <i class="fab fa-android" style="color:#3b82f6;"></i>
-                <h4>DANA</h4>
-                <div class="nomor">086262627272772</div>
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <span>DANA</span>
             </div>
-            <div class="payment-card" onclick="copyNumber('082662262626', 'OVO')">
+            <div class="payment-chip" onclick="showPaymentDetail('ovo')">
                 <i class="fab fa-android" style="color:#5ee0a4;"></i>
-                <h4>OVO</h4>
-                <div class="nomor">082662262626</div>
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <span>OVO</span>
             </div>
-            <div class="payment-card" onclick="copyNumber('3773277272828822929', 'BRI')">
+            <div class="payment-chip" onclick="showPaymentDetail('bri')">
                 <i class="fas fa-university" style="color:#0055a4;"></i>
-                <h4>BRI</h4>
-                <div class="nomor">3773277272828822929</div>
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <span>BRI</span>
             </div>
-            <div class="payment-card" onclick="copyNumber('26262772727772727', 'BNI')">
+            <div class="payment-chip" onclick="showPaymentDetail('bni')">
                 <i class="fas fa-university" style="color:#ff6600;"></i>
-                <h4>BNI</h4>
-                <div class="nomor">26262772727772727</div>
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <span>BNI</span>
             </div>
-            <div class="payment-card" onclick="copyNumber('EYYEWYWYWYWUUW', 'BCA')">
+            <div class="payment-chip" onclick="showPaymentDetail('bca')">
                 <i class="fas fa-university" style="color:#0066a1;"></i>
-                <h4>BCA</h4>
-                <div class="nomor">EYYEWYWYWYWUUW</div>
-                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+                <span>BCA</span>
             </div>
         </div>
     </div>
@@ -482,19 +470,61 @@
     
     function showToast(msg) { let t = document.getElementById('toastMsg'); t.innerHTML = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
     
-    function copyNumber(number, bank) {
-        navigator.clipboard.writeText(number);
-        showToast(`✅ Nomor ${bank} disalin!`);
-    }
-    
-    function openQRISModal() {
-        document.getElementById('modalQRIS').style.display = 'flex';
+    // PAYMENT MODAL FUNCTIONS
+    function showPaymentDetail(method) {
+        const modal = document.getElementById('modalPayment');
+        const title = document.getElementById('paymentTitle');
+        const detail = document.getElementById('paymentDetail');
+        
+        if (method === 'qris') {
+            title.innerHTML = '<i class="fas fa-qrcode"></i> Scan QRIS';
+            detail.innerHTML = `
+                <div class="qris-img"><img src="https://media.perkakasku.com/image/qrperkakasku.jpeg" alt="QRIS" onerror="this.src='https://placehold.co/250x250?text=QRIS'"></div>
+                <p style="font-size:12px; color:#94a3b8;">Scan QR Code di atas menggunakan aplikasi bank atau e-wallet</p>
+            `;
+        } else if (method === 'dana') {
+            title.innerHTML = '<i class="fab fa-android"></i> DANA';
+            detail.innerHTML = `
+                <div class="nomor-besar">086262627272772</div>
+                <button class="copy-btn-besar" onclick="copyNumber('086262627272772', 'DANA')"><i class="fas fa-copy"></i> Salin Nomor</button>
+            `;
+        } else if (method === 'ovo') {
+            title.innerHTML = '<i class="fab fa-android"></i> OVO';
+            detail.innerHTML = `
+                <div class="nomor-besar">082662262626</div>
+                <button class="copy-btn-besar" onclick="copyNumber('082662262626', 'OVO')"><i class="fas fa-copy"></i> Salin Nomor</button>
+            `;
+        } else if (method === 'bri') {
+            title.innerHTML = '<i class="fas fa-university"></i> BRI';
+            detail.innerHTML = `
+                <div class="nomor-besar">3773277272828822929</div>
+                <button class="copy-btn-besar" onclick="copyNumber('3773277272828822929', 'BRI')"><i class="fas fa-copy"></i> Salin Nomor</button>
+            `;
+        } else if (method === 'bni') {
+            title.innerHTML = '<i class="fas fa-university"></i> BNI';
+            detail.innerHTML = `
+                <div class="nomor-besar">26262772727772727</div>
+                <button class="copy-btn-besar" onclick="copyNumber('26262772727772727', 'BNI')"><i class="fas fa-copy"></i> Salin Nomor</button>
+            `;
+        } else if (method === 'bca') {
+            title.innerHTML = '<i class="fas fa-university"></i> BCA';
+            detail.innerHTML = `
+                <div class="nomor-besar">EYYEWYWYWYWUUW</div>
+                <button class="copy-btn-besar" onclick="copyNumber('EYYEWYWYWYWUUW', 'BCA')"><i class="fas fa-copy"></i> Salin Nomor</button>
+            `;
+        }
+        modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
     
-    function closeQRISModal() {
-        document.getElementById('modalQRIS').style.display = 'none';
+    function closePaymentModal() {
+        document.getElementById('modalPayment').style.display = 'none';
         document.body.style.overflow = '';
+    }
+    
+    function copyNumber(number, bank) {
+        navigator.clipboard.writeText(number);
+        showToast(`✅ Nomor ${bank} disalin!`);
     }
     
     // PARTICLES
@@ -764,7 +794,7 @@
     attachFormSaveListeners();
     document.getElementById("copyBtn")?.addEventListener("click", copyMessage);
     document.getElementById("sendBtn")?.addEventListener("click", sendMessage);
-    window.onclick = e => { if (e.target === document.getElementById("orderModal")) closeModal(); if (e.target === document.getElementById("videoModal")) closeVideoModal(); if (e.target === document.getElementById("modalQRIS")) closeQRISModal(); };
+    window.onclick = e => { if (e.target === document.getElementById("orderModal")) closeModal(); if (e.target === document.getElementById("videoModal")) closeVideoModal(); if (e.target === document.getElementById("modalPayment")) closePaymentModal(); };
 </script>
 </body>
 </html>

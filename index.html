@@ -111,6 +111,142 @@
         .quick-card i { font-size: 28px; color: #f59e0b; margin-bottom: 10px; display: block; }
         .quick-card span { font-size: 13px; font-weight: 600; }
         
+        /* ========== PAYMENT SECTION (QRIS & BANK) ========== */
+        .payment-section {
+            background: rgba(15,25,45,0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 1.8rem;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid rgba(245,158,11,0.3);
+        }
+        .payment-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 12px;
+        }
+        .payment-header h3 {
+            color: #fbbf24;
+            font-size: 1.3rem;
+        }
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .payment-card {
+            background: rgba(0,0,0,0.4);
+            border-radius: 1rem;
+            padding: 20px;
+            min-width: 200px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(245,158,11,0.2);
+        }
+        .payment-card:hover {
+            transform: translateY(-5px);
+            border-color: #f59e0b;
+            background: rgba(245,158,11,0.15);
+        }
+        .payment-card i {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .payment-card .qris-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 15px;
+            background: #fff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .payment-card .qris-icon img {
+            width: 40px;
+            height: 40px;
+        }
+        .payment-card h4 {
+            color: #f59e0b;
+            margin-bottom: 10px;
+        }
+        .payment-card .nomor {
+            font-size: 12px;
+            color: #cbd5e1;
+            word-break: break-all;
+            background: rgba(0,0,0,0.3);
+            padding: 8px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .payment-card .copy-btn {
+            background: #334155;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            color: white;
+            font-size: 11px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .payment-card .copy-btn:hover {
+            background: #f59e0b;
+            color: black;
+        }
+        
+        /* MODAL QRIS */
+        .modal-qris {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(20px);
+            z-index: 4000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-qris-content {
+            background: #1e293b;
+            max-width: 400px;
+            width: 90%;
+            border-radius: 2rem;
+            padding: 25px;
+            border: 2px solid #f59e0b;
+            text-align: center;
+        }
+        .modal-qris-content h3 {
+            color: #fbbf24;
+            margin-bottom: 20px;
+        }
+        .modal-qris-content img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 1rem;
+            margin-bottom: 15px;
+        }
+        .close-qris {
+            background: #334155;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .close-qris:hover {
+            background: #f59e0b;
+            color: black;
+        }
+        
         /* GAME GRID */
         .section-title-premium { margin: 35px 0 20px 0; }
         .section-title-premium h2 { font-size: 1.4rem; color: #fbbf24; border-left: 4px solid #f59e0b; padding-left: 15px; }
@@ -179,6 +315,7 @@
             .quick-menu { grid-template-columns: repeat(2, 1fr); }
             .btn-action-group { flex-direction: column; }
             .btn-order-premium, .btn-download-premium, .btn-tutorial-premium { width: 100%; }
+            .payment-methods { flex-direction: column; align-items: center; }
         }
         
         /* MODAL ORDER */
@@ -206,6 +343,7 @@
 <div id="loadingScreen" class="loading-screen"><div class="loader-single"><div class="loader-ring-single"></div><p>LLC STORE</p></div></div>
 <div id="toastMsg" class="toast-msg">✅ Pesan disalin!</div>
 <div id="videoModal" class="modal-video"><div class="modal-video-content"><div class="modal-video-header"><h3><i class="fas fa-play-circle"></i> Video Tutorial</h3><button class="close-video" onclick="closeVideoModal()">&times;</button></div><div class="video-container"><iframe id="videoFrame" src="" allowfullscreen></iframe></div></div></div>
+<div id="modalQRIS" class="modal-qris"><div class="modal-qris-content"><h3><i class="fas fa-qrcode"></i> Scan QRIS</h3><img src="https://media.perkakasku.com/image/qrperkakasku.jpeg" alt="QRIS" onerror="this.src='https://placehold.co/300x300?text=QRIS'"><button class="close-qris" onclick="closeQRISModal()">Tutup</button></div></div>
 
 <div id="sidebar" class="sidebar-premium">
     <div class="sidebar-header"><i class="fas fa-crown" style="color:#fbbf24"></i><h3>LLC STORE</h3><button class="close-sidebar" id="closeSidebarBtn">&times;</button></div>
@@ -252,6 +390,51 @@
         </div>
     </div>
 
+    <!-- ========== PAYMENT SECTION (QRIS & BANK) ========== -->
+    <div class="payment-section">
+        <div class="payment-header">
+            <i class="fas fa-credit-card" style="font-size: 1.6rem; color: #f59e0b;"></i>
+            <h3>💳 Metode Pembayaran</h3>
+        </div>
+        <div class="payment-methods">
+            <div class="payment-card" onclick="openQRISModal()">
+                <div class="qris-icon"><img src="https://media.perkakasku.com/image/qrperkakasku.jpeg" alt="QRIS" onerror="this.src='https://placehold.co/40x40?text=QRIS'"></div>
+                <h4><i class="fas fa-qrcode"></i> QRIS</h4>
+                <p>Scan QR Code</p>
+            </div>
+            <div class="payment-card" onclick="copyNumber('086262627272772', 'DANA')">
+                <i class="fab fa-android" style="color:#3b82f6;"></i>
+                <h4>DANA</h4>
+                <div class="nomor">086262627272772</div>
+                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+            </div>
+            <div class="payment-card" onclick="copyNumber('082662262626', 'OVO')">
+                <i class="fab fa-android" style="color:#5ee0a4;"></i>
+                <h4>OVO</h4>
+                <div class="nomor">082662262626</div>
+                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+            </div>
+            <div class="payment-card" onclick="copyNumber('3773277272828822929', 'BRI')">
+                <i class="fas fa-university" style="color:#0055a4;"></i>
+                <h4>BRI</h4>
+                <div class="nomor">3773277272828822929</div>
+                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+            </div>
+            <div class="payment-card" onclick="copyNumber('26262772727772727', 'BNI')">
+                <i class="fas fa-university" style="color:#ff6600;"></i>
+                <h4>BNI</h4>
+                <div class="nomor">26262772727772727</div>
+                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+            </div>
+            <div class="payment-card" onclick="copyNumber('EYYEWYWYWYWUUW', 'BCA')">
+                <i class="fas fa-university" style="color:#0066a1;"></i>
+                <h4>BCA</h4>
+                <div class="nomor">EYYEWYWYWYWUUW</div>
+                <button class="copy-btn"><i class="fas fa-copy"></i> Salin</button>
+            </div>
+        </div>
+    </div>
+
     <div class="quick-menu">
         <a href="pages/riwayat.html" class="quick-card"><i class="fas fa-history"></i><span>Riwayat</span></a>
         <a href="pages/panduan.html" class="quick-card"><i class="fas fa-book"></i><span>Panduan</span></a>
@@ -285,7 +468,7 @@
         <div class="form-group-ultimate"><label>Jenis Transaksi</label><select id="transaksiType"><option value="">-- Pilih --</option><option value="BELI">🔰 BELI - Saya beli dari LLC</option><option value="JUAL">💰 JUAL - Saya jual ke LLC</option></select></div>
         <div class="form-group-ultimate"><label>Jumlah Koin/Chip</label><input type="text" id="jumlahKoin" placeholder="Contoh: 100M, 1B, 10B"></div>
         <div class="form-group-ultimate"><label>ID Game</label><input type="text" id="idGame" placeholder="ID Game Anda"></div>
-        <div class="form-group-ultimate"><label>Metode Pembayaran</label><input type="text" id="bankTransfer" placeholder="BCA / BRI / DANA / OVO"></div>
+        <div class="form-group-ultimate"><label>Metode Pembayaran</label><input type="text" id="bankTransfer" placeholder="BCA / BRI / DANA / OVO / QRIS"></div>
         <div class="preview-msg" id="previewBox">⚡ Isi data di atas</div>
         <button class="btn-copy-ultimate" id="copyBtn"><i class="fas fa-copy"></i> Salin Pesanan</button>
         <button class="btn-send-ultimate" id="sendBtn"><i class="fas fa-paper-plane"></i> Kirim ke Chat APK</button>
@@ -298,6 +481,21 @@
     setTimeout(() => { document.getElementById('loadingScreen').style.opacity = '0'; setTimeout(() => { document.getElementById('loadingScreen').style.display = 'none'; }, 500); }, 1500);
     
     function showToast(msg) { let t = document.getElementById('toastMsg'); t.innerHTML = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
+    
+    function copyNumber(number, bank) {
+        navigator.clipboard.writeText(number);
+        showToast(`✅ Nomor ${bank} disalin!`);
+    }
+    
+    function openQRISModal() {
+        document.getElementById('modalQRIS').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeQRISModal() {
+        document.getElementById('modalQRIS').style.display = 'none';
+        document.body.style.overflow = '';
+    }
     
     // PARTICLES
     const particleZone = document.getElementById('particleZone');
@@ -314,40 +512,12 @@
         particleZone.appendChild(p);
     }
     
-    // DATA GAME dengan link tutorial yang sudah diperbaiki (masing-masing game punya link berbeda)
+    // DATA GAME
     const games = [
-        { 
-            name: "HIGGS DOMINO", 
-            sub: "Beli 60K/B · Jual 56K/B", 
-            img: "https://play-lh.googleusercontent.com/0AfLM4u9VMWMwZK6jeC1ax4mWdM4eQAl3N5jWl2AParMUK65WOEXF_owy6fbtnJS5XY", 
-            key: "higgs", 
-            tutorialUrl: "https://www.youtube.com/embed/n48pUpa9UEI?si=3_HiHFSTau6nWNy6", 
-            prices: [["100M","Rp 6.000","Rp 5.600"],["500M","Rp 30.000","Rp 28.000"],["1B","Rp 60.000","Rp 56.000"],["5B","Rp 300.000","Rp 280.000"],["10B","Rp 600.000","Rp 560.000"],["30B+","Rp 60.000/B","Rp 56.000/B"]] 
-        },
-        { 
-            name: "ROYAL DOMINO", 
-            sub: "Beli 64K/B · Jual 61K/B", 
-            img: "https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO%20DOWNLOAD%20installworks.ca", 
-            key: "royal", 
-            tutorialUrl: "https://www.youtube.com/embed/w2xA-68Js6g?si=cIHTlp-Rhs4rsE-M", 
-            prices: [["100M","Rp 6.400","Rp 6.100"],["500M","Rp 32.000","Rp 30.500"],["1B","Rp 64.000","Rp 61.000"],["5B","Rp 320.000","Rp 305.000"],["10B","Rp 640.000","Rp 610.000"],["30B+","Rp 64.000/B","Rp 61.000/B"]] 
-        },
-        { 
-            name: "BOS DOMINO", 
-            sub: "Beli 4K/B · Jual 3K/B (Min 10B)", 
-            img: "https://dl.memuplay.com/new_market/img/com.vivid.domino.icon.2023-11-24-13-29-36.png", 
-            key: "bos", 
-            tutorialUrl: "https://www.youtube.com/embed/axhtS-TR-ec?si=6kL2NikToFJnTlkL", 
-            prices: [["10B","Rp 40.000","Rp 30.000"],["25B","Rp 100.000","Rp 75.000"],["50B","Rp 200.000","Rp 150.000"],["75B","Rp 300.000","Rp 225.000"],["100B","Rp 400.000","Rp 300.000"],["100B+","Rp 4.000/B","Rp 3.000/B"]] 
-        },
-        { 
-            name: "BERFIST", 
-            sub: "Beli 35K/B · Jual 31K/B", 
-            img: "https://play-lh.googleusercontent.com/mvFrMMdovquq71B-ta-JVKBdw4Zbs2RmPxe8EVFyGiXAtHAm_p0x3940NqDmFGk6vg", 
-            key: "berfist", 
-            tutorialUrl: "https://www.youtube.com/embed/C1jg835oo0o?si=b9Yen1DcYXZAgC82", 
-            prices: [["100M","Rp 3.500","Rp 3.100"],["500M","Rp 17.500","Rp 15.500"],["1B","Rp 35.000","Rp 31.000"],["5B","Rp 175.000","Rp 155.000"],["10B","Rp 350.000","Rp 310.000"],["30B+","Rp 35.000/B","Rp 31.000/B"]] 
-        }
+        { name: "HIGGS DOMINO", sub: "Beli 60K/B · Jual 56K/B", img: "https://play-lh.googleusercontent.com/0AfLM4u9VMWMwZK6jeC1ax4mWdM4eQAl3N5jWl2AParMUK65WOEXF_owy6fbtnJS5XY", key: "higgs", tutorialUrl: "https://www.youtube.com/embed/jRm7sxFUdFk?si=-6VCWQ-Vj0HjZ-Fg", prices: [["100M","Rp 6.000","Rp 5.600"],["500M","Rp 30.000","Rp 28.000"],["1B","Rp 60.000","Rp 56.000"],["5B","Rp 300.000","Rp 280.000"],["10B","Rp 600.000","Rp 560.000"],["30B+","Rp 60.000/B","Rp 56.000/B"]] },
+        { name: "ROYAL DOMINO", sub: "Beli 64K/B · Jual 61K/B", img: "https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO%20DOWNLOAD%20installworks.ca", key: "royal", tutorialUrl: "https://www.youtube.com/embed/jRm7sxFUdFk?si=-6VCWQ-Vj0HjZ-Fg", prices: [["100M","Rp 6.400","Rp 6.100"],["500M","Rp 32.000","Rp 30.500"],["1B","Rp 64.000","Rp 61.000"],["5B","Rp 320.000","Rp 305.000"],["10B","Rp 640.000","Rp 610.000"],["30B+","Rp 64.000/B","Rp 61.000/B"]] },
+        { name: "BOS DOMINO", sub: "Beli 4K/B · Jual 3K/B (Min 10B)", img: "https://dl.memuplay.com/new_market/img/com.vivid.domino.icon.2023-11-24-13-29-36.png", key: "bos", tutorialUrl: "https://www.youtube.com/embed/jRm7sxFUdFk?si=-6VCWQ-Vj0HjZ-Fg", prices: [["10B","Rp 40.000","Rp 30.000"],["25B","Rp 100.000","Rp 75.000"],["50B","Rp 200.000","Rp 150.000"],["75B","Rp 300.000","Rp 225.000"],["100B","Rp 400.000","Rp 300.000"],["100B+","Rp 4.000/B","Rp 3.000/B"]] },
+        { name: "BERFIST", sub: "Beli 35K/B · Jual 31K/B", img: "https://play-lh.googleusercontent.com/mvFrMMdovquq71B-ta-JVKBdw4Zbs2RmPxe8EVFyGiXAtHAm_p0x3940NqDmFGk6vg", key: "berfist", tutorialUrl: "https://www.youtube.com/embed/jRm7sxFUdFk?si=-6VCWQ-Vj0HjZ-Fg", prices: [["100M","Rp 3.500","Rp 3.100"],["500M","Rp 17.500","Rp 15.500"],["1B","Rp 35.000","Rp 31.000"],["5B","Rp 175.000","Rp 155.000"],["10B","Rp 350.000","Rp 310.000"],["30B+","Rp 35.000/B","Rp 31.000/B"]] }
     ];
     
     const downloadLinks = { higgs: "https://www.mediafire.com/file/llcstore/higgs_domino.apk", royal: "https://www.mediafire.com/file/llcstore/royal_domino.apk", bos: "https://www.mediafire.com/file/llcstore/bos_domino.apk", berfist: "https://www.mediafire.com/file/llcstore/berfist.apk" };
@@ -542,7 +712,7 @@
     
     // Dark mode CSS tambahan
     const styleDark = document.createElement('style');
-    styleDark.textContent = `.dark-mode .card-game-premium, .dark-mode .online-card, .dark-mode .hero-premium, .dark-mode .info-premium-section, .dark-mode .footer-premium { background: rgba(5,10,25,0.9); } .dark-mode { filter: brightness(0.95); }`;
+    styleDark.textContent = `.dark-mode .card-game-premium, .dark-mode .online-card, .dark-mode .hero-premium, .dark-mode .info-premium-section, .dark-mode .footer-premium, .dark-mode .payment-section { background: rgba(5,10,25,0.9); } .dark-mode { filter: brightness(0.95); }`;
     document.head.appendChild(styleDark);
     
     // MODAL ORDER
@@ -594,7 +764,7 @@
     attachFormSaveListeners();
     document.getElementById("copyBtn")?.addEventListener("click", copyMessage);
     document.getElementById("sendBtn")?.addEventListener("click", sendMessage);
-    window.onclick = e => { if (e.target === document.getElementById("orderModal")) closeModal(); if (e.target === document.getElementById("videoModal")) closeVideoModal(); };
+    window.onclick = e => { if (e.target === document.getElementById("orderModal")) closeModal(); if (e.target === document.getElementById("videoModal")) closeVideoModal(); if (e.target === document.getElementById("modalQRIS")) closeQRISModal(); };
 </script>
 </body>
 </html>

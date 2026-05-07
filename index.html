@@ -1777,7 +1777,7 @@
             if (!j) return "⚠️ Masukkan jumlah";
             if (!u) return "⚠️ Masukkan ID Game";
             if (!b) return "⚠️ Pilih metode pembayaran";
-            return `🛒 ORDER LLC STORE 🛒\n` +
+            return `🛒 ___ LLC STORE___ 🛒\n` +
                    `━━━━━━━━━━━━━━━━━━━━\n` +
                    `🎮 Game: ${g}\n` +
                    `📌 Jenis: ${t}\n` +
@@ -1785,7 +1785,7 @@
                    `🆔 ID Game: ${u}\n` +
                    `🏦 Metode Bayar: ${b}\n` +
                    `━━━━━━━━━━━━━━━━━━━━\n` +
-                   `⏰ Mohon diproses, terima kasih.`;
+                   `⏰ tunggu balasan kami ...`;
         }
 
         function updatePreview() {
@@ -1802,7 +1802,7 @@
         function copyMessage() {
             if (currentMsg && !currentMsg.startsWith("⚠️")) {
                 navigator.clipboard.writeText(currentMsg);
-                showToast("✅ Pesanan disalin! Buka Chat APK dan paste.");
+                showToast("✅ Pesanan disalin!");
             } else {
                 showToast("❌ Lengkapi data!");
             }
@@ -1827,7 +1827,7 @@
                     closeModal();
                 } else {
                     window.location.href = `llcstore://customer_chat?message=${encodeURIComponent(currentMsg)}`;
-                    showToast("✅ Membuka Chat APK...");
+                    showToast("✅ Membuka pesan...");
                     closeModal();
                 }
             } else {

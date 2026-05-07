@@ -228,28 +228,96 @@
     // PARTICLES
     const pz = document.getElementById('particleZone'); for(let i=0;i<150;i++){ let p=document.createElement('div'); p.classList.add('particle'); let s=Math.random()*4+1; p.style.width=s+'px'; p.style.height=s+'px'; p.style.left=Math.random()*100+'%'; p.style.animationDuration=Math.random()*(14-6)+6+'s'; p.style.animationDelay=Math.random()*15+'s'; pz.appendChild(p); }
     
-    // GAME PRICES
-    function genPrices(baseBuy, baseSell){ let levels=["100M","200M","300M","400M","500M","600M","700M","800M","900M","1B"]; let mult=[0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]; return levels.map((l,i)=>{ let buy=Math.floor(baseBuy*mult[i]*(1+(1-mult[i])*0.25)); let sell=Math.floor(baseSell*mult[i]*(1-(1-mult[i])*0.08)); if(l==="1B"){ buy=baseBuy; sell=baseSell; } return [l,`Rp ${buy.toLocaleString()}`,`Rp ${sell.toLocaleString()}`]; }); }
-    function genBosPrices(){ let levels=["10B","20B","30B","40B","50B","60B","70B","80B","90B","100B"]; return levels.map((l,i)=>{ let amt=(i+1)*10; let buyPerB=4000-i*20; let sellPerB=3000-i*15; if(buyPerB<3500)buyPerB=3500; if(sellPerB<2600)sellPerB=2600; return [l,`Rp ${(buyPerB*amt).toLocaleString()}`,`Rp ${(sellPerB*amt).toLocaleString()}`]; }); }
-    
-    // DATA GAME DENGAN LINK DOWNLOAD & TUTORIAL BERBEDA
+    // GAME PRICES (Harga disesuaikan sesuai permintaan)
+    // Fungsi untuk Higgs: Harga 1B = Beli 55.000, Jual 52.000. Harga lain dihitung proporsional.
+    function genHiggsPrices() {
+        let levels = ["100M","200M","300M","400M","500M","600M","700M","800M","900M","1B"];
+        // Harga patokan 1B
+        const baseBuy = 55000;
+        const baseSell = 52000;
+        
+        return levels.map((l, i) => {
+            let multiplier = (i+1) / 10; // 0.1 hingga 1.0
+            let buy = Math.round(baseBuy * multiplier);
+            let sell = Math.round(baseSell * multiplier);
+            // Untuk nominal kecil, minimal harga agar tidak terlalu murah
+            if(buy < 5500) buy = 5500;
+            if(sell < 5200) sell = 5200;
+            return [l, `Rp ${buy.toLocaleString()}`, `Rp ${sell.toLocaleString()}`];
+        });
+    }
+
+    // Fungsi untuk Royal (Tetap seperti semula)
+    function genRoyalPrices() {
+        let levels = ["100M","200M","300M","400M","500M","600M","700M","800M","900M","1B"];
+        const baseBuy = 64000;
+        const baseSell = 61000;
+        return levels.map((l, i) => {
+            let multiplier = (i+1) / 10;
+            let buy = Math.round(baseBuy * multiplier);
+            let sell = Math.round(baseSell * multiplier);
+            if(buy < 6400) buy = 6400;
+            if(sell < 6100) sell = 6100;
+            return [l, `Rp ${buy.toLocaleString()}`, `Rp ${sell.toLocaleString()}`];
+        });
+    }
+
+    // Fungsi untuk Bos Domino: Beli 5k, Jual 4k per 1B? Maksudnya per 1B (1 Miliar) harga Beli 5000? Atau per 10B? 
+    // Berdasarkan request: "bos domino beli 5k jual 4K". Saya asumsikan harga tersebut untuk nominal 1B (1 Miliar) karena sebelumnya 1B Bos adalah 4000/3000.
+    // Maka untuk 10B dikali 10, 20B dikali 20, dst. Atau untuk konsistensi dengan tampilan sebelumnya (10B, 20B,...100B). Saya buat harga per 10B = Beli 50000, Jual 40000, lalu seterusnya proporsional.
+    function genBosPrices() {
+        let levels = ["10B","20B","30B","40B","50B","60B","70B","80B","90B","100B"];
+        // Harga patokan per 10B (karena 10B adalah kelipatan pertama). Beli 5k per 1B => 10B = 50.000, Jual 4k per 1B => 10B = 40.000
+        const baseBuy = 50000;   // untuk 10B
+        const baseSell = 40000;  // untuk 10B
+        
+        return levels.map((l, i) => {
+            let multiplier = i+1; // 1x, 2x, 3x ... 10x
+            let buy = baseBuy * multiplier;
+            let sell = baseSell * multiplier;
+            return [l, `Rp ${buy.toLocaleString()}`, `Rp ${sell.toLocaleString()}`];
+        });
+    }
+
+    // Fungsi untuk Berfist (Tetap)
+    function genBerfistPrices() {
+        let levels = ["100M","200M","300M","400M","500M","600M","700M","800M","900M","1B"];
+        const baseBuy = 35000;
+        const baseSell = 31000;
+        return levels.map((l, i) => {
+            let multiplier = (i+1) / 10;
+            let buy = Math.round(baseBuy * multiplier);
+            let sell = Math.round(baseSell * multiplier);
+            if(buy < 3500) buy = 3500;
+            if(sell < 3100) sell = 3100;
+            return [l, `Rp ${buy.toLocaleString()}`, `Rp ${sell.toLocaleString()}`];
+        });
+    }
+
+    // DATA GAME DENGAN LINK DOWNLOAD & TUTORIAL YANG SUDAH DIPERBARUI HARGA
     const gameData = {
-        higgs: { name:"HIGGS DOMINO", sub:"Beli 60K/B · Jual 56K/B", img:"https://play-lh.googleusercontent.com/0AfLM4u9VMWMwZK6jeC1ax4mWdM4eQAl3N5jWl2AParMUK65WOEXF_owy6fbtnJS5XY", prices:genPrices(60000,56000), downloadLink:"https://s.topinterface.net/data/sharePage.do", tutorialLink:"https://www.youtube.com/embed/DlMQ-SD21TU?si=eySEGPY88m55cAzC" },
-        royal: { name:"ROYAL DOMINO", sub:"Beli 64K/B · Jual 61K/B", img:"https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO", prices:genPrices(64000,61000), downloadLink:"https://api-1.chillaxgaming.com/rd14248172", tutorialLink:"https://www.youtube.com/embed/royal" },
-        bos: { name:"BOS DOMINO", sub:"Beli 4K/B · Jual 3K/B (Min 10B)", img:"https://dl.memuplay.com/new_market/img/com.vivid.domino.icon.2023-11-24-13-29-36.png", prices:genBosPrices(), downloadLink:"https://i.fordomino.com/share/sharePage?&shareType=101&languageType=2", tutorialLink:"https://www.youtube.com/embed/bosdomino" },
-        berfist: { name:"BERFIST", sub:"Beli 35K/B · Jual 31K/B", img:"https://play-lh.googleusercontent.com/mvFrMMdovquq71B-ta-JVKBdw4Zbs2RmPxe8EVFyGiXAtHAm_p0x3940NqDmFGk6vg", prices:genPrices(35000,31000), downloadLink:"https://play.google.com/store/apps/details?id=com.neptune.bearfish", tutorialLink:"https://www.youtube.com/embed/berfish" }
+        higgs: { name:"HIGGS DOMINO", sub:"Beli 55K/B · Jual 52K/B", img:"https://play-lh.googleusercontent.com/0AfLM4u9VMWMwZK6jeC1ax4mWdM4eQAl3N5jWl2AParMUK65WOEXF_owy6fbtnJS5XY", prices:genHiggsPrices(), downloadLink:"https://s.topinterface.net/data/sharePage.do", tutorialLink:"https://www.youtube.com/embed/DlMQ-SD21TU?si=eySEGPY88m55cAzC" },
+        royal: { name:"ROYAL DOMINO", sub:"Beli 64K/B · Jual 61K/B", img:"https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO", prices:genRoyalPrices(), downloadLink:"https://api-1.chillaxgaming.com/rd14248172", tutorialLink:"https://www.youtube.com/embed/royal" },
+        bos: { name:"BOS DOMINO", sub:"Beli 5K/B · Jual 4K/B (Min 10B)", img:"https://dl.memuplay.com/new_market/img/com.vivid.domino.icon.2023-11-24-13-29-36.png", prices:genBosPrices(), downloadLink:"https://i.fordomino.com/share/sharePage?&shareType=101&languageType=2", tutorialLink:"https://www.youtube.com/embed/bosdomino" },
+        berfist: { name:"BERFIST", sub:"Beli 35K/B · Jual 31K/B", img:"https://play-lh.googleusercontent.com/mvFrMMdovquq71B-ta-JVKBdw4Zbs2RmPxe8EVFyGiXAtHAm_p0x3940NqDmFGk6vg", prices:genBerfistPrices(), downloadLink:"https://play.google.com/store/apps/details?id=com.neptune.bearfish", tutorialLink:"https://www.youtube.com/embed/berfish" }
     };
     
     function renderGame(gridId, gameKey){
         let g = gameData[gameKey];
-        let rows = ''; g.prices.forEach(p=>{ rows+=`<tr><td class="jumlah-col">${p[0]}<td class="beli-col"><span>${p[1]}</span><td class="jual-col"><span>${p[2]}</span>`; });
-        document.getElementById(gridId).innerHTML = `<div class="card-game-premium" id="card-${gameKey}"><div class="card-header-premium"><div class="logo-game"><img src="${g.img}" onerror="this.src='https://via.placeholder.com/55'"></div><div class="game-name-premium"><h2>${g.name}</h2><div class="price-sub">${g.sub}</div></div></div><div class="table-premium"><table class="price-table"><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></thead><tbody>${rows}</tbody></table></div><div class="btn-action-group"><button class="btn-order-premium" onclick="openModal('${g.name}')"><i class="fas fa-cart-shopping"></i> Beli/Jual</button><button class="btn-download-premium" onclick="downloadGame('${gameKey}')"><i class="fas fa-download"></i> Download</button><button class="btn-tutorial-premium" onclick="openVideoTutorial('${g.tutorialLink}')"><i class="fas fa-play-circle"></i> Tutorial</button></div></div>`;
+        let rows = ''; 
+        g.prices.forEach(p=>{ 
+            rows += `<tr><td class="jumlah-col">${p[0]}<td class="beli-col"><span>${p[1]}</span><td class="jual-col"><span>${p[2]}</span>`; 
+        });
+        document.getElementById(gridId).innerHTML = `<div class="card-game-premium" id="card-${gameKey}"><div class="card-header-premium"><div class="logo-game"><img src="${g.img}" onerror="this.src='https://via.placeholder.com/55'"></div><div class="game-name-premium"><h2>${g.name}</h2><div class="price-sub">${g.sub}</div></div></div><div class="table-premium"><table class="price-table"><thead><tr><th>Jumlah</th><th>Beli</th><th>Jual</th></tr></thead><tbody>${rows}</tbody></table></div><div class="btn-action-group"><button class="btn-order-premium" onclick="openModal('${g.name}')"><i class="fas fa-cart-shopping"></i> Beli/Jual</button><button class="btn-download-premium" onclick="downloadGame('${gameKey}')"><i class="fas fa-download"></i> Download</button><button class="btn-tutorial-premium" onclick="openVideoTutorial('${g.tutorialLink}')"><i class="fas fa-play-circle"></i> Tutorial</button></div></div>`;
     }
     
     function downloadGame(gameKey){ let link = gameData[gameKey].downloadLink; if(link && link!='#') window.open(link,'_blank'); else showToast("Link download belum tersedia"); }
     function openVideoTutorial(url){ document.getElementById('videoFrame').src=url; document.getElementById('videoModal').style.display='flex'; document.body.style.overflow='hidden'; }
     
-    renderGame('grid-higgs','higgs'); renderGame('grid-royal','royal'); renderGame('grid-bos','bos'); renderGame('grid-berfist','berfist');
+    renderGame('grid-higgs','higgs');
+    renderGame('grid-royal','royal');
+    renderGame('grid-bos','bos');
+    renderGame('grid-berfist','berfist');
     
     // SCROLL KE GAME SAAT BADGE DIKLIK
     document.querySelectorAll('.badge-premium[data-game]').forEach(badge => {

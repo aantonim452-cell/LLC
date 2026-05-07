@@ -1403,11 +1403,11 @@
         const INFO_BANNER_ITEMS = [
             {
                 game: "🎮 HIGGS DOMINO",
-                detail: "BELI 👇<br><br>SEBELUM 61K/B<br><br>SESUDAH 55K/B<br><br>JUAL 👇<br><br>SEBELUM 58K/B<br><br>SESUDAH 52K/B"
+                detail: "RP60.000 MENJADI RP55.000"
             },
             {
                 game: "👑 BOS DOMINO",
-                detail: "BELI 👇<br><br>SEBELUM 4K/B<br><br>SESUDAH 5K/B<br><br>JUAL 👇<br><br>SEBELUM 3K/B<br><br>SESUDAH 4K/B"
+                detail: "RP4.000 MENJADI RP5.000"
             },
             {
                 game: "💰 harga berfariasi",
@@ -1777,7 +1777,7 @@
             if (!j) return "⚠️ Masukkan jumlah";
             if (!u) return "⚠️ Masukkan ID Game";
             if (!b) return "⚠️ Pilih metode pembayaran";
-            return `🛒 ___ LLC STORE___ 🛒\n` +
+            return `🛒 ORDER LLC STORE 🛒\n` +
                    `━━━━━━━━━━━━━━━━━━━━\n` +
                    `🎮 Game: ${g}\n` +
                    `📌 Jenis: ${t}\n` +
@@ -1785,7 +1785,7 @@
                    `🆔 ID Game: ${u}\n` +
                    `🏦 Metode Bayar: ${b}\n` +
                    `━━━━━━━━━━━━━━━━━━━━\n` +
-                   `⏰ tunggu balasan kami ...`;
+                   `⏰ Mohon diproses, terima kasih.`;
         }
 
         function updatePreview() {
@@ -1802,7 +1802,7 @@
         function copyMessage() {
             if (currentMsg && !currentMsg.startsWith("⚠️")) {
                 navigator.clipboard.writeText(currentMsg);
-                showToast("✅ Pesanan disalin!");
+                showToast("✅ Pesanan disalin! Buka Chat APK dan paste.");
             } else {
                 showToast("❌ Lengkapi data!");
             }
@@ -1827,7 +1827,7 @@
                     closeModal();
                 } else {
                     window.location.href = `llcstore://customer_chat?message=${encodeURIComponent(currentMsg)}`;
-                    showToast("✅ Membuka pesan...");
+                    showToast("✅ Membuka Chat APK...");
                     closeModal();
                 }
             } else {

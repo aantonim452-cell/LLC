@@ -232,32 +232,15 @@
     <script>
         // ======================== 🟢 KONFIGURASI HARGA ========================
         const HIGGS_BELI = { "100M":7000, "200M":13000, "300M":18000, "400M":24000, "500M":30000, "600M":36000, "700M":42000, "800M":48000, "900M":53000, "1B":55000 };
-        
-        
         const HIGGS_BONGKAR = { "1B":52000, "2B":104000, "3B":156000, "4B":208000, "5B":260000, "6B":312000, "7B":364000, "8B":416000, "9B":468000, "10B":520000 };
-        
-        
         const ROYAL_BELI = { "100M":6400, "200M":12800, "300M":19200, "400M":25600, "500M":32000, "600M":38400, "700M":44800, "800M":51200, "900M":57600, "1B":64000 };
-        
-        
         const ROYAL_BONGKAR = { "1B":61000, "2B":122000, "3B":183000, "4B":244000, "5B":305000, "6B":366000, "7B":427000, "8B":488000, "9B":549000, "10B":610000 };
-        
-        
         const BERFIST_BELI = { "100M":3500, "200M":7000, "300M":10500, "400M":14000, "500M":17500, "600M":21000, "700M":24500, "800M":28000, "900M":31500, "1B":35000 };
-        
-        
-        
         const BERFIST_BONGKAR = { "1B":31000, "2B":62000, "3B":93000, "4B":124000, "5B":155000, "6B":186000, "7B":217000, "8B":248000, "9B":279000, "10B":310000 };
-        
-        
         const BOS_BELI = { "1B":5000, "2B":10000, "3B":15000, "4B":20000, "5B":25000, "6B":30000, "7B":35000, "8B":40000, "9B":45000, "10B":50000 };
-        
-        
         const BOS_BONGKAR = { "10B":40000, "20B":80000, "30B":120000, "40B":160000, "50B":200000, "60B":240000, "70B":280000, "80B":320000, "90B":360000, "100B":400000 };
         
         const BELI_100M_900M = ["100M","200M","300M","400M","500M","600M","700M","800M","900M"];
-        
-        
         const BELI_1B_SAMPAI_50B = []; for(let i=1;i<=50;i++) BELI_1B_SAMPAI_50B.push(i+"B");
         const BONGKAR_1B_SAMPAI_50B = []; for(let i=1;i<=50;i++) BONGKAR_1B_SAMPAI_50B.push(i+"B");
         
@@ -276,6 +259,9 @@
         renderGame('grid-royal', 'royal', 'ROYAL DOMINO', 'https://ts2.mm.bing.net/th?q=ROYAL%20DREAM%20DOMINO', 'https://api-1.chillaxgaming.com/rd14248172', 'https://www.youtube.com/embed/royal', ROYAL_BELI, ROYAL_BONGKAR);
         renderGame('grid-bos', 'bos', 'BOS DOMINO', 'https://dl.memuplay.com/new_market/img/com.vivid.domino.icon.2023-11-24-13-29-36.png', 'https://i.fordomino.com/share/sharePage', 'https://www.youtube.com/embed/bosdomino', BOS_BELI, BOS_BONGKAR);
         renderGame('grid-berfist', 'berfist', 'BERFIST', 'https://play-lh.googleusercontent.com/mvFrMMdovquq71B-ta-JVKBdw4Zbs2RmPxe8EVFyGiXAtHAm_p0x3940NqDmFGk6vg', 'https://play.google.com/store/apps/details?id=com.neptune.bearfish', 'https://www.youtube.com/embed/berfish', BERFIST_BELI, BERFIST_BONGKAR);
+        
+        // ======================== PERBAIKAN DOUBLE PESAN ========================
+        let isSending = false; // FLAG untuk cegah double send
         
         // FORM MODAL
         let currentGameKey = null, currentGameName = null;
@@ -375,8 +361,60 @@
         }
         
         function updatePreview() { let msg = generateMessage(); let box = document.getElementById("previewBox"); if(msg.startsWith("⚠️")) box.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${msg}`; else box.innerHTML = msg.replace(/\n/g,'<br>'); }
-        function sendMessage() { let msg = generateMessage(); if(msg.startsWith("⚠️")) { showToast("❌ Lengkapi data!"); return; } showToast("✅ Pesanan dikirim ke Admin!"); closeModal(); if(window.Android?.sendMessageToAdmin) window.Android.sendMessageToAdmin(msg); else window.location.href = `llcstore://customer_chat?message=${encodeURIComponent(msg)}`; }
-        function closeModal() { document.getElementById("orderModal").style.display = "none"; }
+        
+        // ======================== PERBAIKAN UTAMA: CEK DOUBLE SEND ========================
+        function sendMessage() {
+            // Cegah jika sedang mengirim
+            if(isSending) {
+                console.log("Masih mengirim, abaikan klik kedua");
+                showToast("⏳ Tunggu, pesan sedang dikirim...");
+                return;
+            }
+            
+            let msg = generateMessage();
+            if(msg.startsWith("⚠️")) { 
+                showToast("❌ Lengkapi data!"); 
+                return; 
+            }
+            
+            // Set flag true agar tidak bisa klik lagi
+            isSending = true;
+            
+            // Simpan ke localStorage
+            let riwayat = JSON.parse(localStorage.getItem('llc_riwayat') || '[]');
+            riwayat.unshift({
+                tanggal: new Date().toLocaleString('id-ID'),
+                game: currentGameName,
+                jenis: document.getElementById("transaksiType").value,
+                jumlah: document.getElementById("jumlahKoinSelect").value,
+                idGame: document.getElementById("idGame").value,
+                status: 'proses'
+            });
+            if(riwayat.length > 100) riwayat.pop();
+            localStorage.setItem('llc_riwayat', JSON.stringify(riwayat));
+            
+            showToast("✅ Pesanan dikirim ke Admin!");
+            closeModal();
+            
+            // Kirim pesan ke admin (WA/Telegram/Intent)
+            if(window.Android && window.Android.sendMessageToAdmin) {
+                window.Android.sendMessageToAdmin(msg);
+            } else {
+                window.location.href = `llcstore://customer_chat?message=${encodeURIComponent(msg)}`;
+            }
+            
+            // Reset flag setelah 2 detik (biar tidak double)
+            setTimeout(() => {
+                isSending = false;
+            }, 2000);
+        }
+        
+        function closeModal() { 
+            document.getElementById("orderModal").style.display = "none"; 
+            // Reset flag juga saat modal ditutup
+            isSending = false;
+        }
+        
         function downloadGame(link){ if(link) window.open(link,'_blank'); else showToast("Link tidak tersedia"); }
         function showToast(msg){ let t=document.getElementById('toastMsg'); t.innerHTML=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2000); }
         function closeVideoModal(){ document.getElementById('videoModal').style.display='none'; document.getElementById('videoFrame').src=''; }
@@ -385,11 +423,18 @@
         function openModalInfo(){ document.getElementById('modalInfo').style.display='flex'; }
         function closeModalInfo(){ document.getElementById('modalInfo').style.display='none'; }
         
+        // Event listeners
         document.getElementById("transaksiType")?.addEventListener("change", () => { populateJumlahOptions(); updateHargaDisplay(); updatePreview(); });
         document.getElementById("jumlahKoinSelect")?.addEventListener("change", () => { updateHargaDisplay(); updatePreview(); });
         document.getElementById("idGame")?.addEventListener("input", updatePreview);
         document.getElementById("bankTransfer")?.addEventListener("change", updatePreview);
-        document.getElementById("sendBtn")?.addEventListener("click", sendMessage);
+        
+        // Hapus event listener lama jika ada, lalu tambahkan yang baru
+        const sendBtn = document.getElementById("sendBtn");
+        // Clone and replace to remove all old listeners (hack untuk bersihkan)
+        const newSendBtn = sendBtn.cloneNode(true);
+        sendBtn.parentNode.replaceChild(newSendBtn, sendBtn);
+        newSendBtn.addEventListener("click", sendMessage);
         
         // SIDEBAR
         document.getElementById('menuBtn').onclick = () => { document.getElementById('sidebar').classList.add('open'); document.getElementById('overlay').classList.add('show'); };

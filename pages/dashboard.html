@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Dashboard | LLC PREMIUM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a1a; color: #ffffff; min-height: 100vh; }
+        
+        .bg-master { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10; overflow: hidden; }
+        .nebula-1 { position: absolute; width: 100%; height: 100%; background: radial-gradient(ellipse at 20% 30%, #0a0a2a, #000); animation: pulseNebula 8s ease-in-out infinite; }
+        .nebula-2 { position: absolute; width: 100%; height: 100%; background: radial-gradient(ellipse at 80% 70%, #1a0a2a, transparent); animation: pulseNebula2 10s ease-in-out infinite alternate; }
+        @keyframes pulseNebula { 0%,100%{opacity:0.6;}50%{opacity:1;} }
+        @keyframes pulseNebula2 { 0%{transform:scale(1);opacity:0.4;}100%{transform:scale(1.2);opacity:0.8;} }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        
+        .top-bar { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding: 12px 20px; background: rgba(15,25,45,0.5); backdrop-filter: blur(12px); border-radius: 50px; border: 1px solid rgba(245,158,11,0.2); }
+        .back-btn { background: rgba(245,158,11,0.2); border: none; width: 40px; height: 40px; border-radius: 50%; color: #fbbf24; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: 0.3s; }
+        .back-btn:hover { background: #f59e0b; color: #000; transform: scale(1.05); }
+        .logo-small { font-size: 1.2rem; font-weight: 800; background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin-bottom: 25px; }
+        .stat-card { background: rgba(15,25,45,0.6); backdrop-filter: blur(15px); border-radius: 1.5rem; padding: 20px; text-align: center; border: 1px solid rgba(245,158,11,0.25); transition: 0.3s; }
+        .stat-card i { font-size: 2rem; color: #fbbf24; margin-bottom: 10px; }
+        .stat-card .number { font-size: 1.8rem; font-weight: 800; color: white; }
+        .stat-card .label { font-size: 11px; color: #94a3b8; margin-top: 5px; }
+        
+        .card { background: rgba(15,25,45,0.6); backdrop-filter: blur(15px); border-radius: 1.5rem; border: 1px solid rgba(245,158,11,0.25); overflow: hidden; margin-bottom: 20px; }
+        .card-header { padding: 16px 20px; background: linear-gradient(135deg, rgba(30,41,59,0.95), rgba(15,23,42,0.98)); border-bottom: 2px solid #f59e0b; }
+        .card-header h2 { color: #fbbf24; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        
+        .profile-info { padding: 20px; }
+        .profile-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(51,65,85,0.5); }
+        .profile-row .label { color: #94a3b8; font-size: 13px; }
+        .profile-row .value { color: white; font-weight: 500; }
+        
+        .menu-list { padding: 10px; }
+        .menu-item { display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 1rem; margin-bottom: 10px; cursor: pointer; transition: 0.2s; }
+        .menu-item:hover { background: rgba(245,158,11,0.15); transform: translateX(5px); }
+        .menu-item i { width: 30px; font-size: 1.2rem; color: #fbbf24; }
+        .menu-item span { flex: 1; font-size: 13px; }
+        .menu-item .arrow { color: #64748b; font-size: 12px; }
+        
+        .logout-btn { background: rgba(239,68,68,0.2); border: none; padding: 12px 20px; border-radius: 50px; color: #ef4444; font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .logout-btn:hover { background: #ef4444; color: white; }
+        
+        .footer { text-align: center; padding: 20px; font-size: 11px; color: #64748b; }
+    </style>
+</head>
+<body>
+    <div class="bg-master"><div class="nebula-1"></div><div class="nebula-2"></div></div>
+    
+    <div class="container">
+        <div class="top-bar">
+            <button class="back-btn" onclick="window.location.href='../index.html'"><i class="fas fa-arrow-left"></i></button>
+            <div class="logo-small"><i class="fas fa-crown"></i> LLC PREMIUM</div>
+        </div>
+        
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card"><i class="fas fa-shopping-cart"></i><div class="number" id="totalTransaksi">0</div><div class="label">Total Transaksi</div></div>
+            <div class="stat-card"><i class="fas fa-coins"></i><div class="number" id="totalBeli">0</div><div class="label">Total Beli</div></div>
+            <div class="stat-card"><i class="fas fa-exchange-alt"></i><div class="number" id="totalBongkar">0</div><div class="label">Total Bongkar</div></div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-user-circle"></i> Profil Saya</h2>
+            </div>
+            <div class="profile-info">
+                <div class="profile-row"><span class="label">Member ID</span><span class="value" id="memberId">LLC-XXXXXXXX</span></div>
+                <div class="profile-row"><span class="label">Member Sejak</span><span class="value" id="memberSince">-</span></div>
+                <div class="profile-row"><span class="label">Status</span><span class="value" style="color:#22c55e;">● Premium Member</span></div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-link"></i> Menu Cepat</h2>
+            </div>
+            <div class="menu-list">
+                <div class="menu-item" onclick="window.location.href='riwayat.html'"><i class="fas fa-history"></i><span>Riwayat Transaksi</span><i class="fas fa-chevron-right arrow"></i></div>
+                <div class="menu-item" onclick="window.location.href='panduan.html'"><i class="fas fa-book"></i><span>Panduan Topup</span><i class="fas fa-chevron-right arrow"></i></div>
+                <div class="menu-item" onclick="window.location.href='../index.html'"><i class="fas fa-store"></i><span>Kembali ke Beranda</span><i class="fas fa-chevron-right arrow"></i></div>
+            </div>
+        </div>
+        
+        <button class="logout-btn" onclick="resetData()"><i class="fas fa-trash-alt"></i> Reset Semua Data</button>
+        
+        <div class="footer">© 2026 LLC PREMIUM - Dashboard Member</div>
+    </div>
+    
+    <script>
+        function formatRupiah(angka) { return "Rp " + angka.toLocaleString('id-ID'); }
+        
+        function loadDashboard() {
+            let riwayat = JSON.parse(localStorage.getItem('llc_riwayat') || '[]');
+            
+            // Total transaksi
+            document.getElementById('totalTransaksi').innerText = riwayat.length;
+            
+            // Hitung beli & bongkar
+            let totalBeli = riwayat.filter(r => r.jenis === 'BELI').length;
+            let totalBongkar = riwayat.filter(r => r.jenis === 'BONGKAR').length;
+            document.getElementById('totalBeli').innerText = totalBeli;
+            document.getElementById('totalBongkar').innerText = totalBongkar;
+            
+            // Member ID (dari localStorage atau buat baru)
+            let memberId = localStorage.getItem('llc_member_id');
+            if(!memberId) {
+                memberId = 'LLC-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+                localStorage.setItem('llc_member_id', memberId);
+            }
+            document.getElementById('memberId').innerText = memberId;
+            
+            // Member since (dari localStorage atau tanggal registrasi pertama)
+            let memberSince = localStorage.getItem('llc_member_since');
+            if(!memberSince) {
+                memberSince = new Date().toLocaleDateString('id-ID');
+                localStorage.setItem('llc_member_since', memberSince);
+            }
+            document.getElementById('memberSince').innerText = memberSince;
+        }
+        
+        function resetData() {
+            if(confirm('⚠️ PERINGATAN: Ini akan menghapus SEMUA riwayat transaksi Anda!\n\nData tidak dapat dikembalikan. Lanjutkan?')) {
+                localStorage.removeItem('llc_riwayat');
+                loadDashboard();
+                showToast('Semua data berhasil direset');
+            }
+        }
+        
+        function showToast(msg) {
+            let toast = document.createElement('div');
+            toast.textContent = msg;
+            toast.style.position = 'fixed';
+            toast.style.bottom = '30px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.background = '#1e293b';
+            toast.style.color = 'white';
+            toast.style.padding = '12px 24px';
+            toast.style.borderRadius = '50px';
+            toast.style.zIndex = '1000';
+            toast.style.borderLeft = '4px solid #f59e0b';
+            toast.style.fontSize = '13px';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+        
+        loadDashboard();
+    </script>
+</body>
+</html>

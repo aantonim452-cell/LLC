@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Panduan Topup | LLC PREMIUM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a1a; color: #ffffff; min-height: 100vh; }
+        
+        .bg-master { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10; overflow: hidden; }
+        .nebula-1 { position: absolute; width: 100%; height: 100%; background: radial-gradient(ellipse at 20% 30%, #0a0a2a, #000); animation: pulseNebula 8s ease-in-out infinite; }
+        .nebula-2 { position: absolute; width: 100%; height: 100%; background: radial-gradient(ellipse at 80% 70%, #1a0a2a, transparent); animation: pulseNebula2 10s ease-in-out infinite alternate; }
+        @keyframes pulseNebula { 0%,100%{opacity:0.6;}50%{opacity:1;} }
+        @keyframes pulseNebula2 { 0%{transform:scale(1);opacity:0.4;}100%{transform:scale(1.2);opacity:0.8;} }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        
+        .top-bar { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding: 12px 20px; background: rgba(15,25,45,0.5); backdrop-filter: blur(12px); border-radius: 50px; border: 1px solid rgba(245,158,11,0.2); }
+        .back-btn { background: rgba(245,158,11,0.2); border: none; width: 40px; height: 40px; border-radius: 50%; color: #fbbf24; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: 0.3s; }
+        .back-btn:hover { background: #f59e0b; color: #000; transform: scale(1.05); }
+        .logo-small { font-size: 1.2rem; font-weight: 800; background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        
+        .card { background: rgba(15,25,45,0.6); backdrop-filter: blur(15px); border-radius: 1.5rem; border: 1px solid rgba(245,158,11,0.25); overflow: hidden; margin-bottom: 20px; }
+        .card-header { padding: 16px 20px; background: linear-gradient(135deg, rgba(30,41,59,0.95), rgba(15,23,42,0.98)); border-bottom: 2px solid #f59e0b; }
+        .card-header h2 { color: #fbbf24; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        
+        .step-list { padding: 20px; }
+        .step-item { display: flex; gap: 15px; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid rgba(51,65,85,0.5); }
+        .step-number { width: 40px; height: 40px; background: linear-gradient(135deg, #f59e0b, #ea580c); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; flex-shrink: 0; }
+        .step-content { flex: 1; }
+        .step-content h3 { color: #fbbf24; font-size: 1rem; margin-bottom: 8px; }
+        .step-content p { color: #cbd5e1; font-size: 13px; line-height: 1.5; }
+        .step-content .note { background: rgba(245,158,11,0.1); padding: 8px 12px; border-radius: 12px; margin-top: 10px; font-size: 11px; color: #fbbf24; }
+        
+        .info-box { background: linear-gradient(135deg, #1e293b, #0f172a); border-left: 4px solid #f59e0b; border-radius: 1rem; padding: 15px; margin: 0 20px 20px 20px; }
+        .info-box p { font-size: 12px; color: #cbd5e1; margin-bottom: 8px; }
+        .info-box i { color: #fbbf24; margin-right: 8px; }
+        
+        .footer { text-align: center; padding: 20px; font-size: 11px; color: #64748b; }
+    </style>
+</head>
+<body>
+    <div class="bg-master"><div class="nebula-1"></div><div class="nebula-2"></div></div>
+    
+    <div class="container">
+        <div class="top-bar">
+            <button class="back-btn" onclick="window.location.href='../index.html'"><i class="fas fa-arrow-left"></i></button>
+            <div class="logo-small"><i class="fas fa-crown"></i> LLC PREMIUM</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-book-open"></i> Panduan Topup & Bongkar Chip</h2>
+            </div>
+            <div class="step-list">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Pilih Game & Nominal</h3>
+                        <p>Klik pada menu game yang ingin Anda topup (Higgs, Royal, Bos, atau Berfist). Pilih nominal chip yang diinginkan dengan mengklik harganya langsung.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Isi Form Transaksi</h3>
+                        <p>Setelah memilih nominal, form transaksi akan terbuka. Pilih jenis transaksi (BELI atau BONGKAR), masukkan ID Game Anda, dan pilih metode pembayaran.</p>
+                        <div class="note"><i class="fas fa-info-circle"></i> Pastikan ID Game benar! Kesalahan input ID bukan tanggung jawab kami.</div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Kirim Pesanan</h3>
+                        <p>Klik tombol "Kirim Pesanan". Pesanan akan otomatis disalin dan Anda akan diarahkan ke chat admin untuk konfirmasi pembayaran.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Konfirmasi Pembayaran</h3>
+                        <p>Kirim bukti transfer ke nomor yang sudah disediakan. Admin akan memproses dalam waktu ±3-10 menit. Chip akan masuk ke akun Anda.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <p><i class="fas fa-clock"></i> <strong>Jam Operasional:</strong> 24 Jam Nonstop, 7 hari seminggu</p>
+                <p><i class="fas fa-shield-alt"></i> <strong>Garansi:</strong> Jika chip tidak masuk dalam 1x24 jam, refund 100%</p>
+                <p><i class="fas fa-headset"></i> <strong>Kontak Admin:</strong> WhatsApp tersedia 24 jam</p>
+            </div>
+        </div>
+        
+        <div class="footer">© 2026 LLC PREMIUM - Topup Chip Domino Terpercaya</div>
+    </div>
+</body>
+</html>

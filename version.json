@@ -1,6 +1,6 @@
 {
   "version": "1.2.0",
-  "web_version": 3,
+  "web_version": 4,
   "lastUpdate": "2026-05-06",
   "forceUpdate": true,
   "changelog": "⚠️ WAJIB UPDATE – layanan chat terpusat tidak akan tersambung jika menggunakan versi lama.\n✅ Jaringan sudah stabil\n🐞 Perbaikan bug pada layanan pesanan",

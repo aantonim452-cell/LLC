@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>BERFIST | LLC PREMIUM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a1a; color: #ffffff; min-height: 100vh; }
+        
+        .bg-master { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10; overflow: hidden; }
+        .nebula-1 { position: absolute; width: 100%; height: 100%; background: radial-gradient(ellipse at 20% 30%, #0a0a2a, #000); animation: pulse 8s ease-in-out infinite; }
+        .nebula-2 { position: absolute; width: 100%; height: 100%; background: radial-gradient(ellipse at 80% 70%, #1a0a2a, transparent); animation: pulse2 10s ease-in-out infinite alternate; }
+        @keyframes pulse { 0%,100%{opacity:0.6;}50%{opacity:1;} }
+        @keyframes pulse2 { 0%{transform:scale(1);opacity:0.4;}100%{transform:scale(1.2);opacity:0.8;} }
+        
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        
+        .hero { background: rgba(15,25,45,0.6); backdrop-filter: blur(15px); border-radius: 2rem; padding: 20px; text-align: center; margin-bottom: 25px; border: 1px solid rgba(245,158,11,0.35); }
+        .game-icon { width: 80px; height: 80px; margin: 0 auto 15px; background: #fbbf24; border-radius: 20px; display: flex; align-items: center; justify-content: center; }
+        .game-icon i { font-size: 40px; color: #0f172a; }
+        .game-title { font-size: 24px; font-weight: 800; color: #fbbf24; margin-bottom: 5px; }
+        .game-sub { font-size: 12px; color: #94a3b8; }
+        
+        .section-title { margin: 25px 0 15px 0; display: flex; align-items: center; gap: 10px; }
+        .section-title h3 { font-size: 18px; color: #fbbf24; border-left: 4px solid #f59e0b; padding-left: 12px; }
+        
+        .price-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .price-card { background: rgba(0,0,0,0.4); border-radius: 16px; padding: 12px 16px; cursor: pointer; transition: 0.2s; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(245,158,11,0.2); }
+        .price-card:hover { transform: translateX(5px); background: rgba(245,158,11,0.1); }
+        .price-jumlah { font-weight: 700; font-size: 13px; color: #fbbf24; }
+        .price-harga-beli { font-weight: 700; font-size: 12px; color: #10b981; font-family: monospace; }
+        .price-harga-bongkar { font-weight: 700; font-size: 12px; color: #ef4444; font-family: monospace; }
+        
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(20px); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: linear-gradient(135deg, #1e293b, #0f172a); max-width: 450px; width: 90%; border-radius: 2rem; padding: 25px; border: 2px solid #f59e0b; }
+        .modal-header { display: flex; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid #334155; padding-bottom: 10px; }
+        .modal-header h3 { color: #fbbf24; }
+        .modal-close { font-size: 28px; cursor: pointer; color: #94a3b8; transition: 0.2s; }
+        .modal-close:hover { color: #f59e0b; transform: rotate(90deg); }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { font-size: 11px; color: #94a3b8; display: block; margin-bottom: 5px; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 40px; color: white; font-size: 13px; }
+        .form-group input:focus, .form-group select:focus { border-color: #f59e0b; outline: none; }
+        .harga-display { background: #0f172a; border-radius: 40px; padding: 10px; margin: 15px 0; text-align: center; border-left: 3px solid #10b981; }
+        .preview-msg { background: #0f172a; padding: 12px; border-radius: 16px; margin: 15px 0; border-left: 4px solid #f59e0b; font-size: 11px; font-family: monospace; white-space: pre-wrap; }
+        .btn-send { width: 100%; padding: 14px; border-radius: 40px; font-weight: 800; cursor: pointer; border: none; background: linear-gradient(95deg, #f59e0b, #fbbf24); color: #0f172a; font-size: 14px; transition: 0.3s; }
+        .btn-send:hover { transform: scale(1.02); filter: brightness(1.05); }
+        .btn-chat { background: linear-gradient(95deg, #4f46e5, #7c3aed); color: white; margin-top: 20px; }
+        
+        .toast-msg { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #1e293b; color: white; padding: 12px 24px; border-radius: 50px; z-index: 3000; transition: 0.3s; border-left: 4px solid #f59e0b; opacity: 0; font-size: 13px; }
+        .toast-msg.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+        
+        .footer { text-align: center; padding: 20px; font-size: 11px; color: #64748b; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="bg-master"><div class="nebula-1"></div><div class="nebula-2"></div></div>
+    
+    <div class="container">
+        <div class="hero">
+            <div class="game-icon"><i class="fas fa-fist-raised"></i></div>
+            <div class="game-title">BERFIST</div>
+            <div class="game-sub">Topup Chip & Bongkar Chip Terpercaya</div>
+        </div>
+        
+        <div class="section-title"><h3><i class="fas fa-shopping-cart" style="color:#10b981"></i> DAFTAR HARGA TOPUP</h3></div>
+        <div class="price-grid" id="beliList"></div>
+        
+        <div class="section-title"><h3><i class="fas fa-exchange-alt" style="color:#ef4444"></i> DAFTAR HARGA BONGKAR</h3></div>
+        <div class="price-grid" id="bongkarList"></div>
+        
+        <button class="btn-send btn-chat" onclick="openChat()"><i class="fas fa-headset"></i> Chat Admin</button>
+        
+        <div class="footer">© 2026 LLC PREMIUM</div>
+    </div>
+    
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-file-invoice"></i> Form Transaksi</h3>
+                <span class="modal-close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="form-group">
+                <label>Game</label>
+                <input type="text" id="gameNameDisplay" value="BERFIST" readonly style="background:#334155;">
+            </div>
+            <div class="form-group">
+                <label>Jenis Transaksi</label>
+                <select id="transaksiType">
+                    <option value="">-- Pilih --</option>
+                    <option value="BELI">🔰 TOPUP (Beli Chip)</option>
+                    <option value="BONGKAR">📤 BONGKAR (Jual Chip)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Jumlah Chip</label>
+                <select id="jumlahSelect">
+                    <option value="">-- Pilih Jenis dulu --</option>
+                </select>
+            </div>
+            <div class="harga-display" id="hargaDisplay">💰 Harga akan muncul setelah pilih jumlah</div>
+            <div class="form-group">
+                <label>ID Game</label>
+                <input type="text" id="idGame" placeholder="Masukkan ID Game Anda">
+            </div>
+            <div class="form-group">
+                <label>Metode Pembayaran</label>
+                <select id="bankTransfer">
+                    <option value="">Pilih Metode</option>
+                    <option value="QRIS">QRIS</option>
+                    <option value="DANA">DANA</option>
+                    <option value="OVO">OVO</option>
+                    <option value="BRI">BRI</option>
+                    <option value="BNI">BNI</option>
+                    <option value="BCA">BCA</option>
+                    <option value="Mandiri">Mandiri</option>
+                </select>
+            </div>
+            <div class="preview-msg" id="previewBox">⚡ Isi data di atas</div>
+            <button class="btn-send" id="sendBtn"><i class="fas fa-paper-plane"></i> Kirim Pesanan</button>
+        </div>
+    </div>
+    
+    <div id="toastMsg" class="toast-msg">✅ Pesan dikirim!</div>
+    
+    <script>
+        // ==================== HARGA BERFIST (Lengkap 100M - 50B) ====================
+        const HARGA_BELI = {
+            "100M": 3500, "200M": 7000, "300M": 10500, "400M": 14000, "500M": 17500,
+            "600M": 21000, "700M": 24500, "800M": 28000, "900M": 31500,
+            "1B": 35000, "2B": 70000, "3B": 105000, "4B": 140000, "5B": 175000,
+            "6B": 210000, "7B": 245000, "8B": 280000, "9B": 315000, "10B": 350000,
+            "15B": 525000, "20B": 700000, "25B": 875000, "30B": 1050000,
+            "35B": 1225000, "40B": 1400000, "45B": 1575000, "50B": 1750000
+        };
+        
+        const HARGA_BONGKAR = {
+            "1B": 31000, "2B": 62000, "3B": 93000, "4B": 124000, "5B": 155000,
+            "6B": 186000, "7B": 217000, "8B": 248000, "9B": 279000, "10B": 310000,
+            "15B": 465000, "20B": 620000, "25B": 775000, "30B": 930000,
+            "35B": 1085000, "40B": 1240000, "45B": 1395000, "50B": 1550000
+        };
+        
+        let currentJenis = "", currentJumlah = "", currentHarga = 0;
+        let isSending = false;
+        
+        function formatRupiah(angka) {
+            return "Rp " + angka.toLocaleString('id-ID');
+        }
+        
+        function renderPrices() {
+            let beliHtml = "";
+            for (let [jml, harga] of Object.entries(HARGA_BELI)) {
+                beliHtml += `<div class="price-card" onclick="openModal('BELI', '${jml}', ${harga})">
+                    <span class="price-jumlah">${jml}</span>
+                    <span class="price-harga-beli">${formatRupiah(harga)}</span>
+                </div>`;
+            }
+            document.getElementById('beliList').innerHTML = beliHtml;
+            
+            let bongkarHtml = "";
+            for (let [jml, harga] of Object.entries(HARGA_BONGKAR)) {
+                bongkarHtml += `<div class="price-card" onclick="openModal('BONGKAR', '${jml}', ${harga})">
+                    <span class="price-jumlah">${jml}</span>
+                    <span class="price-harga-bongkar">${formatRupiah(harga)}</span>
+                </div>`;
+            }
+            document.getElementById('bongkarList').innerHTML = bongkarHtml;
+        }
+        
+        function openModal(jenis, jumlah, harga) {
+            currentJenis = jenis;
+            currentJumlah = jumlah;
+            currentHarga = harga;
+            
+            document.getElementById("transaksiType").value = jenis;
+            updateJumlahSelect();
+            document.getElementById("jumlahSelect").value = jumlah;
+            document.getElementById("hargaDisplay").innerHTML = `💰 Harga: <span style="color:#10b981">${formatRupiah(harga)}</span>`;
+            document.getElementById("idGame").value = "";
+            document.getElementById("bankTransfer").value = "";
+            updatePreview();
+            document.getElementById("orderModal").style.display = "flex";
+        }
+        
+        function updateJumlahSelect() {
+            let select = document.getElementById("jumlahSelect");
+            let jenis = document.getElementById("transaksiType").value;
+            let data = jenis === "BELI" ? HARGA_BELI : HARGA_BONGKAR;
+            
+            select.innerHTML = '<option value="">-- Pilih Jumlah --</option>';
+            for (let [jml, hrg] of Object.entries(data)) {
+                let option = document.createElement('option');
+                option.value = jml;
+                option.textContent = `${jml} - ${formatRupiah(hrg)}`;
+                select.appendChild(option);
+            }
+        }
+        
+        function updateHarga() {
+            let jenis = document.getElementById("transaksiType").value;
+            let jumlah = document.getElementById("jumlahSelect").value;
+            let data = jenis === "BELI" ? HARGA_BELI : HARGA_BONGKAR;
+            
+            if (jumlah && data[jumlah]) {
+                currentJenis = jenis;
+                currentJumlah = jumlah;
+                currentHarga = data[jumlah];
+                document.getElementById("hargaDisplay").innerHTML = `💰 Harga: <span style="color:#10b981">${formatRupiah(currentHarga)}</span>`;
+            } else {
+                document.getElementById("hargaDisplay").innerHTML = "💰 Harga akan muncul setelah pilih jumlah";
+            }
+        }
+        
+        function generateMessage() {
+            let jenis = document.getElementById("transaksiType").value;
+            let jumlah = document.getElementById("jumlahSelect").value;
+            let id = document.getElementById("idGame").value.trim();
+            let bank = document.getElementById("bankTransfer").value;
+            
+            if (!jenis) return "⚠️ Pilih jenis transaksi";
+            if (!jumlah) return "⚠️ Pilih jumlah";
+            if (!id) return "⚠️ Masukkan ID Game";
+            if (!bank) return "⚠️ Pilih metode pembayaran";
+            
+            let harga = jenis === "BELI" ? HARGA_BELI[jumlah] : HARGA_BONGKAR[jumlah];
+            return `🛒 ORDER BERFIST 🛒\n━━━━━━━━━━━━━━━━━━━━\n🎮 Game: BERFIST\n📌 Jenis: ${jenis}\n💰 Jumlah: ${jumlah}\n💵 Harga: ${formatRupiah(harga)}\n🆔 ID Game: ${id}\n🏦 Metode Bayar: ${bank}\n━━━━━━━━━━━━━━━━━━━━\n⏰ Mohon diproses, terima kasih.`;
+        }
+        
+        function updatePreview() {
+            let msg = generateMessage();
+            let box = document.getElementById("previewBox");
+            if (msg.startsWith("⚠️")) {
+                box.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${msg}`;
+            } else {
+                box.innerHTML = msg.replace(/\n/g, '<br>');
+            }
+        }
+        
+        function sendMessage() {
+            if (isSending) {
+                showToast("⏳ Tunggu, pesan sedang dikirim...");
+                return;
+            }
+            
+            let msg = generateMessage();
+            if (msg.startsWith("⚠️")) {
+                showToast("❌ Lengkapi data!");
+                return;
+            }
+            
+            isSending = true;
+            showToast("✅ Pesanan dikirim ke Admin!");
+            closeModal();
+            
+            if (window.Android && window.Android.sendMessageToAdmin) {
+                window.Android.sendMessageToAdmin(msg);
+            } else {
+                alert("Pesan:\n\n" + msg);
+            }
+            
+            setTimeout(() => { isSending = false; }, 2000);
+        }
+        
+        function openChat() {
+            if (window.Android && window.Android.openChat) {
+                window.Android.openChat();
+            }
+        }
+        
+        function closeModal() {
+            document.getElementById("orderModal").style.display = "none";
+            isSending = false;
+        }
+        
+        function showToast(msg) {
+            let t = document.getElementById('toastMsg');
+            t.innerHTML = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2000);
+        }
+        
+        document.getElementById("transaksiType")?.addEventListener("change", () => {
+            updateJumlahSelect();
+            updateHarga();
+            updatePreview();
+        });
+        document.getElementById("jumlahSelect")?.addEventListener("change", () => {
+            updateHarga();
+            updatePreview();
+        });
+        document.getElementById("idGame")?.addEventListener("input", updatePreview);
+        document.getElementById("bankTransfer")?.addEventListener("change", updatePreview);
+        document.getElementById("sendBtn")?.addEventListener("click", sendMessage);
+        
+        renderPrices();
+    </script>
+</body>
+</html>

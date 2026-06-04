@@ -24,33 +24,22 @@
         .price-harga-beli { font-weight: 700; font-size: 12px; color: #10b981; font-family: monospace; }
         .price-harga-bongkar { font-weight: 700; font-size: 12px; color: #ef4444; font-family: monospace; }
         
-        /* MODAL YANG DIPERBAIKI */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(20px); z-index: 2000; justify-content: center; align-items: center; }
         .modal-content { background: linear-gradient(135deg, #1e293b, #0f172a); max-width: 450px; width: 90%; max-height: 85vh; border-radius: 2rem; border: 2px solid #f59e0b; display: flex; flex-direction: column; overflow: hidden; }
-        
-        /* HEADER: judul dan tombol X sejajar tengah */
         .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; border-bottom: 1px solid #334155; background: #0f172a; flex-shrink: 0; }
         .modal-header h3 { color: #fbbf24; font-size: 18px; margin: 0; }
         .modal-close { font-size: 28px; cursor: pointer; color: #94a3b8; transition: 0.2s; line-height: 1; }
         .modal-close:hover { color: #f59e0b; transform: rotate(90deg); }
-        
-        /* BODY: area scroll untuk form dan preview */
         .modal-body { padding: 20px; overflow-y: auto; flex: 1; }
-        
-        /* FOOTER: tombol kirim STICKY DI BAWAH */
         .modal-footer { padding: 16px 20px; border-top: 1px solid #334155; background: #0f172a; flex-shrink: 0; }
         .btn-send { width: 100%; padding: 14px; border-radius: 40px; font-weight: 800; cursor: pointer; border: none; background: linear-gradient(95deg, #f59e0b, #fbbf24); color: #0f172a; font-size: 14px; transition: 0.3s; }
         .btn-send:hover { transform: scale(1.02); filter: brightness(1.05); }
-        
         .form-group { margin-bottom: 15px; }
         .form-group label { font-size: 12px; color: #94a3b8; display: block; margin-bottom: 6px; font-weight: 500; }
         .form-group input, .form-group select { width: 100%; padding: 12px 14px; background: #0f172a; border: 1px solid #334155; border-radius: 40px; color: white; font-size: 14px; }
         .form-group input:focus, .form-group select:focus { border-color: #f59e0b; outline: none; }
         .harga-display { background: #0f172a; border-radius: 40px; padding: 12px; margin: 15px 0; text-align: center; border-left: 3px solid #10b981; font-weight: 600; }
-        
-        /* PREVIEW MESSAGE: bisa scroll, tombol tetap di bawah */
         .preview-msg { background: #0f172a; padding: 12px; border-radius: 16px; margin: 15px 0 5px 0; border-left: 4px solid #f59e0b; font-size: 11px; font-family: monospace; white-space: pre-wrap; max-height: 120px; overflow-y: auto; }
-        
         .btn-chat { background: linear-gradient(95deg, #4f46e5, #7c3aed); color: white; margin-top: 20px; width: 100%; padding: 14px; border-radius: 40px; font-weight: 800; cursor: pointer; border: none; font-size: 14px; }
         .toast-msg { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #1e293b; color: white; padding: 12px 24px; border-radius: 50px; z-index: 3000; transition: 0.3s; border-left: 4px solid #f59e0b; opacity: 0; font-size: 13px; }
         .toast-msg.show { transform: translateX(-50%) translateY(0); opacity: 1; }
@@ -71,7 +60,6 @@
         <div class="footer">© 2026 LLC PREMIUM</div>
     </div>
     
-    <!-- MODAL -->
     <div id="orderModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -126,20 +114,24 @@
     <div id="toastMsg" class="toast-msg">✅ Pesan dikirim!</div>
     
     <script>
+        // HARGA BELI (TOPUP) - sesuai tabel yang disetujui
         var HARGA_BELI = {
-            "100M": 7500, "200M": 13500, "300M": 19500, "400M": 25500, "500M": 31500,
-            "600M": 37500, "700M": 43500, "800M": 49500, "900M": 55000,
-            "1B": 60000, "2B": 120000, "3B": 180000, "4B": 240000, "5B": 300000,
-            "6B": 360000, "7B": 420000, "8B": 480000, "9B": 540000, "10B": 600000,
-            "15B": 900000, "20B": 1200000, "25B": 1500000, "30B": 1800000,
-            "35B": 2100000, "40B": 2400000, "45B": 2700000, "50B": 3000000
-        };
-        var HARGA_BONGKAR = {
+            "100M": 7000, "200M": 13500, "300M": 19800, "400M": 25800, "500M": 31500,
+            "600M": 37000, "700M": 42000, "800M": 46500, "900M": 50500,
             "1B": 55000, "2B": 110000, "3B": 165000, "4B": 220000, "5B": 275000,
             "6B": 330000, "7B": 385000, "8B": 440000, "9B": 495000, "10B": 550000,
             "15B": 825000, "20B": 1100000, "25B": 1375000, "30B": 1650000,
             "35B": 1925000, "40B": 2200000, "45B": 2475000, "50B": 2750000
         };
+        
+        // HARGA BONGKAR (JUAL CHIP) - FLAT 50.000 per 1B
+        var HARGA_BONGKAR = {
+            "1B": 50000, "2B": 100000, "3B": 150000, "4B": 200000, "5B": 250000,
+            "6B": 300000, "7B": 350000, "8B": 400000, "9B": 450000, "10B": 500000,
+            "15B": 750000, "20B": 1000000, "25B": 1250000, "30B": 1500000,
+            "35B": 1750000, "40B": 2000000, "45B": 2250000, "50B": 2500000
+        };
+        
         var currentJenis = "", currentJumlah = "", currentHarga = 0;
         var isSending = false;
         
